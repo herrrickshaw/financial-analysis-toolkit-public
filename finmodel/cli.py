@@ -851,6 +851,14 @@ def cmd_npa_classification(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_pipeline(a):
+    from . import pipeline as PL
+    res = PL.from_dict(_load_json(a.inputs))
+    for name in res["order"]:
+        print(f"Step '{name}': {', '.join(res['steps'][name].keys())}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -980,6 +988,7 @@ def main(argv=None):
     ctd = sp.add_parser("carry-trade", help="covered interest rate parity forward rate, unhedged FX carry return, break-even depreciation"); ctd.add_argument("inputs"); ctd.add_argument("--json-out"); ctd.set_defaults(fn=cmd_carry_trade)
     rvc = sp.add_parser("revolving-credit", help="cash-credit/overdraft and credit-card daily-balance interest; the minimum-payment trap"); rvc.add_argument("inputs"); rvc.add_argument("--json-out"); rvc.set_defaults(fn=cmd_revolving_credit)
     npa = sp.add_parser("npa-classification", help="RBI IRAC asset classification (Standard/SMA/NPA buckets) and secured/unsecured provisioning"); npa.add_argument("inputs"); npa.add_argument("--json-out"); npa.set_defaults(fn=cmd_npa_classification)
+    pln = sp.add_parser("pipeline", help="chain multiple finmodel modules together, referencing earlier steps' outputs with ${step.path} placeholders"); pln.add_argument("inputs"); pln.add_argument("--json-out"); pln.set_defaults(fn=cmd_pipeline)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)

@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 431 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 439 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -76,6 +76,7 @@ finmodel retail-deposits examples/retail_deposits_demo.json              # FD/RD
 finmodel carry-trade examples/carry_trade_demo.json                      # covered interest rate parity, unhedged FX carry return, break-even depreciation
 finmodel revolving-credit examples/revolving_credit_demo.json            # cash-credit/overdraft daily-balance interest, credit-card minimum-payment trap
 finmodel npa-classification examples/npa_classification_demo.json        # RBI IRAC asset classification (Standard/SMA/NPA) and secured/unsecured provisioning
+finmodel pipeline examples/pipeline_retail_lending_demo.json             # chain modules together: FOIR eligibility -> amortization -> NPA provisioning
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -279,6 +280,21 @@ companion literature survey — the real books, regulatory standards (RBI Master
 chain-ladder statistics) behind every banking-related module in the toolkit, a gap `docs/LEARNING_GUIDE.md`
 never covered since it's scoped to corporate-finance valuation instead.
 
+## A pipeline of tools (`finmodel.pipeline`, `docs/PIPELINE.md`)
+
+Every module already exposes the same `from_dict(d) -> dict` shape its own CLI command calls, so chaining
+modules together needed only a small amount of glue rather than a new execution model: `finmodel.pipeline`
+runs a list of `{"name", "module", "inputs"}` steps in order, and any input value written as exactly
+`"${step_name.path.to.value}"` is replaced with the real value at that path in an earlier step's actual
+output (a dict-key or list-index lookup per dotted segment) before that step runs. `examples/
+pipeline_retail_lending_demo.json` chains three different modules into one coherent loan lifecycle: FOIR-
+based loan eligibility (`finmodel.retail_loans`) → that EXACT principal's amortization schedule → the real
+RBI provisioning the bank would need to hold (`finmodel.npa_classification`) if that specific loan's real
+balance 24 months in later turned delinquent — every number flowing from the step before it rather than
+being independently made up. See `docs/PIPELINE.md` for what was deliberately left out of scope (a
+parallel-execution dependency graph, conditional branching) and why a strict ordered list is the right size
+for chaining pure, fast finance calculations rather than a general workflow engine.
+
 ## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
 
 The mirror image of the real-company checks above: instead of validating the toolkit against a real filer,
@@ -321,7 +337,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

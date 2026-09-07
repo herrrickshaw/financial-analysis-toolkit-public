@@ -1,0 +1,39 @@
+{
+  "steps": [
+    {
+      "name": "eligibility",
+      "module": "retail_loans",
+      "inputs": {
+        "loan_eligibility_foir": {
+          "monthly_gross_income": 150000.0,
+          "existing_emis": 20000.0,
+          "annual_rate": 0.09,
+          "tenure_months": 240,
+          "foir_limit": 0.50
+        }
+      }
+    },
+    {
+      "name": "schedule",
+      "module": "retail_loans",
+      "inputs": {
+        "amortization_schedule": {
+          "principal": "${eligibility.loan_eligibility_foir.max_eligible_principal}",
+          "annual_rate": 0.09,
+          "tenure_months": 240
+        }
+      }
+    },
+    {
+      "name": "delinquency",
+      "module": "npa_classification",
+      "inputs": {
+        "npa_provisioning": {
+          "days_past_due": 120,
+          "npa_age_days": 30,
+          "outstanding_amount": "${schedule.amortization_schedule.schedule.23.closing_balance}"
+        }
+      }
+    }
+  ]
+}

@@ -471,3 +471,16 @@ def test_cli_npa_classification(tmp_path, capsys):
     saved = json.loads((tmp_path / "npa.json").read_text())
     assert saved["total_provision_required"] > 0
     assert len(saved["loan_book"]) == 5
+
+
+def test_cli_pipeline(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["pipeline", str(EX / "pipeline_retail_lending_demo.json"), "--json-out", str(tmp_path / "pl.json")])
+    out = capsys.readouterr().out
+    assert "Step 'eligibility':" in out and "Step 'schedule':" in out and "Step 'delinquency':" in out
+    saved = json.loads((tmp_path / "pl.json").read_text())
+    assert saved["order"] == ["eligibility", "schedule", "delinquency"]
+    principal = saved["steps"]["eligibility"]["loan_eligibility_foir"]["max_eligible_principal"]
+    outstanding = saved["steps"]["schedule"]["amortization_schedule"]["schedule"][23]["closing_balance"]
+    assert outstanding < principal
+    assert saved["steps"]["delinquency"]["npa_provisioning"]["outstanding_amount"] == pytest.approx(outstanding)
