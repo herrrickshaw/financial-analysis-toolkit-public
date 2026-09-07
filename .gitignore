@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+# downloaded third-party spreadsheets are copyrighted; never commit them
+downloads/
+# scratch outputs
+out/
+*.tmp
+.DS_Store
+extracted/

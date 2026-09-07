@@ -1,0 +1,18 @@
+{
+ "_comment": "Illustrative figures from the CFI DCF template. Stub period 2017-12-31 -> FYE 2018-06-30.",
+ "ebit": [47814.456, 51094.85342, 55861.3900376, 58692.857260916, 63038.5849487763],
+ "da": [15008.42, 15005.052, 15003.0312, 15001.81872, 15001.091232],
+ "change_nwc": [375, 611, 398, 511, 272],
+ "capex": 15000,
+ "tax_rate": 0.25,
+ "discount_rate": 0.12,
+ "perpetual_growth": 0.03,
+ "ev_ebitda_multiple": 7,
+ "transaction_date": "2017-12-31",
+ "fiscal_year_end": "2018-06-30",
+ "current_price": 25,
+ "shares_outstanding": 20000,
+ "debt": 30000,
+ "cash": 239549.5203651849,
+ "terminal_method": "average"
+}

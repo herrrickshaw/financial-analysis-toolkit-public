@@ -1,0 +1,14 @@
+{
+  "_comment": "Cisco FY2026 (data/edgar/CSCO.json) plus illustrative market inputs (risk-free = 10yr UST, ERP = Damodaran implied ERP, beta = illustrative for a mature enterprise-tech name).",
+  "wacc": {
+    "risk_free": 0.042,
+    "equity_risk_premium": 0.045,
+    "beta": 1.05,
+    "market_cap": 447937779500,
+    "debt": 22872000000,
+    "tax_rate": 0.1713,
+    "ebit": 15368000000,
+    "interest_expense": 1470000000,
+    "large_firm": true
+  }
+}

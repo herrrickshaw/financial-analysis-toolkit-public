@@ -1,0 +1,1442 @@
+[
+ {
+  "description": "Educational notebooks on quantitative finance, algorithmic trading, financial modelling and investment strategy",
+  "fullName": "LongOnly/Quantitative-Notebooks",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2020-07-02T00:17:39Z",
+  "stargazersCount": 1394,
+  "updatedAt": "2026-08-30T16:16:14Z",
+  "url": "https://github.com/LongOnly/Quantitative-Notebooks",
+  "query": "financial modeling"
+ },
+ {
+  "description": "Quantitative Financial Modelling Framework",
+  "fullName": "joshuaulrich/quantmod",
+  "language": "R",
+  "pushedAt": "2026-07-03T12:59:38Z",
+  "stargazersCount": 904,
+  "updatedAt": "2026-09-03T16:09:41Z",
+  "url": "https://github.com/joshuaulrich/quantmod",
+  "query": "financial modeling"
+ },
+ {
+  "description": "A brief description on how to use Financial Modeling Prep Api ",
+  "fullName": "FinancialModelingPrepAPI/Financial-Modeling-Prep-API",
+  "language": "PHP",
+  "pushedAt": "2023-03-19T20:19:33Z",
+  "stargazersCount": 673,
+  "updatedAt": "2026-09-05T15:52:29Z",
+  "url": "https://github.com/FinancialModelingPrepAPI/Financial-Modeling-Prep-API",
+  "query": "financial modeling"
+ },
+ {
+  "description": "SDK for Financial Modeling Prep's (FMP) API",
+  "fullName": "daxm/fmpsdk",
+  "language": "Python",
+  "pushedAt": "2026-08-29T15:33:24Z",
+  "stargazersCount": 211,
+  "updatedAt": "2026-08-29T15:33:42Z",
+  "url": "https://github.com/daxm/fmpsdk",
+  "query": "financial modeling"
+ },
+ {
+  "description": "Claude-type skills for institutional equity research \u2014 25 AI agent skills with SEC   filings, XBRL financials, earnings calendars, DCF/comps/LBO models, and PPT   generation. Powered by agentii.ai data plane. Works with Claude Code, OpenCode,   Codex, OpenClaw, Goose.",
+  "fullName": "agentii-ai/agentii-investment-intelligence",
+  "language": "Python",
+  "pushedAt": "2026-09-04T08:49:10Z",
+  "stargazersCount": 203,
+  "updatedAt": "2026-09-04T08:53:02Z",
+  "url": "https://github.com/agentii-ai/agentii-investment-intelligence",
+  "query": "lbo model"
+ },
+ {
+  "description": "Vanilla and exotic option pricing library to support quantitative R&D. Focus on pricing interesting/useful models  and contracts (including and beyond Black-Scholes), as well as calibration of financial models to market data.",
+  "fullName": "jkirkby3/fypy",
+  "language": "Python",
+  "pushedAt": "2025-02-27T20:00:57Z",
+  "stargazersCount": 146,
+  "updatedAt": "2026-08-18T20:07:01Z",
+  "url": "https://github.com/jkirkby3/fypy",
+  "query": "financial modeling"
+ },
+ {
+  "description": "A Model Context Protocol (MCP) implementation for Financial Modeling Prep, enabling AI assistants to access and analyze financial data, stock information, company fundamentals, and market insights.",
+  "fullName": "imbenrabi/Financial-Modeling-Prep-MCP-Server",
+  "language": "TypeScript",
+  "pushedAt": "2026-07-02T17:24:51Z",
+  "stargazersCount": 143,
+  "updatedAt": "2026-09-03T12:18:37Z",
+  "url": "https://github.com/imbenrabi/Financial-Modeling-Prep-MCP-Server",
+  "query": "financial modeling"
+ },
+ {
+  "description": "Professional Financial Statement Analysis Tool - Automated ratio calculation and PDF reporting",
+  "fullName": "Ali-Marandi/FinAnalyzer",
+  "language": "Python",
+  "pushedAt": "2026-08-15T22:31:50Z",
+  "stargazersCount": 108,
+  "updatedAt": "2026-08-21T12:18:16Z",
+  "url": "https://github.com/Ali-Marandi/FinAnalyzer",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "Tools for Financial Modeling",
+  "fullName": "jimlindstrom/FinModeling",
+  "language": "Ruby",
+  "pushedAt": "2013-09-05T01:08:02Z",
+  "stargazersCount": 105,
+  "updatedAt": "2026-08-23T17:40:09Z",
+  "url": "https://github.com/jimlindstrom/FinModeling",
+  "query": "financial modeling"
+ },
+ {
+  "description": "SAM Simulation Core (SSC) contains the underlying performance and financial models for SAM",
+  "fullName": "NatLabRockies/ssc",
+  "language": "C++",
+  "pushedAt": "2026-09-04T18:07:41Z",
+  "stargazersCount": 93,
+  "updatedAt": "2026-08-25T07:35:59Z",
+  "url": "https://github.com/NatLabRockies/ssc",
+  "query": "financial modeling"
+ },
+ {
+  "description": "What This Skill Does Builds a complete, institutional-grade three-statement financial model (Income Statement, Balance Sheet, Cash Flow Statement) in Excel from scratch \u2014 with full formula linkage, zero hardcoded forecast cells, and a 9-step QC validation suite. Output quality targets: IPO prospectus / equity research initiating coverage.",
+  "fullName": "willpowerju-lgtm/3-statement-ultra-for-finance",
+  "language": "Python",
+  "pushedAt": "2026-05-15T06:41:54Z",
+  "stargazersCount": 84,
+  "updatedAt": "2026-08-31T21:41:57Z",
+  "url": "https://github.com/willpowerju-lgtm/3-statement-ultra-for-finance",
+  "query": "financial modeling"
+ },
+ {
+  "description": "Quantmodels is a Python package that provides implementations of various financial models commonly used in finance and investment analysis.",
+  "fullName": "tamilselvanarjun/quantmodels",
+  "language": "Python",
+  "pushedAt": "2024-04-03T19:46:16Z",
+  "stargazersCount": 74,
+  "updatedAt": "2026-03-14T18:50:44Z",
+  "url": "https://github.com/tamilselvanarjun/quantmodels",
+  "query": "financial modeling"
+ },
+ {
+  "description": "finmodels is a Python package that provides various financial models for analysis and optimization.",
+  "fullName": "tamilselvanarjun/finmodels",
+  "language": "Python",
+  "pushedAt": "2025-10-12T23:22:48Z",
+  "stargazersCount": 73,
+  "updatedAt": "2026-01-10T20:36:41Z",
+  "url": "https://github.com/tamilselvanarjun/finmodels",
+  "query": "financial modeling"
+ },
+ {
+  "description": "Financial Modelling With PowerBI",
+  "fullName": "ProdataSQL/FinancialModelling",
+  "language": "TSQL",
+  "pushedAt": "2026-04-21T21:49:21Z",
+  "stargazersCount": 72,
+  "updatedAt": "2026-08-13T07:10:54Z",
+  "url": "https://github.com/ProdataSQL/FinancialModelling",
+  "query": "financial modeling"
+ },
+ {
+  "description": "Option Pricing, Volatility Prediction, Machine Learning, Black Scholas, Web Crawling",
+  "fullName": "MiyainNYC/Financial-Modeling",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2016-12-20T03:25:24Z",
+  "stargazersCount": 66,
+  "updatedAt": "2026-08-27T17:55:37Z",
+  "url": "https://github.com/MiyainNYC/Financial-Modeling",
+  "query": "financial modeling"
+ },
+ {
+  "description": "Financial modeling with Python and Pandas ",
+  "fullName": "leonarduschen/pyfinmod",
+  "language": "Python",
+  "pushedAt": "2021-07-02T04:49:41Z",
+  "stargazersCount": 65,
+  "updatedAt": "2026-06-28T16:00:40Z",
+  "url": "https://github.com/leonarduschen/pyfinmod",
+  "query": "financial modeling"
+ },
+ {
+  "description": "Python library for financial statement analysis.",
+  "fullName": "TimoKats/fibooks",
+  "language": "Python",
+  "pushedAt": "2025-03-03T08:05:07Z",
+  "stargazersCount": 59,
+  "updatedAt": "2026-06-23T15:20:00Z",
+  "url": "https://github.com/TimoKats/fibooks",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "Including packages that frequently used in quantitative finance field and how to implement classic financial model in Quantopian.",
+  "fullName": "BessieChen/Python-for-Financial-Analysis-and-Algorithmic-Trading",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2018-08-17T19:18:54Z",
+  "stargazersCount": 55,
+  "updatedAt": "2026-07-27T08:52:40Z",
+  "url": "https://github.com/BessieChen/Python-for-Financial-Analysis-and-Algorithmic-Trading",
+  "query": "financial modeling"
+ },
+ {
+  "description": "DCF valuation notebooks based on financial-statement analysis and stock valuation study notes.",
+  "fullName": "xuelixunhua/stock_DCF",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2021-01-22T04:17:14Z",
+  "stargazersCount": 55,
+  "updatedAt": "2026-08-25T06:15:49Z",
+  "url": "https://github.com/xuelixunhua/stock_DCF",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "Enter a US stock ticker, get an analyst grade memo with DCF valuation, peer comparables, news sentiment, and earnings call tone analysis. Multi agent LLM pipeline (Claude + GPT-4o devil's advocate) with strict citation validation. FastAPI + Next.js + pgvector RAG. No hallucinated numbers",
+  "fullName": "kbhujbal/AlphaAnalyst-open-source-autonomous-equity-research-agent",
+  "language": "Python",
+  "pushedAt": "2026-04-29T07:52:33Z",
+  "stargazersCount": 47,
+  "updatedAt": "2026-09-01T23:41:08Z",
+  "url": "https://github.com/kbhujbal/AlphaAnalyst-open-source-autonomous-equity-research-agent",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "This contains a preliminary draft of a graduate textbook on Empirical Corporate Finance.",
+  "fullName": "mzfrank/ECF",
+  "language": "",
+  "pushedAt": "2026-08-24T14:09:17Z",
+  "stargazersCount": 35,
+  "updatedAt": "2026-08-27T04:07:22Z",
+  "url": "https://github.com/mzfrank/ECF",
+  "query": "corporate finance"
+ },
+ {
+  "description": "Open-source, local-first MCP DCF valuation workflow that turns a stock ticker into transparent Damodaran-style assumptions, scenarios, and valuation outputs you can inspect, challenge, and refine.",
+  "fullName": "stockvaluation-io/stockvaluation_io",
+  "language": "Java",
+  "pushedAt": "2026-07-26T07:13:48Z",
+  "stargazersCount": 32,
+  "updatedAt": "2026-08-04T22:32:33Z",
+  "url": "https://github.com/stockvaluation-io/stockvaluation_io",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "Predict the change in closing price from one trading day to the next into one of four bands for any stock using technical indicators and financial ratios as features.",
+  "fullName": "KieranLitschel/PredictingClosingPriceTomorrow",
+  "language": "Python",
+  "pushedAt": "2022-12-08T02:08:54Z",
+  "stargazersCount": 25,
+  "updatedAt": "2026-02-13T04:12:50Z",
+  "url": "https://github.com/KieranLitschel/PredictingClosingPriceTomorrow",
+  "query": "financial ratios"
+ },
+ {
+  "description": "Source code for Bazdresch, Kahn, Whited \"Estimating and Testing Dynamic Corporate Finance Models\"",
+  "fullName": "J-Kahn/estimating-dynamic-corporate",
+  "language": "C++",
+  "pushedAt": "2017-07-22T17:27:18Z",
+  "stargazersCount": 25,
+  "updatedAt": "2026-08-23T23:00:13Z",
+  "url": "https://github.com/J-Kahn/estimating-dynamic-corporate",
+  "query": "corporate finance"
+ },
+ {
+  "description": "",
+  "fullName": "eonofrey/comparable_company_analysis",
+  "language": "Python",
+  "pushedAt": "2019-02-09T21:10:48Z",
+  "stargazersCount": 17,
+  "updatedAt": "2026-06-15T12:44:10Z",
+  "url": "https://github.com/eonofrey/comparable_company_analysis",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "Codex skills for finance workflows, from quick asks like \u201cRun DCF\u201d to structured outputs across DCF, three-statement models, LBOs, comps, SOTP, sensitivity analysis, and investment committee memos.",
+  "fullName": "MichaelRochonnn/financial-models",
+  "language": "",
+  "pushedAt": "2026-04-08T13:10:52Z",
+  "stargazersCount": 16,
+  "updatedAt": "2026-09-03T03:09:27Z",
+  "url": "https://github.com/MichaelRochonnn/financial-models",
+  "query": "three statement model"
+ },
+ {
+  "description": "",
+  "fullName": "FinanceAndPython/FinanceAndPython.com-CorporateFinance",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2017-09-09T23:04:49Z",
+  "stargazersCount": 16,
+  "updatedAt": "2026-09-01T21:09:28Z",
+  "url": "https://github.com/FinanceAndPython/FinanceAndPython.com-CorporateFinance",
+  "query": "corporate finance"
+ },
+ {
+  "description": "Simple corporate finance concepts like DCF, IRR, NPV, WACC, Debt, Unlevered Equity, Forward Contract Valuation. ",
+  "fullName": "jothamteo/corporate_finance_valuation",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2018-11-15T19:24:19Z",
+  "stargazersCount": 14,
+  "updatedAt": "2026-05-26T01:53:43Z",
+  "url": "https://github.com/jothamteo/corporate_finance_valuation",
+  "query": "corporate finance"
+ },
+ {
+  "description": "Retrieves financial data from XBRL / Yahoo / Quandl and conducts DCF Valuation ",
+  "fullName": "dnitiutomo/Stock-DCF-Valuation-Program",
+  "language": "C#",
+  "pushedAt": "2015-03-16T00:53:36Z",
+  "stargazersCount": 13,
+  "updatedAt": "2024-04-14T20:45:20Z",
+  "url": "https://github.com/dnitiutomo/Stock-DCF-Valuation-Program",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "An auditable DCF valuation skill with scenarios, reverse DCF, sensitivity analysis, and fail-closed governance gates.",
+  "fullName": "noahnan-max/governed-dcf-skill",
+  "language": "Python",
+  "pushedAt": "2026-07-31T01:15:19Z",
+  "stargazersCount": 12,
+  "updatedAt": "2026-08-26T04:32:39Z",
+  "url": "https://github.com/noahnan-max/governed-dcf-skill",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "A python-based leverage buyout modelling that generates and updates results in excel automatically for PE/VC company valuation",
+  "fullName": "Fayepasvouri/LBO_modelling_python_excel",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2022-03-29T09:54:28Z",
+  "stargazersCount": 11,
+  "updatedAt": "2026-06-03T01:57:04Z",
+  "url": "https://github.com/Fayepasvouri/LBO_modelling_python_excel",
+  "query": "lbo model"
+ },
+ {
+  "description": "Python financial statement analysis, audit, and tax tools for accounting professionals, designed by a CPA for accountants.",
+  "fullName": "danshorstein/cpatoolz",
+  "language": "CSS",
+  "pushedAt": "2017-04-27T00:53:40Z",
+  "stargazersCount": 11,
+  "updatedAt": "2026-04-08T16:40:55Z",
+  "url": "https://github.com/danshorstein/cpatoolz",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "Python - Several concepts drawn from corporate finance and financial markets",
+  "fullName": "CoreaFr/Traditional_finance",
+  "language": "Python",
+  "pushedAt": "2014-11-17T12:56:48Z",
+  "stargazersCount": 11,
+  "updatedAt": "2021-02-22T17:09:21Z",
+  "url": "https://github.com/CoreaFr/Traditional_finance",
+  "query": "corporate finance"
+ },
+ {
+  "description": "",
+  "fullName": "AIM-IT4/Financial-Statement-Analysis-using-Python",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2022-12-24T12:14:44Z",
+  "stargazersCount": 10,
+  "updatedAt": "2026-06-26T13:23:30Z",
+  "url": "https://github.com/AIM-IT4/Financial-Statement-Analysis-using-Python",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "A script which parses Morning Star for key financial ratios and company accounts for all companies in the stock index using Good Morning repo",
+  "fullName": "ferhat00/fundamental_analysis_stocks",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2026-06-26T18:43:41Z",
+  "stargazersCount": 10,
+  "updatedAt": "2026-06-26T18:44:06Z",
+  "url": "https://github.com/ferhat00/fundamental_analysis_stocks",
+  "query": "financial ratios"
+ },
+ {
+  "description": "2020 project by Shu Bin at Claremont McKenna College. This project applies Elkan's K-Means algorithm to S&P 500 stocks using the underlying companies' financial ratios. The algorithm is able to consistently create portfolios that exceed market return.",
+  "fullName": "shu-bin/financial-ratio-clustering",
+  "language": "Python",
+  "pushedAt": "2022-11-25T03:43:52Z",
+  "stargazersCount": 10,
+  "updatedAt": "2026-05-28T03:15:00Z",
+  "url": "https://github.com/shu-bin/financial-ratio-clustering",
+  "query": "financial ratios"
+ },
+ {
+  "description": "[Using Excel, Accounting, Advanced Financial knowledge]. A dynamic three statement model linking the income statement, balance sheet, and cash flow statement into a dynamic financial model used for valuation (discounted cash flows, Mergers and Acquisitions models, Leveraged Buyouts etc.) as well as financial analysis (scenario/sensitivity analysis)",
+  "fullName": "arnavchaturvedi17/FinancialAnalysis-3_Statement_Financial_Model",
+  "language": "",
+  "pushedAt": "2024-12-30T16:53:13Z",
+  "stargazersCount": 10,
+  "updatedAt": "2026-09-06T05:40:59Z",
+  "url": "https://github.com/arnavchaturvedi17/FinancialAnalysis-3_Statement_Financial_Model",
+  "query": "three statement model"
+ },
+ {
+  "description": "Template for using the finnts package on Azure Synapse for scalable time series forecasting within corporate finance.",
+  "fullName": "microsoft/dstoolkit-corporate-financial-forecasting",
+  "language": "",
+  "pushedAt": "2023-08-10T20:09:26Z",
+  "stargazersCount": 10,
+  "updatedAt": "2025-11-25T19:24:21Z",
+  "url": "https://github.com/microsoft/dstoolkit-corporate-financial-forecasting",
+  "query": "corporate finance"
+ },
+ {
+  "description": "This a simple case study on how to create a LBO Model for Private Equity using Python. ",
+  "fullName": "Calivala-86/PE-LBO-MODEL",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2023-02-06T16:12:28Z",
+  "stargazersCount": 9,
+  "updatedAt": "2026-05-21T16:59:06Z",
+  "url": "https://github.com/Calivala-86/PE-LBO-MODEL",
+  "query": "lbo model"
+ },
+ {
+  "description": "API for Market Financial Ratios (mainly for Brazil)",
+  "fullName": "otavioa/market-financial-ratios",
+  "language": "Java",
+  "pushedAt": "2025-05-04T19:46:41Z",
+  "stargazersCount": 9,
+  "updatedAt": "2026-01-15T17:18:03Z",
+  "url": "https://github.com/otavioa/market-financial-ratios",
+  "query": "financial ratios"
+ },
+ {
+  "description": "Visualization of Data in Tableau to Perform Fundamental Analysis of S&P 500 Stocks using Financial Ratios that measure Valuation, Profitability, Liquidity and Dividend Yield.",
+  "fullName": "shubhammandhare10/Fundamental-Stock-Analysis-and-Tableau-Visualization",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2022-05-06T22:58:52Z",
+  "stargazersCount": 8,
+  "updatedAt": "2024-11-30T03:15:45Z",
+  "url": "https://github.com/shubhammandhare10/Fundamental-Stock-Analysis-and-Tableau-Visualization",
+  "query": "financial ratios"
+ },
+ {
+  "description": "Applying theories from Accounting, Corporate Finance, Economics, Entrepreneurship, and Investments to several real-world financial modeling cases. ",
+  "fullName": "christopherguzmansilva93/VBA-EXCEL-Financial-Modeling-Financial-Analysis-",
+  "language": "",
+  "pushedAt": "2024-06-27T19:14:08Z",
+  "stargazersCount": 8,
+  "updatedAt": "2026-06-27T17:31:44Z",
+  "url": "https://github.com/christopherguzmansilva93/VBA-EXCEL-Financial-Modeling-Financial-Analysis-",
+  "query": "corporate finance"
+ },
+ {
+  "description": "Expert Excel financial model \u2014 DCF Valuation, Monte Carlo Simulation, Portfolio Analytics for Apple Inc.",
+  "fullName": "speedyhok/NEXUS-Investment-Command-System",
+  "language": "",
+  "pushedAt": "2026-06-06T12:21:11Z",
+  "stargazersCount": 7,
+  "updatedAt": "2026-07-10T15:17:00Z",
+  "url": "https://github.com/speedyhok/NEXUS-Investment-Command-System",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "This is a simple leveraged buyout (LBO) model that includes sensitivity analysis using Python and Streamlit.",
+  "fullName": "JimCortes/LBO_Model",
+  "language": "Python",
+  "pushedAt": "2023-03-18T07:38:21Z",
+  "stargazersCount": 7,
+  "updatedAt": "2026-03-27T15:09:08Z",
+  "url": "https://github.com/JimCortes/LBO_Model",
+  "query": "lbo model"
+ },
+ {
+  "description": "The corporate finance class.",
+  "fullName": "KarryRen/Corporate-Finance",
+  "language": "",
+  "pushedAt": "2025-04-20T06:58:40Z",
+  "stargazersCount": 7,
+  "updatedAt": "2026-06-17T16:23:15Z",
+  "url": "https://github.com/KarryRen/Corporate-Finance",
+  "query": "corporate finance"
+ },
+ {
+  "description": "ANTON - a local-first LLM operating system for corporate finance professionals (public mirror; private until reviewed)",
+  "fullName": "antonaios/anton",
+  "language": "Python",
+  "pushedAt": "2026-07-05T21:24:59Z",
+  "stargazersCount": 7,
+  "updatedAt": "2026-07-10T04:57:28Z",
+  "url": "https://github.com/antonaios/anton",
+  "query": "corporate finance"
+ },
+ {
+  "description": "Uses DCF to help calculate the intrinsic value of any company that the DCF valuation rules apply to.",
+  "fullName": "faithfulalabi/Discounted_Cash_Flow_Calculator",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2022-12-27T17:01:30Z",
+  "stargazersCount": 6,
+  "updatedAt": "2025-11-24T07:12:41Z",
+  "url": "https://github.com/faithfulalabi/Discounted_Cash_Flow_Calculator",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "financial ratio calculator ",
+  "fullName": "JustinDoBosh/financialRatios",
+  "language": "Python",
+  "pushedAt": "2015-02-14T03:02:41Z",
+  "stargazersCount": 6,
+  "updatedAt": "2024-10-23T21:00:18Z",
+  "url": "https://github.com/JustinDoBosh/financialRatios",
+  "query": "financial ratios"
+ },
+ {
+  "description": "A data mining project that aims to predict a company's bankruptcy based solely on its financial ratios",
+  "fullName": "pvnieo/Bankruptcy-Explained",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2018-05-01T15:05:53Z",
+  "stargazersCount": 6,
+  "updatedAt": "2024-04-03T09:56:22Z",
+  "url": "https://github.com/pvnieo/Bankruptcy-Explained",
+  "query": "financial ratios"
+ },
+ {
+  "description": "Corporate finance PHP library.",
+  "fullName": "wells5609/PHP-Finance",
+  "language": "PHP",
+  "pushedAt": "2014-07-21T23:14:34Z",
+  "stargazersCount": 6,
+  "updatedAt": "2026-03-02T11:46:32Z",
+  "url": "https://github.com/wells5609/PHP-Finance",
+  "query": "corporate finance"
+ },
+ {
+  "description": "Code and resources collected for the PhD course at INSEAD",
+  "fullName": "Wentworthliu123/Empirical-Corporate-Finance-2021",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2021-04-17T09:07:50Z",
+  "stargazersCount": 6,
+  "updatedAt": "2025-12-30T13:27:55Z",
+  "url": "https://github.com/Wentworthliu123/Empirical-Corporate-Finance-2021",
+  "query": "corporate finance"
+ },
+ {
+  "description": "A conversational Slack virtual assistant for a very basic corporate finance analytics.",
+  "fullName": "farhannysf/vitruvina",
+  "language": "Python",
+  "pushedAt": "2018-11-05T09:28:21Z",
+  "stargazersCount": 6,
+  "updatedAt": "2024-08-24T16:10:50Z",
+  "url": "https://github.com/farhannysf/vitruvina",
+  "query": "corporate finance"
+ },
+ {
+  "description": "Advanced Discounted Cash Flow (DCF) Valuation Using R textbook",
+  "fullName": "123blee/Advanced_DCF_Valuation_Using_R.github.io",
+  "language": "R",
+  "pushedAt": "2021-10-09T17:35:44Z",
+  "stargazersCount": 5,
+  "updatedAt": "2024-11-23T18:56:49Z",
+  "url": "https://github.com/123blee/Advanced_DCF_Valuation_Using_R.github.io",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "DCF valuation tool with Monte Carlo simulation for stock analysis. Features real-time beta calculation, multi-market support, and interactive visualizations. Built with Streamlit and Python.",
+  "fullName": "dafahentra/dcf-valuation-tool",
+  "language": "Python",
+  "pushedAt": "2026-06-07T19:47:29Z",
+  "stargazersCount": 5,
+  "updatedAt": "2026-07-29T11:42:53Z",
+  "url": "https://github.com/dafahentra/dcf-valuation-tool",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "[Using Excel, Accounting, Financial knowledge]. The DCF model is a valuation method to estimate the value of an investment based on its expected future cash flow. It calculates the present value of future cash flows, considering the \"time value of money\" principle, i.e. money received today is worth more than the same amount received in the future.",
+  "fullName": "arnavchaturvedi17/FinancialAnalysis-Discounted-Cash-Flow-DCF-Valuation-Financial-Model",
+  "language": "",
+  "pushedAt": "2025-01-09T18:53:27Z",
+  "stargazersCount": 5,
+  "updatedAt": "2026-07-02T23:12:28Z",
+  "url": "https://github.com/arnavchaturvedi17/FinancialAnalysis-Discounted-Cash-Flow-DCF-Valuation-Financial-Model",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "Turn any earnings PDF into a full DCF valuation with AI agents using Skills.",
+  "fullName": "Ruinius/financial-analyst-skills",
+  "language": "Python",
+  "pushedAt": "2026-06-08T22:20:34Z",
+  "stargazersCount": 5,
+  "updatedAt": "2026-06-08T22:19:55Z",
+  "url": "https://github.com/Ruinius/financial-analyst-skills",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "Generative AI Apps Practices \u2013 A curated suite of hands-on generative AI projects showcasing best practices in prompt engineering, code repository interaction, legal document summarization, and financial statement analysis.",
+  "fullName": "artaasd95/GenAI-apps-practices",
+  "language": "Python",
+  "pushedAt": "2025-01-09T14:16:13Z",
+  "stargazersCount": 5,
+  "updatedAt": "2025-12-07T17:33:44Z",
+  "url": "https://github.com/artaasd95/GenAI-apps-practices",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "Wordpress Plugin for a block that displays a financial ratio of a company",
+  "fullName": "xelonic/wordpress-financial-ratio-block",
+  "language": "JavaScript",
+  "pushedAt": "2023-11-15T12:05:36Z",
+  "stargazersCount": 5,
+  "updatedAt": "2023-08-07T14:54:39Z",
+  "url": "https://github.com/xelonic/wordpress-financial-ratio-block",
+  "query": "financial ratios"
+ },
+ {
+  "description": "Curso de pregrado de Finanzas Corporativas II de la escuela profesional de Ingenier\u00eda Econ\u00f3mica de la UNI.",
+  "fullName": "AChangM/Corporate-Finance-II-Undergraduate",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2022-08-27T20:11:08Z",
+  "stargazersCount": 5,
+  "updatedAt": "2026-01-05T18:37:22Z",
+  "url": "https://github.com/AChangM/Corporate-Finance-II-Undergraduate",
+  "query": "corporate finance"
+ },
+ {
+  "description": "Contains financial studies work, including capital markets, corporate finance and other topics.",
+  "fullName": "garthmortensen/finance",
+  "language": "MATLAB",
+  "pushedAt": "2021-08-01T01:57:40Z",
+  "stargazersCount": 5,
+  "updatedAt": "2025-08-19T22:00:04Z",
+  "url": "https://github.com/garthmortensen/finance",
+  "query": "corporate finance"
+ },
+ {
+  "description": "Using Python to scrape Yahoo Finance data and do DCF valuation",
+  "fullName": "taovalue/DCF_Valuation",
+  "language": "Python",
+  "pushedAt": "2019-09-23T14:55:58Z",
+  "stargazersCount": 4,
+  "updatedAt": "2022-09-25T04:48:51Z",
+  "url": "https://github.com/taovalue/DCF_Valuation",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "I try to build a discounted cash flow valuation model using Yahoo Finance's open API.",
+  "fullName": "andyfucheng/DCF-valuation",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2022-06-07T02:06:30Z",
+  "stargazersCount": 4,
+  "updatedAt": "2025-01-09T15:53:40Z",
+  "url": "https://github.com/andyfucheng/DCF-valuation",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "Buffett-style DCF intrinsic value analysis for China A-share market | Python + Streamlit + Tushare",
+  "fullName": "Mirror-Heart/dcf-valuation-system",
+  "language": "Python",
+  "pushedAt": "2026-08-30T06:12:33Z",
+  "stargazersCount": 4,
+  "updatedAt": "2026-08-30T06:12:58Z",
+  "url": "https://github.com/Mirror-Heart/dcf-valuation-system",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "\u5341\u5e74DCF\u4f30\u503c\u5de5\u5177\uff0c\u652f\u6301\u4f20\u7edfDCF(Gordon\u6c38\u7eed\u6a21\u578b)\u548c\u6bb5\u6c38\u5e73\u5f0fPE\u9000\u51fa\u6cd5\uff0cAI Agent Skill",
+  "fullName": "ianzheng001/dcf-valuation-skill",
+  "language": "Python",
+  "pushedAt": "2026-05-08T14:29:33Z",
+  "stargazersCount": 4,
+  "updatedAt": "2026-08-04T14:07:03Z",
+  "url": "https://github.com/ianzheng001/dcf-valuation-skill",
+  "query": "dcf valuation"
+ },
+ {
+  "description": "Financial statement analysis for any stock. Piotroski, Altman Z, Beneish M - one command.\"",
+  "fullName": "shubhwade/telmus",
+  "language": "Python",
+  "pushedAt": "2026-06-22T20:28:31Z",
+  "stargazersCount": 4,
+  "updatedAt": "2026-07-26T18:35:26Z",
+  "url": "https://github.com/shubhwade/telmus",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "The objective of financial statement analysis is to examine past and current financial data so that a company's performance and financial position can be evaluated and future risks and potential can be estimated. Financial statement analysis can yield valuable information about trends and relationships, the quality of a company's earnings, and the strengths and weaknesses of its financial position. All these information helps the credit professionals to make better decisions in lending.",
+  "fullName": "sindhujahariharan/Financial-Risk-model-for-corporates",
+  "language": "R",
+  "pushedAt": "2019-11-06T10:17:16Z",
+  "stargazersCount": 4,
+  "updatedAt": "2024-08-25T16:50:49Z",
+  "url": "https://github.com/sindhujahariharan/Financial-Risk-model-for-corporates",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "All the work completed for a study on machine learning based on financial ratios to pick stocks on the ASX",
+  "fullName": "stevetulig/Machine-learning-financial-ratios-and-stock-picking",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2022-10-23T18:21:55Z",
+  "stargazersCount": 4,
+  "updatedAt": "2024-12-31T17:00:35Z",
+  "url": "https://github.com/stevetulig/Machine-learning-financial-ratios-and-stock-picking",
+  "query": "financial ratios"
+ },
+ {
+  "description": "This Python project calculates and visualizes key financial ratios such as Leverage Ratio, Profit Margin, Return on Assets, and Return on Equity for a sample company over several years. The goal is to analyze the company's financial performance and provide insights into profitability and leverage.",
+  "fullName": "sarthidarji128/Financial-Report-Analysis",
+  "language": "Python",
+  "pushedAt": "2024-11-16T11:08:35Z",
+  "stargazersCount": 4,
+  "updatedAt": "2026-01-15T17:19:00Z",
+  "url": "https://github.com/sarthidarji128/Financial-Report-Analysis",
+  "query": "financial ratios"
+ },
+ {
+  "description": "Ratios Pro is a powerful web application designed to assist investors and financial professionals in analyzing stocks by providing essential financial ratios.",
+  "fullName": "scott16lloyd/RatiosPro",
+  "language": "TypeScript",
+  "pushedAt": "2024-11-02T14:18:13Z",
+  "stargazersCount": 4,
+  "updatedAt": "2026-02-21T18:09:18Z",
+  "url": "https://github.com/scott16lloyd/RatiosPro",
+  "query": "financial ratios"
+ },
+ {
+  "description": "financial agent that analysis the stcok based on the latest news, financial ratios, financial data, performance of the company and transcripts of concalls",
+  "fullName": "Dishant1804/Financial-Agent",
+  "language": "Python",
+  "pushedAt": "2025-07-29T01:50:14Z",
+  "stargazersCount": 4,
+  "updatedAt": "2026-06-03T19:52:51Z",
+  "url": "https://github.com/Dishant1804/Financial-Agent",
+  "query": "financial ratios"
+ },
+ {
+  "description": "This repository contains a Streamlit-based web application for analyzing stock data and calculating various financial ratios, including Islamic compliance screening. The app provides insights into a company's debt structure and evaluates its compliance with Islamic financial principles.",
+  "fullName": "danialranjha/StockInsightTracker",
+  "language": "Python",
+  "pushedAt": "2026-07-02T00:32:05Z",
+  "stargazersCount": 4,
+  "updatedAt": "2026-08-04T06:03:32Z",
+  "url": "https://github.com/danialranjha/StockInsightTracker",
+  "query": "financial ratios"
+ },
+ {
+  "description": "Filtering the stockmarket into clusters with financial ratios built on quarterly snapshots over 5 years of data. The goal was to see the evolution paths of companies over time and find clusters that develop future winners.  Methods used, PCA, UMAP,  HDBSCAN, KMeans.",
+  "fullName": "Jasone818/clustering-the-stock-market",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2021-03-23T23:14:18Z",
+  "stargazersCount": 4,
+  "updatedAt": "2025-11-23T15:58:31Z",
+  "url": "https://github.com/Jasone818/clustering-the-stock-market",
+  "query": "financial ratios"
+ },
+ {
+  "description": "My notes of some paper in the field of corporate governance\uff0cfinance and investment",
+  "fullName": "dugugin/Corporate-Finance",
+  "language": "TeX",
+  "pushedAt": "2017-12-26T03:42:23Z",
+  "stargazersCount": 4,
+  "updatedAt": "2023-01-30T21:48:20Z",
+  "url": "https://github.com/dugugin/Corporate-Finance",
+  "query": "corporate finance"
+ },
+ {
+  "description": "Equity valuation and investment recommendation using DCF and comparable company analysis.",
+  "fullName": "shreyashhedaoo181-png/Investment-Banking-Valuation-Project",
+  "language": "",
+  "pushedAt": "2026-01-23T16:15:57Z",
+  "stargazersCount": 3,
+  "updatedAt": "2026-02-02T11:45:40Z",
+  "url": "https://github.com/shreyashhedaoo181-png/Investment-Banking-Valuation-Project",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "5-year DCF valuation model with Monte Carlo simulation, sensitivity analysis, scenario analysis, comparable company analysis, and exit multiple valuation. Built in Python.",
+  "fullName": "EmanueleSturzo/DCF-Valuation-Model",
+  "language": "Python",
+  "pushedAt": "2026-04-08T02:46:54Z",
+  "stargazersCount": 3,
+  "updatedAt": "2026-09-01T08:31:37Z",
+  "url": "https://github.com/EmanueleSturzo/DCF-Valuation-Model",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "A financial statement analysis model built using unsupervised learning and clustering",
+  "fullName": "geotrieu/fsa",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2022-11-24T05:18:23Z",
+  "stargazersCount": 3,
+  "updatedAt": "2023-10-27T17:48:27Z",
+  "url": "https://github.com/geotrieu/fsa",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "financial ratios project",
+  "fullName": "Dinamow/financial-ratios",
+  "language": "Python",
+  "pushedAt": "2024-04-28T09:09:25Z",
+  "stargazersCount": 3,
+  "updatedAt": "2026-03-14T07:43:00Z",
+  "url": "https://github.com/Dinamow/financial-ratios",
+  "query": "financial ratios"
+ },
+ {
+  "description": "Scrapes SEC statments and formats three statement model in excel",
+  "fullName": "alach11/FinScrape",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2017-03-17T19:46:01Z",
+  "stargazersCount": 3,
+  "updatedAt": "2024-10-28T20:37:36Z",
+  "url": "https://github.com/alach11/FinScrape",
+  "query": "three statement model"
+ },
+ {
+  "description": "Performing simple Leveraged Buyout Modelling with Python and SQL",
+  "fullName": "fben-eghan/LBO_Modelling",
+  "language": "Python",
+  "pushedAt": "2023-03-15T20:09:13Z",
+  "stargazersCount": 2,
+  "updatedAt": "2025-02-21T08:02:21Z",
+  "url": "https://github.com/fben-eghan/LBO_Modelling",
+  "query": "lbo model"
+ },
+ {
+  "description": "",
+  "fullName": "acorreia61201/wavelet_merger_model",
+  "language": "Python",
+  "pushedAt": "2026-08-19T18:56:11Z",
+  "stargazersCount": 2,
+  "updatedAt": "2026-08-19T18:57:21Z",
+  "url": "https://github.com/acorreia61201/wavelet_merger_model",
+  "query": "merger model"
+ },
+ {
+  "description": "Automating Comparable Company Analysis with Selenium and Excel",
+  "fullName": "naomikwilson/Team-Project",
+  "language": "Python",
+  "pushedAt": "2023-04-30T02:31:15Z",
+  "stargazersCount": 2,
+  "updatedAt": "2024-02-05T02:26:07Z",
+  "url": "https://github.com/naomikwilson/Team-Project",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "data-visualization-platform for financial statement analysis",
+  "fullName": "xuyakai11/data-visualization-platform",
+  "language": "Vue",
+  "pushedAt": "2023-01-03T15:25:29Z",
+  "stargazersCount": 2,
+  "updatedAt": "2019-01-22T09:23:27Z",
+  "url": "https://github.com/xuyakai11/data-visualization-platform",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "\uae30\uc5c5\uc758 \uc7ac\ubb34\uc81c\ud45c\ub97c \ubd84\uc11d\ud558\uc5ec \ud22c\uc790\uc5d0 \ub3c4\uc6c0\uc744 \uc8fc\ub294 \ud504\ub85c\uadf8\ub7a8",
+  "fullName": "Junuu/Financial-Statement-Analysis",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2020-06-02T01:49:11Z",
+  "stargazersCount": 2,
+  "updatedAt": "2024-01-03T10:31:29Z",
+  "url": "https://github.com/Junuu/Financial-Statement-Analysis",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "Financial Statement Analysis Exercises ",
+  "fullName": "srikanthyadav444p/FSA_EXERCISES-",
+  "language": "",
+  "pushedAt": "2025-09-24T12:12:23Z",
+  "stargazersCount": 2,
+  "updatedAt": "2026-07-13T06:05:46Z",
+  "url": "https://github.com/srikanthyadav444p/FSA_EXERCISES-",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "Built on the SimFin API",
+  "fullName": "FrankVolpe/Financial-Statement-Analysis-Toolkit",
+  "language": "Python",
+  "pushedAt": "2019-09-07T03:51:22Z",
+  "stargazersCount": 2,
+  "updatedAt": "2025-05-24T18:56:03Z",
+  "url": "https://github.com/FrankVolpe/Financial-Statement-Analysis-Toolkit",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "",
+  "fullName": "Ayushkumarsingh09/Financial-Statement-Analysis-Model",
+  "language": "Python",
+  "pushedAt": "2025-01-22T11:01:06Z",
+  "stargazersCount": 2,
+  "updatedAt": "2026-06-25T06:26:27Z",
+  "url": "https://github.com/Ayushkumarsingh09/Financial-Statement-Analysis-Model",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "",
+  "fullName": "CHOMINJUN-127/financial-statement-analysis-for-households",
+  "language": "Python",
+  "pushedAt": "2026-02-19T08:08:54Z",
+  "stargazersCount": 2,
+  "updatedAt": "2026-07-13T13:03:09Z",
+  "url": "https://github.com/CHOMINJUN-127/financial-statement-analysis-for-households",
+  "query": "financial statement analysis"
+ },
+ {
+  "description": "Financial Models using advanced Excel spreadsheets, including: Three Statement Model Valuation; Financial Statement; Bond Duration, Convexity and Immunization; Valuation Capital Budgeting Model, Weighted Average Cost of Capital (WACC) & Sensitivity Analysis. ",
+  "fullName": "catherman/Financial-Model-Analysis",
+  "language": "",
+  "pushedAt": "2024-03-16T16:29:20Z",
+  "stargazersCount": 2,
+  "updatedAt": "2026-07-22T10:46:48Z",
+  "url": "https://github.com/catherman/Financial-Model-Analysis",
+  "query": "three statement model"
+ },
+ {
+  "description": "",
+  "fullName": "japnoorsingh/Apple-Financial-Modeling-Excel-Python-Power-BI",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2025-08-19T19:32:22Z",
+  "stargazersCount": 1,
+  "updatedAt": "2025-08-19T19:32:46Z",
+  "url": "https://github.com/japnoorsingh/Apple-Financial-Modeling-Excel-Python-Power-BI",
+  "query": "financial model excel python"
+ },
+ {
+  "description": "LBO model R package ",
+  "fullName": "macbarnes04/lbomodel",
+  "language": "R",
+  "pushedAt": "2024-04-29T19:18:47Z",
+  "stargazersCount": 1,
+  "updatedAt": "2024-05-17T15:48:36Z",
+  "url": "https://github.com/macbarnes04/lbomodel",
+  "query": "lbo model"
+ },
+ {
+  "description": "Leveraged Buyout (LBO) model simulating a Private Equity acquisition \u2014 from entry pricing and debt financing through 5-year debt paydown to IRR/MoIC returns.",
+  "fullName": "Nachidoestech/lbo-model",
+  "language": "",
+  "pushedAt": "2026-03-29T06:38:23Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-04-22T06:29:03Z",
+  "url": "https://github.com/Nachidoestech/lbo-model",
+  "query": "lbo model"
+ },
+ {
+  "description": "",
+  "fullName": "jrdurham54/LBO-Model",
+  "language": "Python",
+  "pushedAt": "2025-11-27T23:37:47Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-02-20T03:15:16Z",
+  "url": "https://github.com/jrdurham54/LBO-Model",
+  "query": "lbo model"
+ },
+ {
+  "description": "Validated Excel-to-LBO investment memos with return bridges, debt paydown, sensitivities, and audit warnings.",
+  "fullName": "farfromexact/LBO-model",
+  "language": "Python",
+  "pushedAt": "2026-05-24T04:34:23Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-07-26T01:44:28Z",
+  "url": "https://github.com/farfromexact/LBO-model",
+  "query": "lbo model"
+ },
+ {
+  "description": "",
+  "fullName": "ayush-jha-ai/lbo-model",
+  "language": "Python",
+  "pushedAt": "2026-08-24T15:15:24Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-08-24T16:07:51Z",
+  "url": "https://github.com/ayush-jha-ai/lbo-model",
+  "query": "lbo model"
+ },
+ {
+  "description": "",
+  "fullName": "ShafaqMunawar/LBO_Model",
+  "language": "",
+  "pushedAt": "2025-05-20T14:50:05Z",
+  "stargazersCount": 1,
+  "updatedAt": "2025-06-09T07:14:46Z",
+  "url": "https://github.com/ShafaqMunawar/LBO_Model",
+  "query": "lbo model"
+ },
+ {
+  "description": "A standalone Leveraged Buyout (LBO) financial model with full debt schedule and IRR waterfall.",
+  "fullName": "ShafaqMunawar/LBO-Model-Standalone",
+  "language": "",
+  "pushedAt": "2025-05-19T12:51:57Z",
+  "stargazersCount": 1,
+  "updatedAt": "2025-05-20T11:24:52Z",
+  "url": "https://github.com/ShafaqMunawar/LBO-Model-Standalone",
+  "query": "lbo model"
+ },
+ {
+  "description": "",
+  "fullName": "ShafaqMunawar/Advanced_LBO_Model",
+  "language": "",
+  "pushedAt": "2025-06-10T12:18:32Z",
+  "stargazersCount": 1,
+  "updatedAt": "2025-06-10T15:04:44Z",
+  "url": "https://github.com/ShafaqMunawar/Advanced_LBO_Model",
+  "query": "lbo model"
+ },
+ {
+  "description": "Comprehensive leveraged buyout analysis and valuation tool for private equity transactions",
+  "fullName": "LiamHirsch/lbo_modeling_tool",
+  "language": "Python",
+  "pushedAt": "2025-09-19T14:45:48Z",
+  "stargazersCount": 1,
+  "updatedAt": "2025-12-22T05:27:42Z",
+  "url": "https://github.com/LiamHirsch/lbo_modeling_tool",
+  "query": "lbo model"
+ },
+ {
+  "description": "Advanced Streamlit app for real-time LBO & DCF valuation using Polygon API data. Features intelligent UI, scenario simulations, sensitivity heatmaps, capital stack visualizer, deal verdict engine, peer benchmarking, growth trajectory, debt payoff forecasting, and export to PDF/Excel. Perfect for sharp, data-driven investment analysis.",
+  "fullName": "irudrakshgupta/Python-Based-LBO-Model",
+  "language": "Python",
+  "pushedAt": "2025-06-23T10:49:36Z",
+  "stargazersCount": 1,
+  "updatedAt": "2025-08-30T00:36:00Z",
+  "url": "https://github.com/irudrakshgupta/Python-Based-LBO-Model",
+  "query": "lbo model"
+ },
+ {
+  "description": "",
+  "fullName": "shaashwatdhar123/hdfc-merger-model",
+  "language": "Python",
+  "pushedAt": "2026-08-07T06:08:14Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-09-04T04:34:15Z",
+  "url": "https://github.com/shaashwatdhar123/hdfc-merger-model",
+  "query": "merger model"
+ },
+ {
+  "description": "Detailed analysis and success prediction of a Acquisition model under different scenarios that forecast financial synergies and pro forms valuation. Includes dynamic input for seamless evaluation",
+  "fullName": "PushkarjFlames/Merger_Model-Accretive-Dilutive",
+  "language": "",
+  "pushedAt": "2025-06-30T15:57:08Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-08-18T15:11:37Z",
+  "url": "https://github.com/PushkarjFlames/Merger_Model-Accretive-Dilutive",
+  "query": "merger model"
+ },
+ {
+  "description": "This project is basically use to merge the pdf files easily and help to understand how the online merger sites are working for this comcept. ",
+  "fullName": "Sayalilichade/-PDF-merger-model-using-Pycharm",
+  "language": "Python",
+  "pushedAt": "2023-09-07T07:57:18Z",
+  "stargazersCount": 1,
+  "updatedAt": "2023-09-07T09:39:06Z",
+  "url": "https://github.com/Sayalilichade/-PDF-merger-model-using-Pycharm",
+  "query": "merger model"
+ },
+ {
+  "description": "Just a guy who is passionate about finance and looking to practice my skills everyday. I will be posting my LBOS, DCF's, Merger Models, IPO's, etc. ",
+  "fullName": "KadenEhlers/Financial-Models",
+  "language": "",
+  "pushedAt": "2025-04-03T01:44:52Z",
+  "stargazersCount": 1,
+  "updatedAt": "2025-04-03T15:55:05Z",
+  "url": "https://github.com/KadenEhlers/Financial-Models",
+  "query": "merger model"
+ },
+ {
+  "description": "",
+  "fullName": "parameswarichinareddy/Comparable-Company-Analysis",
+  "language": "",
+  "pushedAt": "2026-08-29T17:31:24Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-08-29T18:59:25Z",
+  "url": "https://github.com/parameswarichinareddy/Comparable-Company-Analysis",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "Full valuation of Apple Inc. (AAPL) using DCF and Comparable Company Analysis \u2014 benchmarked against Microsoft, Alphabet, Meta & Amazon. Built in Excel.",
+  "fullName": "SankalpKandare/Comparable-Company-Analysis-DCF-Valuation-",
+  "language": "",
+  "pushedAt": "2026-03-04T10:48:49Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-03-04T10:49:04Z",
+  "url": "https://github.com/SankalpKandare/Comparable-Company-Analysis-DCF-Valuation-",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "",
+  "fullName": "swayamlabh/Comparable-Company-Analysis-Equity-Research-Note",
+  "language": "Python",
+  "pushedAt": "2026-05-11T18:59:41Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-05-11T19:03:51Z",
+  "url": "https://github.com/swayamlabh/Comparable-Company-Analysis-Equity-Research-Note",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "A comprehensive trading comparables model for Kesko Corporation (KESKOB.HE)",
+  "fullName": "gq23401/Kesko-Corporation-Comparable-Company-Analysis-Trading-Comps-",
+  "language": "",
+  "pushedAt": "2026-03-15T17:19:45Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-03-16T09:29:10Z",
+  "url": "https://github.com/gq23401/Kesko-Corporation-Comparable-Company-Analysis-Trading-Comps-",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "Investment Banking portfolio project focused on Comparable Company Analysis (Comps), financial statement analysis, relative valuation, Excel financial modeling, and equity research.",
+  "fullName": "shreyashhedaoo181-png/Investment-Banking-Valuation",
+  "language": "",
+  "pushedAt": "2026-08-01T17:51:41Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-08-01T18:09:08Z",
+  "url": "https://github.com/shreyashhedaoo181-png/Investment-Banking-Valuation",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "Institutional-grade financial analysis platform. Multi-stage DCF valuation, Monte Carlo simulation, ratio analysis, comparable company analysis, portfolio risk decomposition. Built in Rust and TypeScript.",
+  "fullName": "CharlesMfouapon/valytics",
+  "language": "Rust",
+  "pushedAt": "2026-06-06T02:29:51Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-06-09T18:58:38Z",
+  "url": "https://github.com/CharlesMfouapon/valytics",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "Automated Comparable Company Analysis, sector specific, with the ability to see analyst estimates as a second opinion. Information was pulled from EDGAR (SEC) and yfinance (API).",
+  "fullName": "alexkim1126/Valuator",
+  "language": "Python",
+  "pushedAt": "2026-08-05T17:14:47Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-08-18T15:07:11Z",
+  "url": "https://github.com/alexkim1126/Valuator",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "Developed a full-stack valuation and financial modeling platform integrating Discounted Cash Flow (DCF) and Comparable Company Analysis (CCA) directly into Excel. Utilized Python to automate the retrieval, analysis, and visualization of real-time financial data via API integration.",
+  "fullName": "RominGandhi/Valuation-Financial-Modeling-Platform",
+  "language": "Python",
+  "pushedAt": "2025-04-20T03:34:20Z",
+  "stargazersCount": 1,
+  "updatedAt": "2025-08-06T07:17:26Z",
+  "url": "https://github.com/RominGandhi/Valuation-Financial-Modeling-Platform",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "This project is a complete Discounted Cash Flow (DCF) valuation of Bharti Airtel Ltd. built in Excel, combining historical financial analysis, financial forecasting, WACC, terminal value estimation, and comparable company analysis to estimate the company's intrinsic equity value.",
+  "fullName": "SamikshaBondade/DCF-VALUATION-MODEL--Financial-Modelling-Project---Bharti-Airtel-Ltd",
+  "language": "",
+  "pushedAt": "2026-07-01T06:01:58Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-07-01T06:06:06Z",
+  "url": "https://github.com/SamikshaBondade/DCF-VALUATION-MODEL--Financial-Modelling-Project---Bharti-Airtel-Ltd",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "A comprehensive investment banking portfolio covering full DCF models, 3-statement linked models, comparable company analysis, equity research reports, Power BI dashboards, and M&A deal case studies demonstrating expertise in valuation, WACC, CAPM, sensitivity analysis, and financial analytics.",
+  "fullName": "Mayureshib/Investment-Banking-Portfolio",
+  "language": "Jupyter Notebook",
+  "pushedAt": "2025-12-21T10:47:12Z",
+  "stargazersCount": 1,
+  "updatedAt": "2025-12-21T10:47:16Z",
+  "url": "https://github.com/Mayureshib/Investment-Banking-Portfolio",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "Sell-side equity research reports covering Arista Networks (ANET, $135.66 BUY, 57% realized upside) and Roblox Corporation (RBLX, $70 BUY, 94% projected upside). Built using Bloomberg Terminal, DCF, EV/EBITDA, and comparable company analysis, including catalyst identification, risk analysis.",
+  "fullName": "PatelRudrani/Equity-Research",
+  "language": "",
+  "pushedAt": "2026-08-18T18:16:40Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-08-26T05:57:37Z",
+  "url": "https://github.com/PatelRudrani/Equity-Research",
+  "query": "comparable company analysis"
+ },
+ {
+  "description": "This file contain three-statement financial model of energy market in Nigeria and USA, using a case study of Geregu Power and Devon Energy, respectively. It builds on the concept of accounting principles and capital structure to determine equity valuation, and thus made investment decisions through reporting and presentation. ",
+  "fullName": "bamideleowosuyi/Three-Statement-Model",
+  "language": "",
+  "pushedAt": "2026-05-12T18:15:04Z",
+  "stargazersCount": 1,
+  "updatedAt": "2026-05-12T18:15:10Z",
+  "url": "https://github.com/bamideleowosuyi/Three-Statement-Model",
+  "query": "three statement model"
+ },
+ {
+  "description": "",
+  "fullName": "bdubs2004/Three-Statement-Model",
+  "language": "Python",
+  "pushedAt": "2025-06-06T19:17:47Z",
+  "stargazersCount": 1,
+  "updatedAt": "2025-06-06T19:17:49Z",
+  "url": "https://github.com/bdubs2004/Three-Statement-Model",
+  "query": "three statement model"
+ },
+ {
+  "description": "Offline desktop tool for comparing two versions of a real estate financial model (Excel). Python + tkinter. Fully air-gapped \u2014 no cloud calls.",
+  "fullName": "Marabars/fm-compare",
+  "language": "Python",
+  "pushedAt": "2026-06-11T14:39:10Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-06-11T14:57:04Z",
+  "url": "https://github.com/Marabars/fm-compare",
+  "query": "financial model excel python"
+ },
+ {
+  "description": "",
+  "fullName": "Anuj1602/MergerModel",
+  "language": "",
+  "pushedAt": "2026-04-26T15:18:53Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-04-26T15:18:58Z",
+  "url": "https://github.com/Anuj1602/MergerModel",
+  "query": "merger model"
+ },
+ {
+  "description": "WD merger models",
+  "fullName": "XianfeiZhangBNU/Xianfei-Zhang",
+  "language": "",
+  "pushedAt": "2022-01-08T02:25:59Z",
+  "stargazersCount": 0,
+  "updatedAt": "2022-01-08T02:26:02Z",
+  "url": "https://github.com/XianfeiZhangBNU/Xianfei-Zhang",
+  "query": "merger model"
+ },
+ {
+  "description": "",
+  "fullName": "jesusalcocer-dotcom/merger_model",
+  "language": "TypeScript",
+  "pushedAt": "2026-03-20T21:18:27Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-03-20T21:18:30Z",
+  "url": "https://github.com/jesusalcocer-dotcom/merger_model",
+  "query": "merger model"
+ },
+ {
+  "description": "",
+  "fullName": "Anuj1602/Merger_Model",
+  "language": "",
+  "pushedAt": "2025-06-25T14:36:43Z",
+  "stargazersCount": 0,
+  "updatedAt": "2025-06-25T14:36:46Z",
+  "url": "https://github.com/Anuj1602/Merger_Model",
+  "query": "merger model"
+ },
+ {
+  "description": "End-to-end M&A merger model: deal structuring, purchase accounting, pro forma consolidation, and EPS accretion/dilution analysis with sensitivity grids, breakeven solvers, charts, and Excel export.",
+  "fullName": "johnalford2006/merger-model",
+  "language": "Python",
+  "pushedAt": "2026-06-25T21:16:12Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-06-25T21:16:16Z",
+  "url": "https://github.com/johnalford2006/merger-model",
+  "query": "merger model"
+ },
+ {
+  "description": "",
+  "fullName": "Wandering-Mind/Dynamic-Merger-Model",
+  "language": "",
+  "pushedAt": "2025-07-04T20:28:59Z",
+  "stargazersCount": 0,
+  "updatedAt": "2025-07-04T20:29:03Z",
+  "url": "https://github.com/Wandering-Mind/Dynamic-Merger-Model",
+  "query": "merger model"
+ },
+ {
+  "description": "",
+  "fullName": "FelixNg21/NecroMergerModel",
+  "language": "Python",
+  "pushedAt": "2026-07-30T20:11:43Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-07-30T20:12:04Z",
+  "url": "https://github.com/FelixNg21/NecroMergerModel",
+  "query": "merger model"
+ },
+ {
+  "description": "Merger model analyzing the HDFC Ltd and HDFC Bank merger with pro-forma financials and accretion/dilution analysis.",
+  "fullName": "Jai-5121/hdfc-merger-model",
+  "language": "",
+  "pushedAt": "2026-02-09T21:36:49Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-02-09T21:36:53Z",
+  "url": "https://github.com/Jai-5121/hdfc-merger-model",
+  "query": "merger model"
+ },
+ {
+  "description": "lBO Model and Merger Model",
+  "fullName": "shivajicoolbuddy03-max/Valuation-Apps",
+  "language": "JavaScript",
+  "pushedAt": "2026-08-30T06:53:57Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-08-30T06:54:06Z",
+  "url": "https://github.com/shivajicoolbuddy03-max/Valuation-Apps",
+  "query": "merger model"
+ },
+ {
+  "description": "",
+  "fullName": "akshatsethjain-tech/Merger-model-Accretion-Decreation-",
+  "language": "",
+  "pushedAt": "2026-08-03T03:56:21Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-08-03T03:56:33Z",
+  "url": "https://github.com/akshatsethjain-tech/Merger-model-Accretion-Decreation-",
+  "query": "merger model"
+ },
+ {
+  "description": "Linked income statement, balance sheet, and cash flow for a fictional company. Sample annual model.",
+  "fullName": "saisiri-bandaru/three-statement-model",
+  "language": "",
+  "pushedAt": "2026-09-02T01:49:33Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-09-02T01:49:41Z",
+  "url": "https://github.com/saisiri-bandaru/three-statement-model",
+  "query": "three statement model"
+ },
+ {
+  "description": "",
+  "fullName": "parthtailor0912/Three-statement-Model",
+  "language": "",
+  "pushedAt": "2025-09-06T01:11:47Z",
+  "stargazersCount": 0,
+  "updatedAt": "2025-09-06T01:11:50Z",
+  "url": "https://github.com/parthtailor0912/Three-statement-Model",
+  "query": "three statement model"
+ },
+ {
+  "description": "Fully integrated 3-Statement financial model (Income Statement, Balance Sheet, Cash Flow) built to Wall Street standards in Excel.",
+  "fullName": "Nachidoestech/three-statement-model",
+  "language": "",
+  "pushedAt": "2026-03-29T06:32:07Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-03-29T06:37:10Z",
+  "url": "https://github.com/Nachidoestech/three-statement-model",
+  "query": "three statement model"
+ },
+ {
+  "description": "Built an integrated 3-statement financial model with revenue forecasting, working capital management, debt scheduling, and financial statement projections to assess business performance and funding requirements.",
+  "fullName": "Shefali-24/Three-Statement-Modelling-",
+  "language": "",
+  "pushedAt": "2026-07-01T10:13:10Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-07-01T10:13:14Z",
+  "url": "https://github.com/Shefali-24/Three-Statement-Modelling-",
+  "query": "three statement model"
+ },
+ {
+  "description": "A comprehensive, dynamically linked Three-Statement Financial Model for Infosys, integrating the Income Statement, Balance Sheet, and Cash Flow Statement for historical analysis and forecasting.",
+  "fullName": "salmankhan663636-stack/Three_Statement_Model",
+  "language": "",
+  "pushedAt": "2026-06-18T06:21:50Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-06-18T06:21:53Z",
+  "url": "https://github.com/salmankhan663636-stack/Three_Statement_Model",
+  "query": "three statement model"
+ },
+ {
+  "description": "An integrated three-statement financial model for Heineken N.V., built in Excel \u2014 four scenarios, an auto-borrow financing module, and self-auditing integrity checks.",
+  "fullName": "treetisarkar24-ops/three-statement-model",
+  "language": "",
+  "pushedAt": "2026-06-22T09:44:47Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-06-22T09:44:50Z",
+  "url": "https://github.com/treetisarkar24-ops/three-statement-model",
+  "query": "three statement model"
+ },
+ {
+  "description": "Three Statement Model",
+  "fullName": "ddewetroos/Three-Statement-Model",
+  "language": "",
+  "pushedAt": "2024-11-29T06:51:15Z",
+  "stargazersCount": 0,
+  "updatedAt": "2024-11-29T06:51:19Z",
+  "url": "https://github.com/ddewetroos/Three-Statement-Model",
+  "query": "three statement model"
+ },
+ {
+  "description": "Auto-build linked 3-statement financial models from SEC EDGAR \u2014 built for IB / M&A workflows.",
+  "fullName": "PakYanto/three-statement-model",
+  "language": "Python",
+  "pushedAt": "2026-06-29T17:44:20Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-06-29T17:44:24Z",
+  "url": "https://github.com/PakYanto/three-statement-model",
+  "query": "three statement model"
+ },
+ {
+  "description": "",
+  "fullName": "Samaksh-Sha/Three_Statement-Model",
+  "language": "Python",
+  "pushedAt": "2026-03-30T07:19:42Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-03-30T07:19:45Z",
+  "url": "https://github.com/Samaksh-Sha/Three_Statement-Model",
+  "query": "three statement model"
+ },
+ {
+  "description": "This code analyses fundamentals of a stock and calculates the Entry, Exit prices",
+  "fullName": "premkrishnan/fundamental_analysis_valuation",
+  "language": "Python",
+  "pushedAt": "2022-08-27T11:44:26Z",
+  "stargazersCount": 0,
+  "updatedAt": "2022-08-27T16:50:26Z",
+  "url": "https://github.com/premkrishnan/fundamental_analysis_valuation",
+  "query": "fundamental analysis valuation"
+ },
+ {
+  "description": "A Codex skill for A-share fundamental analysis, valuation and Excel generation.",
+  "fullName": "liwei3343-spec/a-share-valuation",
+  "language": "Python",
+  "pushedAt": "2026-08-15T02:56:45Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-08-15T02:56:50Z",
+  "url": "https://github.com/liwei3343-spec/a-share-valuation",
+  "query": "fundamental analysis valuation"
+ },
+ {
+  "description": "Institutional-grade AI Investment Intelligence Platform for fundamental analysis, valuation, risk assessment, portfolio optimization, and explainable investment decisions.",
+  "fullName": "liasmen/athena-x",
+  "language": "",
+  "pushedAt": "2026-08-06T06:21:19Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-08-06T03:25:43Z",
+  "url": "https://github.com/liasmen/athena-x",
+  "query": "fundamental analysis valuation"
+ },
+ {
+  "description": "A multi-agent stock analysis and valuation workflow powered by 14 specialized financial analyst roles, designed to support structured equity research, fundamental analysis, valuation modeling, risk assessment, and investment report generation.",
+  "fullName": "LEO-LISHEN/Financial-Analyst-workflow",
+  "language": "Python",
+  "pushedAt": "2026-06-02T02:37:17Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-06-10T02:17:16Z",
+  "url": "https://github.com/LEO-LISHEN/Financial-Analyst-workflow",
+  "query": "fundamental analysis valuation"
+ },
+ {
+  "description": "Finvest Pro \u2014 a stock fundamental analysis & valuation web app. Search any stock (India, US, Europe, UK), get a fair-value verdict from 9 valuation models, financial health score, screener & compare tools. Built with Flutter.",
+  "fullName": "priya4042/finvest-pro",
+  "language": "JavaScript",
+  "pushedAt": "2026-07-31T11:29:25Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-07-31T11:29:42Z",
+  "url": "https://github.com/priya4042/finvest-pro",
+  "query": "fundamental analysis valuation"
+ },
+ {
+  "description": "This repository contains a collection of independently developed equity research reports and investment analyses covering publicly traded companies across multiple sectors. Each report incorporates fundamental analysis, valuation methodologies, industry and competitive assessments, financial statement analysis, and investment recommendations.",
+  "fullName": "UdochiCobb/Investment-Research-Portfolio",
+  "language": "",
+  "pushedAt": "2026-06-09T03:52:16Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-06-09T03:52:20Z",
+  "url": "https://github.com/UdochiCobb/Investment-Research-Portfolio",
+  "query": "fundamental analysis valuation"
+ },
+ {
+  "description": "A curated collection of rule-based, explainable equity research systems focused on fundamental analysis, valuation, and transparent BUY / HOLD / SELL decision-making.  This repository serves as a portfolio hub for multiple investing projects, each targeting a different depth and workflow of equity analysis.",
+  "fullName": "darshilshah3008/investing-research-suite",
+  "language": "",
+  "pushedAt": "2025-12-08T23:07:43Z",
+  "stargazersCount": 0,
+  "updatedAt": "2025-12-08T23:07:47Z",
+  "url": "https://github.com/darshilshah3008/investing-research-suite",
+  "query": "fundamental analysis valuation"
+ },
+ {
+  "description": "This project is an end-to-end financial analysis and valuation framework built using Excel, Power BI, and financial modeling techniques. It combines fundamental analysis, valuation models, and KPI-driven dashboards to provide clear insights into a company\u2019s financial health and performance. ",
+  "fullName": "rohithchiramaneni06/Larsen-Turbo-Company-Report",
+  "language": "HTML",
+  "pushedAt": "2026-01-28T09:00:40Z",
+  "stargazersCount": 0,
+  "updatedAt": "2026-01-28T09:00:58Z",
+  "url": "https://github.com/rohithchiramaneni06/Larsen-Turbo-Company-Report",
+  "query": "fundamental analysis valuation"
+ }
+]

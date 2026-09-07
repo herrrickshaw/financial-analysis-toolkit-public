@@ -1,0 +1,17 @@
+{
+  "_comment": "Illustrative university, EUA-ATHENA toolkit structure: resource allocation of a 100m public grant, two-step full costing with the Helsinki-style salary add-on, and an income-diversification scan. Figures in thousands.",
+  "resource_allocation": {"envelope": 100000, "top_slice_pct": 0.08, "strategic": {"Engineering": 3000},
+                          "units": {"Arts": {"students": 6000, "research_income": 4000, "staff_fte": 300}, "Science": {"students": 4000, "research_income": 12000, "staff_fte": 350}, "Engineering": {"students": 3000, "research_income": 9000, "staff_fte": 250}},
+                          "formula_weights": {"students": 0.5, "research_income": 0.35, "staff_fte": 0.15}},
+  "costing": {"salary_addon_rate": 0.53,
+              "pools": [{"name": "Central administration", "amount": 9000, "driver": "person_years"}, {"name": "Student support", "amount": 4000, "driver": "students"},
+                        {"name": "Library and language centre", "amount": 3000, "driver": "person_years"}, {"name": "Facilities (internal rent)", "amount": 12000, "driver": "m2"}],
+              "objects": [{"name": "Undergraduate teaching", "activity": "teaching", "drivers": {"students": 10000, "person_years": 400, "m2": 40000}, "direct_costs": 30000, "direct_salary": 20000},
+                          {"name": "Postgraduate teaching", "activity": "teaching", "drivers": {"students": 3000, "person_years": 150, "m2": 12000}, "direct_costs": 11000, "direct_salary": 7500},
+                          {"name": "Externally funded research", "activity": "research", "drivers": {"students": 0, "person_years": 300, "m2": 25000}, "direct_costs": 24000, "direct_salary": 15000},
+                          {"name": "Internally funded research", "activity": "research", "drivers": {"students": 0, "person_years": 120, "m2": 8000}, "direct_costs": 8000, "direct_salary": 5500},
+                          {"name": "Services and consultancy", "activity": "other", "drivers": {"students": 0, "person_years": 30, "m2": 3000}, "direct_costs": 3000, "direct_salary": 2000}]},
+  "income": {"Public grant": 100000, "Tuition fees": 28000, "Competitive research funding": 22000, "Business and industry": 9000, "Private sponsors and alumni": 3000, "Services": 4000},
+  "stability": {"Public grant": 4, "Tuition fees": 3, "Competitive research funding": 2, "Business and industry": 2, "Private sponsors and alumni": 2, "Services": 3},
+  "potential": {"Public grant": 1, "Tuition fees": 3, "Competitive research funding": 4, "Business and industry": 5, "Private sponsors and alumni": 4, "Services": 3}
+}

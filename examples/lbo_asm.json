@@ -1,0 +1,127 @@
+{
+ "_comment": "Illustrative figures from A Simple Model's 'Simple LBO - Scenarios and Data Tables' (000s). Scenario 1 growth; the data table is reproduced via scenarios x exit_multiples.",
+ "purchase_price": 100000,
+ "closing": {
+  "cash": 12918.410767000503,
+  "ar": 11358.396589155967,
+  "inventory": 6206.472126152561,
+  "prepaid": 1849,
+  "ppe": 12231.0159544,
+  "other_assets": 0,
+  "ap": 7285.133973537919,
+  "old_debt": 5000,
+  "common_stock": 5015,
+  "retained_earnings": 27263.161463171098,
+  "existing_goodwill": 0
+ },
+ "hist_revenue": [
+  98286.7824,
+  108115.46064
+ ],
+ "hist_cogs": [
+  73715.0868,
+  81086.59548
+ ],
+ "hist_sga": [
+  10811.546064,
+  11892.7006704
+ ],
+ "revenue_growth": [
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1
+ ],
+ "sga_pct": [
+  0.10999999999999999,
+  0.1075,
+  0.105,
+  0.1025,
+  0.1
+ ],
+ "tax_rate": 0.35,
+ "ar_days": [
+  37,
+  37,
+  36,
+  36,
+  35
+ ],
+ "inventory_days": [
+  27.93756862815181,
+  27.93756862815181,
+  27.93756862815181,
+  27.93756862815181,
+  27.93756862815181
+ ],
+ "ap_days": [
+  32.79301448779164,
+  32.79301448779164,
+  32.79301448779164,
+  32.79301448779164,
+  32.79301448779164
+ ],
+ "min_cash": 2000,
+ "capex": [
+  2250,
+  2500,
+  2750,
+  3500,
+  4000
+ ],
+ "capex_life": 7,
+ "existing_ppe_life": 7,
+ "tranches": [
+  {
+   "name": "Subordinated Debt",
+   "rate": 0.12,
+   "ebitda_multiple": 2.5,
+   "amort_years": null,
+   "warrant_equity_pct": 0.08
+  },
+  {
+   "name": "Senior Debt",
+   "rate": 0.08,
+   "ebitda_multiple": 1.5,
+   "amort_years": 5
+  }
+ ],
+ "transaction_expenses": 1000,
+ "financing_fees": 1000,
+ "fee_amort_years": 5,
+ "exit_multiple": 7,
+ "closing_date": "2022-12-31",
+ "scenarios": {
+  "Scenario 1": [
+   0.1,
+   0.1,
+   0.1,
+   0.1,
+   0.1
+  ],
+  "Scenario 2": [
+   0.05,
+   0.05,
+   0.05,
+   0.05,
+   0.05
+  ],
+  "Scenario 3": [
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "exit_multiples": [
+  5,
+  5.5,
+  6,
+  6.5,
+  7,
+  7.5,
+  8
+ ]
+}

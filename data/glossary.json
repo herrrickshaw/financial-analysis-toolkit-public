@@ -1,0 +1,2115 @@
+{
+ "generated": "2026-09-06",
+ "sources": [
+  "PwC, Basic understanding of a company's financial statements (Sept 2020) — downloads/refs/pwc-basic-understanding-of-a-companys-financials.pdf",
+  "CFI Financial Analysis Glossary, Financial Modeling Fundamentals Glossary, Accounting e-book, Accounting fact sheet — downloads/cfi/ (member dashboard)",
+  "CFI MEI Guide preview (docs.mypilotstore.com) — could not be retrieved: Cloudflare bot challenge blocks both curl and the browser session",
+  "Authored: core modelling / valuation terms and the GAAP vs IFRS evaluation table (standards: IAS 1/2/12/16/32/33/36/38, IFRS 3/9/15/16; ASC 260/350/606/718/805/842, ASU 2015-01, ASU 2020-06)"
+ ],
+ "entries": [
+  {
+   "term": "Absolute reference",
+   "definition": "When copied across multiple cells, the cells they refer to never changes.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Accounts Payable",
+   "definition": "Amounts owed by an organization to others for goods or services received. Buying from suppliers on credit will generate accounts payable.",
+   "category": "Debt & liabilities",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "payables",
+    "creditors"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Accounts Payable Days Ratio",
+   "definition": "Accounts payable / COGS x 365. Average number of days a firm takes to pay for items purchased.",
+   "category": "Ratios & metrics",
+   "formula": "Accounts payable / COGS x 365",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Accounts Payable Turnover",
+   "definition": "Cost of sales / Accounts payable (either the ending balance or average balance). This ratio measures how effective management is in paying its suppliers.",
+   "category": "Ratios & metrics",
+   "formula": "Cost of sales / Accounts payable (either the ending balance or average balance)",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Accounts Receivable",
+   "definition": "Amounts due to an organization for goods delivered or services rendered. Selling to customers on credit will generate accounts receivable for a business.",
+   "category": "Assets",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "receivables",
+    "debtors"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Accounts Receivable Days Ratio",
+   "definition": "Accounts receivable / Sales x 365. Average number of days a firm takes to collect payments on goods sold.",
+   "category": "Ratios & metrics",
+   "formula": "Accounts receivable / Sales x 365",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Accounts Receivable Turnover",
+   "definition": "Sales / Accounts receivable (either the ending balance, or average balance). This ratio measures how effective the company’s credit policies are.",
+   "category": "Ratios & metrics",
+   "formula": "Sales / Accounts receivable (either the ending balance, or average balance)",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Accretion / dilution",
+   "definition": "Change in the acquirer's EPS caused by a deal: positive (accretive) when the combined EPS exceeds standalone EPS.",
+   "category": "Valuation",
+   "formula": "Combined EPS − standalone EPS; % = that / standalone EPS",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Rule of thumb: all-stock deals are accretive when the target's P/E is below the acquirer's; cash deals when the target's earnings yield exceeds the after-tax cost of cash/debt.",
+   "toolkit": "merger.deal, merger.pro_forma, deal_sensitivity",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Accrual accounting",
+   "definition": "Revenue is recognised when earned and expenses when incurred (matched to the revenue they generate), regardless of when cash moves.",
+   "category": "Financial statements",
+   "formula": "",
+   "gaap_vs_ifrs": "Both frameworks are accrual-based; differences are in specific recognition rules (leases, development costs, impairment).",
+   "how_to_evaluate": "Large gaps between net income and operating cash flow signal aggressive accruals.",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI e-book (matching principle)"
+  },
+  {
+   "term": "Acid Test",
+   "definition": "See quick ratio.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Administration Cost Ratio",
+   "definition": "Administration costs / Sales. This margin shows the general overhead cost for each dollar of sales.",
+   "category": "Ratios & metrics",
+   "formula": "Administration costs / Sales",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Amortisation",
+   "definition": "Allocation of the cost of intangible assets (or capitalised financing fees, debt discounts) over time.",
+   "category": "Assets",
+   "formula": "Cost / useful life",
+   "gaap_vs_ifrs": "IAS 38 allows capitalisation of development costs meeting six criteria; US GAAP expenses R&D except software (ASC 985-20 / 350-40). Amortising vs indefinite-lived intangibles is similar in both.",
+   "how_to_evaluate": "",
+   "toolkit": "lbo fee amortisation; merger intangible amortisation",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Amortization",
+   "definition": "The gradual reduction of a financial amount over time.",
+   "category": "Assets",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Asset Turnover Ratio",
+   "definition": "Sales / Total assets. This ratio shows how effective the company is in generating sales from its assets.",
+   "category": "Ratios & metrics",
+   "formula": "Sales / Total assets",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Assets",
+   "definition": "Resources owned and employed by an organization which confer future economic benefits.",
+   "category": "Assets",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Audit",
+   "definition": "The process of examination and verification of a firm’s books of account, transaction records, and other relevant documents including financial models.",
+   "category": "Financial statements",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Average Balance",
+   "definition": "(Opening balance - Closing balance) / 2. This balance can be used to calculate efficiency / turnover ratios instead of using a closing balance.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Balance Sheet",
+   "definition": "The balance sheet is a ‘snapshot’ of an organization’s assets and liabilities on a particular date. The balance sheet shows the sources of funds provided to an organization (called the capital employed and normally either equity or debt) and how those funds have been used by the organization to invest in fixed assets (assets the organization intends to keep for more than one year) and working capital (money tied up in the day to day operations of the business).",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Book value vs market value",
+   "definition": "Book value is the accounting carrying amount (historical cost less depreciation); market value is what the asset or equity trades for.",
+   "category": "Equity & capital",
+   "formula": "P/B = market cap / book equity",
+   "gaap_vs_ifrs": "IFRS permits revaluation of PP&E, intangibles (active market) and investment property to fair value; US GAAP does not — IFRS book values can sit closer to market.",
+   "how_to_evaluate": "",
+   "toolkit": "CFI 'BV vs MV of Equity' template",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Capital",
+   "definition": "See capital employed.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Capital Asset",
+   "definition": "Assets such as property, plant and equipment employed to generate income.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Capital Employed",
+   "definition": "Capital employed represents the funds provided to an organization in the form of equity or debt.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "capital"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Capital In Excess Of Par Value",
+   "definition": "See contributed surplus.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Capital Stock",
+   "definition": "There are two types of stock - common stock and preferred stock. Most shares tend to be common stock and generally carry one vote each and carry an equal right to a proportionate share of dividends. Capital stock is not a liability in the sense of other sources of funds (e.g. bank loans) since it is not generally paid back to shareholders unless the company is wound up.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "stock",
+    "shares",
+    "share capital"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "CAPM",
+   "definition": "Capital asset pricing model: expected return on equity equals the risk-free rate plus beta times the equity risk premium.",
+   "category": "Valuation",
+   "formula": "k_e = r_f + β × (E[r_m] − r_f)",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Unlever peer betas and relever at the target capital structure.",
+   "toolkit": "Damodaran levbeta.xls; CFI Beta Calculator, CAPM Formula",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Cash Flow Statement",
+   "definition": "The cash flow statement is a ‘summarized bank statement’ that shows an organization’s sources of cash during the financial year and the ways in which the cash has been used during that period (e.g. investments, fixed asset purchases, etc.).",
+   "category": "Financial statements",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Cash sweep",
+   "definition": "Mandatory prepayment of debt with excess cash flow above a minimum cash balance, applied to tranches in order of seniority.",
+   "category": "Debt & liabilities",
+   "formula": "Sweep = min(excess cash × sweep %, tranche balance)",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Accelerates deleveraging; creates a circular reference with interest in Excel (iterate or use average-balance toggles).",
+   "toolkit": "lbo.Tranche.sweep_pct (iterative solver)",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Circular reference",
+   "definition": "A formula chain that refers back to itself, e.g. interest → net income → cash → revolver → interest; Excel needs iterative calculation.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Prefer opening-balance interest or a switch; this toolkit iterates to a fixed point.",
+   "toolkit": "xlcalc.XlModel.recalc (iterative), lbo revolver loop",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Circular References",
+   "definition": "Circular references occur when a formula includes a reference to the cell in which the formula appears.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "COGS",
+   "definition": "Cost of goods sold.",
+   "category": "General",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Common Shares",
+   "definition": "See common stock.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Common Stock",
+   "definition": "Most shares tend to be common stock carrying one vote each and with an equal right to a proportionate share of dividends. Common stock dividends tend to rise as profits grow. This is in contrast to preferred stock where the dividend tends to be fixed.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "common shares",
+    "ordinary shares"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Common-size analysis",
+   "definition": "Every income-statement line as % of revenue and every balance-sheet line as % of total assets, to compare companies of different sizes or across time.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "First step of any peer comparison.",
+   "toolkit": "CFI Common Size Analysis template",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Contributed Surplus",
+   "definition": "Most stock is originally issued with a nominal/par value attached to it (e.g. 1 share in ABC Inc. has a nominal value of $1.00). However, if shareholders buy shares from the company for more than the nominal value (e.g. $1.50) the excess is called the contributed surplus.",
+   "category": "Equity & capital",
+   "formula": "Most stock is originally issued with a nominal/par value attached to it (e",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "share premium",
+    "capital in excess of par value"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Coverage Ratios",
+   "definition": "Ratios that analyze a company’s liquidity or its ability to “cover” its financial debt obligations. An example of a coverage ratio is EBITDA / Interest expense.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Creditors",
+   "definition": "See accounts payable.",
+   "category": "Debt & liabilities",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Current Assets",
+   "definition": "Current assets are all assets other than fixed assets. They are either cash or assets expected to be converted into cash or consumed in the business during the year. Current assets include items such as cash, accounts receivable and inventory.",
+   "category": "Assets",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Current Liabilities",
+   "definition": "An organization’s liabilities due within one year. Current liabilities include items such as short term loans, any element of long term loans due within one year, and accounts payable.",
+   "category": "Debt & liabilities",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Current Ratio",
+   "definition": "Current assets / current liabilities. This ratio measures short term liquidity, whether or not a company will have the ability to cover its obligations in the short term.",
+   "category": "Ratios & metrics",
+   "formula": "Current assets / current liabilities",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Current vs non-current",
+   "definition": "Current assets/liabilities are expected to convert to cash or be settled within one year (or the operating cycle); everything else is non-current.",
+   "category": "Financial statements",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Current ratio and quick ratio measure the cover of current liabilities by current assets.",
+   "toolkit": "ratios.liquidity",
+   "synonyms": [],
+   "source": "PwC deck"
+  },
+  {
+   "term": "Data tables",
+   "definition": "Used to test one or two variables for sensitivity analysis.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Days inventory outstanding (DIO)",
+   "definition": "Average days inventory is held.",
+   "category": "Ratios & metrics",
+   "formula": "Inventory / COGS × 365",
+   "gaap_vs_ifrs": "LIFO (US GAAP only) lowers inventory and raises COGS in inflation, distorting DIO versus IFRS peers; use the LIFO reserve to restate.",
+   "how_to_evaluate": "",
+   "toolkit": "ratios.efficiency.inventory_days",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Days payable outstanding (DPO)",
+   "definition": "Average days taken to pay suppliers.",
+   "category": "Ratios & metrics",
+   "formula": "Accounts payable / COGS × 365",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Cash conversion cycle = DSO + DIO − DPO.",
+   "toolkit": "ratios.efficiency.payables_days, working_capital_funding_gap_days",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Days sales outstanding (DSO)",
+   "definition": "Average days to collect receivables.",
+   "category": "Ratios & metrics",
+   "formula": "Accounts receivable / Revenue × 365",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Rising DSO with flat revenue flags collection problems or channel stuffing.",
+   "toolkit": "ratios.efficiency.receivable_days",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "DCF",
+   "definition": "Discounted cash flow analysis. A financial evaluation method that takes the “time value of money” into account.",
+   "category": "Financial statements",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Debt",
+   "definition": "Capital used to finance an organization that is subject to payment of interest over the life of the loan, at the end of which the loan is normally repaid.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Debt Financing",
+   "definition": "Raising money for a business through loans or by issuing bonds.",
+   "category": "Debt & liabilities",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Debtors",
+   "definition": "See accounts receivable.",
+   "category": "Debt & liabilities",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Deferred tax liability (DTL)",
+   "definition": "Tax payable in future periods because book profit is recognised before taxable profit (e.g. accelerated tax depreciation, asset write-ups in an acquisition).",
+   "category": "Debt & liabilities",
+   "formula": "New DTL in a deal = (PP&E + intangible write-ups) × tax rate",
+   "gaap_vs_ifrs": "Both use the balance-sheet liability method; IFRS (IAS 12) classifies all deferred taxes as non-current and requires 'probable' recognition of deferred tax assets, US GAAP recognises DTAs in full with a valuation allowance.",
+   "how_to_evaluate": "",
+   "toolkit": "merger.PPA / pro_forma",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Depreciation",
+   "definition": "Systematic allocation of the cost of tangible fixed assets over their useful lives (straight-line, declining balance, units of production).",
+   "category": "Assets",
+   "formula": "Straight-line = (cost − salvage) / life",
+   "gaap_vs_ifrs": "IFRS (IAS 16) requires component depreciation and allows the revaluation model; US GAAP uses historical cost only and component depreciation is permitted but rare. Impairment reversals are allowed under IFRS (IAS 36), prohibited under US GAAP.",
+   "how_to_evaluate": "Depreciation waves per capex vintage in the LBO; % of opening PP&E in the CFI models.",
+   "toolkit": "three_statement PPE schedule; lbo depreciation_detail; xlcalc SLN/SYD",
+   "synonyms": [
+    "amortization"
+   ],
+   "source": "authored",
+   "alt_definition": "Depreciation of fixed assets is the process of allocating part of the cost of fixed assets to a particular accounting period. Depreciation is normally charged to the income statement on a straight line basis (although there are alternative methods available). For example, if a car is bought for $15,000, has an expected life of 5 years, and has a residual value (expected scrap value) of $5,000, then the depreciation expense in the income statement will be $2,000 per year for 5 years. The value of the car in the balance sheet would start at $15,000 but would be reduced by $2,000 a year. At the end of year 1 the net book value (NBV) of the car in the balance sheet would be $13,000. At the end of year 2, the NBV would be $11,000. The accumulated depreciation for the car at the end of year 2 would be $4,000."
+  },
+  {
+   "term": "Direct Costs",
+   "definition": "Direct costs are those that are directly attributable to the product or service provided by the organization. They are included in cost of goods sold.",
+   "category": "General",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Dividends",
+   "definition": "A share of a company’s net profits distributed by the company to a class of its stockholders.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "DuPont analysis",
+   "definition": "Decomposes return on equity into margin, asset turnover and leverage.",
+   "category": "Ratios & metrics",
+   "formula": "ROE = (NI / revenue) × (revenue / assets) × (assets / equity)",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Separates operating performance from financial gearing.",
+   "toolkit": "ratios.profitability + efficiency + leverage",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Earnings per share (EPS)",
+   "definition": "Net income attributable to common shareholders divided by weighted-average shares; diluted EPS adds in-the-money options, warrants and convertibles (treasury stock method).",
+   "category": "Ratios & metrics",
+   "formula": "NI / weighted average shares",
+   "gaap_vs_ifrs": "IAS 33 and ASC 260 are largely converged; minor differences in contracts settleable in cash or shares and in year-to-date diluted share calculations.",
+   "how_to_evaluate": "",
+   "toolkit": "merger.deal['combined']['eps']; CFI Treasury Stock Method calculator",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "EBIT",
+   "definition": "Earnings before interest and taxes (operating income).",
+   "category": "Ratios & metrics",
+   "formula": "Revenue − COGS − operating expenses (incl. D&A)",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Base for NOPAT = EBIT × (1 − t) and unlevered FCF.",
+   "toolkit": "dcf.ebit",
+   "synonyms": [],
+   "source": "authored",
+   "alt_definition": "Earnings before interest and taxes. See operating profit."
+  },
+  {
+   "term": "EBIT Margin",
+   "definition": "EBIT / Sales.",
+   "category": "Ratios & metrics",
+   "formula": "EBIT / Sales",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "EBITDA",
+   "definition": "Earnings before interest, taxes, depreciation and amortisation: operating profit plus non-cash D&A, a proxy for operating cash generation used in leverage multiples and enterprise-value multiples.",
+   "category": "Ratios & metrics",
+   "formula": "EBIT + D&A",
+   "gaap_vs_ifrs": "IFRS 16 puts all leases on balance sheet so lease costs become depreciation + interest and EBITDA rises; under US GAAP operating leases keep a straight-line lease expense inside EBITDA. Add back lease expense (EBITDAR) or capitalise consistently before comparing.",
+   "how_to_evaluate": "Never compare EBITDA multiples across IFRS and US GAAP lessees without a lease adjustment.",
+   "toolkit": "three_statement, lbo (tranche sizing = multiple × EBITDA), dcf terminal multiple",
+   "synonyms": [],
+   "source": "authored",
+   "alt_definition": "Earnings before interest, taxation, depreciation, and amortization."
+  },
+  {
+   "term": "Enterprise value (EV)",
+   "definition": "Value of the operating business to all capital providers: market equity value plus debt, preferred and non-controlling interests, minus cash.",
+   "category": "Valuation",
+   "formula": "Equity value + debt + preferred + NCI − cash",
+   "gaap_vs_ifrs": "Under IFRS 16 lease liabilities are debt-like for every lessee; under US GAAP operating-lease liabilities are also recognised (ASC 842) but presented separately — decide consistently whether to include them in EV.",
+   "how_to_evaluate": "Pair EV with unlevered metrics (EBITDA, EBIT, revenue) only.",
+   "toolkit": "dcf market block; merger.Company.enterprise_value",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Equity",
+   "definition": "Total assets less total liabilities. Also called shareholders’ equity, net worth or book value.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "shareholders’ equity",
+    "shareholders’ funds"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Equity Financing",
+   "definition": "The money acquired from the business owners themselves or from other investors.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Equity value",
+   "definition": "Value attributable to shareholders: EV + cash − debt, or price × diluted shares.",
+   "category": "Valuation",
+   "formula": "EV − net debt − preferred − NCI",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Pair with levered metrics (net income, book equity).",
+   "toolkit": "dcf.equity_value, merger deal",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Exchange ratio",
+   "definition": "Number of acquirer shares issued per target share in a stock deal.",
+   "category": "Valuation",
+   "formula": "Offer price per target share / acquirer share price",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Fixed vs floating exchange ratios shift price risk between the parties.",
+   "toolkit": "merger.deal['exchange_ratio']",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Exit multiple",
+   "definition": "EV/EBITDA multiple assumed at sale; usually set equal to (or below) the entry multiple to avoid banking on multiple expansion.",
+   "category": "Valuation",
+   "formula": "Exit EV = multiple × exit-year EBITDA",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Sensitise IRR to exit multiple × operating scenario (the data table).",
+   "toolkit": "lbo.sensitivity",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Extraordinary and non-recurring items",
+   "definition": "One-off gains or losses outside normal operations.",
+   "category": "Financial statements",
+   "formula": "",
+   "gaap_vs_ifrs": "IFRS prohibits the 'extraordinary' label; US GAAP eliminated it in 2015 (ASU 2015-01). Both require separate disclosure of unusual items.",
+   "how_to_evaluate": "Normalise EBIT/EBITDA by removing them before applying multiples.",
+   "toolkit": "merger 'Adjusted EPS' logic",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Financial Covenants",
+   "definition": "The promises made by the borrowing firm in a loan agreement to adhere to certain limits in the firm’s operations.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Financial Model",
+   "definition": "A mathematical model describing the interrelationships among various financial variables. Typically financial models are broken down into inputs, processing, and outputs.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Financial Statements",
+   "definition": "Statements, in financial terms, of the financial position of an entity at a given date, or of the results of its operations for a given period. The statements are normally prepared in one of a number of standard formats. Most commonly, when people refer to financial statements, they mean the income statement, the balance sheet, the cash flow statement and the related notes to the accounts.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Fixed Assets",
+   "definition": "Assets intended for use on a continuing basis in an organization’s activities (normally defined as assets an organization intends to keep for more than one year). There are three categories of fixed assets: intangible, tangible and investments.",
+   "category": "Assets",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Fixed charge coverage ratio",
+   "definition": "Coverage of interest plus lease/rent and scheduled principal by EBITDA (or EBIT) plus fixed charges.",
+   "category": "Ratios & metrics",
+   "formula": "(EBITDA + fixed charges) / (fixed charges + interest)",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Common LBO covenant.",
+   "toolkit": "CFI Fixed Charge Coverage template; BIWS FCCR example",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Football field",
+   "definition": "Chart of valuation ranges by method (DCF, comps, precedents, LBO) against the current price.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "The standard one-page valuation summary.",
+   "toolkit": "charts.range_bars; CFI Football Field Chart template",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Forecast",
+   "definition": "The projection or estimate of future sales, revenue, earnings, or costs.",
+   "category": "General",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Free cash flow to equity (FCFE)",
+   "definition": "Cash available to shareholders after debt service: net income + D&A − capex − ΔNWC + net borrowing.",
+   "category": "Valuation",
+   "formula": "NI + D&A − capex − ΔNWC + net debt issued",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Discount at the cost of equity; used for financials and highly levered firms.",
+   "toolkit": "Damodaran fcfe templates in catalog",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Goal seek",
+   "definition": "Used to test which assumptions are needed to satisfy the desired output.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Goodwill",
+   "definition": "Excess of purchase price over the fair value of identifiable net assets acquired; not amortised, tested for impairment.",
+   "category": "Assets",
+   "formula": "Purchase equity value − FV of net identifiable assets (after write-ups and deferred taxes)",
+   "gaap_vs_ifrs": "Both prohibit amortisation and require impairment testing; IFRS (IAS 36) tests at the cash-generating unit with a one-step recoverable-amount test, US GAAP (ASC 350) at the reporting unit with an optional qualitative screen and a one-step quantitative test. Neither allows reversal of goodwill impairment. US private companies may elect amortisation.",
+   "how_to_evaluate": "Compare goodwill to equity; a large impairment signals an overpaid deal.",
+   "toolkit": "merger.pro_forma purchase_price_allocation; lbo closing balance sheet",
+   "synonyms": [],
+   "source": "authored",
+   "alt_definition": "When one company buys another company it typically pays more than the book value of the net assets acquired (because it is acquiring staff, name / reputation, and customer relationships). This excess of the purchase price over the fair book value of the net assets is called goodwill. Goodwill is normally included in the balance sheet as an intangible fixed asset."
+  },
+  {
+   "term": "Gross Margin",
+   "definition": "Gross profit / Sales revenue. Gross margin shows how much was spent producing the good or service that was sold for every dollar of sales revenue.",
+   "category": "Ratios & metrics",
+   "formula": "Gross profit / Sales revenue",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Gross Profit",
+   "definition": "Sales revenue less cost of sales.",
+   "category": "General",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Impairment",
+   "definition": "Write-down of an asset's carrying amount to its recoverable amount when it can no longer be supported.",
+   "category": "Assets",
+   "formula": "",
+   "gaap_vs_ifrs": "IFRS: one-step test against recoverable amount (higher of value in use and fair value less costs of disposal), reversals permitted except goodwill. US GAAP: two-step for long-lived assets (undiscounted recoverability screen, then fair value), no reversals.",
+   "how_to_evaluate": "Treat as non-cash; adjust EBITDA and normalise earnings.",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Income Statement",
+   "definition": "earnings The income statement is an organization’s ‘financial history book’ and summarizes the revenue, expenses and operating profit for the financial year. It also shows the tax charged against profit, how much of the profit for the year has been paid out in dividends and how much has been retained in the business.",
+   "category": "Financial statements",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "profit and loss account",
+    "P&L statement",
+    "statement of"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Inputs",
+   "definition": "Financial model assumptions that are used to drive model outputs.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Intangible Fixed Assets",
+   "definition": "Intangible fixed assets have no ‘physical’ presence. Examples include patents, goodwill, trademarks and brand names.",
+   "category": "Assets",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Interest Bearing Current Liabilities (Ibcl’s)",
+   "definition": "These are liabilities that bear interest, normally short term borrowings. They are excluded from some ratios in order to factor in the cost of financing.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Interest Cover Ratio",
+   "definition": "EBITDA / Interest expense. This solvency ratio shows how much income is available to service debt costs.",
+   "category": "Ratios & metrics",
+   "formula": "EBITDA / Interest expense",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Interest coverage",
+   "definition": "Ability to service interest from operating profit.",
+   "category": "Ratios & metrics",
+   "formula": "EBIT / interest expense (or EBITDA / cash interest)",
+   "gaap_vs_ifrs": "Lease reclassification under IFRS 16 raises EBIT and interest simultaneously — recompute on a like-for-like basis.",
+   "how_to_evaluate": "Damodaran maps coverage to a synthetic rating and default spread.",
+   "toolkit": "ratios.coverage; Damodaran ratings.xls",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Internal rate of return (IRR) / XIRR",
+   "definition": "Discount rate at which NPV is zero; XIRR uses dated flows.",
+   "category": "Valuation",
+   "formula": "Σ CF_t / (1 + IRR)^t = 0",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Needs at least one sign change; compare with WACC (projects) or the sponsor hurdle (LBO).",
+   "toolkit": "fin.irr, fin.xirr; lbo returns",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Inventory",
+   "definition": "Inventory normally refers to items held for resale and may include raw materials, work in progress and finished goods.",
+   "category": "Assets",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Inventory Days Ratio",
+   "definition": "Inventories / COGS x 365. Average number of days goods remain in inventory before being sold.",
+   "category": "Ratios & metrics",
+   "formula": "Inventories / COGS x 365",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Inventory Turnover Ratio",
+   "definition": "Sales / Inventory (either the ending balance, or average inventory balance). This ratio illustrates how a company manages its inventory.",
+   "category": "Ratios & metrics",
+   "formula": "Sales / Inventory (either the ending balance, or average inventory balance)",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Inventory valuation",
+   "definition": "Cost flow assumption for inventory: FIFO, weighted average or LIFO.",
+   "category": "Assets",
+   "formula": "COGS = opening + purchases − closing",
+   "gaap_vs_ifrs": "LIFO is allowed under US GAAP and prohibited by IFRS (IAS 2); IFRS measures at lower of cost and net realisable value with reversals allowed, US GAAP at lower of cost and NRV (non-LIFO) or market (LIFO) with no reversals.",
+   "how_to_evaluate": "Add the LIFO reserve to inventory and subtract its change from COGS to restate a LIFO filer to FIFO.",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Investing Activities",
+   "definition": "Deals or transactions involving sale or purchase of equipment, plant, properties, securities, or other assets.",
+   "category": "Assets",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Labour Cost Ratio",
+   "definition": "Direct labour / Sales. Cost of goods sold is made up of labour, materials, and direct costs. This margin shows the proportion of labour that goes to make up each dollar of sales.",
+   "category": "Ratios & metrics",
+   "formula": "Direct labour / Sales",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Land And Buildings Ratio",
+   "definition": "Sales / Land and buildings. The sales generated from land and buildings is measured by this ratio.",
+   "category": "Ratios & metrics",
+   "formula": "Sales / Land and buildings",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Leases (IFRS 16 / ASC 842)",
+   "definition": "Right-of-use asset and lease liability recognised for most leases.",
+   "category": "Debt & liabilities",
+   "formula": "Liability = PV of lease payments",
+   "gaap_vs_ifrs": "IFRS 16 has a single lessee model (all leases financing-type: depreciation + interest). ASC 842 keeps operating leases with a single straight-line lease cost in operating expenses. Effect: IFRS EBITDA, operating cash flow and debt are all higher than for an identical US GAAP company.",
+   "how_to_evaluate": "Add lease liabilities to net debt and use EBITDAR, or de-capitalise, before comparing.",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Leverage Ratios",
+   "definition": "Ratios that analyze a company’s solvency or the level of its debt financing relative to its equity financing. An example of a leverage ratio is Total debt / Total shareholders’ equity.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Leveraged buyout (LBO)",
+   "definition": "Acquisition funded mostly with debt secured on the target's cash flows; the sponsor's return comes from EBITDA growth, multiple expansion and debt paydown.",
+   "category": "Valuation",
+   "formula": "Sponsor IRR from −equity at entry … +equity value at exit",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Attribute returns to the three levers; check leverage (debt/EBITDA) and coverage covenants each year.",
+   "toolkit": "finmodel.lbo",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Liabilities",
+   "definition": "Money owed, or other financial obligations to other organizations Liabilities and individuals.",
+   "category": "Debt & liabilities",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Loan Capital",
+   "definition": "See debt.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Material Cost Ratio",
+   "definition": "Materials / Sales. Cost of goods sold is made up of labour, materials, and direct costs. This margin shows the proportion of materials that goes to make up each dollar of sales.",
+   "category": "Ratios & metrics",
+   "formula": "Materials / Sales",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Mezzanine / subordinated debt",
+   "definition": "Debt ranking below senior loans, priced with higher coupons, often PIK-able, and frequently carrying equity warrants.",
+   "category": "Debt & liabilities",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Lender IRR = interest + principal + warrant equity at exit.",
+   "toolkit": "lbo.Tranche.warrant_equity_pct; returns[tranche]",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Model Structure",
+   "definition": "The framework around which a financial model is built.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "MOIC (multiple of invested capital)",
+   "definition": "Total cash returned divided by cash invested, ignoring timing.",
+   "category": "Ratios & metrics",
+   "formula": "Σ distributions / Σ contributions",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Read together with IRR: a 2x over 3 years is ~26% IRR, over 7 years ~10%.",
+   "toolkit": "lbo returns['moic']",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Name cells",
+   "definition": "By naming a cell, you use the name reference rather than the cell reference.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Nested IF statements",
+   "definition": "A complicated formula with multiple IF statements within each other.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Net Asset Ratio",
+   "definition": "Sales / Net assets. This ratio takes into account the financing of assets, and measures management’s efficiency in relation to the use of assets.",
+   "category": "Ratios & metrics",
+   "formula": "Sales / Net assets",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Net Assets",
+   "definition": "Total assets less total liabilities.",
+   "category": "Debt & liabilities",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Net Book Value",
+   "definition": "Net book value typically refers to property plant and equipment (PP&E). The net book value of PP&E is calculated by taking the total gross cost of PP&E and deducting total accumulated depreciation / amortization.",
+   "category": "Assets",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Net debt",
+   "definition": "Total debt less cash and cash equivalents.",
+   "category": "Debt & liabilities",
+   "formula": "Debt − cash",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Net debt / EBITDA is the standard leverage multiple; covenants usually cap it.",
+   "toolkit": "lbo debt schedule; ratios.leverage",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Net Earnings",
+   "definition": "for the year The profits retained by an organization after all expenses including interest expenses, taxes and dividends. The retained profits / earnings for a given year are reinvested in the business (hopefully making the organization grow, and increasing the value of its shares) and are added to ‘retained earnings’ in the balance sheet (which represent all retained profits accumulated over an organization’s entire life to date which have been reinvested in the business).",
+   "category": "Financial statements",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "net income",
+    "retained profit for the year",
+    "retained earnings"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Net Income",
+   "definition": "See net earnings.",
+   "category": "General",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Net present value (NPV) / XNPV",
+   "definition": "Sum of cash flows discounted to today; XNPV discounts by actual dates (days/365) rather than whole periods.",
+   "category": "Valuation",
+   "formula": "NPV = Σ CF_t / (1 + r)^t; XNPV = Σ CF_i / (1 + r)^((d_i − d_0)/365)",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Excel NPV discounts the first flow one full period — put the time-0 flow outside NPV().",
+   "toolkit": "fin.npv, fin.xnpv",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Net Profit Margin",
+   "definition": "Net income / Sales. This margin shows how much is earned for every dollar of sales revenue.",
+   "category": "Ratios & metrics",
+   "formula": "Net income / Sales",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Net working capital (NWC)",
+   "definition": "Operating current assets less operating current liabilities (typically receivables + inventory + prepaids − payables − accruals), excluding cash and debt.",
+   "category": "Assets",
+   "formula": "AR + inventory + prepaids − AP − accrued expenses",
+   "gaap_vs_ifrs": "Inventory: LIFO permitted under US GAAP, prohibited under IFRS (IAS 2); write-downs to NRV can be reversed under IFRS, not under US GAAP.",
+   "how_to_evaluate": "Model with days assumptions; an increase in NWC consumes cash.",
+   "toolkit": "three_statement schedules; projection working_capital; ratios.efficiency",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Non-Current Assets",
+   "definition": "Assets that are not expected to be converted into cash within 12 months of the balance sheet date.",
+   "category": "Financial statements",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Operating Activities",
+   "definition": "before interest and income taxes (PBIT) Cash inflows and outflows relating to a company’s operations. Examples includes receiving payments from customers, paying salaries, etc.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "earnings before interest and income taxes (EBIT)",
+    "profit"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Operating Assets",
+   "definition": "Assets acquired for or used throughout the operations of the business (such as cash, inventory, prepaid expenses, equipment).",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Operating Cost Ratio",
+   "definition": "Operating costs / Sales. This margin shows the operating expenses as a percentage of sales. This does not include cost of goods sold (as is the case with the operating profit margin), so is an indication of the efficiency of the operation.",
+   "category": "Ratios & metrics",
+   "formula": "Operating costs / Sales",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Operating Profit",
+   "definition": "before interest and income taxes (PBIT) Sales revenues less all operating expenses. Operating profit is calculated before financing costs and taxes. It is often referred to as EBIT.",
+   "category": "Debt & liabilities",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "earnings before interest and income taxes (EBIT)",
+    "profit"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Operating Profit Margin",
+   "definition": "Otherwise known as the EBIT margin. Operating income / Sales. This performance ratio shows the cost of running the operation for each dollar of sales.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Operating Revenues",
+   "definition": "The net sales revenue accumulated by a firm.",
+   "category": "General",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Ordinary Shares",
+   "definition": "See common stock.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Output",
+   "definition": "Financial model calculations that are driven by one or more inputs.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Paid-in-kind (PIK) interest",
+   "definition": "Interest accrued to the principal instead of paid in cash, common on mezzanine/subordinated debt.",
+   "category": "Debt & liabilities",
+   "formula": "PIK accrual = opening balance × rate × PIK share",
+   "gaap_vs_ifrs": "Deductibility of PIK interest for tax differs by jurisdiction; both GAAP and IFRS accrue it as interest expense.",
+   "how_to_evaluate": "Non-cash: add back in cash flow; the balance compounds.",
+   "toolkit": "lbo.Tranche.pik_pct",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Personnel Cost Ratio",
+   "definition": "Personnel costs / Sales. The personnel costs used in this ratio could be research and development specific, or general overhead personnel costs, or total personnel depending upon the type of organization. This margin is useful in monitoring the amount spent on wages, salaries, and related expenses for each dollar of sales.",
+   "category": "Ratios & metrics",
+   "formula": "Personnel costs / Sales",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Plant And Machinery Turnover Ratio",
+   "definition": "Sales / Plant and Machinery. This ratio measures the efficiency of the company’s operating assets.",
+   "category": "Ratios & metrics",
+   "formula": "Sales / Plant and Machinery",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Precedent transactions",
+   "definition": "Multiples paid in past M&A deals for similar companies, including control premia.",
+   "category": "Valuation",
+   "formula": "Implied EV = precedent multiple × target metric",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Usually higher than trading comps because of the premium; check deal timing and cycle.",
+   "toolkit": "BIWS precedent-transactions files",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Preferred Stock",
+   "definition": "Preferred stock has preferential rights over common stock to both dividends and also to assets in the event that a company is wound up (i.e. preferred stock holders are paid out before common stock holders). Typically preferred stock dividends are fixed (e.g. 6 percent preferred stock) and do not increase with rising profits.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "preference shares"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Processing",
+   "definition": "The translation of financial model inputs or assumptions into financial model outputs.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Property, Plant And Equipment (Pp&E)",
+   "definition": "Non-current fixed or capital assets such as buildings, computers, land, and vehicles.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Property, Plant And Equipment (Pp&E) Turnover Ratio",
+   "definition": "Sales / Property, Plant & Equipment. This ratio measures the sales a company is able to generate from capital assets.",
+   "category": "Ratios & metrics",
+   "formula": "Sales / Property, Plant & Equipment",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Purchase price allocation (PPA)",
+   "definition": "Allocating the purchase price to acquired assets and liabilities at fair value (PP&E and intangibles write-ups, new deferred tax liability), with the residual as goodwill.",
+   "category": "Valuation",
+   "formula": "Goodwill = price − book value + old goodwill − write-ups − DTL written down + new DTL",
+   "gaap_vs_ifrs": "IFRS 3 and ASC 805 are largely converged; differences remain on NCI measurement (IFRS allows proportionate share; US GAAP requires full fair value) and contingent liabilities.",
+   "how_to_evaluate": "Write-ups create extra D&A that depresses reported EPS; show 'adjusted' EPS excluding it.",
+   "toolkit": "merger.pro_forma",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Quick Ratio",
+   "definition": "Current assets - Inventory / Current liabilities. This ratio provides a more prudent measure of short-term liquidity recognizing the inventory can not always be readily converted into cash.",
+   "category": "Ratios & metrics",
+   "formula": "Current assets - Inventory / Current liabilities",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Relative reference",
+   "definition": "When copied across multiple cells, they change based on the relative position of rows and columns.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Research And Development Cost Ratio",
+   "definition": "Research and development costs / Sales. This margin shows how much the company invests in developing the next generation of products or services for each dollar of sales.",
+   "category": "Ratios & metrics",
+   "formula": "Research and development costs / Sales",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Research And Development Expenses",
+   "definition": "These expenses are directly attributable to researching and developing new or improved products or systems.",
+   "category": "General",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Reserves",
+   "definition": "Reserves are part of shareholders’ equity. Reserves are subdivided into revenue reserves (e.g. retained earnings), which are available to be distributed to the shareholders by way of dividends, and capital reserves (e.g. contributed surplus), which for various reasons are not distributable as dividends.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Retained Earnings (Balance Sheet)",
+   "definition": "Retained earnings in the balance sheet represent all retained profits accumulated over an organization’s entire life to date which have been reinvested in the business. As the retained earnings ultimately belong to shareholders, they are included as part of shareholders’ equity.",
+   "category": "Financial statements",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "P&L reserve",
+    "Retained earnings reserve"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Retained Earnings (Income Statement)",
+   "definition": "See net earnings.",
+   "category": "Financial statements",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Return on invested capital (ROIC)",
+   "definition": "After-tax operating profit relative to the capital invested in operations.",
+   "category": "Ratios & metrics",
+   "formula": "NOPAT / (net debt + equity − excess cash)",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Value is created when ROIC exceeds WACC (Koller); in an LBO the BIWS sweep model tracks ROIC yearly.",
+   "toolkit": "CFI ROIC Template; Damodaran returncalculator.xls",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Revenue",
+   "definition": "Revenue includes both cash sales and credit sales of goods and services, but does not include the sale of fixed assets.",
+   "category": "Assets",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "sales",
+    "sales revenue",
+    "turnover"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Revenue recognition (IFRS 15 / ASC 606)",
+   "definition": "Five-step model: identify the contract, performance obligations, transaction price, allocation, and recognise when control transfers.",
+   "category": "Financial statements",
+   "formula": "",
+   "gaap_vs_ifrs": "Converged standards; remaining differences are in collectability thresholds, licence renewals and some cost capitalisation.",
+   "how_to_evaluate": "Check deferred revenue and contract assets when revenue growth outpaces cash.",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Revolver (revolving credit facility)",
+   "definition": "Committed line of credit drawn when cash falls below the minimum balance and repaid from surplus cash.",
+   "category": "Debt & liabilities",
+   "formula": "Draw = max(0, prior balance − cash available)",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Interest on the revolver is circular with cash; the ASM template leaves it out, this toolkit can iterate it.",
+   "toolkit": "lbo.LBOInputs.revolver_interest",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Sales",
+   "definition": "See revenue.",
+   "category": "General",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Scenario analysis",
+   "definition": "Running the model under alternative coherent input sets (base / upside / downside) selected by a switch (CHOOSE / INDEX).",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Keep scenario inputs in one block; drive with a single selector cell.",
+   "toolkit": "lbo.sensitivity scenarios; three_statement list-valued assumptions",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Scenario manager",
+   "definition": "Used to test for different scenarios that may happen in the future, usually base, worst and best.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Scenario planning",
+   "definition": "Tests the model’s robustness against possible future changes.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Selling Cost Ratio",
+   "definition": "Selling costs / Sales. This margin shows how much it costs to sell each dollar of sales.",
+   "category": "Ratios & metrics",
+   "formula": "Selling costs / Sales",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Sensitivity analysis",
+   "definition": "Tests the final value against changes in one (or more) variables.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Sensitivity analysis / data table",
+   "definition": "Recomputing an output over a grid of one or two inputs (Excel Data Table); a heatmap is the natural visual.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Use for WACC × g (DCF), scenario × exit multiple (LBO), premium × % stock (merger).",
+   "toolkit": "dcf.sensitivity, lbo.sensitivity, merger.deal_sensitivity, charts.heatmap",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "SG&A (Selling, General, And Administration)",
+   "definition": "Operational expenses that include direct and indirect selling expenses and all general and administrative expenses. Rent, heat, lights are all examples of general expenses.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Share Capital",
+   "definition": "See capital stock.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Share Premium",
+   "definition": "See contributed surplus.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Shareholders’ Equity",
+   "definition": "See equity.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Shares",
+   "definition": "See capital stock.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Solver",
+   "definition": "Used to minimize or maximize the output under a certain set of assumptions.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Sources and uses",
+   "definition": "Funding table for a transaction: where the money comes from (equity, each debt tranche, cash on hand) and what it pays for (equity purchase, debt refinanced, fees).",
+   "category": "Valuation",
+   "formula": "Total sources = total uses",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Fees are capitalised (financing) or expensed (transaction) and flow through the closing balance sheet.",
+   "toolkit": "lbo.run['sources'/'uses'], merger.pro_forma",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Statement Of Earnings",
+   "definition": "See income statement.",
+   "category": "Financial statements",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Stock",
+   "definition": "See capital stock.",
+   "category": "Equity & capital",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Stock Repurchases",
+   "definition": "When a corporation buys back its own shares in the open market.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Synergies",
+   "definition": "Incremental value from combining businesses: cost synergies (overhead, procurement) and revenue synergies (cross-selling, pricing), phased in by a realisation schedule and offset by integration costs.",
+   "category": "Valuation",
+   "formula": "Value of synergies = PV of after-tax synergy cash flows − integration costs",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Cost synergies are credited more than revenue synergies; pre-tax break-even synergies = dilution ÷ (1 − t) × shares.",
+   "toolkit": "merger.pro_forma; Damodaran synergyvaluation.xls",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Tangible Fixed Assets",
+   "definition": "Tangible fixed assets are fixed assets that have physical presence and include things like land, buildings, machinery, equipment, computers and so on.",
+   "category": "Assets",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [
+    "capital assets"
+   ],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Tax Expense",
+   "definition": "The tax liability that companies, and individuals, are required to pay by law.",
+   "category": "Debt & liabilities",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Tax Ratio",
+   "definition": "Tax / Sales. This efficiency ratio shows how well management is managing tax.",
+   "category": "Ratios & metrics",
+   "formula": "Tax / Sales",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Terminal value",
+   "definition": "Value of cash flows beyond the explicit forecast, by perpetuity growth (Gordon) or an exit multiple.",
+   "category": "Valuation",
+   "formula": "TV = FCF_n × (1 + g) / (WACC − g); or multiple × EBITDA_n",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "Cross-check the implied exit multiple of the perpetuity method and the implied growth of the multiple method.",
+   "toolkit": "dcf.terminal_value (average/perpetuity/multiple)",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Test data",
+   "definition": "Inputting specific test data to stress test and sanity test your model. www.corporatefinanceinstitute.com",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Tracing dependents",
+   "definition": "www.corporatefinanceinstitute.com Shows the cells that use the selected cell in its calculations.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Tracing precedents",
+   "definition": "Shows the cells that are used in the calculation of the selected cell.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Trading comparables (comps)",
+   "definition": "Valuation from multiples of similar listed companies (EV/EBITDA, EV/revenue, P/E), applied to the target's metrics.",
+   "category": "Valuation",
+   "formula": "Implied EV = peer median multiple × target metric",
+   "gaap_vs_ifrs": "Use consistent accounting (lease, LIFO, development-cost adjustments) across the peer set.",
+   "how_to_evaluate": "Report the 25th–75th percentile range in the football field.",
+   "toolkit": "BIWS comps files in catalog; charts.range_bars",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Treasury stock method",
+   "definition": "Counts options and warrants in diluted shares net of shares repurchasable with the exercise proceeds.",
+   "category": "Equity & capital",
+   "formula": "Net new shares = options − (options × strike / price)",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "CFI Treasury Stock Method Calculator",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Turnover",
+   "definition": "See revenue.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Turnover Ratio",
+   "definition": "Ratios that measure an assets’ activity or efficiency in generating revenues or cash. Total assets / Sales.",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Unlevered free cash flow (UFCF)",
+   "definition": "Cash available to all capital providers before financing: NOPAT plus D&A less capex and the increase in net working capital.",
+   "category": "Valuation",
+   "formula": "EBIT × (1 − t) + D&A − capex − ΔNWC",
+   "gaap_vs_ifrs": "Lease classification (IFRS 16 vs ASC 842) and capitalised development costs (IAS 38 allows capitalisation of development spend; US GAAP expenses most R&D) shift items between opex and capex — FCF should be similar but EBITDA and capex lines are not comparable.",
+   "how_to_evaluate": "Discount at WACC; reconcile to CFO − capex.",
+   "toolkit": "dcf.run['ufcf']",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "VLOOKUP functions",
+   "definition": "One of the lookup and reference functions, is used to find things in a table or a range by row.",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Modeling Fundamentals Glossary (PDF)"
+  },
+  {
+   "term": "Waterfall chart",
+   "definition": "Bridge from a starting value through positive and negative steps to an ending value (cash bridge, EV → equity bridge, returns attribution, PPA).",
+   "category": "Modelling technique",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "charts.waterfall; CFI Waterfall Chart template",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Weighted average cost of capital (WACC)",
+   "definition": "Blended after-tax return required by debt and equity investors, used to discount unlevered cash flows.",
+   "category": "Valuation",
+   "formula": "E/(D+E) × k_e + D/(D+E) × k_d × (1 − t)",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "k_e from CAPM: r_f + β × ERP (+ country / size premia); k_d from yield or synthetic rating.",
+   "toolkit": "dcf.discount_rate; Damodaran wacccalc.xls; CFI WACC Calculator",
+   "synonyms": [],
+   "source": "authored"
+  },
+  {
+   "term": "Work Overhead Ratio",
+   "definition": "Direct overhead / Sales. Cost of goods sold is made up of labour, materials, and direct costs. This margin shows the proportion of direct overhead that goes to make up each dollar of sales.",
+   "category": "Ratios & metrics",
+   "formula": "Direct overhead / Sales",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "Working Capital",
+   "definition": "Working capital is normally defined as money tied up in the day to day operations of an organization. It is approximately equal to current assets less current liabilities. However, many analysts will define working capital more explicitly as inventory and accounts receivable less accounts payable (and exclude other current assets / liabilities such as cash and non-trade receivables and payables).",
+   "category": "Ratios & metrics",
+   "formula": "",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "",
+   "toolkit": "",
+   "synonyms": [],
+   "source": "CFI Financial Analysis Glossary (PDF on your CFI dashboard)"
+  },
+  {
+   "term": "YEARFRAC (stub period)",
+   "definition": "Fraction of a year between two dates; Excel's default basis 0 is US 30/360, used to scale a partial first forecast period in a DCF.",
+   "category": "Modelling technique",
+   "formula": "days360(d1, d2) / 360",
+   "gaap_vs_ifrs": "",
+   "how_to_evaluate": "The CFI DCF stub 31-Dec-2017 → 30-Jun-2018 is exactly 0.5.",
+   "toolkit": "fin.yearfrac, dcf.period_dates",
+   "synonyms": [],
+   "source": "authored"
+  }
+ ],
+ "gaap_vs_ifrs": [
+  {
+   "topic": "Framework style",
+   "us_gaap": "Rules-based, detailed industry guidance (FASB ASC)",
+   "ifrs": "Principles-based (IASB), more judgement and disclosure",
+   "how_to_evaluate": "Expect more policy choices under IFRS; read the accounting-policies note first."
+  },
+  {
+   "topic": "Balance sheet order",
+   "us_gaap": "Current to non-current, liquidity order",
+   "ifrs": "Usually non-current first; liquidity order permitted",
+   "how_to_evaluate": "Re-order before common-sizing."
+  },
+  {
+   "topic": "Inventory",
+   "us_gaap": "LIFO allowed; lower of cost or NRV/market; no reversal of write-downs",
+   "ifrs": "LIFO prohibited (IAS 2); lower of cost and NRV; reversals allowed",
+   "how_to_evaluate": "Restate LIFO to FIFO using the LIFO reserve; DIO and gross margin otherwise not comparable."
+  },
+  {
+   "topic": "PP&E measurement",
+   "us_gaap": "Historical cost only",
+   "ifrs": "Cost or revaluation model (IAS 16)",
+   "how_to_evaluate": "Revalued assets inflate equity and depreciation; adjust P/B and ROE."
+  },
+  {
+   "topic": "Component depreciation",
+   "us_gaap": "Permitted, rarely used",
+   "ifrs": "Required when components have different lives",
+   "how_to_evaluate": "Depreciation profiles differ; use EBITDA or cash capex for comparisons."
+  },
+  {
+   "topic": "Development costs",
+   "us_gaap": "Expensed (except certain software)",
+   "ifrs": "Capitalised when IAS 38 criteria are met",
+   "how_to_evaluate": "IFRS EBITDA and capex are higher; add back capitalised development to compare R&D intensity."
+  },
+  {
+   "topic": "Impairment of long-lived assets",
+   "us_gaap": "Two-step (undiscounted recoverability, then fair value); no reversals",
+   "ifrs": "One-step to recoverable amount; reversals allowed (not goodwill)",
+   "how_to_evaluate": "IFRS earnings can bounce back after reversals; normalise."
+  },
+  {
+   "topic": "Goodwill",
+   "us_gaap": "Impairment only; optional qualitative screen; reporting-unit level; private-company amortisation election",
+   "ifrs": "Impairment only at CGU level; annual test",
+   "how_to_evaluate": "Neither amortises; impairments are non-cash — exclude from EBITDA."
+  },
+  {
+   "topic": "Leases",
+   "us_gaap": "ASC 842: operating leases keep straight-line lease cost in opex",
+   "ifrs": "IFRS 16: all leases on balance sheet as depreciation + interest",
+   "how_to_evaluate": "IFRS EBITDA, CFO and net debt are higher; use EBITDAR or add lease liabilities to EV for both."
+  },
+  {
+   "topic": "Cash flow classification",
+   "us_gaap": "Interest paid/received and dividends received = operating; dividends paid = financing",
+   "ifrs": "Policy choice: interest paid operating or financing; dividends received operating or investing",
+   "how_to_evaluate": "Normalise interest into a single bucket before computing FCF."
+  },
+  {
+   "topic": "Extraordinary items",
+   "us_gaap": "Category eliminated (2015)",
+   "ifrs": "Prohibited",
+   "how_to_evaluate": "Treat both under 'non-recurring' and normalise."
+  },
+  {
+   "topic": "Deferred taxes",
+   "us_gaap": "DTAs in full with valuation allowance; current/non-current split historically, now non-current",
+   "ifrs": "Recognised when probable; always non-current (IAS 12)",
+   "how_to_evaluate": "Effective tax rate reconciliation is the check."
+  },
+  {
+   "topic": "Financial instruments",
+   "us_gaap": "CECL (lifetime expected losses at inception) for credit losses",
+   "ifrs": "IFRS 9 three-stage expected-credit-loss model",
+   "how_to_evaluate": "Provisioning timing differs; matters for banks and receivables-heavy models."
+  },
+  {
+   "topic": "Convertible debt",
+   "us_gaap": "Generally a single liability (ASU 2020-06)",
+   "ifrs": "Split into liability and equity components (IAS 32)",
+   "how_to_evaluate": "Interest expense and diluted EPS differ."
+  },
+  {
+   "topic": "Revenue recognition",
+   "us_gaap": "ASC 606 five-step model",
+   "ifrs": "IFRS 15 five-step model (converged)",
+   "how_to_evaluate": "Largely comparable; watch collectability threshold and licence renewals."
+  },
+  {
+   "topic": "Business combinations",
+   "us_gaap": "ASC 805; NCI at full fair value",
+   "ifrs": "IFRS 3; NCI at fair value or proportionate share",
+   "how_to_evaluate": "Goodwill differs by the NCI choice under IFRS."
+  },
+  {
+   "topic": "Share-based payment",
+   "us_gaap": "ASC 718; graded vesting may use straight-line",
+   "ifrs": "IFRS 2; graded vesting requires accelerated attribution",
+   "how_to_evaluate": "Front-loaded expense under IFRS."
+  },
+  {
+   "topic": "Interim reporting",
+   "us_gaap": "Integral view (annual costs spread)",
+   "ifrs": "Discrete view (each period stands alone)",
+   "how_to_evaluate": "Quarterly margins are smoother under US GAAP."
+  },
+  {
+   "topic": "Presentation of expenses",
+   "us_gaap": "By function",
+   "ifrs": "By nature or by function",
+   "how_to_evaluate": "Rebuild COGS vs opex lines when a by-nature IFRS statement is compared with US peers."
+  }
+ ]
+}

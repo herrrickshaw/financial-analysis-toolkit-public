@@ -1,0 +1,45 @@
+{
+ "_comment": "Demo inputs for the bottom-up projection (structure of the CFI Financial Projection Template, own figures).",
+ "base_year": 2025,
+ "forecast_years": 4,
+ "products": [
+  {"name": "Product 1", "price": 120, "cogs_per_unit": 55, "units_by_month": [400,420,450,470,500,520,540,560,580,600,620,650], "unit_growth": [0.05,0.06,0.08,0.10]},
+  {"name": "Product 2", "price": 45, "cogs_per_unit": 20, "units_by_month": [900,900,950,950,1000,1000,1050,1050,1100,1100,1150,1150], "unit_growth": [0.02,0.02,0.03,0.03], "price_growth": 0.02},
+  {"name": "Product 3", "price": 300, "cogs_per_unit": 160, "units_by_month": [80,85,90,95,100,105,110,115,120,125,130,135], "unit_growth": [0.07,0.08,0.08,0.10]}
+ ],
+ "employees": [
+  {"name": "A. Analyst", "type": "Full-Time", "hourly_wage": 32},
+  {"name": "B. Engineer", "type": "Full-Time", "hourly_wage": 48},
+  {"name": "C. Manager", "type": "Full-Time", "hourly_wage": 60},
+  {"name": "D. Sales", "type": "Full-Time", "hourly_wage": 30},
+  {"name": "E. Support", "type": "Part-Time", "hourly_wage": 22, "hours_per_month": [80,80,80,80,80,80,80,80,80,80,80,80]},
+  {"name": "F. Designer", "type": "Contractors", "hourly_wage": 70, "hours_per_month": [40,40,40,40,40,40,40,40,40,40,40,40]}
+ ],
+ "headcount_growth": {"Full-Time": [0.05,0.05,0.075,0.075], "Part-Time": 0.03, "Contractors": 0.03},
+ "wage_growth": {"Full-Time": 0.03, "Part-Time": 0.03, "Contractors": 0.03},
+ "opex_by_month": {
+  "Advertising & Promotion": [4000,4000,4000,4000,4000,4000,4000,4000,4000,4000,4000,4000],
+  "Depreciation & Amortization": [2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500],
+  "General & Administrative": [3000,3000,3000,3000,3000,3000,3000,3000,3000,3000,3000,3000],
+  "Insurance": [800,800,800,800,800,800,800,800,800,800,800,800],
+  "Marketing": [5000,5000,5000,5000,5000,5000,5000,5000,5000,5000,5000,5000],
+  "Maintenance": [600,600,600,600,600,600,600,600,600,600,600,600],
+  "Office Rent": [6000,6000,6000,6000,6000,6000,6000,6000,6000,6000,6000,6000],
+  "Professional Fees": [1500,1500,1500,1500,1500,1500,1500,1500,1500,1500,1500,1500],
+  "Technology": [2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500,2500],
+  "Travel, Meals and Entertainment": [900,900,900,900,900,900,900,900,900,900,900,900],
+  "Utilities": [700,700,700,700,700,700,700,700,700,700,700,700],
+  "Miscellaneous": [300,300,300,300,300,300,300,300,300,300,300,300]
+ },
+ "opex_growth": {"Advertising & Promotion": [0.03,0.03,0.041,0.041], "General & Administrative": 0.02, "Insurance": [0.03,0.04,0.05,0.05],
+                 "Marketing": [0.04,0.05,0.05,0.05], "Maintenance": 0.015, "Office Rent": 0.03, "Professional Fees": 0.025,
+                 "Technology": [0.05,0.07,0.08,0.08], "Travel, Meals and Entertainment": 0.01, "Utilities": 0.03, "Miscellaneous": 0.01},
+ "tax_rate": 0.20,
+ "bonus_pct_ebit": 0.10,
+ "opening_cash": 150000, "opening_ar": 60000, "opening_prepaid": 8000, "opening_inventory": 45000, "opening_ppe": 300000,
+ "opening_ap": 35000, "opening_accrued": 12000, "opening_debt": 200000, "opening_equity_capital": 250000, "opening_retained_earnings": 66000,
+ "base_capex_by_month": [3000,3000,3000,3000,3000,3000,3000,3000,3000,3000,3000,3000],
+ "base_interest_by_month": [1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000,1000],
+ "ar_days": 30, "inventory_days": 60, "ap_days": 40,
+ "forecast_capex": 40000, "forecast_debt_issued": [0, 0, -50000, 0]
+}

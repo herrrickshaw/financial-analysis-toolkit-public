@@ -1,0 +1,15 @@
+{
+  "_comment": "Illustrative diversified holding company: an industrial segment valued on EV/EBITDA, a financial-services segment valued on a P/B-style asset multiple, and a 55%-owned listed subsidiary valued at its own market cap. Figures in $ millions.",
+  "segments": [
+    {"name": "Industrial products", "metric_name": "EBITDA", "metric": 420, "multiple": 8.5, "note": "peer set: diversified industrials at 7-10x EBITDA"},
+    {"name": "Specialty finance", "metric_name": "Net assets", "metric": 900, "multiple": 1.1, "note": "1.1x book, in line with quoted specialty lenders"},
+    {"name": "Listed subsidiary (55% owned)", "value": 1800, "ownership": 0.55, "metric": 1800, "metric_name": "Market cap", "note": "quoted market value, no multiple applied"}
+  ],
+  "corporate_costs": 60,
+  "corporate_cost_multiple": 7,
+  "net_debt": 1100,
+  "other_adjustments": {"Unfunded pension deficit": -150, "NOL carryforward value": 80},
+  "conglomerate_discount": 0.08,
+  "shares": 210,
+  "price": 24.5
+}

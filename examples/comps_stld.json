@@ -1,0 +1,26 @@
+{
+  "_comment": "Trading comps + precedent transactions + football field. Peer/target figures follow the BIWS Steel Dynamics public-comps workbook (USD millions, per-share in USD); deals are the CFI football-field template's illustrative precedents; DCF / 52-week ranges are illustrative.",
+  "periods": ["ltm", "fy1", "fy2"],
+  "target": {"name": "Steel Dynamics Inc.", "price": 24.97, "diluted_shares": 242.017,
+             "metrics": {"revenue_ltm": 7307.2, "revenue_fy1": 7716.0164, "revenue_fy2": 8406.1512, "ebitda_ltm": 862.8, "ebitda_fy1": 626.3522, "ebitda_fy2": 730.2372, "net_income_ltm": 12.1, "net_income_fy1": 170.7479, "net_income_fy2": 205.7727,
+                         "revenue": 7307.2, "ebitda": 862.8, "ebit": 700.0, "net_income": 12.1},
+             "bridge": {"cash": 1072.221, "equity_investments": 0, "other_non_core_assets": 0, "net_operating_losses": 61.148, "total_debt": -2700, "preferred_stock": 0, "noncontrolling_interests": 11.231, "unfunded_pensions": 0, "capital_leases": 0, "restructuring_liabilities": 0}},
+  "peers": [
+    {"name": "United States Steel Corp.", "ticker": "X", "price": 18.9, "diluted_shares": 165.6142, "cash": 820, "debt": 3140, "preferred": 0, "nci": 1, "metrics": {"revenue_ltm": 10327, "revenue_fy1": 10545.15, "revenue_fy2": 11231.27, "ebitda_ltm": -128, "ebitda_fy1": 675, "ebitda_fy2": 921.38, "net_income_ltm": -1692, "net_income_fy1": -74.89, "net_income_fy2": 333.75}},
+    {"name": "Nucor Corporation", "ticker": "NUE", "price": 49.03, "diluted_shares": 318.3557, "cash": 2331.15, "debt": 4357.512, "preferred": 0, "nci": 346.946, "metrics": {"revenue_ltm": 15643.6, "revenue_fy1": 16684.82, "revenue_fy2": 16937.09, "ebitda_ltm": 1972.9, "ebitda_fy1": 2291.4, "ebitda_fy2": 2539.62, "net_income_ltm": 469.6, "net_income_fy1": 818.31, "net_income_fy2": 1000.96}},
+    {"name": "Commercial Metals Company", "ticker": "CMC", "price": 15.5, "diluted_shares": 114.6286, "cash": 483.855, "debt": 1079.95, "preferred": 0, "nci": 0.16, "metrics": {"revenue_ltm": 4813.4, "revenue_fy1": 4683.9467, "revenue_fy2": 4780.1033, "ebitda_ltm": 431.9, "ebitda_fy1": 367.43, "ebitda_fy2": 423.1133, "net_income_ltm": 129.4, "net_income_fy1": 127.4067, "net_income_fy2": 171.4867}},
+    {"name": "AK Steel Holding Corporation", "ticker": "AKS", "price": 4.35, "diluted_shares": 238.1962, "cash": 56.2, "debt": 2078.1, "preferred": 0, "nci": 379.6, "metrics": {"revenue_ltm": 6263.6, "revenue_fy1": 5991.83, "revenue_fy2": 6108.22, "ebitda_ltm": 547.2, "ebitda_fy1": 469.23, "ebitda_fy2": 580.9, "net_income_ltm": -135, "net_income_fy1": 57.29, "net_income_fy2": 128.85}},
+    {"name": "Worthington Industries, Inc.", "ticker": "WOR", "price": 43.29, "diluted_shares": 63.1153, "cash": 84.188, "debt": 583.96, "preferred": 0, "nci": 126.48, "metrics": {"revenue_ltm": 2819.7, "revenue_fy1": 2891.3158, "revenue_fy2": 2971.38, "ebitda_ltm": 239.9, "ebitda_fy1": 281.5267, "ebitda_fy2": 324.07, "net_income_ltm": 143.7, "net_income_fy1": 177.3525, "net_income_fy2": 220.3308}},
+    {"name": "Reliance Steel & Aluminum Co.", "ticker": "RS", "price": 72.51, "diluted_shares": 72.5298, "cash": 116.5, "debt": 2169.4, "preferred": 0, "nci": 28.6, "metrics": {"revenue_ltm": 8679, "revenue_fy1": 8890.36, "revenue_fy2": 9303.56, "ebitda_ltm": 784.6, "ebitda_fy1": 850.74, "ebitda_fy2": 928.7, "net_income_ltm": 313.1, "net_income_fy1": 390.23, "net_income_fy2": 441.55}}
+  ],
+  "deals": [
+    {"acquirer": "Average Limited", "target": "Current Ltd", "date": "2017-01-24", "enterprise_value": 2350, "ltm_revenue": 1236.8, "ltm_ebitda": 250.0, "ltm_ebit": 209.6, "offer_price": 47.0, "price_1d_prior": 36.2, "price_1w_prior": 35.1, "price_1m_prior": 33.8},
+    {"acquirer": "Bohemeth Industires", "target": "Recent Inc", "date": "2016-04-19", "enterprise_value": 6500, "ltm_revenue": 4642.9, "ltm_ebitda": 808.5, "ltm_ebit": 514.6, "offer_price": 65.0, "price_1d_prior": 50.0, "price_1w_prior": 48.7, "price_1m_prior": 47.2},
+    {"acquirer": "Other Group", "target": "Past Co", "date": "2014-04-19", "enterprise_value": 2150, "ltm_revenue": 1692.9, "ltm_ebitda": 248.6, "ltm_ebit": 178.0, "offer_price": 21.5, "price_1d_prior": 16.9, "price_1w_prior": 16.1, "price_1m_prior": 15.4},
+    {"acquirer": "Junior Enterprises", "target": "Historical LLP", "date": "2014-11-07", "enterprise_value": 450, "ltm_revenue": 196.5, "ltm_ebitda": 40.7, "ltm_ebit": 33.1, "offer_price": 9.0, "price_1d_prior": 6.4, "price_1w_prior": 6.3, "price_1m_prior": 5.9},
+    {"acquirer": "Minature Company", "target": "Old Group", "date": "2012-11-01", "enterprise_value": 325, "ltm_revenue": 63.9, "ltm_ebitda": 17.3, "ltm_ebit": 15.1, "offer_price": 3.25, "price_1d_prior": 2.5, "price_1w_prior": 2.55, "price_1m_prior": 2.4},
+    {"acquirer": "Micro Partners", "target": "Dated Enterprises", "date": "2011-10-07", "enterprise_value": 150, "ltm_revenue": 71.4, "ltm_ebitda": 16.1, "ltm_ebit": 11.4, "offer_price": 3.0, "price_1d_prior": 2.3, "price_1w_prior": 2.25, "price_1m_prior": 2.2}
+  ],
+  "extra_ranges": {"DCF - base case": [14, 22], "DCF - blue sky": [22, 30], "52 wk hi/lo": [17, 38]},
+  "stat_low": "p25", "stat_high": "p75"
+}

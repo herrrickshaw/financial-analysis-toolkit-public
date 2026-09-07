@@ -1,0 +1,12 @@
+{
+  "_comment": "US Bancorp FY2025 (data/edgar/USB.json) plus illustrative market inputs (risk-free = 10yr UST, ERP = Damodaran implied ERP, beta = illustrative for a regional bank). Cost of equity (CAPM) is what feeds the residual-income valuation for a bank; the debt/WACC side of this file is included for comparability with the other three sector checks but residual income uses cost of equity only.",
+  "wacc": {
+    "risk_free": 0.042,
+    "equity_risk_premium": 0.045,
+    "beta": 1.05,
+    "market_cap": 95900000000,
+    "debt": 0,
+    "tax_rate": 0.21,
+    "cost_of_debt": 0.05
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "_comment": "Steel Dynamics FY2025 (data/edgar/STLD.json) plus illustrative market inputs (risk-free = 10yr UST, ERP = Damodaran implied ERP). Coverage-based synthetic rating replaces a real credit rating.",
+  "wacc": {
+    "risk_free": 0.042,
+    "equity_risk_premium": 0.045,
+    "beta": 1.35,
+    "market_cap": 32200000000,
+    "debt": 4211163000,
+    "tax_rate": 0.205,
+    "ebit": 1475986000,
+    "interest_expense": 70043000,
+    "large_firm": true
+  }
+}

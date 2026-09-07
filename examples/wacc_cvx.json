@@ -1,0 +1,14 @@
+{
+  "_comment": "Chevron FY2025 (data/edgar/CVX.json) plus illustrative market inputs (risk-free = 10yr UST, ERP = Damodaran implied ERP, beta = illustrative for an integrated oil major). Coverage-based synthetic rating replaces a real credit rating.",
+  "wacc": {
+    "risk_free": 0.042,
+    "equity_risk_premium": 0.045,
+    "beta": 1.05,
+    "market_cap": 312253440000,
+    "debt": 39781000000,
+    "tax_rate": 0.3676,
+    "ebit": 20960000000,
+    "interest_expense": 1217000000,
+    "large_firm": true
+  }
+}

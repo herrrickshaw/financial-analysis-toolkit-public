@@ -1,0 +1,39 @@
+{
+ "_comment": "Illustrative figures from the CFI 3-statement case study (USD $000). 5 historical years + 5 forecast.",
+ "ppe_opening0": 50000,
+ "debt_opening0": 50000,
+ "historical": [
+  {"year": 2020, "revenue": 102007, "cogs": 39023, "salaries": 26427, "rent": 10963, "da": 19500, "interest": 2500, "taxes": 1120,
+   "cash": 67971, "ar": 5100, "inventory": 7805, "ppe": 45500, "ap": 3902, "debt": 50000, "equity_capital": 70000, "retained_earnings": 2474,
+   "capex": 15000, "debt_issued": 0, "equity_issued": 70000},
+  {"year": 2021, "revenue": 118086, "cogs": 48004, "salaries": 22658, "rent": 10125, "da": 18150, "interest": 2500, "taxes": 4858,
+   "cash": 81210, "ar": 5904, "inventory": 9601, "ppe": 42350, "ap": 4800, "debt": 50000, "equity_capital": 70000, "retained_earnings": 14265,
+   "capex": 15000, "debt_issued": 0, "equity_issued": 0},
+  {"year": 2022, "revenue": 131345, "cogs": 49123, "salaries": 23872, "rent": 10087, "da": 17205, "interest": 1500, "taxes": 8483,
+   "cash": 83715, "ar": 6567, "inventory": 9825, "ppe": 40145, "ap": 4912, "debt": 30000, "equity_capital": 70000, "retained_earnings": 35340,
+   "capex": 15000, "debt_issued": -20000, "equity_issued": 0},
+  {"year": 2023, "revenue": 142341, "cogs": 52654, "salaries": 23002, "rent": 11020, "da": 16544, "interest": 1500, "taxes": 10908,
+   "cash": 111070, "ar": 7117, "inventory": 10531, "ppe": 38601, "ap": 5266, "debt": 30000, "equity_capital": 70000, "retained_earnings": 62053,
+   "capex": 15000, "debt_issued": 0, "equity_issued": 0},
+  {"year": 2024, "revenue": 150772, "cogs": 56710, "salaries": 25245, "rent": 11412, "da": 16080, "interest": 1500, "taxes": 11598,
+   "cash": 139549, "ar": 7538, "inventory": 11342, "ppe": 37521, "ap": 5670, "debt": 30000, "equity_capital": 70000, "retained_earnings": 90280,
+   "capex": 15000, "debt_issued": 0, "equity_issued": 0}
+ ],
+ "forecast": {
+  "years": 5,
+  "revenue_growth": 0.10,
+  "cogs_pct": [0.42, 0.47, 0.50, 0.36, 0.35],
+  "salaries_pct": 0.17,
+  "rent": 15000,
+  "da_pct_ppe": 0.35,
+  "interest_pct_debt": 0.10,
+  "tax_rate": 0.28,
+  "ar_days": 18,
+  "inventory_days": [80, 90, 100, 100, 100],
+  "ap_days": 37,
+  "capex": 15000,
+  "debt_issued": [0, 0, -20000, 0, 0],
+  "equity_issued": 0,
+  "days_in_period": 365
+ }
+}

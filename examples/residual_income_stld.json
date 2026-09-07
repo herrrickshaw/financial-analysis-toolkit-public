@@ -1,0 +1,13 @@
+{
+  "_comment": "Illustrative 4-year residual-income projection off Steel Dynamics FY2025 book value and ROE, discounted at cost of equity (finmodel wacc examples/wacc_stld.json gives 10.28% for the same company; 9.2% here is a lower illustrative case). Fading persistence factor 0.5 (steel margins are cyclical). Compare finmodel dcf and finmodel comps for the same company.",
+  "residual_income": {
+    "book_value_0": 8957182000,
+    "net_income": [1300000000, 1450000000, 1550000000, 1600000000],
+    "dividends": [300000000, 320000000, 340000000, 360000000],
+    "cost_of_equity": 0.092,
+    "terminal": "persistence",
+    "persistence": 0.5,
+    "shares": 148404000,
+    "price": 217.16
+  }
+}

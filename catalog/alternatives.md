@@ -1,0 +1,1008 @@
+# Public alternatives for CFI template titles
+
+87/127 paid-only CFI titles and 174/323 titles overall have at least one public match.
+Matching is by model-type tag; treat it as a shortlist.
+
+## Paid-only CFI titles (Unlock)
+
+- **3-Statement Compact (Complete)** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **3-Statement Model (Complete)** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Accounting for Business Combinations and Other Equity Investments** `m&a`
+  - macabacus: [merger-model](https://macabacus.com/assets/2023/02/merger-model.xlsx) (m&a)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (m&a)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (m&a)
+  - biws: [ cash-flow-available-for-debt-service-cfads :: PF-05-Simple-Solar-Acquisition-Example](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-05/PF-05-Simple-Solar-Acquisition-Example.xlsm) (m&a)
+- **Accounting for Diluted Shares & Earnings per Share** `-` — no public match
+- **Accounting for Inventory** `-` — no public match
+- **Accounting for Leases** `-` — no public match
+- **Accounts Payable Turnover Ratio Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Accounts Receivable Turnover Ratio Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Active Listening Diagnostic** `-` — no public match
+- **Advanced All in One Financial Model Template** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **AMZN Financial Model** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Appraisal Checklist** `-` — no public match
+- **Asset Turnover Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Audit and Balance a 3-Statement Model** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Bank and FIG Financial Model Template** `3-statement bank`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+- **Bank Financial Analysis** `bank`
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-Before.xlsx) (bank)
+  - biws: [ bank-regulatory-capital :: Bank-Regulatory-Capital](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Banks/Bank-Regulatory-Capital.xlsx) (bank)
+- **Bank of America and Barclays Ratios** `ratios bank`
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-Before.xlsx) (bank)
+  - biws: [ bank-regulatory-capital :: Bank-Regulatory-Capital](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Banks/Bank-Regulatory-Capital.xlsx) (bank)
+- **Bank Ratio Calculator** `ratios bank`
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-Before.xlsx) (bank)
+  - biws: [ bank-regulatory-capital :: Bank-Regulatory-Capital](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Banks/Bank-Regulatory-Capital.xlsx) (bank)
+- **Benchmarking Analysis** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Business Valuation Exercises (Complete)** `dcf`
+  - asimplemodel: [DCF_A Basic Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_A%20Basic%20Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - asimplemodel: [DCF_Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (dcf)
+  - biws: [ interest-tax-shield :: 107-28-Levered-Free-Cash-Flow-Simple-DCF](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/107-28-Levered-Free-Cash-Flow-Simple-DCF.xlsx) (dcf)
+- **Business Valuation Model (Complete)** `dcf`
+  - asimplemodel: [DCF_A Basic Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_A%20Basic%20Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - asimplemodel: [DCF_Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (dcf)
+  - biws: [ interest-tax-shield :: 107-28-Levered-Free-Cash-Flow-Simple-DCF](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/107-28-Levered-Free-Cash-Flow-Simple-DCF.xlsx) (dcf)
+- **Calculating Net Interest Income** `bank`
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-Before.xlsx) (bank)
+  - biws: [ bank-regulatory-capital :: Bank-Regulatory-Capital](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Banks/Bank-Regulatory-Capital.xlsx) (bank)
+- **Calculating Risk Weighted Assets** `bank`
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-Before.xlsx) (bank)
+  - biws: [ bank-regulatory-capital :: Bank-Regulatory-Capital](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Banks/Bank-Regulatory-Capital.xlsx) (bank)
+- **Cap Rate and NOI** `real-estate`
+  - biws: [ funds-from-operations-ffo :: Funds-from-Operations-FFO](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/REIT/FFO/Funds-from-Operations-FFO.xlsx) (real-estate)
+  - biws: [ how-to-calculate-discontinued-operations :: 83-07-Dispositions-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/83-07-Dispositions-After.xls) (real-estate)
+  - biws: [ how-to-calculate-discontinued-operations :: 83-07-Dispositions-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/83-07-Dispositions-Before.xls) (real-estate)
+  - biws: [ reit-nav-model :: RE-07-07-NAV-Model-Part-1-Assets-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-07-07-NAV-Model-Part-1-Assets-After.xlsx) (real-estate)
+- **CFI Advanced Excel Formulas & Functions** `-` — no public match
+- **CFI Excel eBook** `-` — no public match
+- **CFI Investment Banking Pitch Book** `bank startup`
+  - macabacus: [vc-returns](https://macabacus.com/assets/2023/02/vc-returns.xlsx) (startup)
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ annual-recurring-revenue-arr :: Annual-Recurring-Revenue-ARR](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Annual-Recurring-Revenue-ARR.xlsx) (startup)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+- **Coaching for Workplace Performance Assessment** `-` — no public match
+- **Cohort Analysis** `-` — no public match
+- **Collateralized Mortgage Obligations (CMO) Models** `-` — no public match
+- **Communication Styles Diagnostic** `-` — no public match
+- **Compact Comps (Complete)** `comps`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (comps)
+  - biws: [ comparable-company-analysis-cca :: 107-21-Comparable-Company-Analysis](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/107-21-Comparable-Company-Analysis.xlsx) (comps)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table.xlsx) (comps)
+  - biws: [ equity-value-vs-enterprise-value-and-valuation-multiples :: KO-Equity-Value-Enterprise-Value](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/KO-Equity-Value-Enterprise-Value.xlsx) (comps)
+- **Compact LBO Model (Complete)** `lbo`
+  - asimplemodel: [LBO II Common_Preferred](https://portal.asimplemodel.com/assets/files/LBO%20II%20Common_Preferred.xlsx) (lbo)
+  - asimplemodel: [LBO_Simple LBO Scenarios and Data Tables](https://portal.asimplemodel.com/assets/files/LBO_Simple%20LBO%20Scenarios%20and%20Data%20Tables.xlsx) (lbo)
+  - macabacus: [lbo-model-long-form](https://macabacus.com/assets/2023/02/lbo-model-long-form.xlsx) (lbo)
+  - macabacus: [lbo-model-short-form](https://macabacus.com/assets/2023/02/lbo-model-short-form.xlsx) (lbo)
+- **Comparable Valuation Fundamentals** `comps`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (comps)
+  - biws: [ comparable-company-analysis-cca :: 107-21-Comparable-Company-Analysis](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/107-21-Comparable-Company-Analysis.xlsx) (comps)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table.xlsx) (comps)
+  - biws: [ equity-value-vs-enterprise-value-and-valuation-multiples :: KO-Equity-Value-Enterprise-Value](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/KO-Equity-Value-Enterprise-Value.xlsx) (comps)
+- **Confidential Information Memorandum Template** `-` — no public match
+- **Conflict Styles Questionnaire** `-` — no public match
+- **Consolidation model** `m&a`
+  - macabacus: [merger-model](https://macabacus.com/assets/2023/02/merger-model.xlsx) (m&a)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (m&a)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (m&a)
+  - biws: [ cash-flow-available-for-debt-service-cfads :: PF-05-Simple-Solar-Acquisition-Example](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-05/PF-05-Simple-Solar-Acquisition-Example.xlsm) (m&a)
+- **Corporate Finance Fundamentals: Capital Financing** `-` — no public match
+- **Corporate Finance Fundamentals: Capital Investment** `capital-budgeting`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (capital-budgeting)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (capital-budgeting)
+  - biws: [ payback-period :: PF-06-Payback-Period](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-06/PF-06-Payback-Period.xlsm) (capital-budgeting)
+  - damodaran: [capbudg](https://pages.stern.nyu.edu/~adamodar/pc/capbudg.xls) (capital-budgeting)
+- **Corporate Finance Fundamentals: Capital Return** `-` — no public match
+- **Current Ratio Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Dashboard and Data Visualization Template** `charts`
+  - biws: [ powerpoint-align-objects :: Company-Profile-PowerPoint-Graphs](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Company-Profile-PowerPoint-Graphs.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Blank](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Blank.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Complete](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Complete.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-07-Industrial-Development-Part-3-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-07-Industrial-Development-Part-3-After.xlsx) (charts)
+- **Dashboard Template 2** `charts`
+  - biws: [ powerpoint-align-objects :: Company-Profile-PowerPoint-Graphs](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Company-Profile-PowerPoint-Graphs.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Blank](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Blank.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Complete](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Complete.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-07-Industrial-Development-Part-3-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-07-Industrial-Development-Part-3-After.xlsx) (charts)
+- **Days Inventory Outstanding Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Days Sales Outstanding** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **DCF Model** `dcf`
+  - asimplemodel: [DCF_A Basic Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_A%20Basic%20Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - asimplemodel: [DCF_Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (dcf)
+  - biws: [ interest-tax-shield :: 107-28-Levered-Free-Cash-Flow-Simple-DCF](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/107-28-Levered-Free-Cash-Flow-Simple-DCF.xlsx) (dcf)
+- **DCF Valuation Compact (Complete)** `dcf`
+  - asimplemodel: [DCF_A Basic Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_A%20Basic%20Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - asimplemodel: [DCF_Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (dcf)
+  - biws: [ interest-tax-shield :: 107-28-Levered-Free-Cash-Flow-Simple-DCF](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/107-28-Levered-Free-Cash-Flow-Simple-DCF.xlsx) (dcf)
+- **DCF Valuation Model (Complete)** `dcf`
+  - asimplemodel: [DCF_A Basic Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_A%20Basic%20Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - asimplemodel: [DCF_Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (dcf)
+  - biws: [ interest-tax-shield :: 107-28-Levered-Free-Cash-Flow-Simple-DCF](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/107-28-Levered-Free-Cash-Flow-Simple-DCF.xlsx) (dcf)
+- **Debt Capacity Model** `capital-structure`
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (capital-structure)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (capital-structure)
+  - biws: [ cash-flow-sweep :: 109-26-CF-Sweep-Simple-LBO-Model](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/109-26-CF-Sweep-Simple-LBO-Model.xlsx) (capital-structure)
+  - biws: [ cash-free-debt-free-basis :: 109-21-Cash-Free-Debt-Free-Deals-LBO-3-Statements](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-21-Cash-Free-Debt-Free-Deals-LBO-3-Statements.xlsx) (capital-structure)
+- **Debt Equity Ratio** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Degree of Leverage Analysis** `capital-structure`
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (capital-structure)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (capital-structure)
+  - biws: [ cash-flow-sweep :: 109-26-CF-Sweep-Simple-LBO-Model](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/109-26-CF-Sweep-Simple-LBO-Model.xlsx) (capital-structure)
+  - biws: [ cash-free-debt-free-basis :: 109-21-Cash-Free-Debt-Free-Deals-LBO-3-Statements](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-21-Cash-Free-Debt-Free-Deals-LBO-3-Statements.xlsx) (capital-structure)
+- **Depreciation-Methods** `depreciation`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (depreciation)
+  - biws: [ capex-depreciation :: 105-38-CapEx-Depreciation](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/CapEx-Depreciation/105-38-CapEx-Depreciation.xlsx) (depreciation)
+  - biws: [ capitalized-rd :: 101-15-Twitter-RD-Amortization-Tax-Example](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Financial-Statement-Analysis/Capitalized-RD/101-15-Twitter-RD-Amortization-Tax-Example.xlsx) (depreciation)
+- **Detailed Comps Table Excel Template** `comps`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (comps)
+  - biws: [ comparable-company-analysis-cca :: 107-21-Comparable-Company-Analysis](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/107-21-Comparable-Company-Analysis.xlsx) (comps)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table.xlsx) (comps)
+  - biws: [ equity-value-vs-enterprise-value-and-valuation-multiples :: KO-Equity-Value-Enterprise-Value](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/KO-Equity-Value-Enterprise-Value.xlsx) (comps)
+- **Detailed LBO Model Complete Private Equity Leveraged Buyout Analysis** `lbo capital-structure`
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (capital-structure, lbo)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (capital-structure, lbo)
+  - biws: [ cash-flow-sweep :: 109-26-CF-Sweep-Simple-LBO-Model](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/109-26-CF-Sweep-Simple-LBO-Model.xlsx) (capital-structure, lbo)
+  - biws: [ cash-free-debt-free-basis :: 109-21-Cash-Free-Debt-Free-Deals-LBO-3-Statements](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-21-Cash-Free-Debt-Free-Deals-LBO-3-Statements.xlsx) (capital-structure, lbo)
+- **Directional Trading Strategies** `-` — no public match
+- **Dividend Discount Model** `ddm`
+  - biws: [ dividend-discount-model-example-banks :: Banks-03-12-DDM-Part-2-Phases-2-3-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-03-12-DDM-Part-2-Phases-2-3-After.xlsx) (ddm)
+  - biws: [ dividend-discount-model-example-banks :: Banks-03-12-DDM-Part-2-Phases-2-3-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-03-12-DDM-Part-2-Phases-2-3-Before.xlsx) (ddm)
+  - damodaran: [ddm2st](https://pages.stern.nyu.edu/~adamodar/pc/ddm2st.xls) (ddm)
+  - damodaran: [ddm3st](https://pages.stern.nyu.edu/~adamodar/pc/ddm3st.xls) (ddm)
+- **EBT Example** `-` — no public match
+- **eCommerce Model** `startup`
+  - macabacus: [vc-returns](https://macabacus.com/assets/2023/02/vc-returns.xlsx) (startup)
+  - biws: [ annual-recurring-revenue-arr :: Annual-Recurring-Revenue-ARR](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Annual-Recurring-Revenue-ARR.xlsx) (startup)
+  - biws: [ capitalization-table :: Example-Cap-Table](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Capitalization-Table/Example-Cap-Table.xlsx) (startup)
+  - biws: [ carr-vs-arr :: AI-Revenue-CARR-vs-ARR](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Startups-VC/CARR-vs-ARR/AI-Revenue-CARR-vs-ARR.xlsx) (startup)
+- **Efficient Frontier and CAL Template** `-` — no public match
+- **Energy Industry Comps Template** `comps energy-mining`
+  - biws: [ cash-flow-available-for-debt-service-cfads :: PF-05-Simple-Solar-Acquisition-Example](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-05/PF-05-Simple-Solar-Acquisition-Example.xlsm) (energy-mining)
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (comps)
+  - biws: [ comparable-company-analysis-cca :: 107-21-Comparable-Company-Analysis](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/107-21-Comparable-Company-Analysis.xlsx) (comps)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table.xlsx) (comps)
+- **ETF Allocator Model** `-` — no public match
+- **Excel for Finance Functions** `-` — no public match
+- **FCFF vs FCFE Reconciliation Template** `dcf`
+  - asimplemodel: [DCF_A Basic Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_A%20Basic%20Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - asimplemodel: [DCF_Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (dcf)
+  - biws: [ interest-tax-shield :: 107-28-Levered-Free-Cash-Flow-Simple-DCF](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/107-28-Levered-Free-Cash-Flow-Simple-DCF.xlsx) (dcf)
+- **Financial Analysis Fundamentals Template** `-` — no public match
+- **Financial Institution Dividend Discount Model** `ddm bank`
+  - biws: [ dividend-discount-model-example-banks :: Banks-03-12-DDM-Part-2-Phases-2-3-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-03-12-DDM-Part-2-Phases-2-3-After.xlsx) (bank, ddm)
+  - biws: [ dividend-discount-model-example-banks :: Banks-03-12-DDM-Part-2-Phases-2-3-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-03-12-DDM-Part-2-Phases-2-3-Before.xlsx) (bank, ddm)
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+- **Financial Projection Template** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Forecasting Template** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **FP&A 3-Statement Model** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **FP&A Budgeting and Forecasting Model** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **FP&A Monthly Rollforward Template** `working-capital` — no public match
+- **Giving Feedback** `-` — no public match
+- **Goal Seek and Solver** `sensitivity`
+  - asimplemodel: [LBO_Simple LBO Scenarios and Data Tables](https://portal.asimplemodel.com/assets/files/LBO_Simple%20LBO%20Scenarios%20and%20Data%20Tables.xlsx) (sensitivity)
+  - biws: [ sensitivity-analysis-excel :: XL-03-27-Sensitivity-Tables-After](https://samples-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/XL-4/XL-03-27-Sensitivity-Tables-After.xlsx) (sensitivity)
+  - biws: [ sensitivity-analysis-excel :: XL-03-27-Sensitivity-Tables-Before](https://samples-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/XL-4/XL-03-27-Sensitivity-Tables-Before.xlsx) (sensitivity)
+- **Hybrid Team Self-Reflection** `-` — no public match
+- **Individual Equity Allocation Model** `-` — no public match
+- **Insurance Company Financial Analysis: Allstate** `bank`
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-Before.xlsx) (bank)
+  - biws: [ bank-regulatory-capital :: Bank-Regulatory-Capital](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Banks/Bank-Regulatory-Capital.xlsx) (bank)
+- **Insurance Company Financial Analysis: Progressive** `bank`
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-Before.xlsx) (bank)
+  - biws: [ bank-regulatory-capital :: Bank-Regulatory-Capital](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Banks/Bank-Regulatory-Capital.xlsx) (bank)
+- **InsurTech Pricer Model** `-` — no public match
+- **Interest Coverage Ratio Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Interest Rate Parity (IRP) Calculator** `-` — no public match
+- **Intro to 3-Statement Modeling Model** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Intro to Leveraged Buyouts** `lbo capital-structure`
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (capital-structure, lbo)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (capital-structure, lbo)
+  - biws: [ cash-flow-sweep :: 109-26-CF-Sweep-Simple-LBO-Model](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/109-26-CF-Sweep-Simple-LBO-Model.xlsx) (capital-structure, lbo)
+  - biws: [ cash-free-debt-free-basis :: 109-21-Cash-Free-Debt-Free-Deals-LBO-3-Statements](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-21-Cash-Free-Debt-Free-Deals-LBO-3-Statements.xlsx) (capital-structure, lbo)
+- **Intro to Mergers & Acquisitions** `m&a`
+  - macabacus: [merger-model](https://macabacus.com/assets/2023/02/merger-model.xlsx) (m&a)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (m&a)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (m&a)
+  - biws: [ cash-flow-available-for-debt-service-cfads :: PF-05-Simple-Solar-Acquisition-Example](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-05/PF-05-Simple-Solar-Acquisition-Example.xlsm) (m&a)
+- **Introduction to Bank Valuation Examples** `bank`
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-Before.xlsx) (bank)
+  - biws: [ bank-regulatory-capital :: Bank-Regulatory-Capital](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Banks/Bank-Regulatory-Capital.xlsx) (bank)
+- **Inventory Turnover Calculator** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Investment Banking Manual CFI 2019** `bank`
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-Before.xlsx) (bank)
+  - biws: [ bank-regulatory-capital :: Bank-Regulatory-Capital](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Banks/Bank-Regulatory-Capital.xlsx) (bank)
+- **Investor Pitch Deck Template** `startup`
+  - macabacus: [vc-returns](https://macabacus.com/assets/2023/02/vc-returns.xlsx) (startup)
+  - biws: [ annual-recurring-revenue-arr :: Annual-Recurring-Revenue-ARR](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Annual-Recurring-Revenue-ARR.xlsx) (startup)
+  - biws: [ capitalization-table :: Example-Cap-Table](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Capitalization-Table/Example-Cap-Table.xlsx) (startup)
+  - biws: [ carr-vs-arr :: AI-Revenue-CARR-vs-ARR](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Startups-VC/CARR-vs-ARR/AI-Revenue-CARR-vs-ARR.xlsx) (startup)
+- **LBO Model** `lbo`
+  - asimplemodel: [LBO II Common_Preferred](https://portal.asimplemodel.com/assets/files/LBO%20II%20Common_Preferred.xlsx) (lbo)
+  - asimplemodel: [LBO_Simple LBO Scenarios and Data Tables](https://portal.asimplemodel.com/assets/files/LBO_Simple%20LBO%20Scenarios%20and%20Data%20Tables.xlsx) (lbo)
+  - macabacus: [lbo-model-long-form](https://macabacus.com/assets/2023/02/lbo-model-long-form.xlsx) (lbo)
+  - macabacus: [lbo-model-short-form](https://macabacus.com/assets/2023/02/lbo-model-short-form.xlsx) (lbo)
+- **Leverage and Liquidity Ratios** `capital-structure ratios`
+  - biws: [ lbo-capital-structure :: 109-11-Leveraged-Buyout-Debt-Equity-Ratio](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-11-Leveraged-Buyout-Debt-Equity-Ratio.xlsx) (capital-structure, ratios)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (capital-structure)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (capital-structure)
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+- **Leverage Ratios** `capital-structure ratios`
+  - biws: [ lbo-capital-structure :: 109-11-Leveraged-Buyout-Debt-Equity-Ratio](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-11-Leveraged-Buyout-Debt-Equity-Ratio.xlsx) (capital-structure, ratios)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (capital-structure)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (capital-structure)
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+- **LTV CAC Ratio** `ratios startup`
+  - biws: [ loan-to-value-ltv :: Loan-to-Value-Simple-Illustration](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Real-Estate/LTV/Loan-to-Value-Simple-Illustration.xlsx) (ratios, startup)
+  - macabacus: [vc-returns](https://macabacus.com/assets/2023/02/vc-returns.xlsx) (startup)
+  - biws: [ annual-recurring-revenue-arr :: Annual-Recurring-Revenue-ARR](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Annual-Recurring-Revenue-ARR.xlsx) (startup)
+  - biws: [ capitalization-table :: Example-Cap-Table](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Capitalization-Table/Example-Cap-Table.xlsx) (startup)
+- **M&A Model** `m&a`
+  - macabacus: [merger-model](https://macabacus.com/assets/2023/02/merger-model.xlsx) (m&a)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (m&a)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (m&a)
+  - biws: [ cash-flow-available-for-debt-service-cfads :: PF-05-Simple-Solar-Acquisition-Example](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-05/PF-05-Simple-Solar-Acquisition-Example.xlsm) (m&a)
+- **Making Effective Business Decisions Template** `-` — no public match
+- **Managing Relationships at Work** `-` — no public match
+- **Market Risk Fundamentals** `-` — no public match
+- **Mining Model** `energy-mining`
+  - biws: [ cash-flow-available-for-debt-service-cfads :: PF-05-Simple-Solar-Acquisition-Example](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-05/PF-05-Simple-Solar-Acquisition-Example.xlsm) (energy-mining)
+  - biws: [ levelized-cost-of-energy :: PF-04-LCOE-Examples](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-04/PF-04-LCOE-Examples.xlsx) (energy-mining)
+  - biws: [ midstream-oil-and-gas :: 107-30-Dividend-Discount-Model-DT-Midstream](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/107-30-Dividend-Discount-Model-DT-Midstream.xlsx) (energy-mining)
+  - biws: [ midstream-oil-and-gas :: Midstream-Oil-Gas-Valuation-Simplified](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Oil-Gas/Midstream-Oil-and-Gas/Midstream-Oil-Gas-Valuation-Simplified.xlsx) (energy-mining)
+- **Monthly Cash Flow Model** `working-capital` — no public match
+- **NDA Confidentiality Agreement Sample** `-` — no public match
+- **Net Debt EBITDA Ratio Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Non-directional Trading Strategies** `-` — no public match
+- **NOPAT Template** `-` — no public match
+- **Normalizing Income Statements** `-` — no public match
+- **NVDA Moving Average Algorithmic Trading Model** `-` — no public match
+- **Operating Budget Template** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Operational Modeling** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Option Profit Loss Graph Maker** `options charts`
+  - biws: [ management-rollover-vs-management-option-pool :: 109-24-Rollover-Option-Pool](https://biwsuploads-assest.s3.amazonaws.com/biws/wp-content/uploads/2024/10/23152204/109-24-Rollover-Option-Pool.xlsx) (options)
+  - biws: [ powerpoint-align-objects :: Company-Profile-PowerPoint-Graphs](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Company-Profile-PowerPoint-Graphs.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Blank](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Blank.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Complete](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Complete.xlsx) (charts)
+- **Options Strategy Modeler** `options`
+  - biws: [ management-rollover-vs-management-option-pool :: 109-24-Rollover-Option-Pool](https://biwsuploads-assest.s3.amazonaws.com/biws/wp-content/uploads/2024/10/23152204/109-24-Rollover-Option-Pool.xlsx) (options)
+  - damodaran: [warrant](https://pages.stern.nyu.edu/~adamodar/pc/warrant.xls) (options)
+- **Pitchbook Template** `startup`
+  - macabacus: [vc-returns](https://macabacus.com/assets/2023/02/vc-returns.xlsx) (startup)
+  - biws: [ annual-recurring-revenue-arr :: Annual-Recurring-Revenue-ARR](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Annual-Recurring-Revenue-ARR.xlsx) (startup)
+  - biws: [ capitalization-table :: Example-Cap-Table](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Capitalization-Table/Example-Cap-Table.xlsx) (startup)
+  - biws: [ carr-vs-arr :: AI-Revenue-CARR-vs-ARR](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Startups-VC/CARR-vs-ARR/AI-Revenue-CARR-vs-ARR.xlsx) (startup)
+- **Purchase Price Allocation & M&A Accounting Examples** `m&a`
+  - macabacus: [merger-model](https://macabacus.com/assets/2023/02/merger-model.xlsx) (m&a)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (m&a)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (m&a)
+  - biws: [ cash-flow-available-for-debt-service-cfads :: PF-05-Simple-Solar-Acquisition-Example](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-05/PF-05-Simple-Solar-Acquisition-Example.xlsm) (m&a)
+- **Put Call Parity Calculator** `options`
+  - biws: [ management-rollover-vs-management-option-pool :: 109-24-Rollover-Option-Pool](https://biwsuploads-assest.s3.amazonaws.com/biws/wp-content/uploads/2024/10/23152204/109-24-Rollover-Option-Pool.xlsx) (options)
+  - damodaran: [warrant](https://pages.stern.nyu.edu/~adamodar/pc/warrant.xls) (options)
+- **Quick Ratio Example** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Real Estate Financial Modeling Course** `3-statement real-estate`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **REIT Financial Model Template** `3-statement real-estate`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Renewable Energy Solar Financial Model** `3-statement energy-mining`
+  - biws: [ oil-and-gas-revenue-projections :: 71-03-Hedging-Revenue-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/71-03-Hedging-Revenue-After.xls) (3-statement, energy-mining)
+  - biws: [ oil-and-gas-revenue-projections :: 71-03-Hedging-Revenue-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/71-03-Hedging-Revenue-Before.xls) (3-statement, energy-mining)
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+- **Restructuring Model Template** `restructuring`
+  - biws: [ liquidation-preference :: Liquidation-Preference](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Liquidation-Preference/Liquidation-Preference.xlsx) (restructuring)
+  - damodaran: [distress](https://pages.stern.nyu.edu/~adamodar/pc/distress.xls) (restructuring)
+- **Return on Assets Formula** `eva-returns`
+  - biws: [ nopat :: NOPAT-ROIC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Valuation/NOPAT/NOPAT-ROIC.xlsx) (eva-returns)
+  - biws: [ roic-return-on-invested-capital :: 101-04-NOPAT-ROIC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ROIC/101-04-NOPAT-ROIC.xlsx) (eva-returns)
+  - biws: [ roic-return-on-invested-capital :: 101-04-ROIC-in-LBO-Model](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ROIC/101-04-ROIC-in-LBO-Model.xlsx) (eva-returns)
+  - biws: [ roic-vs-roe-and-roe-vs-roa :: 105-14-Key-Financial-Metrics-Ratios](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/105-14-Key-Financial-Metrics-Ratios.xlsx) (eva-returns)
+- **Return on Equity** `eva-returns`
+  - biws: [ nopat :: NOPAT-ROIC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Valuation/NOPAT/NOPAT-ROIC.xlsx) (eva-returns)
+  - biws: [ roic-return-on-invested-capital :: 101-04-NOPAT-ROIC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ROIC/101-04-NOPAT-ROIC.xlsx) (eva-returns)
+  - biws: [ roic-return-on-invested-capital :: 101-04-ROIC-in-LBO-Model](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ROIC/101-04-ROIC-in-LBO-Model.xlsx) (eva-returns)
+  - biws: [ roic-vs-roe-and-roe-vs-roa :: 105-14-Key-Financial-Metrics-Ratios](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/105-14-Key-Financial-Metrics-Ratios.xlsx) (eva-returns)
+- **Robo-Advisor Model** `-` — no public match
+- **SaaS Model** `startup`
+  - macabacus: [vc-returns](https://macabacus.com/assets/2023/02/vc-returns.xlsx) (startup)
+  - biws: [ annual-recurring-revenue-arr :: Annual-Recurring-Revenue-ARR](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Annual-Recurring-Revenue-ARR.xlsx) (startup)
+  - biws: [ capitalization-table :: Example-Cap-Table](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Capitalization-Table/Example-Cap-Table.xlsx) (startup)
+  - biws: [ carr-vs-arr :: AI-Revenue-CARR-vs-ARR](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Startups-VC/CARR-vs-ARR/AI-Revenue-CARR-vs-ARR.xlsx) (startup)
+- **Scenario & Sensitivity Analysis Model** `sensitivity`
+  - asimplemodel: [LBO_Simple LBO Scenarios and Data Tables](https://portal.asimplemodel.com/assets/files/LBO_Simple%20LBO%20Scenarios%20and%20Data%20Tables.xlsx) (sensitivity)
+  - biws: [ sensitivity-analysis-excel :: XL-03-27-Sensitivity-Tables-After](https://samples-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/XL-4/XL-03-27-Sensitivity-Tables-After.xlsx) (sensitivity)
+  - biws: [ sensitivity-analysis-excel :: XL-03-27-Sensitivity-Tables-Before](https://samples-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/XL-4/XL-03-27-Sensitivity-Tables-Before.xlsx) (sensitivity)
+- **Simplified Robo-Advisor Model** `-` — no public match
+- **Startup Investor Pitch Deck Template** `startup`
+  - macabacus: [vc-returns](https://macabacus.com/assets/2023/02/vc-returns.xlsx) (startup)
+  - biws: [ annual-recurring-revenue-arr :: Annual-Recurring-Revenue-ARR](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Annual-Recurring-Revenue-ARR.xlsx) (startup)
+  - biws: [ capitalization-table :: Example-Cap-Table](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Capitalization-Table/Example-Cap-Table.xlsx) (startup)
+  - biws: [ carr-vs-arr :: AI-Revenue-CARR-vs-ARR](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Startups-VC/CARR-vs-ARR/AI-Revenue-CARR-vs-ARR.xlsx) (startup)
+- **Team Development Diagnostic** `-` — no public match
+- **TMT Financial Model Template** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Trading Comps** `comps`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (comps)
+  - biws: [ comparable-company-analysis-cca :: 107-21-Comparable-Company-Analysis](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/107-21-Comparable-Company-Analysis.xlsx) (comps)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table.xlsx) (comps)
+  - biws: [ equity-value-vs-enterprise-value-and-valuation-multiples :: KO-Equity-Value-Enterprise-Value](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/KO-Equity-Value-Enterprise-Value.xlsx) (comps)
+- **Transaction Comps** `comps`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (comps)
+  - biws: [ comparable-company-analysis-cca :: 107-21-Comparable-Company-Analysis](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/107-21-Comparable-Company-Analysis.xlsx) (comps)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table.xlsx) (comps)
+  - biws: [ equity-value-vs-enterprise-value-and-valuation-multiples :: KO-Equity-Value-Enterprise-Value](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/KO-Equity-Value-Enterprise-Value.xlsx) (comps)
+- **Trend Analysis** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Working Capital Cycle** `working-capital` — no public match
+
+## Free-tier CFI titles (Download)
+
+- **Accounting Fact Sheet** `-` — no public match
+- **Accounts Receivable Aging Report Template** `-` — no public match
+- **Accumulated Depreciation Template** `depreciation`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (depreciation)
+  - biws: [ capex-depreciation :: 105-38-CapEx-Depreciation](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/CapEx-Depreciation/105-38-CapEx-Depreciation.xlsx) (depreciation)
+  - biws: [ capitalized-rd :: 101-15-Twitter-RD-Amortization-Tax-Example](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Financial-Statement-Analysis/Capitalized-RD/101-15-Twitter-RD-Amortization-Tax-Example.xlsx) (depreciation)
+- **Activity Based Costing Template** `-` — no public match
+- **Additional Paid-in Capital Template** `-` — no public match
+- **Adjusted EBITDA** `-` — no public match
+- **Adjusted Present Value** `capital-structure`
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (capital-structure)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (capital-structure)
+  - biws: [ cash-flow-sweep :: 109-26-CF-Sweep-Simple-LBO-Model](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/109-26-CF-Sweep-Simple-LBO-Model.xlsx) (capital-structure)
+  - biws: [ cash-free-debt-free-basis :: 109-21-Cash-Free-Debt-Free-Deals-LBO-3-Statements](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-21-Cash-Free-Debt-Free-Deals-LBO-3-Statements.xlsx) (capital-structure)
+- **Alpha Calculator** `-` — no public match
+- **Amortization Schedule Template** `depreciation`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (depreciation)
+  - biws: [ capex-depreciation :: 105-38-CapEx-Depreciation](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/CapEx-Depreciation/105-38-CapEx-Depreciation.xlsx) (depreciation)
+  - biws: [ capitalized-rd :: 101-15-Twitter-RD-Amortization-Tax-Example](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Financial-Statement-Analysis/Capitalized-RD/101-15-Twitter-RD-Amortization-Tax-Example.xlsx) (depreciation)
+- **Annual Income Calculator** `-` — no public match
+- **Audit a Financial Model with Macabacus** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Audit a Financial Model with Macabacus (2)** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **AutoSum Example** `-` — no public match
+- **Balance-Sheet-Current-Assets-Template** `-` — no public match
+- **Balance-Sheet-Current-Liabilities-Template** `-` — no public match
+- **Balance-Sheet-Template** `-` — no public match
+- **Bank Reconciliation Statement** `bank`
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-Before.xlsx) (bank)
+  - biws: [ bank-regulatory-capital :: Bank-Regulatory-Capital](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Banks/Bank-Regulatory-Capital.xlsx) (bank)
+- **Beneish M-Score Template** `-` — no public match
+- **Beta Calculator** `wacc`
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (wacc)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (wacc)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Enterprise-Value-WACC](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Enterprise-Value-WACC.xlsx) (wacc)
+  - damodaran: [betas](https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls) (wacc)
+- **Black Scholes Calculator** `options`
+  - biws: [ management-rollover-vs-management-option-pool :: 109-24-Rollover-Option-Pool](https://biwsuploads-assest.s3.amazonaws.com/biws/wp-content/uploads/2024/10/23152204/109-24-Rollover-Option-Pool.xlsx) (options)
+  - damodaran: [warrant](https://pages.stern.nyu.edu/~adamodar/pc/warrant.xls) (options)
+- **Bullet Chart Template** `charts`
+  - biws: [ powerpoint-align-objects :: Company-Profile-PowerPoint-Graphs](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Company-Profile-PowerPoint-Graphs.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Blank](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Blank.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Complete](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Complete.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-07-Industrial-Development-Part-3-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-07-Industrial-Development-Part-3-After.xlsx) (charts)
+- **Burn Rate Template** `startup`
+  - macabacus: [vc-returns](https://macabacus.com/assets/2023/02/vc-returns.xlsx) (startup)
+  - biws: [ annual-recurring-revenue-arr :: Annual-Recurring-Revenue-ARR](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Annual-Recurring-Revenue-ARR.xlsx) (startup)
+  - biws: [ capitalization-table :: Example-Cap-Table](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Capitalization-Table/Example-Cap-Table.xlsx) (startup)
+  - biws: [ carr-vs-arr :: AI-Revenue-CARR-vs-ARR](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Startups-VC/CARR-vs-ARR/AI-Revenue-CARR-vs-ARR.xlsx) (startup)
+- **Business Letter Format Template** `-` — no public match
+- **BV vs MV of Equity Template** `-` — no public match
+- **CAGR Calculator** `-` — no public match
+- **CapEx Formula** `depreciation`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (depreciation)
+  - biws: [ capex-depreciation :: 105-38-CapEx-Depreciation](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/CapEx-Depreciation/105-38-CapEx-Depreciation.xlsx) (depreciation)
+  - biws: [ capitalized-rd :: 101-15-Twitter-RD-Amortization-Tax-Example](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Financial-Statement-Analysis/Capitalized-RD/101-15-Twitter-RD-Amortization-Tax-Example.xlsx) (depreciation)
+- **Capital Adequacy Ratio (CAR) Calculator** `ratios bank`
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-Before.xlsx) (bank)
+  - biws: [ bank-regulatory-capital :: Bank-Regulatory-Capital](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Banks/Bank-Regulatory-Capital.xlsx) (bank)
+- **Capital Asset Pricing Model (CAPM) Formula** `wacc`
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (wacc)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (wacc)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Enterprise-Value-WACC](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Enterprise-Value-WACC.xlsx) (wacc)
+  - damodaran: [betas](https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls) (wacc)
+- **Capital Gains Yield Calculator** `-` — no public match
+- **Capital Intensity Ratio Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Capital Investment Model** `capital-budgeting`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (capital-budgeting)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (capital-budgeting)
+  - biws: [ payback-period :: PF-06-Payback-Period](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-06/PF-06-Payback-Period.xlsm) (capital-budgeting)
+  - damodaran: [capbudg](https://pages.stern.nyu.edu/~adamodar/pc/capbudg.xls) (capital-budgeting)
+- **Capital Investment Template** `capital-budgeting`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (capital-budgeting)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (capital-budgeting)
+  - biws: [ payback-period :: PF-06-Payback-Period](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-06/PF-06-Payback-Period.xlsm) (capital-budgeting)
+  - damodaran: [capbudg](https://pages.stern.nyu.edu/~adamodar/pc/capbudg.xls) (capital-budgeting)
+- **Capitalization Table Template** `startup`
+  - macabacus: [vc-returns](https://macabacus.com/assets/2023/02/vc-returns.xlsx) (startup)
+  - biws: [ annual-recurring-revenue-arr :: Annual-Recurring-Revenue-ARR](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Annual-Recurring-Revenue-ARR.xlsx) (startup)
+  - biws: [ capitalization-table :: Example-Cap-Table](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Capitalization-Table/Example-Cap-Table.xlsx) (startup)
+  - biws: [ carr-vs-arr :: AI-Revenue-CARR-vs-ARR](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Startups-VC/CARR-vs-ARR/AI-Revenue-CARR-vs-ARR.xlsx) (startup)
+- **Cash Budget Template** `3-statement working-capital`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Cash Conversion Ratio Template** `ratios working-capital`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Cash EPS** `-` — no public match
+- **Cash Flow Reconciliation** `-` — no public match
+- **Cash Flow Statement** `-` — no public match
+- **Cash Ratio Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Cash to Accrual (Complete)** `-` — no public match
+- **CFI Accounting eBook** `-` — no public match
+- **CFI Essential Guide to Breaking into FP&A** `-` — no public match
+- **CFI Financial Analysis Glossary** `-` — no public match
+- **CFI Financial Modeling Guidelines** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **CFI Financial Ratios Definitive Guide** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **CFI Investment Banking Cover Letter Template** `bank`
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-Before.xlsx) (bank)
+  - biws: [ bank-regulatory-capital :: Bank-Regulatory-Capital](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Banks/Bank-Regulatory-Capital.xlsx) (bank)
+- **CFI Investment Banking Resume Template** `bank`
+  - biws: [ allowance-for-loan-losses-for-banks-fig :: Allowance-for-Loan-Losses](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Allowance-for-Loan-Losses.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-After.xlsx) (bank)
+  - biws: [ bank-balance-sheet :: Banks-01-06-BS-to-IS-and-CFS-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-01-06-BS-to-IS-and-CFS-Before.xlsx) (bank)
+  - biws: [ bank-regulatory-capital :: Bank-Regulatory-Capital](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Banks/Bank-Regulatory-Capital.xlsx) (bank)
+- **Charts and Graphs Template** `charts`
+  - biws: [ powerpoint-align-objects :: Company-Profile-PowerPoint-Graphs](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Company-Profile-PowerPoint-Graphs.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Blank](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Blank.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Complete](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Complete.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-07-Industrial-Development-Part-3-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-07-Industrial-Development-Part-3-After.xlsx) (charts)
+- **Clean Cover Letter Template** `-` — no public match
+- **Clean Resignation Letter Template** `-` — no public match
+- **Common Size Analysis** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Comparable Company Analysis** `comps`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (comps)
+  - biws: [ comparable-company-analysis-cca :: 107-21-Comparable-Company-Analysis](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/107-21-Comparable-Company-Analysis.xlsx) (comps)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table.xlsx) (comps)
+  - biws: [ equity-value-vs-enterprise-value-and-valuation-multiples :: KO-Equity-Value-Enterprise-Value](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/KO-Equity-Value-Enterprise-Value.xlsx) (comps)
+- **Competitive Forces Model** `-` — no public match
+- **Compound Monthly Growth Rate (CMGR)** `-` — no public match
+- **Contribution Margin Ratio** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Cost Behavior Analysis** `-` — no public match
+- **Cost of Debt Template** `wacc`
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (wacc)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (wacc)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Enterprise-Value-WACC](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Enterprise-Value-WACC.xlsx) (wacc)
+  - damodaran: [betas](https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls) (wacc)
+- **Cost of Goods Manufactured** `-` — no public match
+- **Cost of Goods Sold** `-` — no public match
+- **Cost of Preferred Stock Calculator** `-` — no public match
+- **Cost Volume Profit Analysis Template** `-` — no public match
+- **COUNTIFS Template** `-` — no public match
+- **Coupon Rate** `-` — no public match
+- **COVARIANCE.P Template** `-` — no public match
+- **Creative Cover Letter** `-` — no public match
+- **Crossover Rate** `capital-budgeting`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (capital-budgeting)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (capital-budgeting)
+  - biws: [ payback-period :: PF-06-Payback-Period](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-06/PF-06-Payback-Period.xlsm) (capital-budgeting)
+  - damodaran: [capbudg](https://pages.stern.nyu.edu/~adamodar/pc/capbudg.xls) (capital-budgeting)
+- **CUMIPMT Template** `-` — no public match
+- **Debt Asset Ratio** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Debt Service Coverage Ratio** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Diluted EPS Formula** `-` — no public match
+- **Dilution Example** `-` — no public match
+- **Dividend Coverage and Payout** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Double Declining Balance Depreciation Template** `depreciation`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (depreciation)
+  - biws: [ capex-depreciation :: 105-38-CapEx-Depreciation](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/CapEx-Depreciation/105-38-CapEx-Depreciation.xlsx) (depreciation)
+  - biws: [ capitalized-rd :: 101-15-Twitter-RD-Amortization-Tax-Example](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Financial-Statement-Analysis/Capitalized-RD/101-15-Twitter-RD-Amortization-Tax-Example.xlsx) (depreciation)
+- **Earnings Per Share** `-` — no public match
+- **EBIT Example** `-` — no public match
+- **EBIT vs EBITDA** `-` — no public match
+- **EBITDA Multiple** `comps`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (comps)
+  - biws: [ comparable-company-analysis-cca :: 107-21-Comparable-Company-Analysis](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/107-21-Comparable-Company-Analysis.xlsx) (comps)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table.xlsx) (comps)
+  - biws: [ equity-value-vs-enterprise-value-and-valuation-multiples :: KO-Equity-Value-Enterprise-Value](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/KO-Equity-Value-Enterprise-Value.xlsx) (comps)
+- **EBITDA Template** `-` — no public match
+- **ECM Deals Committee Memo Template** `-` — no public match
+- **Economic Order Quantity** `-` — no public match
+- **Economic Value Added (EVA) Template** `eva-returns`
+  - biws: [ nopat :: NOPAT-ROIC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Valuation/NOPAT/NOPAT-ROIC.xlsx) (eva-returns)
+  - biws: [ roic-return-on-invested-capital :: 101-04-NOPAT-ROIC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ROIC/101-04-NOPAT-ROIC.xlsx) (eva-returns)
+  - biws: [ roic-return-on-invested-capital :: 101-04-ROIC-in-LBO-Model](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ROIC/101-04-ROIC-in-LBO-Model.xlsx) (eva-returns)
+  - biws: [ roic-vs-roe-and-roe-vs-roa :: 105-14-Key-Financial-Metrics-Ratios](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/105-14-Key-Financial-Metrics-Ratios.xlsx) (eva-returns)
+- **Effective Annual Interest Rate Calculator** `-` — no public match
+- **Enterprise Value to EBITDA** `-` — no public match
+- **Enterprise Value vs Equity Value Calculator** `-` — no public match
+- **Equity Beta and Asset Beta Conversion** `wacc`
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (wacc)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (wacc)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Enterprise-Value-WACC](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Enterprise-Value-WACC.xlsx) (wacc)
+  - damodaran: [betas](https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls) (wacc)
+- **EV to Revenue Calculator** `comps`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (comps)
+  - biws: [ comparable-company-analysis-cca :: 107-21-Comparable-Company-Analysis](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/107-21-Comparable-Company-Analysis.xlsx) (comps)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table.xlsx) (comps)
+  - biws: [ equity-value-vs-enterprise-value-and-valuation-multiples :: KO-Equity-Value-Enterprise-Value](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/KO-Equity-Value-Enterprise-Value.xlsx) (comps)
+- **Excel Fundamentals - Formulas for Finance** `-` — no public match
+- **Excel Fundamentals - Formulas for Finance (Summary)** `-` — no public match
+- **Excel Fundamentals - Quick Start Guide (Summary)** `-` — no public match
+- **Excel Fundamentals - Quick Start Guide Analysis** `-` — no public match
+- **Excel shortcuts - Mac** `-` — no public match
+- **Excel shortcuts - PC** `-` — no public match
+- **Exchange Ratio Template** `m&a ratios`
+  - biws: [ exchange-ratios-in-ma-deals-fixed-floating-and-collars :: 108-15-Exchange-Ratios](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/108-15-Exchange-Ratios.xlsx) (m&a, ratios)
+  - macabacus: [merger-model](https://macabacus.com/assets/2023/02/merger-model.xlsx) (m&a)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (m&a)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (m&a)
+- **Expected Return Example** `-` — no public match
+- **FFO Example** `-` — no public match
+- **Financial Analysis Glossary** `-` — no public match
+- **Financial Modeling Fundamentals Glossary** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Fixed Asset Turnover Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Fixed Charge Coverage Ratio Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Football Field Chart** `charts`
+  - biws: [ powerpoint-align-objects :: Company-Profile-PowerPoint-Graphs](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Company-Profile-PowerPoint-Graphs.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Blank](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Blank.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Complete](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Complete.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-07-Industrial-Development-Part-3-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-07-Industrial-Development-Part-3-After.xlsx) (charts)
+- **Format a Financial Model with Macabacus Summary** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Format a Financial Model with Macabacus Summary (2)** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Forward Price Earnings (PE) Ratio** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Free Cash Flow (FCF) Example** `-` — no public match
+- **Future Value Calculator** `-` — no public match
+- **Gantt Chart Template** `charts`
+  - biws: [ powerpoint-align-objects :: Company-Profile-PowerPoint-Graphs](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Company-Profile-PowerPoint-Graphs.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Blank](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Blank.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Complete](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Complete.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-07-Industrial-Development-Part-3-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-07-Industrial-Development-Part-3-After.xlsx) (charts)
+- **General Cover Letter Template** `-` — no public match
+- **Geometric Mean Example** `-` — no public match
+- **Gross Rent Multiplier Calculator** `real-estate`
+  - biws: [ funds-from-operations-ffo :: Funds-from-Operations-FFO](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/REIT/FFO/Funds-from-Operations-FFO.xlsx) (real-estate)
+  - biws: [ how-to-calculate-discontinued-operations :: 83-07-Dispositions-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/83-07-Dispositions-After.xls) (real-estate)
+  - biws: [ how-to-calculate-discontinued-operations :: 83-07-Dispositions-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/83-07-Dispositions-Before.xls) (real-estate)
+  - biws: [ reit-nav-model :: RE-07-07-NAV-Model-Part-1-Assets-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-07-07-NAV-Model-Part-1-Assets-After.xlsx) (real-estate)
+- **H-Model Template** `ddm`
+  - biws: [ dividend-discount-model-example-banks :: Banks-03-12-DDM-Part-2-Phases-2-3-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-03-12-DDM-Part-2-Phases-2-3-After.xlsx) (ddm)
+  - biws: [ dividend-discount-model-example-banks :: Banks-03-12-DDM-Part-2-Phases-2-3-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Banks-03-12-DDM-Part-2-Phases-2-3-Before.xlsx) (ddm)
+  - damodaran: [ddm2st](https://pages.stern.nyu.edu/~adamodar/pc/ddm2st.xls) (ddm)
+  - damodaran: [ddm3st](https://pages.stern.nyu.edu/~adamodar/pc/ddm3st.xls) (ddm)
+- **HELOC Calculator** `-` — no public match
+- **Income Statement (P&L) and Profit Margins** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Interest Calculator** `-` — no public match
+- **Intrinsic Value Example** `dcf`
+  - asimplemodel: [DCF_A Basic Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_A%20Basic%20Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - asimplemodel: [DCF_Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (dcf)
+  - biws: [ interest-tax-shield :: 107-28-Levered-Free-Cash-Flow-Simple-DCF](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/107-28-Levered-Free-Cash-Flow-Simple-DCF.xlsx) (dcf)
+- **Journal Entries Template** `-` — no public match
+- **Justified Price to Earnings Ratio** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Letter of Intent Template** `-` — no public match
+- **Levelized Cost of Energy Template** `energy-mining`
+  - biws: [ cash-flow-available-for-debt-service-cfads :: PF-05-Simple-Solar-Acquisition-Example](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-05/PF-05-Simple-Solar-Acquisition-Example.xlsm) (energy-mining)
+  - biws: [ levelized-cost-of-energy :: PF-04-LCOE-Examples](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-04/PF-04-LCOE-Examples.xlsx) (energy-mining)
+  - biws: [ midstream-oil-and-gas :: 107-30-Dividend-Discount-Model-DT-Midstream](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/107-30-Dividend-Discount-Model-DT-Midstream.xlsx) (energy-mining)
+  - biws: [ midstream-oil-and-gas :: Midstream-Oil-Gas-Valuation-Simplified](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Oil-Gas/Midstream-Oil-and-Gas/Midstream-Oil-Gas-Valuation-Simplified.xlsx) (energy-mining)
+- **Leveraged Finance Example** `capital-structure`
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-After.xlsx) (capital-structure)
+  - biws: [ bolt-on-acquisitions :: 04-08-Acquisition-Projections-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/Mastery/04-08-Acquisition-Projections-Before.xlsx) (capital-structure)
+  - biws: [ cash-flow-sweep :: 109-26-CF-Sweep-Simple-LBO-Model](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/109-26-CF-Sweep-Simple-LBO-Model.xlsx) (capital-structure)
+  - biws: [ cash-free-debt-free-basis :: 109-21-Cash-Free-Debt-Free-Deals-LBO-3-Statements](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-21-Cash-Free-Debt-Free-Deals-LBO-3-Statements.xlsx) (capital-structure)
+- **Line Cover Letter Template** `-` — no public match
+- **Liquidation Value Template** `restructuring`
+  - biws: [ liquidation-preference :: Liquidation-Preference](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Liquidation-Preference/Liquidation-Preference.xlsx) (restructuring)
+  - damodaran: [distress](https://pages.stern.nyu.edu/~adamodar/pc/distress.xls) (restructuring)
+- **Loan Payment Calculator** `-` — no public match
+- **LTM Revenue Example** `-` — no public match
+- **Macabacus Quick Start Guide** `-` — no public match
+- **Macabacus Quick Start Guide (2)** `-` — no public match
+- **Margin of Safety Example** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Marginal Cost Calculator** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Market Capitalization Template** `-` — no public match
+- **Market Risk Premium Template** `wacc`
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (wacc)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (wacc)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Enterprise-Value-WACC](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Enterprise-Value-WACC.xlsx) (wacc)
+  - damodaran: [betas](https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls) (wacc)
+- **Market to Book Price to Book Ratio Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Market Value of Debt Template** `-` — no public match
+- **Markup Calculator** `-` — no public match
+- **MAX Template** `-` — no public match
+- **Moving Averages Template** `-` — no public match
+- **Multi-Criteria Analysis Balance Scorecard** `-` — no public match
+- **Net Debt Calulator** `-` — no public match
+- **Net Identifiable Assets Template** `-` — no public match
+- **Net Present Value Template** `-` — no public match
+- **Net Working Capital Template** `working-capital` — no public match
+- **Net Working Capital Template (2)** `working-capital` — no public match
+- **NORMDIST Template** `-` — no public match
+- **NPV-XNPV Example** `dcf capital-budgeting`
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (capital-budgeting, dcf)
+  - exinfm: [npv_irr](https://exinfm.com/excel%20files/npv_irr.xls) (capital-budgeting, dcf)
+  - asimplemodel: [DCF_A Basic Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_A%20Basic%20Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - asimplemodel: [DCF_Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+- **Operating Cash Flow Ratio Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Operating Margin Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **OR Template** `-` — no public match
+- **Payback Period Template** `capital-budgeting`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (capital-budgeting)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (capital-budgeting)
+  - biws: [ payback-period :: PF-06-Payback-Period](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-06/PF-06-Payback-Period.xlsm) (capital-budgeting)
+  - damodaran: [capbudg](https://pages.stern.nyu.edu/~adamodar/pc/capbudg.xls) (capital-budgeting)
+- **Percentage Change Calculator** `-` — no public match
+- **Perpetuity Calculator** `-` — no public match
+- **Personal Financial Statement** `-` — no public match
+- **Pharmaceuticals Industry Comps Template** `comps`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (comps)
+  - biws: [ comparable-company-analysis-cca :: 107-21-Comparable-Company-Analysis](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/107-21-Comparable-Company-Analysis.xlsx) (comps)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table.xlsx) (comps)
+  - biws: [ equity-value-vs-enterprise-value-and-valuation-multiples :: KO-Equity-Value-Enterprise-Value](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/KO-Equity-Value-Enterprise-Value.xlsx) (comps)
+- **PPE Schedule** `depreciation`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (depreciation)
+  - biws: [ capex-depreciation :: 105-38-CapEx-Depreciation](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/CapEx-Depreciation/105-38-CapEx-Depreciation.xlsx) (depreciation)
+  - biws: [ capitalized-rd :: 101-15-Twitter-RD-Amortization-Tax-Example](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Financial-Statement-Analysis/Capitalized-RD/101-15-Twitter-RD-Amortization-Tax-Example.xlsx) (depreciation)
+- **Pre-Money Post-Money Valuation Analysis Template** `startup`
+  - macabacus: [vc-returns](https://macabacus.com/assets/2023/02/vc-returns.xlsx) (startup)
+  - biws: [ annual-recurring-revenue-arr :: Annual-Recurring-Revenue-ARR](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Annual-Recurring-Revenue-ARR.xlsx) (startup)
+  - biws: [ capitalization-table :: Example-Cap-Table](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Capitalization-Table/Example-Cap-Table.xlsx) (startup)
+  - biws: [ carr-vs-arr :: AI-Revenue-CARR-vs-ARR](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Startups-VC/CARR-vs-ARR/AI-Revenue-CARR-vs-ARR.xlsx) (startup)
+- **Present Value of Growth Opportunities (PVGO) Template** `-` — no public match
+- **Price Earnings (P/E) Ratio Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Price Earnings Growth (PEG) ratio** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Price Per Square Foot Calculator** `real-estate`
+  - biws: [ funds-from-operations-ffo :: Funds-from-Operations-FFO](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/REIT/FFO/Funds-from-Operations-FFO.xlsx) (real-estate)
+  - biws: [ how-to-calculate-discontinued-operations :: 83-07-Dispositions-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/83-07-Dispositions-After.xls) (real-estate)
+  - biws: [ how-to-calculate-discontinued-operations :: 83-07-Dispositions-Before](https://samples-breakingintowallstreet-com.s3.amazonaws.com/83-07-Dispositions-Before.xls) (real-estate)
+  - biws: [ reit-nav-model :: RE-07-07-NAV-Model-Part-1-Assets-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-07-07-NAV-Model-Part-1-Assets-After.xlsx) (real-estate)
+- **Product Costs Template** `-` — no public match
+- **Profit and Loss Statement** `-` — no public match
+- **Profitability Index** `capital-budgeting`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (capital-budgeting)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (capital-budgeting)
+  - biws: [ payback-period :: PF-06-Payback-Period](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-06/PF-06-Payback-Period.xlsm) (capital-budgeting)
+  - damodaran: [capbudg](https://pages.stern.nyu.edu/~adamodar/pc/capbudg.xls) (capital-budgeting)
+- **Proforma Earnings Per Share Template** `-` — no public match
+- **Project Budget Template** `3-statement`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (3-statement)
+  - asimplemodel: [IFS_Simple Three Statement Model](https://portal.asimplemodel.com/assets/files/IFS_Simple%20Three%20Statement%20Model.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Errors](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Errors.xlsx) (3-statement)
+  - biws: [ balance-sheet-not-balancing :: 101-12-Balance-Sheet-Not-Balancing-Fixes](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/101-12-Balance-Sheet-Not-Balancing-Fixes.xlsx) (3-statement)
+- **Research and Development Capitalization** `-` — no public match
+- **Retail Industry Comps Template** `comps`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (comps)
+  - biws: [ comparable-company-analysis-cca :: 107-21-Comparable-Company-Analysis](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/107-21-Comparable-Company-Analysis.xlsx) (comps)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Valuation-Metrics-Multiples-Comparison-Table.xlsx) (comps)
+  - biws: [ equity-value-vs-enterprise-value-and-valuation-multiples :: KO-Equity-Value-Enterprise-Value](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/KO-Equity-Value-Enterprise-Value.xlsx) (comps)
+- **Retention Ratio Template** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Return on Investment (ROI)** `eva-returns`
+  - biws: [ nopat :: NOPAT-ROIC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Valuation/NOPAT/NOPAT-ROIC.xlsx) (eva-returns)
+  - biws: [ roic-return-on-invested-capital :: 101-04-NOPAT-ROIC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ROIC/101-04-NOPAT-ROIC.xlsx) (eva-returns)
+  - biws: [ roic-return-on-invested-capital :: 101-04-ROIC-in-LBO-Model](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ROIC/101-04-ROIC-in-LBO-Model.xlsx) (eva-returns)
+  - biws: [ roic-vs-roe-and-roe-vs-roa :: 105-14-Key-Financial-Metrics-Ratios](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/105-14-Key-Financial-Metrics-Ratios.xlsx) (eva-returns)
+- **Revenue Run Rate** `-` — no public match
+- **Revenue Variance Analysis** `-` — no public match
+- **ROIC Template** `eva-returns`
+  - biws: [ nopat :: NOPAT-ROIC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Valuation/NOPAT/NOPAT-ROIC.xlsx) (eva-returns)
+  - biws: [ roic-return-on-invested-capital :: 101-04-NOPAT-ROIC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ROIC/101-04-NOPAT-ROIC.xlsx) (eva-returns)
+  - biws: [ roic-return-on-invested-capital :: 101-04-ROIC-in-LBO-Model](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ROIC/101-04-ROIC-in-LBO-Model.xlsx) (eva-returns)
+  - biws: [ roic-vs-roe-and-roe-vs-roa :: 105-14-Key-Financial-Metrics-Ratios](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/105-14-Key-Financial-Metrics-Ratios.xlsx) (eva-returns)
+- **ROUNDUP Template** `-` — no public match
+- **Rule of 40 Calculator** `startup`
+  - macabacus: [vc-returns](https://macabacus.com/assets/2023/02/vc-returns.xlsx) (startup)
+  - biws: [ annual-recurring-revenue-arr :: Annual-Recurring-Revenue-ARR](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Annual-Recurring-Revenue-ARR.xlsx) (startup)
+  - biws: [ capitalization-table :: Example-Cap-Table](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Startups-VC/Capitalization-Table/Example-Cap-Table.xlsx) (startup)
+  - biws: [ carr-vs-arr :: AI-Revenue-CARR-vs-ARR](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Startups-VC/CARR-vs-ARR/AI-Revenue-CARR-vs-ARR.xlsx) (startup)
+- **Sales Tax Decalculator** `-` — no public match
+- **SEARCH Template** `-` — no public match
+- **Sensitivity Analysis Table** `sensitivity`
+  - asimplemodel: [LBO_Simple LBO Scenarios and Data Tables](https://portal.asimplemodel.com/assets/files/LBO_Simple%20LBO%20Scenarios%20and%20Data%20Tables.xlsx) (sensitivity)
+  - biws: [ sensitivity-analysis-excel :: XL-03-27-Sensitivity-Tables-After](https://samples-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/XL-4/XL-03-27-Sensitivity-Tables-After.xlsx) (sensitivity)
+  - biws: [ sensitivity-analysis-excel :: XL-03-27-Sensitivity-Tables-Before](https://samples-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/XL-4/XL-03-27-Sensitivity-Tables-Before.xlsx) (sensitivity)
+- **Sharpe Ratio Calculator** `ratios`
+  - biws: [ cash-flow-from-operations :: 105-40-Cash-Flow-from-Operations](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/Cash-Flow-from-Operations/105-40-Cash-Flow-from-Operations.xlsx) (ratios)
+  - biws: [ cash-ratio :: ITW-Liquidity-Ratios](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/ITW-Liquidity-Ratios.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-BLDR-Analysis](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-BLDR-Analysis.xlsx) (ratios)
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (ratios)
+- **Sheet Name Formula Template** `-` — no public match
+- **SME Lending - Owner's Net Worth Adjustment Template** `-` — no public match
+- **Straight Line Depreciation** `depreciation`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (depreciation)
+  - biws: [ capex-depreciation :: 105-38-CapEx-Depreciation](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/CapEx-Depreciation/105-38-CapEx-Depreciation.xlsx) (depreciation)
+  - biws: [ capitalized-rd :: 101-15-Twitter-RD-Amortization-Tax-Example](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Financial-Statement-Analysis/Capitalized-RD/101-15-Twitter-RD-Amortization-Tax-Example.xlsx) (depreciation)
+- **Straight Line Depreciation Template** `depreciation`
+  - asimplemodel: [IFS_PPE Schedule](https://portal.asimplemodel.com/assets/files/IFS_PPE%20Schedule.xlsx) (depreciation)
+  - biws: [ capex-depreciation :: 105-38-CapEx-Depreciation](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Accounting/CapEx-Depreciation/105-38-CapEx-Depreciation.xlsx) (depreciation)
+  - biws: [ capitalized-rd :: 101-15-Twitter-RD-Amortization-Tax-Example](https://youtube-breakingintowallstreet-com.s3.dualstack.us-east-1.amazonaws.com/Financial-Statement-Analysis/Capitalized-RD/101-15-Twitter-RD-Amortization-Tax-Example.xlsx) (depreciation)
+- **SUBTOTAL Template** `-` — no public match
+- **Target Costing Example** `-` — no public match
+- **Tax-Shield Template** `-` — no public match
+- **Term Sheet Template** `-` — no public match
+- **Treasury Stock Method Calculator** `-` — no public match
+- **Unlevered Cost of Capital Template** `wacc`
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (wacc)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (wacc)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Enterprise-Value-WACC](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Enterprise-Value-WACC.xlsx) (wacc)
+  - damodaran: [betas](https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls) (wacc)
+- **Unlevered Free Cash Flow Template** `dcf`
+  - asimplemodel: [DCF_A Basic Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_A%20Basic%20Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - asimplemodel: [DCF_Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (dcf)
+  - biws: [ interest-tax-shield :: 107-28-Levered-Free-Cash-Flow-Simple-DCF](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/107-28-Levered-Free-Cash-Flow-Simple-DCF.xlsx) (dcf)
+- **Valuation Model Comps Precedents Football Field** `dcf comps charts`
+  - asimplemodel: [DCF_A Basic Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_A%20Basic%20Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - asimplemodel: [DCF_Discounted Cash Flow Model](https://portal.asimplemodel.com/assets/files/DCF_Discounted%20Cash%20Flow%20Model.xlsx) (dcf)
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (comps)
+  - biws: [ comparable-company-analysis-cca :: 107-21-Comparable-Company-Analysis](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/107-21-Comparable-Company-Analysis.xlsx) (comps)
+- **Variance Analysis** `-` — no public match
+- **Variance Formula** `-` — no public match
+- **Variance Waterfall Chart** `charts`
+  - biws: [ powerpoint-align-objects :: Company-Profile-PowerPoint-Graphs](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Company-Profile-PowerPoint-Graphs.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Blank](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Blank.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Complete](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Complete.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-07-Industrial-Development-Part-3-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-07-Industrial-Development-Part-3-After.xlsx) (charts)
+- **Waterfall Chart Template** `charts`
+  - biws: [ powerpoint-align-objects :: Company-Profile-PowerPoint-Graphs](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/Company-Profile-PowerPoint-Graphs.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Blank](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Blank.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-05-Industrial-Development-Complete](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-05-Industrial-Development-Complete.xlsx) (charts)
+  - biws: [ real-estate-waterfall-model :: RE-01-07-Industrial-Development-Part-3-After](https://samples-breakingintowallstreet-com.s3.amazonaws.com/RE-01-07-Industrial-Development-Part-3-After.xlsx) (charts)
+- **Weighted Average Cost of Capital (WACC) Calculator** `wacc`
+  - biws: [ debt-to-equity-ratio :: 101-08-Enterprise-Value-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Financial-Statement-Analysis/Debt-to-Equity/101-08-Enterprise-Value-WACC.xlsx) (wacc)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (wacc)
+  - biws: [ enterprise-value-vs-equity-value :: IBIG-04-04-Enterprise-Value-WACC](https://samples-breakingintowallstreet-com.s3.amazonaws.com/IBIG-04-04-Enterprise-Value-WACC.xlsx) (wacc)
+  - damodaran: [betas](https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls) (wacc)
+- **Weighted Average Shares Outstanding Template** `-` — no public match
+- **Working Capital Cycle Template** `working-capital` — no public match
+- **XIRR vs IRR Template** `capital-budgeting`
+  - biws: [ cash-on-cash-return-vs-irr :: 109-05-IRR-vs-Cash-on-Cash-Multiples](https://youtube-breakingintowallstreet-com.s3.amazonaws.com/109-05-IRR-vs-Cash-on-Cash-Multiples.xlsx) (capital-budgeting)
+  - biws: [ discount-rate :: PV-NPV-IRR-WACC](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/Finance/PV-NPV-IRR-WACC.xlsx) (capital-budgeting)
+  - biws: [ payback-period :: PF-06-Payback-Period](https://youtube-breakingintowallstreet-com.s3.us-east-1.amazonaws.com/PF/PF-06/PF-06-Payback-Period.xlsm) (capital-budgeting)
+  - damodaran: [capbudg](https://pages.stern.nyu.edu/~adamodar/pc/capbudg.xls) (capital-budgeting)
+- **Year over Year (YoY) Analysis** `-` — no public match
+- **Year to Date YTD Template** `-` — no public match
