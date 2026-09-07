@@ -243,9 +243,21 @@ def test_cli_project_finance(tmp_path, capsys):
     root = Path(__file__).resolve().parent.parent
     main(["project-finance", str(root / "examples" / "project_finance_demo.json"), "--json-out", str(tmp_path / "pf.json")])
     out = capsys.readouterr().out
-    assert "Fully repaid: True" in out and "Cap rate valuation:" in out
+    assert "Fully repaid: True" in out and "Cap rate valuation:" in out and "Debt structure comparison:" in out
     saved = json.loads((tmp_path / "pf.json").read_text())
     assert saved["sculpted_amortization"]["fully_repaid"] is True
+    cmp = saved["compare_debt_structures"]
+    assert cmp["dscr_sculpted"]["total_interest"] < cmp["interest_only_bullet"]["total_interest"]
+
+
+def test_cli_dcf_diagnostics(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["dcf-diagnostics", str(root / "examples" / "dcf_diagnostics_demo.json"), "--json-out", str(tmp_path / "dd.json")])
+    out = capsys.readouterr().out
+    assert "Likely uses levered" in out and "True" in out
+    saved = json.loads((tmp_path / "dd.json").read_text())
+    assert saved["total_gap_undiscounted"] == pytest.approx(41716, abs=1)
 
 
 def test_cli_portfolio(tmp_path, capsys):

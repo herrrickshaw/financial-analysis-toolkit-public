@@ -1,0 +1,6 @@
+{
+  "_comment": "REAL reference case from this toolkit's own due-diligence pass on a real project-finance model (Unnic LNG, a 10-year LNG-bunkering term-loan facility model): EBIT and the ACTUAL cash tax the model deducted from an otherwise-unlevered free cash flow line. The tax was computed on Earnings Before Taxes (i.e. after deducting real interest expense) rather than on EBIT directly -- a real, verified $41,716 double-counted interest tax shield across the facility's 10-year life.",
+  "ebit": [-89463, 257821, 343071, 405138, 446838, 570578, 557578, 544578, 531578, 518578],
+  "cash_taxes_used": [0, 29790.71, 80058.47, 96401.02, 107635.20, 139537.31, 137040.88, 134563.84, 132106.68, 129669.89],
+  "tax_rate": 0.2517
+}

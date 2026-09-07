@@ -496,7 +496,30 @@ def cmd_project_finance(a):
         print(f"Cap rate valuation: NOI {res['cap_rate_valuation']['noi']:,.0f} / {res['cap_rate_valuation']['cap_rate']:.2%}  →  value {res['cap_rate_valuation']['value']:,.0f}")
     if "levered_cash_on_cash" in res:
         print(f"Cash-on-cash return: {res['levered_cash_on_cash']['cash_on_cash_return']:.2%}")
+    if "level_annuity_schedule" in res:
+        r = res["level_annuity_schedule"]
+        print(f"Level annuity: payment {r['level_payment']:,.0f}/yr, total interest {r['total_interest']:,.0f}")
+    if "interest_only_bullet_schedule" in res:
+        r = res["interest_only_bullet_schedule"]
+        print(f"Interest-only + bullet: total interest {r['total_interest']:,.0f}, bullet {r['bullet_principal']:,.0f} at maturity")
+    if "balloon_coverage_ratio" in res:
+        print(f"Balloon coverage: {res['balloon_coverage_ratio']['coverage_ratio']:.2f}x")
+    if "compare_debt_structures" in res:
+        print("Debt structure comparison:")
+        for name, s in res["compare_debt_structures"].items():
+            print(f"  {name:20} total interest {s['total_interest']:>12,.0f}  year-1 debt service {s['year1_debt_service']:>12,.0f}  min DSCR {s['min_dscr']:.2f}x  avg DSCR {s['average_dscr']:.2f}x")
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_dcf_diagnostics(a):
+    from . import dcf as D
+    d = _load_json(a.inputs)
+    out = D.check_unlevered_tax_consistency(d["ebit"], d["cash_taxes_used"], d["tax_rate"], tolerance=d.get("tolerance", 0.01))
+    print(f"Likely uses levered (double-counted-shield) tax in an unlevered FCF: {out['likely_uses_levered_tax']}")
+    if out["flagged_periods"]:
+        print(f"Flagged periods (0-indexed): {out['flagged_periods']}")
+    print(f"Total gap vs. a correctly unlevered tax build (undiscounted): {out['total_gap_undiscounted']:,.0f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(out, indent=1))
 
 
 def cmd_portfolio(a):
@@ -742,6 +765,7 @@ def main(argv=None):
     ip = sp.add_parser("insurance-pricing", help="loss/expense/combined/operating ratios, loss-cost-multiplier rate making"); ip.add_argument("inputs"); ip.add_argument("--json-out"); ip.set_defaults(fn=cmd_insurance_pricing)
     cvb = sp.add_parser("convertible", help="convertible bond bond-floor + embedded-option (two-component) valuation, conversion premium"); cvb.add_argument("inputs"); cvb.add_argument("--json-out"); cvb.set_defaults(fn=cmd_convertible_bonds)
     cmo = sp.add_parser("cmo", help="CMO: PSA prepayment modeling, sequential-pay tranching, weighted average life"); cmo.add_argument("inputs"); cmo.add_argument("--json-out"); cmo.set_defaults(fn=cmd_cmo)
+    dcfd = sp.add_parser("dcf-diagnostics", help="flags a DCF that double-counts the interest tax shield (levered cash taxes in an unlevered FCF)"); dcfd.add_argument("inputs"); dcfd.add_argument("--json-out"); dcfd.set_defaults(fn=cmd_dcf_diagnostics)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)

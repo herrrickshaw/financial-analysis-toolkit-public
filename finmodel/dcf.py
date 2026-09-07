@@ -150,6 +150,43 @@ def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:
     return run(DCFInputs(**clean(d)))
 
 
+# ----------------------------------------------------------------------------- DCF diagnostics
+def unlevered_tax_schedule(ebit: Sequence[float], tax_rate: float) -> List[float]:
+    """The correct 'as if all-equity-financed' tax build, with its own independent loss-carryforward chain (real
+    NOLs are tracked on EBIT alone, not on EBIT-less-interest) — the real fix from this toolkit's own
+    due-diligence pass on a real project-finance model, whose otherwise-unlevered free cash flow was deducting
+    the company's actual, interest-deductible (levered) cash tax bill instead."""
+    taxes: List[float] = []
+    loss_cf = 0.0
+    for e in ebit:
+        taxable = max(0.0, e - loss_cf)
+        taxes.append(taxable * tax_rate)
+        loss_cf = max(0.0, loss_cf - e) if e >= 0 else -e
+    return taxes
+
+
+def check_unlevered_tax_consistency(ebit: Sequence[float], cash_taxes_used: Sequence[float], tax_rate: float,
+                                    tolerance: float = 0.01) -> Dict[str, Any]:
+    """Flags the real, easy-to-miss DCF-construction bug this check is named for: an unlevered free cash flow
+    (no interest subtracted) that nonetheless deducts a LEVERED cash tax figure — one already computed on
+    after-interest taxable income — rather than the hypothetical unlevered tax above. Discounting such a cash
+    flow at a WACC that ALSO carries an after-tax cost of debt term double-counts the interest tax shield: once
+    via the lower taxes in the numerator, once via the discount rate in the denominator. `cash_taxes_used` is
+    whatever tax figure the free-cash-flow build ACTUALLY subtracts — pass the real, filed/modeled cash tax
+    line to check it, or a hypothetical one to confirm a fix. Real loss carryforwards can make a genuinely
+    CORRECT unlevered build look "flagged" if `cash_taxes_used` was computed with a different NOL assumption
+    than this function's own chain — treat a flagged period as a lead to investigate, not an automatic verdict."""
+    correct = unlevered_tax_schedule(ebit, tax_rate)
+    n = len(ebit)
+    if len(cash_taxes_used) != n:
+        raise ValueError("ebit and cash_taxes_used must have the same length")
+    gap = [correct[i] - cash_taxes_used[i] for i in range(n)]
+    flagged = [i for i in range(n) if abs(gap[i]) > tolerance * max(1.0, abs(correct[i]))]
+    return {"correct_unlevered_tax": correct, "cash_taxes_used": list(cash_taxes_used), "gap": gap,
+            "flagged_periods": flagged, "likely_uses_levered_tax": len(flagged) > n // 2,
+            "total_gap_undiscounted": sum(gap)}
+
+
 # ----------------------------------------------------------------------------- reverse DCF and Monte Carlo
 def implied_growth(inp: DCFInputs, target_price: Optional[float] = None, lo: float = -0.20, hi: float = 0.20, tol: float = 1e-9) -> Dict[str, Any]:
     """Reverse DCF: the perpetual growth rate at which the model's equity value per share equals the current (or a

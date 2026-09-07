@@ -39,3 +39,28 @@ def test_eomonth_edate():
     assert fin.eomonth("2020-01-31", 1) == date(2020, 2, 29)
     assert fin.edate("2020-01-31", 1) == date(2020, 2, 29)
     assert fin.cagr(100, 200, 5) == pytest.approx(2 ** 0.2 - 1)
+
+
+def test_smooth_ramp_matches_a_real_case_from_the_unnic_due_diligence_pass():
+    # real, verified reference case: a marine-bunkering volume ramp from 5,000 to a 47,303 plateau over 5 years,
+    # replacing an original 264%-then-decelerating spike with a constant ~56.7%/yr growth rate.
+    out = fin.smooth_ramp(5000, 47303, 5)
+    assert out["path"][0] == 5000.0
+    assert out["path"][-1] == 47303.0
+    assert out["constant_growth_rate"] == pytest.approx(0.5674, abs=1e-3)
+    # constant growth rate: every step should compound by the same factor
+    ratios = [out["path"][i + 1] / out["path"][i] for i in range(5)]
+    assert ratios[0] == pytest.approx(ratios[-1], rel=1e-9)
+
+
+def test_smooth_ramp_hold_periods_append_the_plateau():
+    out = fin.smooth_ramp(100, 200, 3, hold_periods=2)
+    assert len(out["path"]) == 3 + 1 + 2  # start + 3 ramp steps + 2 held periods
+    assert out["path"][-2:] == [200.0, 200.0]
+
+
+def test_smooth_ramp_rejects_nonpositive_inputs():
+    with pytest.raises(ValueError):
+        fin.smooth_ramp(0, 100, 5)
+    with pytest.raises(ValueError):
+        fin.smooth_ramp(100, 200, 0)

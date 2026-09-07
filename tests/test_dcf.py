@@ -70,3 +70,35 @@ def test_mid_year_convention_raises_value():
     # the uplift is bounded by half a period of discounting on the explicit cash flows
     pv_fcf_base = base["enterprise_value"] - base["terminal_value"]["used"] / (1 + inp.discount_rate) ** sum(base["year_fraction"])
     assert 0 < mid["enterprise_value"] - base["enterprise_value"] < pv_fcf_base * ((1 + inp.discount_rate) ** 0.5 - 1) * 1.05
+
+
+def test_unlevered_tax_schedule_matches_hand_calc_with_a_loss_carryforward():
+    ebit = [-100.0, 200.0, 200.0]
+    out = dcf.unlevered_tax_schedule(ebit, tax_rate=0.25)
+    assert out[0] == 0.0                       # a loss pays no tax
+    assert out[1] == pytest.approx(25.0)        # (200 - 100 loss c/f) * 0.25
+    assert out[2] == pytest.approx(50.0)        # no losses left; full 200 * 0.25
+
+
+def test_check_unlevered_tax_consistency_flags_a_real_double_counted_shield():
+    # real, verified reference case from this toolkit's own due-diligence pass on a project-finance model:
+    # EBIT and the ACTUAL (levered, after-interest) cash tax the model deducted from an otherwise-unlevered FCF.
+    ebit = [-89463, 257821, 343071, 405138, 446838, 570578, 557578, 544578, 531578, 518578]
+    levered_tax_used = [0, 29790.71, 80058.47, 96401.02, 107635.20, 139537.31, 137040.88, 134563.84, 132106.68, 129669.89]
+    out = dcf.check_unlevered_tax_consistency(ebit, levered_tax_used, tax_rate=0.2517)
+    assert out["likely_uses_levered_tax"] is True
+    assert out["total_gap_undiscounted"] == pytest.approx(41716, abs=1)
+
+
+def test_check_unlevered_tax_consistency_passes_a_correctly_unlevered_build():
+    ebit = [-100.0, 200.0, 200.0]
+    correct_tax = dcf.unlevered_tax_schedule(ebit, tax_rate=0.25)
+    out = dcf.check_unlevered_tax_consistency(ebit, correct_tax, tax_rate=0.25)
+    assert out["likely_uses_levered_tax"] is False
+    assert out["flagged_periods"] == []
+    assert out["total_gap_undiscounted"] == pytest.approx(0.0)
+
+
+def test_check_unlevered_tax_consistency_rejects_mismatched_lengths():
+    with pytest.raises(ValueError):
+        dcf.check_unlevered_tax_consistency([100.0, 200.0], [25.0], tax_rate=0.25)

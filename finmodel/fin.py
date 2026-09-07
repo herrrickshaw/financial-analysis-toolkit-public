@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import calendar
 from datetime import date, datetime, timedelta
-from typing import Iterable, Sequence
+from typing import Any, Dict, Iterable, Sequence
 
 
 def to_date(d) -> date:
@@ -161,6 +161,28 @@ def pmt(rate: float, nper: int, pv: float, fv: float = 0.0, when: int = 0) -> fl
 
 def cagr(begin: float, end: float, periods: float) -> float:
     return (end / begin) ** (1.0 / periods) - 1
+
+
+def smooth_ramp(start_value: float, plateau_value: float, periods_to_plateau: int, hold_periods: int = 0) -> Dict[str, Any]:
+    """Replaces a front-loaded/erratic multi-year ramp-up assumption (e.g. one huge single-year jump followed by
+    decelerating growth) with a constant compound growth rate connecting the same start and end points — a real
+    fix from this toolkit's own due-diligence pass on a real project-finance model, whose original volume ramp
+    jumped 264% in year 2 alone then decelerated, an implausible shape next to genuine capacity ramp-up.
+    Useful for any new-business or new-capacity ramp assumption (new stores, cohort volume, capacity
+    utilization) wherever the START and eventual PLATEAU are known but the interim path should be smooth. The
+    final ramp period is snapped exactly to `plateau_value` to avoid compounding rounding drift; `hold_periods`
+    appends that same plateau value for any additional flat periods after it's reached."""
+    if start_value <= 0 or plateau_value <= 0:
+        raise ValueError("start_value and plateau_value must both be positive")
+    if periods_to_plateau < 1:
+        raise ValueError("periods_to_plateau must be at least 1")
+    g = cagr(start_value, plateau_value, periods_to_plateau)
+    path = [float(start_value)]
+    for _ in range(periods_to_plateau):
+        path.append(path[-1] * (1 + g))
+    path[-1] = float(plateau_value)
+    path += [float(plateau_value)] * hold_periods
+    return {"path": path, "constant_growth_rate": g}
 
 
 def safe_div(a: float, b: float, default: float = 0.0) -> float:

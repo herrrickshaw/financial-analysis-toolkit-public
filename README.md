@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 320 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 334 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -62,6 +62,7 @@ finmodel cohort examples/cohort_analysis_demo.json                       # SaaS 
 finmodel insurance-pricing examples/insurance_pricing_demo.json          # combined ratio, operating ratio, loss-cost-multiplier rate making
 finmodel convertible examples/convertible_bonds_demo.json                # convertible bond: bond floor + embedded option (two-component) valuation
 finmodel cmo examples/cmo_demo.json                                       # CMO: PSA prepayment modeling, sequential-pay tranching, weighted average life
+finmodel dcf-diagnostics examples/dcf_diagnostics_demo.json               # flags a DCF that double-counts the interest tax shield
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -185,6 +186,23 @@ CMO tranching, checked for the two properties every real CMO offering document's
 Weighted Average Life increasing monotonically down the tranche stack, and shortening for every tranche as
 prepayment speed rises). All nine are pure Python with no numpy/scipy dependency. See `docs/MORE_CFI_TEMPLATES.md`
 for the complete survey — every item it originally flagged is now built.
+
+## Due-diligence tools (`docs/DUE_DILIGENCE_TOOLS.md`)
+
+A different kind of source this time: reviewing a real, external, CFI-formatted project-finance model (a 10-year
+LNG-bunkering term-loan facility) surfaced three genuine issues by hand, each generalized into a reusable, tested
+tool rather than a one-off fix. `finmodel.dcf.check_unlevered_tax_consistency()` catches a real, easy-to-miss DCF
+bug — a "Free cash flow" line that correctly excludes interest but deducts the company's REAL (interest-
+deductible) cash tax instead of a hypothetical unlevered one, double-counting the interest tax shield against a
+WACC that already carries an after-tax cost of debt term (verified: reconstructs the real file's own $41,716
+finding exactly). `finmodel.fin.smooth_ramp()` replaces an implausible front-loaded volume/capacity ramp (a real
+264% single-year jump in the reviewed file) with a constant-CAGR path landing on the same plateau — general
+enough for any new-capacity or new-cohort assumption, not just LNG bunkering. `finmodel.project_finance` gained
+`level_annuity_schedule()`, `interest_only_bullet_schedule()` (the reviewed facility's own real lender terms, not
+previously representable), `balloon_coverage_ratio()` (does cash actually accumulated over the interest-only
+years cover the bullet, the real question a stand-alone maturity-year DSCR can't answer), and
+`compare_debt_structures()` (the real total-interest-vs-cash-flow-relief trade-off, quantified side by side
+across all three structures on the same cash flow).
 
 ## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
 

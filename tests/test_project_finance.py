@@ -74,3 +74,50 @@ def test_from_dict_bundles_everything():
     out = PF.from_dict(d)
     assert out["cap_rate_valuation"]["value"] == 20000.0
     assert out["levered_cash_on_cash"]["cash_on_cash_return"] == pytest.approx(0.075)
+
+
+def test_level_annuity_schedule_matches_pmt():
+    out = PF.level_annuity_schedule(1000.0, 0.05, 10)
+    assert all(row["debt_service"] == pytest.approx(out["level_payment"]) for row in out["schedule"])
+    assert out["schedule"][-1]["closing_balance"] == pytest.approx(0.0, abs=1e-6)
+
+
+def test_interest_only_bullet_schedule_has_flat_interest_and_a_single_principal_payment():
+    out = PF.interest_only_bullet_schedule(1_000_000.0, 0.025, 5)
+    principals = [row["principal"] for row in out["schedule"]]
+    assert principals == [0.0, 0.0, 0.0, 0.0, 1_000_000.0]
+    assert all(row["interest"] == pytest.approx(25_000.0) for row in out["schedule"])
+    assert out["total_interest"] == pytest.approx(125_000.0)
+
+
+def test_interest_only_pays_more_total_interest_than_an_amortizing_loan_of_the_same_life():
+    # the real, defining trade-off: interest accrues on the full, never-amortizing balance the whole tenure.
+    annuity = PF.level_annuity_schedule(1_000_000.0, 0.06, 10)
+    io_bullet = PF.interest_only_bullet_schedule(1_000_000.0, 0.06, 10)
+    assert io_bullet["total_interest"] > annuity["total_interest"]
+
+
+def test_balloon_coverage_ratio():
+    out = PF.balloon_coverage_ratio(accumulated_cash_before_maturity=2_527_169.0, bullet_principal=1_000_000.0)
+    assert out["coverage_ratio"] == pytest.approx(2.527169)
+
+
+def test_compare_debt_structures_orders_total_interest_as_expected():
+    # real, verified ordering from this toolkit's own due-diligence case: sculpting (fastest paydown at the
+    # covenant) costs the least total interest, interest-only/bullet (never amortizes) costs the most, with a
+    # standard level annuity in between.
+    cfads = [-2000, 315493.29, 350475.53, 431824.98, 462290.80, 554128.69, 543625.12, 533102.16, 522559.32, 511996.11]
+    out = PF.compare_debt_structures(1_000_000.0, 0.025, 10, cfads, target_dscr=1.5)
+    assert out["dscr_sculpted"]["total_interest"] < out["level_annuity"]["total_interest"] < out["interest_only_bullet"]["total_interest"]
+    assert out["interest_only_bullet"]["year1_debt_service"] < out["level_annuity"]["year1_debt_service"]
+
+
+def test_from_dict_bundles_debt_structure_comparison():
+    cfads = [100.0] * 5
+    d = {"level_annuity_schedule": {"loan_amount": 1000.0, "interest_rate": 0.05, "tenure_years": 5},
+         "interest_only_bullet_schedule": {"loan_amount": 1000.0, "interest_rate": 0.05, "tenure_years": 5},
+         "balloon_coverage_ratio": {"accumulated_cash_before_maturity": 1200.0, "bullet_principal": 1000.0},
+         "compare_debt_structures": {"loan_amount": 1000.0, "interest_rate": 0.05, "tenure_years": 5, "cfads": cfads, "target_dscr": 1.2}}
+    out = PF.from_dict(d)
+    assert "level_annuity" in out["compare_debt_structures"]
+    assert out["balloon_coverage_ratio"]["coverage_ratio"] == pytest.approx(1.2)
