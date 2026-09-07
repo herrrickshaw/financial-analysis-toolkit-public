@@ -1,0 +1,36 @@
+{
+  "deferred_tax_position": {
+    "temporary_differences": {
+      "warranty_reserve": {"amount": 100000.0, "type": "deductible"},
+      "bad_debt_allowance": {"amount": 50000.0, "type": "deductible"},
+      "accelerated_depreciation": {"amount": 300000.0, "type": "taxable"}
+    },
+    "tax_rate": 0.21
+  },
+  "valuation_allowance": {
+    "gross_dta": 150000.0,
+    "cumulative_pretax_loss_last_3yrs": 500000.0,
+    "projected_future_taxable_income": 200000.0,
+    "tax_rate": 0.21
+  },
+  "nol_carryforward_schedule": {
+    "pretax_income": [-1000000.0, -400000.0, 900000.0, 1200000.0, 1500000.0],
+    "tax_rate": 0.21,
+    "opening_pre2018_nol": 300000.0,
+    "pre2018_nol_years_remaining": 4
+  },
+  "effective_tax_rate_reconciliation": {
+    "pretax_income": 5000000.0,
+    "statutory_rate": 0.21,
+    "permanent_differences": {
+      "meals_and_entertainment_nondeductible": 80000.0,
+      "muni_bond_interest_exempt": -50000.0
+    },
+    "tax_credits": 60000.0
+  },
+  "deferred_tax_rollforward": {
+    "beginning_balance": -63000.0,
+    "provision_current_year": 21000.0,
+    "reversal_current_year": 15000.0
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "total_development_cost": {
+    "land_cost": 3000000.0,
+    "hard_costs": 15000000.0,
+    "soft_costs": 4000000.0,
+    "contingency_pct": 0.08
+  },
+  "development_pro_forma": {
+    "draws": [4000000.0, 6000000.0, 6000000.0, 6000000.0, 2000000.0],
+    "interest_rate_annual": 0.075,
+    "stabilized_noi": 1900000.0,
+    "exit_cap_rate": 0.055,
+    "periods_per_year": 4
+  }
+}

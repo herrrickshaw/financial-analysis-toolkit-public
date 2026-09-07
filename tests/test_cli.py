@@ -382,3 +382,44 @@ def test_cli_strategy(tmp_path, capsys):
     assert "SOM = 1.50% of TAM" in out and "Flagship product" in out and "Star" in out and "Invest/Grow" in out
     saved = json.loads((tmp_path / "sf.json").read_text())
     assert saved["bcg_matrix"]["units"][0]["classification"] == "Star"
+
+
+def test_cli_loss_reserving(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["loss-reserving", str(root / "examples" / "loss_reserving_demo.json"), "--json-out", str(tmp_path / "lr.json")])
+    out = capsys.readouterr().out
+    assert "Total IBNR:" in out
+    saved = json.loads((tmp_path / "lr.json").read_text())
+    assert saved["chain_ladder"]["total_ibnr"] > 0
+
+
+def test_cli_tax_provision(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["tax-provision", str(root / "examples" / "tax_provision_demo.json"), "--json-out", str(tmp_path / "tp.json")])
+    out = capsys.readouterr().out
+    assert "Effective tax rate:" in out and "Valuation allowance: required" in out
+    saved = json.loads((tmp_path / "tp.json").read_text())
+    assert saved["valuation_allowance"]["valuation_allowance_required"] is True
+
+
+def test_cli_real_estate_development(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["real-estate-development", str(root / "examples" / "real_estate_development_demo.json"), "--json-out", str(tmp_path / "red.json")])
+    out = capsys.readouterr().out
+    assert "Development pro forma:" in out
+    saved = json.loads((tmp_path / "red.json").read_text())
+    assert saved["development_pro_forma"]["development_profit"] > 0
+    assert saved["development_pro_forma"]["development_spread_bps"] > 0
+
+
+def test_cli_working_capital_financing(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["working-capital-financing", str(root / "examples" / "working_capital_financing_demo.json"), "--json-out", str(tmp_path / "wcf.json")])
+    out = capsys.readouterr().out
+    assert "Factoring:" in out and "Early-payment discount APR:" in out and "ABL availability:" in out
+    saved = json.loads((tmp_path / "wcf.json").read_text())
+    assert saved["asset_based_lending_availability"]["available_to_draw"] > 0

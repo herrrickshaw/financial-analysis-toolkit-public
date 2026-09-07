@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 361 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 390 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -67,6 +67,10 @@ finmodel variance-analysis examples/variance_analysis_demo.json          # budge
 finmodel fpa-planning examples/fpa_planning_demo.json                     # headcount cost schedule, driver-based rolling forecast
 finmodel breakeven examples/breakeven_demo.json                          # break-even units/revenue, margin of safety, degree of operating leverage
 finmodel cap-table examples/vc_method_demo.json                          # VC Method: required multiple/ownership -> implied pre-/post-money valuation
+finmodel loss-reserving examples/loss_reserving_demo.json                # chain-ladder loss development triangle: age-to-age factors, ultimates, IBNR
+finmodel tax-provision examples/tax_provision_demo.json                  # deferred tax, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets)
+finmodel real-estate-development examples/real_estate_development_demo.json  # development pro forma: TDC, draw schedule, yield on cost, unlevered IRR
+finmodel working-capital-financing examples/working_capital_financing_demo.json  # factoring cost, early-payment discount APR, ABL borrowing base
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -227,6 +231,23 @@ backward from a target exit value/return to required ownership and implied pre-/
 WIP/percentage-of-completion) or ruled out of scope (AOP orchestration, close checklists, trial-balance
 automation, personal-finance calculators).
 
+## Operating-finance tools (`docs/OPERATING_FINANCE_TOOLS.md`)
+
+A fourth round of tool-building: real, standard corporate-finance disciplines that recur constantly in
+practice but had no representation across the toolkit's other ~35 modules yet, each checked for overlap
+with what already exists before being built. `finmodel.loss_reserving` (the actuarial chain-ladder loss
+development triangle and IBNR estimate — Casualty Actuarial Society, Friedland — distinct from
+`finmodel.insurance_pricing`'s forward-looking rate making), `finmodel.tax_provision` (ASC 740/IAS 12
+deferred tax, valuation allowance, and a post-TCJA NOL carryforward that tracks the real pre-2018
+100%-offset/20-year-expiration basket separately from the post-2017 80%-cap/no-expiration basket),
+`finmodel.real_estate_development` (a ground-up development pro forma — total development cost, a
+capitalized-interest construction-loan draw schedule, yield on cost, and development spread — distinct from
+`finmodel.project_finance`'s stabilized-asset cap-rate valuation), and `finmodel.working_capital_financing`
+(invoice-factoring cost, the classic "2/10, net 30" early-payment-discount APR formula, and asset-based-
+lending borrowing-base availability). See `docs/OPERATING_FINANCE_TOOLS.md` for what was checked against
+existing modules to avoid duplication, and what was deliberately deferred (an American deal-by-deal PE carry
+waterfall, ASC 805 earnout valuation, Bornhuetter-Ferguson reserving).
+
 ## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
 
 The mirror image of the real-company checks above: instead of validating the toolkit against a real filer,
@@ -269,7 +290,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

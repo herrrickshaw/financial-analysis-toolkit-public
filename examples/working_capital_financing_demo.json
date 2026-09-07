@@ -1,0 +1,20 @@
+{
+  "factoring_cost": {
+    "invoice_amount": 250000.0,
+    "advance_rate": 0.85,
+    "discount_fee_pct": 0.025,
+    "days_to_collect": 45.0
+  },
+  "early_payment_discount_apr": {
+    "discount_pct": 0.02,
+    "discount_days": 10,
+    "net_days": 30
+  },
+  "asset_based_lending_availability": {
+    "ar_balance": 3000000.0,
+    "ar_advance_rate": 0.85,
+    "inventory_balance": 1500000.0,
+    "inventory_advance_rate": 0.50,
+    "existing_draws": 1800000.0
+  }
+}

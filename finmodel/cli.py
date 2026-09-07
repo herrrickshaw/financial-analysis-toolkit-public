@@ -703,6 +703,67 @@ def cmd_breakeven(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_loss_reserving(a):
+    from . import loss_reserving as LR
+    res = LR.from_dict(_load_json(a.inputs))
+    if "chain_ladder" in res:
+        r = res["chain_ladder"]
+        print(f"Age-to-age factors: {['%.4f' % f for f in r['age_to_age_factors']]}")
+        for ay in r["accident_years"]:
+            print(f"  AY{ay['accident_year_index']}: latest {ay['latest_cumulative']:,.0f}  ultimate {ay['ultimate']:,.0f}  IBNR {ay['ibnr']:,.0f}")
+        print(f"Total IBNR: {r['total_ibnr']:,.0f}  (total ultimate {r['total_ultimate']:,.0f})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_tax_provision(a):
+    from . import tax_provision as TP
+    res = TP.from_dict(_load_json(a.inputs))
+    if "deferred_tax_position" in res:
+        r = res["deferred_tax_position"]
+        print(f"Deferred tax: gross DTA {r['gross_dta']:,.0f}  gross DTL {r['gross_dtl']:,.0f}  net {r['net_deferred_tax']:,.0f}")
+    if "valuation_allowance" in res:
+        r = res["valuation_allowance"]
+        print(f"Valuation allowance: {'required' if r['valuation_allowance_required'] else 'not required'} ({r['valuation_allowance']:,.0f}), net DTA {r['net_dta']:,.0f}")
+    if "nol_carryforward_schedule" in res:
+        r = res["nol_carryforward_schedule"]
+        print(f"NOL schedule: total cash tax {r['total_cash_tax']:,.0f}  expired NOL {r['total_expired_nol']:,.0f}")
+    if "effective_tax_rate_reconciliation" in res:
+        r = res["effective_tax_rate_reconciliation"]
+        print(f"Effective tax rate: {r['effective_tax_rate']:.1%} (statutory tax {r['statutory_tax']:,.0f}, total tax {r['total_tax']:,.0f})")
+    if "deferred_tax_rollforward" in res:
+        r = res["deferred_tax_rollforward"]
+        print(f"Deferred tax rollforward: {r['beginning_balance']:,.0f} -> {r['ending_balance']:,.0f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_real_estate_development(a):
+    from . import real_estate_development as RE
+    res = RE.from_dict(_load_json(a.inputs))
+    if "total_development_cost" in res:
+        r = res["total_development_cost"]
+        print(f"Total development cost: {r['total_development_cost']:,.0f} (contingency {r['contingency']:,.0f})")
+    if "development_pro_forma" in res:
+        r = res["development_pro_forma"]
+        print(f"Development pro forma: cost basis {r['total_cost_basis']:,.0f}  exit value {r['exit_value']:,.0f}  "
+              f"profit {r['development_profit']:,.0f}  yield on cost {r['yield_on_cost']:.2%}  "
+              f"spread {r['development_spread_bps']:,.0f} bps  unlevered IRR {r['unlevered_irr_annual']:.1%}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_working_capital_financing(a):
+    from . import working_capital_financing as WCF
+    res = WCF.from_dict(_load_json(a.inputs))
+    if "factoring_cost" in res:
+        r = res["factoring_cost"]
+        print(f"Factoring: advance {r['advance_amount']:,.0f}  fee {r['fee_amount']:,.0f}  net proceeds {r['net_proceeds']:,.0f}  effective APR {r['effective_annual_rate']:.1%}")
+    if "early_payment_discount_apr" in res:
+        print(f"Early-payment discount APR: {res['early_payment_discount_apr']:.1%}")
+    if "asset_based_lending_availability" in res:
+        r = res["asset_based_lending_availability"]
+        print(f"ABL availability: borrowing base {r['borrowing_base']:,.0f}  available to draw {r['available_to_draw']:,.0f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -823,6 +884,10 @@ def main(argv=None):
     va = sp.add_parser("variance-analysis", help="budget-vs-actual volume/price/mix variance, horizontal and vertical (common-size) analysis"); va.add_argument("inputs"); va.add_argument("--json-out"); va.set_defaults(fn=cmd_variance_analysis)
     fpap = sp.add_parser("fpa-planning", help="headcount/workforce cost schedule, driver-based rolling forecast"); fpap.add_argument("inputs"); fpap.add_argument("--json-out"); fpap.set_defaults(fn=cmd_fpa_planning)
     bke = sp.add_parser("breakeven", help="break-even point, margin of safety, degree of operating leverage (CVP analysis)"); bke.add_argument("inputs"); bke.add_argument("--json-out"); bke.set_defaults(fn=cmd_breakeven)
+    lr = sp.add_parser("loss-reserving", help="chain-ladder loss development triangle: age-to-age factors, projected ultimates, IBNR"); lr.add_argument("inputs"); lr.add_argument("--json-out"); lr.set_defaults(fn=cmd_loss_reserving)
+    txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
+    red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
+    wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)
