@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 504 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 522 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -84,6 +84,8 @@ finmodel earnout-valuation examples/earnout_valuation_demo.json          # M&A c
 finmodel percentage-of-completion examples/percentage_of_completion_demo.json  # cost-to-cost revenue recognition for long-term contracts
 finmodel credit-card-abs examples/credit_card_abs_demo.json              # credit-card master trust: excess spread, early-amortization trigger, revolving/amortization cash flows
 finmodel sales-capacity-planning examples/sales_capacity_planning_demo.json  # rep productivity ramp curves, bookings-capacity forecasting
+finmodel lease-accounting examples/lease_accounting_demo.json            # ASC 842 lease classification, initial measurement, finance/operating expense schedules
+finmodel fx-hedging examples/fx_hedging_demo.json                        # corporate FX exposure hedging: forward vs money-market vs unhedged
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -318,6 +320,23 @@ verified against a classic textbook reference bond and the exact zero-coupon-dur
 `docs/PROFESSOR_COURSE_SURVEY.md` for the full professor/course list, the complete cross-reference table, and
 what was deliberately left out (credit-card/master-trust securitization, FX exotic-derivatives origination).
 
+## Corporate accounting and treasury tools (`docs/CORPORATE_ACCOUNTING_TREASURY_TOOLS.md`)
+
+A fresh pair rather than another revisit: `finmodel.lease_accounting` (ASC 842 lessee lease classification —
+the five real finance-lease triggers, including the 75%/90% thresholds carried forward from the old ASC 840
+bright-line tests — initial lease-liability/ROU-asset measurement, and the two lease types' genuinely
+different subsequent-expense mechanics: a finance lease's front-loaded interest-plus-amortization versus an
+operating lease's single flat expense every period, with the ROU-asset amortization computed as a plug. The
+module's own docstring flags a real, easy-to-miss point: it implements ASC 842 specifically, not IFRS 16,
+which removed the lessee operating-lease classification entirely — using this module's operating-lease
+treatment under IFRS 16 would be a substantive error, not just a labeling difference) and
+`finmodel.fx_hedging` (the forward-hedge vs. money-market-hedge vs. unhedged comparison for a corporate FX
+transaction exposure — the toolkit's own test suite confirms directly that the two hedges give EXACTLY the
+same result, since covered interest rate parity is precisely the identity that makes them cancel out
+algebraically, the same real result `finmodel.carry_trade` already demonstrated from the speculative side of
+the same identity). See `docs/CORPORATE_ACCOUNTING_TREASURY_TOOLS.md` for the full derivation and what each
+module was checked against to confirm it was genuinely new.
+
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 
 Every survey doc in this session records what got deliberately left out and why — four times now, this
@@ -413,7 +432,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

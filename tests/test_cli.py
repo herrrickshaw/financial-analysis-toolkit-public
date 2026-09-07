@@ -554,3 +554,23 @@ def test_cli_sales_capacity_planning(tmp_path, capsys):
     assert "Total capacity:" in out and "Reps needed:" in out
     saved = json.loads((tmp_path / "scp.json").read_text())
     assert saved["reps_needed_for_target"]["reps_needed"] == pytest.approx(5.0)
+
+
+def test_cli_lease_accounting(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["lease-accounting", str(EX / "lease_accounting_demo.json"), "--json-out", str(tmp_path / "la.json")])
+    out = capsys.readouterr().out
+    assert "Lease classification: finance" in out and "Finance lease:" in out and "Operating lease:" in out
+    saved = json.loads((tmp_path / "la.json").read_text())
+    assert saved["classify_lease"]["classification"] == "finance"
+    assert saved["operating_lease_schedule"]["schedule"][0]["straight_line_expense"] == pytest.approx(100_000.0)
+
+
+def test_cli_fx_hedging(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["fx-hedging", str(EX / "fx_hedging_demo.json"), "--json-out", str(tmp_path / "fxh.json")])
+    out = capsys.readouterr().out
+    assert "Forward hedge" in out and "Money-market hedge" in out and "Unhedged" in out
+    saved = json.loads((tmp_path / "fxh.json").read_text())
+    assert saved["fx_hedge_comparison"]["forward_hedge_value"] == pytest.approx(
+        saved["fx_hedge_comparison"]["money_market_hedge_value"])

@@ -1,0 +1,11 @@
+{
+  "fx_hedge_comparison": {
+    "exposure_type": "receivable",
+    "foreign_currency_amount": 1000000.0,
+    "spot_rate": 83.5,
+    "domestic_rate": 0.07,
+    "foreign_rate": 0.045,
+    "tenor_years": 0.5,
+    "expected_future_spot_rate": 84.0
+  }
+}

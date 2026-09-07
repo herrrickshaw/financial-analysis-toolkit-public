@@ -971,6 +971,37 @@ def cmd_sales_capacity_planning(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_lease_accounting(a):
+    from . import lease_accounting as LA
+    res = LA.from_dict(_load_json(a.inputs))
+    if "classify_lease" in res:
+        r = res["classify_lease"]
+        print(f"Lease classification: {r['classification']}" + (f" ({'; '.join(r['reasons'])})" if r["reasons"] else ""))
+    if "initial_measurement" in res:
+        r = res["initial_measurement"]
+        print(f"Initial measurement: lease liability {r['lease_liability']:,.0f}  ROU asset {r['rou_asset']:,.0f}")
+    if "finance_lease_schedule" in res:
+        r = res["finance_lease_schedule"]
+        print(f"Finance lease: period 1 expense {r['schedule'][0]['total_expense']:,.0f} -> "
+              f"period {len(r['schedule'])} expense {r['schedule'][-1]['total_expense']:,.0f} (front-loaded)")
+    if "operating_lease_schedule" in res:
+        r = res["operating_lease_schedule"]
+        print(f"Operating lease: flat expense {r['straight_line_expense']:,.0f} every period")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_fx_hedging(a):
+    from . import fx_hedging as FXH
+    res = FXH.from_dict(_load_json(a.inputs))
+    if "fx_hedge_comparison" in res:
+        r = res["fx_hedge_comparison"]
+        line = f"Forward hedge {r['forward_hedge_value']:,.0f}  Money-market hedge {r['money_market_hedge_value']:,.0f}"
+        if "unhedged_value" in r:
+            line += f"  Unhedged {r['unhedged_value']:,.0f}"
+        print(line)
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -1096,6 +1127,8 @@ def main(argv=None):
     poc = sp.add_parser("percentage-of-completion", help="cost-to-cost revenue recognition for long-term contracts: percent complete, revenue/gross profit to date, over/under-billing"); poc.add_argument("inputs"); poc.add_argument("--json-out"); poc.set_defaults(fn=cmd_percentage_of_completion)
     cca = sp.add_parser("credit-card-abs", help="credit-card master-trust securitization: excess spread, the 3-month early-amortization trigger, revolving/amortization cash flows"); cca.add_argument("inputs"); cca.add_argument("--json-out"); cca.set_defaults(fn=cmd_credit_card_abs)
     scp = sp.add_parser("sales-capacity-planning", help="rep productivity ramp curves, bookings-capacity forecasting, reps needed to hit a target"); scp.add_argument("inputs"); scp.add_argument("--json-out"); scp.set_defaults(fn=cmd_sales_capacity_planning)
+    lac = sp.add_parser("lease-accounting", help="ASC 842 lease classification, initial measurement, and finance/operating lease expense schedules"); lac.add_argument("inputs"); lac.add_argument("--json-out"); lac.set_defaults(fn=cmd_lease_accounting)
+    fxh = sp.add_parser("fx-hedging", help="corporate FX exposure hedging: forward hedge vs money-market hedge vs unhedged"); fxh.add_argument("inputs"); fxh.add_argument("--json-out"); fxh.set_defaults(fn=cmd_fx_hedging)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)

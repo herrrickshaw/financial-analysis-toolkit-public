@@ -1,0 +1,21 @@
+{
+  "classify_lease": {
+    "lease_term_years": 8,
+    "asset_economic_life_years": 10,
+    "pv_lease_payments": 850000.0,
+    "asset_fair_value": 1000000.0
+  },
+  "initial_measurement": {
+    "lease_payments": [120000.0, 120000.0, 120000.0, 120000.0, 120000.0],
+    "discount_rate": 0.06,
+    "initial_direct_costs": 15000.0
+  },
+  "finance_lease_schedule": {
+    "lease_payments": [120000.0, 120000.0, 120000.0, 120000.0, 120000.0],
+    "discount_rate": 0.06
+  },
+  "operating_lease_schedule": {
+    "lease_payments": [100000.0, 100000.0, 100000.0, 100000.0, 100000.0],
+    "discount_rate": 0.06
+  }
+}
