@@ -1,0 +1,20 @@
+{
+  "_comment": "ILLUSTRATIVE Chapter 11 restructuring demo -- a hypothetical distressed company's capital structure and a real, standard three-tranche seniority stack (secured, senior unsecured, subordinated). Reorg value of $300M is enough to pay secured debt in full but leaves senior unsecured notes as the real fulcrum security (partial recovery) and wipes out the subordinated notes entirely -- the classic real distressed-investing setup.",
+  "recovery_waterfall": {
+    "reorg_value": 300000000,
+    "tranches": [
+      {"name": "Secured Debt (Term Loan)", "claim_amount": 200000000, "seniority": 1},
+      {"name": "Senior Unsecured Notes", "claim_amount": 150000000, "seniority": 2},
+      {"name": "Subordinated Notes", "claim_amount": 100000000, "seniority": 3}
+    ]
+  },
+  "dip_financing_sizing": {
+    "cash_flows": [-8000000, -6000000, -5000000, 4000000, -7000000, -4000000, 3000000, -6000000],
+    "minimum_liquidity": 15000000,
+    "opening_cash": 40000000
+  },
+  "post_emergence_capital_structure": {
+    "emergence_ebitda": 50000000,
+    "target_net_debt_to_ebitda": 2.5
+  }
+}

@@ -522,6 +522,30 @@ def cmd_portfolio(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_restructuring(a):
+    from . import restructuring as R
+    res = R.from_dict(_load_json(a.inputs))
+    if "recovery_waterfall" in res:
+        wf = res["recovery_waterfall"]
+        print(f"Recovery waterfall (reorg value {wf['reorg_value']:,.0f}):")
+        for t in wf["tranches"]:
+            print(f"  {t['name']:28} seniority {t['seniority']}  claim {t['claim_amount']:>14,.0f}  recovery {t['recovery']:>14,.0f}  ({t['recovery_pct']:.1%})")
+        print(f"  Residual to equity: {wf['residual_to_equity']:,.0f}")
+    if "fulcrum_security" in res:
+        f = res["fulcrum_security"]
+        print(f"Fulcrum security: {f['name']}" + (f" ({f['recovery_pct']:.1%} recovery)" if f.get("name") else f" — {f.get('note')}"))
+    if "absolute_priority_check" in res:
+        c = res["absolute_priority_check"]
+        print(f"Absolute priority respected: {c['absolute_priority_respected']}" + (f"  departures: {c['departures']}" if c["departures"] else ""))
+    if "dip_financing_sizing" in res:
+        d = res["dip_financing_sizing"]
+        print(f"DIP financing required: {d['required_dip_facility']:,.0f} (minimum projected cash {d['minimum_projected_cash']:,.0f} vs covenant {d['minimum_liquidity_covenant']:,.0f})")
+    if "post_emergence_capital_structure" in res:
+        p = res["post_emergence_capital_structure"]
+        print(f"Post-emergence new debt: {p['new_debt']:,.0f} ({p['target_net_debt_to_ebitda']:.2f}x EBITDA {p['emergence_ebitda']:,.0f})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -632,6 +656,7 @@ def main(argv=None):
     opt = sp.add_parser("options", help="Black-Scholes option pricing, the Greeks, put-call parity, implied volatility"); opt.add_argument("inputs"); opt.add_argument("--json-out"); opt.set_defaults(fn=cmd_options)
     pf = sp.add_parser("project-finance", help="DSCR-based debt sizing/sculpting, LLCR, cap rate/NOI real-estate valuation"); pf.add_argument("inputs"); pf.add_argument("--json-out"); pf.set_defaults(fn=cmd_project_finance)
     pfo = sp.add_parser("portfolio", help="Markowitz efficient frontier, global minimum-variance and tangency portfolios, Capital Allocation Line"); pfo.add_argument("inputs"); pfo.add_argument("--json-out"); pfo.set_defaults(fn=cmd_portfolio)
+    rs = sp.add_parser("restructuring", help="absolute-priority recovery waterfall, fulcrum security, DIP financing sizing, post-emergence capital structure"); rs.add_argument("inputs"); rs.add_argument("--json-out"); rs.set_defaults(fn=cmd_restructuring)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)

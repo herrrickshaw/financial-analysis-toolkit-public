@@ -258,6 +258,17 @@ def test_cli_portfolio(tmp_path, capsys):
     assert sum(saved["global_minimum_variance"]["weights"]) == pytest.approx(1.0)
 
 
+def test_cli_restructuring(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["restructuring", str(root / "examples" / "restructuring_demo.json"), "--json-out", str(tmp_path / "rs.json")])
+    out = capsys.readouterr().out
+    assert "Fulcrum security: Senior Unsecured Notes" in out and "Absolute priority respected: True" in out
+    saved = json.loads((tmp_path / "rs.json").read_text())
+    assert saved["fulcrum_security"]["name"] == "Senior Unsecured Notes"
+    assert saved["dip_financing_sizing"]["required_dip_facility"] == 4000000
+
+
 def test_cli_strategy(tmp_path, capsys):
     from finmodel.cli import main
     root = Path(__file__).resolve().parent.parent

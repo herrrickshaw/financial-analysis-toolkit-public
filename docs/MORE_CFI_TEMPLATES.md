@@ -1,4 +1,4 @@
-# More CFI/BIWS/Wall Street Prep templates: three real, standard techniques not yet in this toolkit
+# More CFI/BIWS/Wall Street Prep templates: four real, standard techniques not yet in this toolkit
 
 A follow-up gap analysis: this toolkit already carries a 636-entry catalog of CFI, BIWS, Macabacus, Damodaran,
 A Simple Model and exinfm templates (`finmodel catalog list`), with 127 paid CFI titles individually checked
@@ -30,11 +30,11 @@ computes generically.
 - **Training The Street's course catalog**: core financial modeling/valuation, private equity, capital markets
   and Excel — no distinctive category beyond what CFI/WSP already cover and this toolkit already replicates.
 
-Three threads were concrete, real, and clean enough to build as tested code this pass: **option pricing**, **
-project finance**, and **portfolio optimization**. Restructuring/distressed-debt is real and well-scoped but
-substantial enough to warrant its own dedicated pass — see "What wasn't built" below.
+Four threads were concrete, real, and clean enough to build as tested code: **option pricing**, **project
+finance**, **portfolio optimization**, and — in a dedicated follow-up pass — **financial restructuring /
+distressed investing**, the one category the first pass deferred as substantial enough to deserve its own build.
 
-## The three new modules
+## The four new modules
 
 ### 1. `finmodel.options` — Black-Scholes, the Greeks, put-call parity, implied volatility
 
@@ -83,13 +83,28 @@ ratio than the (unconstrained) global-minimum-variance portfolio, since it's def
 finmodel portfolio examples/portfolio_demo.json
 ```
 
+### 4. `finmodel.restructuring` — absolute-priority recovery waterfall, fulcrum security, DIP financing, post-emergence leverage
+
+The real, defining distressed-investing technique: reorganization value distributed strictly by seniority under
+the real 11 U.S.C. § 1129(b)(2) absolute priority rule (the same doctrine behind every real Chapter 11 cramdown
+fight) — the most senior claims paid in full before any junior claim sees a dollar, claims of the same seniority
+(pari passu) split pro rata. `identify_fulcrum()` finds the real, standard "fulcrum security" — the most senior
+tranche that does NOT recover in full, whose holders are the ones who typically end up owning the reorganized
+company's new equity in a real debt-for-equity restructuring — checked at all three real cases (a mid-stack
+fulcrum, full coverage leaving a residual to equity, and near-total wipeout where even the most senior tranche is
+the fulcrum). `check_absolute_priority_departure()` is a mechanical fact-pattern check (explicitly NOT a legal
+opinion — real bankruptcy law has narrow, real exceptions like unanimous class consent) for the same departure
+every real cramdown objection is built on: a junior claim recovering something while a senior claim doesn't.
+`dip_financing_sizing()` sizes debtor-in-possession financing to the worst point a cash flow forecast dips below
+a minimum-liquidity covenant — not just the ending balance. `post_emergence_capital_structure()` sizes new debt
+off a target leverage ratio, not the pre-petition load that drove the distress.
+
+```bash
+finmodel restructuring examples/restructuring_demo.json
+```
+
 ## What wasn't built, and why
 
-- **Financial restructuring / distressed investing** (Wall Street Prep's certificate: liquidity runway analysis,
-  capital-structure waterfalls under distress, DIP financing terms, plan-of-reorganization recovery mechanics,
-  Section 363 sale structures) — real, well-scoped, and genuinely distinct from everything else in this toolkit,
-  but substantial enough (multiple real sub-techniques, each with its own real legal/accounting nuances) to
-  deserve its own dedicated build pass rather than a rushed addition here.
 - **Bank and FIG Financial Model Template** (CFI) — a full bank OPERATING/projection model (deposit and loan
   book growth, net interest margin, provision for credit losses, regulatory capital ratios) is real and distinct
   from what the banking sector check (`docs/FOOTBALL_FIELD_USB.md`) already built, which covered comps/valuation
@@ -121,3 +136,4 @@ finmodel portfolio examples/portfolio_demo.json
 - [Training The Street course catalog](https://trainingthestreet.com/download-the-training-the-street-catalog/)
 - Hull, *Options, Futures and Other Derivatives* — the S=K=$100/r=5%/vol=20%/T=1yr Black-Scholes reference case
   this toolkit's tests are pinned against.
+- 11 U.S.C. § 1129(b)(2) — the absolute priority rule `finmodel.restructuring`'s recovery waterfall implements.

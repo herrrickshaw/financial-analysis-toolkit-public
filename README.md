@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 256 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 270 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -56,6 +56,7 @@ finmodel audit-analytics examples/audit_analytics_demo.json              # Benfo
 finmodel options examples/options_demo.json                              # Black-Scholes, the Greeks, put-call parity, implied volatility
 finmodel project-finance examples/project_finance_demo.json              # DSCR-based debt sizing/sculpting, LLCR, cap rate/NOI real-estate valuation
 finmodel portfolio examples/portfolio_demo.json                          # Markowitz efficient frontier, tangency portfolio, Capital Allocation Line
+finmodel restructuring examples/restructuring_demo.json                  # absolute-priority recovery waterfall, fulcrum security, DIP financing sizing
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -158,17 +159,19 @@ covered elsewhere, or a proprietary platform/workflow product with no publishabl
 ## More CFI/BIWS/Wall Street Prep templates (`docs/MORE_CFI_TEMPLATES.md`)
 
 A follow-up gap analysis against this toolkit's own 636-entry template catalog (`finmodel catalog list`) plus
-Wall Street Prep's and Training The Street's course catalogs, turned into three new modules covering real,
+Wall Street Prep's and Training The Street's course catalogs, turned into four new modules covering real,
 standard techniques this toolkit had zero prior coverage of: `finmodel.options` (Black-Scholes-Merton, the
 Greeks, put-call parity as a real no-arbitrage check, and implied volatility — CFI's own named "Black Scholes
 Calculator" and "Put Call Parity Calculator"), `finmodel.project_finance` (DSCR-based debt sizing and sculpting,
 LLCR, and cap rate/NOI real-estate valuation — a real, distinct curriculum area both Wall Street Prep and BIWS
-teach as a standalone course, separate from corporate 3-statement/DCF modeling), and
-`finmodel.portfolio_optimization` (the real Merton 1972 closed-form Markowitz efficient frontier, the tangency
-portfolio, and the Capital Allocation Line — CFI's own named "Efficient Frontier and CAL Template"). All three
-are pure Python with no numpy/scipy dependency. See `docs/MORE_CFI_TEMPLATES.md` for what was surveyed, what was
-built, and what was deliberately left out (restructuring/distressed investing chief among them — real and
-well-scoped, but substantial enough to deserve its own future pass).
+teach as a standalone course, separate from corporate 3-statement/DCF modeling), `finmodel.portfolio_optimization`
+(the real Merton 1972 closed-form Markowitz efficient frontier, the tangency portfolio, and the Capital
+Allocation Line — CFI's own named "Efficient Frontier and CAL Template"), and `finmodel.restructuring` (the real
+11 U.S.C. § 1129(b)(2) absolute-priority recovery waterfall, fulcrum-security identification, a mechanical
+absolute-priority-departure check, DIP financing sizing, and post-emergence leverage — Wall Street Prep/Wharton's
+"Restructuring & Distressed Investing Certificate"). All four are pure Python with no numpy/scipy dependency.
+See `docs/MORE_CFI_TEMPLATES.md` for what was surveyed, what was built, and what was deliberately left out (a
+full bank/FIG operating model, SaaS cohort analysis, insurance pricing, and convertible bonds/CMOs).
 
 ## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
 
