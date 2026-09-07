@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 306 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 320 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -61,6 +61,7 @@ finmodel bank-model examples/bank_model_demo.json                        # bank 
 finmodel cohort examples/cohort_analysis_demo.json                       # SaaS cohort retention, GRR/NRR, LTV, LTV:CAC, CAC payback
 finmodel insurance-pricing examples/insurance_pricing_demo.json          # combined ratio, operating ratio, loss-cost-multiplier rate making
 finmodel convertible examples/convertible_bonds_demo.json                # convertible bond: bond floor + embedded option (two-component) valuation
+finmodel cmo examples/cmo_demo.json                                       # CMO: PSA prepayment modeling, sequential-pay tranching, weighted average life
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -163,8 +164,8 @@ covered elsewhere, or a proprietary platform/workflow product with no publishabl
 ## More CFI/BIWS/Wall Street Prep templates (`docs/MORE_CFI_TEMPLATES.md`)
 
 A follow-up gap analysis against this toolkit's own 636-entry template catalog (`finmodel catalog list`) plus
-Wall Street Prep's and Training The Street's course catalogs, turned into eight new modules — every real,
-standard technique this survey originally flagged, closed out across three passes: `finmodel.options`
+Wall Street Prep's and Training The Street's course catalogs, turned into nine new modules — every real,
+standard technique this survey originally flagged, closed out across four passes: `finmodel.options`
 (Black-Scholes-Merton, the Greeks, put-call parity as a real no-arbitrage check, and implied volatility — CFI's
 own named "Black Scholes Calculator"/"Put Call Parity Calculator"), `finmodel.project_finance` (DSCR-based debt
 sizing and sculpting, LLCR, and cap rate/NOI real-estate valuation — a standalone course at both Wall Street Prep
@@ -177,11 +178,13 @@ real NII/NIM operating economics, CECL-style provisioning, and regulatory capita
 real US Prompt Corrective Action thresholds — CFI's "Bank and FIG Financial Model Template"), `finmodel.
 cohort_analysis` (SaaS retention curves, the real GRR-vs-NRR distinction, LTV and LTV:CAC — CFI's "Cohort
 Analysis"/"LTV CAC Ratio" templates), `finmodel.insurance_pricing` (combined ratio, the real operating-ratio
-refinement, and loss-cost-multiplier rate making — CFI's "InsurTech Pricer Model"), and `finmodel.
+refinement, and loss-cost-multiplier rate making — CFI's "InsurTech Pricer Model"), `finmodel.
 convertible_bonds` (bond floor plus an embedded call option, directly reusing `finmodel.options` — a real named
-category at both CFI and Wall Street Prep). All eight are pure Python with no numpy/scipy dependency. See
-`docs/MORE_CFI_TEMPLATES.md` for the full survey, including the one item still deliberately left out (CMO/
-structured-credit modeling — a genuinely more specialized topic).
+category at both CFI and Wall Street Prep), and `finmodel.cmo` (PSA prepayment-speed modeling and sequential-pay
+CMO tranching, checked for the two properties every real CMO offering document's PSA-speed table demonstrates:
+Weighted Average Life increasing monotonically down the tranche stack, and shortening for every tranche as
+prepayment speed rises). All nine are pure Python with no numpy/scipy dependency. See `docs/MORE_CFI_TEMPLATES.md`
+for the complete survey — every item it originally flagged is now built.
 
 ## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
 

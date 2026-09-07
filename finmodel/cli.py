@@ -611,6 +611,21 @@ def cmd_convertible_bonds(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_cmo(a):
+    from . import cmo as C
+    res = C.from_dict(_load_json(a.inputs))
+    if "cmo_deal" in res:
+        r = res["cmo_deal"]
+        print(f"Pool fully amortizes in {len(r['pool_cash_flows'])} months at {r['psa_pct']:.0%} PSA")
+        for name, wal in r["weighted_average_life"].items():
+            print(f"  Tranche {name}: WAL {wal:.2f} years")
+    if "psa_sensitivity" in res:
+        print("PSA sensitivity (Weighted Average Life by tranche):")
+        for speed, wal in res["psa_sensitivity"].items():
+            print(f"  {speed:>8}: " + "  ".join(f"{name} {w:.2f}y" for name, w in wal.items()))
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -726,6 +741,7 @@ def main(argv=None):
     ca = sp.add_parser("cohort", help="SaaS cohort retention curves, GRR/NRR, LTV, LTV:CAC, CAC payback"); ca.add_argument("inputs"); ca.add_argument("--json-out"); ca.set_defaults(fn=cmd_cohort_analysis)
     ip = sp.add_parser("insurance-pricing", help="loss/expense/combined/operating ratios, loss-cost-multiplier rate making"); ip.add_argument("inputs"); ip.add_argument("--json-out"); ip.set_defaults(fn=cmd_insurance_pricing)
     cvb = sp.add_parser("convertible", help="convertible bond bond-floor + embedded-option (two-component) valuation, conversion premium"); cvb.add_argument("inputs"); cvb.add_argument("--json-out"); cvb.set_defaults(fn=cmd_convertible_bonds)
+    cmo = sp.add_parser("cmo", help="CMO: PSA prepayment modeling, sequential-pay tranching, weighted average life"); cmo.add_argument("inputs"); cmo.add_argument("--json-out"); cmo.set_defaults(fn=cmd_cmo)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)

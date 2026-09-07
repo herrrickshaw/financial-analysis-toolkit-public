@@ -1,0 +1,25 @@
+{
+  "_comment": "ILLUSTRATIVE CMO demo -- a hypothetical $100M pool of 30-year, 6% fixed-rate mortgages, split into a real, standard three-tranche sequential-pay structure (A/B/C, most senior first), at 100% PSA. Also includes a real PSA-speed sensitivity table (100%/150%/200%/300% PSA) -- the same table every real CMO offering document publishes, showing how each tranche's Weighted Average Life shortens as prepayments speed up.",
+  "cmo_deal": {
+    "principal": 100000000,
+    "annual_rate": 0.06,
+    "term_months": 360,
+    "psa_pct": 1.0,
+    "tranches": {
+      "A": 40000000,
+      "B": 30000000,
+      "C": 30000000
+    }
+  },
+  "psa_sensitivity": {
+    "principal": 100000000,
+    "annual_rate": 0.06,
+    "term_months": 360,
+    "tranches": {
+      "A": 40000000,
+      "B": 30000000,
+      "C": 30000000
+    },
+    "psa_speeds": [1.0, 1.5, 2.0, 3.0]
+  }
+}

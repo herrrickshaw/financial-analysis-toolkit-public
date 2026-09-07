@@ -310,6 +310,17 @@ def test_cli_convertible(tmp_path, capsys):
     assert saved["convertible_bond_value"]["estimated_value"] >= saved["convertible_bond_value"]["conversion_value"]
 
 
+def test_cli_cmo(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["cmo", str(root / "examples" / "cmo_demo.json"), "--json-out", str(tmp_path / "cmo.json")])
+    out = capsys.readouterr().out
+    assert "Tranche A: WAL" in out and "PSA sensitivity" in out
+    saved = json.loads((tmp_path / "cmo.json").read_text())
+    wal = saved["cmo_deal"]["weighted_average_life"]
+    assert wal["A"] < wal["B"] < wal["C"]
+
+
 def test_cli_strategy(tmp_path, capsys):
     from finmodel.cli import main
     root = Path(__file__).resolve().parent.parent

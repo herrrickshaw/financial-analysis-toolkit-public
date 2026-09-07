@@ -1,4 +1,4 @@
-# More CFI/BIWS/Wall Street Prep templates: eight real, standard techniques not yet in this toolkit
+# More CFI/BIWS/Wall Street Prep templates: nine real, standard techniques not yet in this toolkit
 
 A follow-up gap analysis: this toolkit already carries a 636-entry catalog of CFI, BIWS, Macabacus, Damodaran,
 A Simple Model and exinfm templates (`finmodel catalog list`), with 127 paid CFI titles individually checked
@@ -30,13 +30,14 @@ computes generically.
 - **Training The Street's course catalog**: core financial modeling/valuation, private equity, capital markets
   and Excel — no distinctive category beyond what CFI/WSP already cover and this toolkit already replicates.
 
-Eight threads were concrete, real, and clean enough to build as tested code, across three passes: **option
+Nine threads were concrete, real, and clean enough to build as tested code, across four passes: **option
 pricing**, **project finance**, **portfolio optimization**, **financial restructuring / distressed investing**
-(the one category the first pass deferred as substantial enough to deserve its own build), and — closing out
-every remaining item this survey originally flagged — a **bank/FIG operating model**, **SaaS cohort analysis**,
-**insurance pricing**, and **convertible bonds** (the last of which reuses `finmodel.options` directly).
+(the one category the first pass deferred as substantial enough to deserve its own build), a **bank/FIG operating
+model**, **SaaS cohort analysis**, **insurance pricing**, **convertible bonds** (reusing `finmodel.options`
+directly), and finally **CMO / structured-credit modeling** (PSA prepayment curves and sequential-pay tranching)
+— closing out every item this survey originally flagged.
 
-## The eight new modules
+## The nine new modules
 
 ### 1. `finmodel.options` — Black-Scholes, the Greeks, put-call parity, implied volatility
 
@@ -165,13 +166,33 @@ should trade close to its bond floor — both verified explicitly, not just plau
 finmodel convertible examples/convertible_bonds_demo.json
 ```
 
+### 9. `finmodel.cmo` — PSA prepayment modeling and sequential-pay CMO tranching
+
+The one category this survey originally deferred as more specialized than the rest of this toolkit's corporate-
+finance focus, built once the underlying mechanics were worked through properly. `cpr_to_smm()` implements the
+real, standard conversion from an annualized Conditional Prepayment Rate to the monthly Single Monthly Mortality
+rate actually applied to a pool (checked against the well-known reference value: 100% PSA's 6% CPR plateau
+converts to ~0.514% SMM). `psa_cpr_schedule()` is the real, industry-standard PSA benchmark curve (0% to 6%
+linear ramp over a pool's first 30 months, then flat). `pool_cash_flows()` runs a standard level-payment mortgage
+pool's amortization with that prepayment applied each month — checked for real cash-flow conservation (total
+principal paid always equals the original balance) and the real, defining behavior that faster prepayment pays
+the pool off sooner. `sequential_pay_tranches()` implements the defining CMO structure itself: interest flows pro
+rata to every outstanding tranche on its own balance every month (a real, deliberate contrast with
+`finmodel.restructuring`'s bankruptcy waterfall, where a junior claim gets nothing while a senior one is unpaid —
+here a junior TRANCHE keeps collecting interest even while senior PRINCIPAL is still outstanding), while ALL
+principal cascades strictly to the most senior tranche with a balance remaining. `weighted_average_life()` is
+checked for the two real properties every actual CMO offering document's PSA-speed table demonstrates: WAL
+increases monotonically down the tranche stack (senior shortest, junior/support longest), and every tranche's WAL
+shortens as the assumed PSA speed rises — both verified directly, not just plausible-looking output.
+
+```bash
+finmodel cmo examples/cmo_demo.json
+```
+
 ## What wasn't built, and why
 
-- **CMO (Collateralized Mortgage Obligation) models** — a real, named category at these platforms, but a
-  genuinely more specialized structured-credit topic (tranching, real prepayment-speed modeling like PSA/CPR
-  conventions) than the rest of this toolkit's corporate-finance/valuation focus; flagged as real but out of
-  scope.
-- **Training The Street** surfaced no distinctive gap beyond what CFI/WSP already cover.
+- **Training The Street** surfaced no distinctive gap beyond what CFI/WSP already cover — the only remaining
+  item from the original survey.
 
 ## Sources
 
@@ -191,3 +212,6 @@ finmodel convertible examples/convertible_bonds_demo.json
 - 12 CFR § 324.403 — the US Prompt Corrective Action "well capitalized" thresholds `finmodel.bank_model` checks.
 - CFI's own catalog entries for "Bank and FIG Financial Model Template", "Cohort Analysis", "LTV CAC Ratio", and
   "InsurTech Pricer Model" (`catalog/paid_templates.json`).
+- The PSA (Public Securities Association, now SIFMA) standard prepayment benchmark and the CPR-to-SMM conversion
+  `finmodel.cmo` implements — standard, industry-wide mortgage-backed-securities conventions (see, e.g., Fabozzi,
+  *Bond Markets, Analysis, and Strategies*, or any MBS/CMO trading desk reference).
