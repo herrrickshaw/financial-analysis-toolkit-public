@@ -1,9 +1,11 @@
-# Revisiting three previously-deferred gaps
+# Revisiting previously-deferred gaps
 
 Every prior survey this session documented not just what got built but what got deliberately left out, and
-why. This round went back to three of those "deferred" items, re-examined the actual reason each was
-deferred, and found each one was buildable after all — either because the original objection didn't
-actually apply, or because a genuine formula existed that just hadn't been assembled yet.
+why. Twice now, this session has gone back to some of those "deferred" items, re-examined the actual reason
+each was deferred, and found most of them buildable after all — either because the original objection didn't
+actually apply, or because a genuine formula existed that just hadn't been assembled yet. Round 1 (below)
+covered Bornhuetter-Ferguson reserving, earnout valuation, and step-up EMI schedules; round 2 covers an
+American (deal-by-deal) PE carry waterfall with clawback, and percentage-of-completion revenue recognition.
 
 ## 1. Bornhuetter-Ferguson reserving (`finmodel.loss_reserving.bornhuetter_ferguson`)
 
@@ -57,7 +59,7 @@ suite confirms the real, defining trade-off this product structure has: it alway
 interest than a flat EMI for the same loan, because deferring principal repayment leaves the balance
 outstanding for longer — the price of the lower early-year affordability the product is designed to offer.
 
-## Test coverage
+## Test coverage (round 1)
 
 `tests/test_loss_reserving.py` gained 4 tests for Bornhuetter-Ferguson (the fully-developed-year convergence
 property, the immature-year divergence property with a full hand calc, a length-mismatch rejection, and
@@ -67,3 +69,49 @@ metric method against an independently-computed d1/d2 and the real property that
 rises monotonically as the current metric value approaches and then exceeds the threshold.
 `tests/test_retail_loans.py` gained 4 tests for the step-up schedule (exact payoff by tenure, the
 base-below/final-above-flat-EMI property, the higher-total-interest property, and `from_dict` wiring).
+
+## 4. American (deal-by-deal) PE carry waterfall with clawback (`finmodel.vc_fund_metrics.american_waterfall`)
+
+**Originally deferred in** `docs/OPERATING_FINANCE_TOOLS.md`: "a deal-by-deal alternative is real and used
+by some funds, but... a clawback provision needs a full multi-period fund cash-flow history to be
+meaningful... Deferred until there's a real multi-year fund dataset to model it against."
+
+**Why it's buildable now.** A "full multi-year fund dataset" was never actually the requirement — what the
+clawback mechanic needs to be demonstrated and tested correctly is just two or more deals with different
+outcomes, realized at different times, which a small hand-constructed example provides perfectly well.
+`american_waterfall()` processes each deal in realization-date order, paying out that deal's own
+return-of-capital/preferred-return/GP-catch-up/residual-split tiers as it is realized (unlike
+`carry_waterfall`'s whole-fund, point-in-time snapshot), and after every deal checks whether the GP's
+cumulative carry received so far exceeds `carry_pct` of the fund's cumulative profit across every deal
+realized so far. The toolkit's test suite reproduces the real mechanic exactly by hand: a $1M-to-$3M winner
+realized first pays the GP $400,000 in carry (exactly 20% of the fund's $2M cumulative profit at that
+point); a $1M-to-$200,000 loser realized second shrinks cumulative fund profit to $1.2M, so only $240,000 of
+carry is now justified — the GP owes back the $160,000 difference, a real CLAWBACK, exactly the provision
+every American-waterfall fund agreement includes precisely because deal-by-deal payout creates this risk
+that a whole-fund waterfall never has.
+
+## 5. Percentage-of-completion revenue recognition (`finmodel.percentage_of_completion`)
+
+**Originally deferred in** `docs/FPA_GALLERY_GAP_ANALYSIS.md`: "a real, standard ASC 606 revenue-recognition
+method, but vertical-specific (construction/long-term-contract industries) rather than general-purpose;
+deferred for the same reason `docs/ADVISORY_SERVICES.md` deferred other vertical-specific work — no real
+dataset on hand to reconcile it against yet."
+
+**Why it's buildable now.** Same pattern as items 1-4 above: the cost-to-cost percentage-of-completion
+method is exact and self-verifying against its own accounting identity — once costs incurred reach exactly
+100% of the total estimate, cumulative recognized revenue must equal exactly the contract price, with no
+external dataset required to prove the formula correct. `finmodel.percentage_of_completion` implements both
+the single-period calculation (percent complete, revenue and gross profit to date, and the real
+over-billed/under-billed balance-sheet classification every construction company's 10-K reports) and a
+multi-period `completion_schedule()`, whose test suite confirms the identity directly: a 3-period cost
+schedule summing to exactly the total estimate recognizes exactly the contract price in cumulative revenue,
+and the sum of every period's own current-period revenue equals that same total.
+
+## Test coverage (round 2)
+
+`tests/test_vc_fund_metrics.py` gained 4 tests for the American waterfall: the full hand-computed
+winner-then-loser clawback scenario above, a two-winners case confirming no clawback ever triggers when
+cumulative profit only grows, a check that deals are processed in realization-date order regardless of input
+order, and `from_dict` wiring. `tests/test_percentage_of_completion.py` (6 tests, new file) checks the
+single-period calculation against hand-computed values for both the over-billed and under-billed cases, and
+checks the multi-period schedule against its self-verifying revenue-equals-contract-price identity.

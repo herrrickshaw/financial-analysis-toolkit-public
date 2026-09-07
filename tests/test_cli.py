@@ -172,9 +172,19 @@ def test_cli_vc_fund(tmp_path, capsys):
     root = Path(__file__).resolve().parent.parent
     main(["vc-fund", str(root / "examples" / "vc_fund_demo.json"), "--json-out", str(tmp_path / "vf.json")])
     out = capsys.readouterr().out
-    assert "TVPI 1.30x" in out and "MOIC 4.00x" in out and "Carry waterfall" in out
+    assert "TVPI 1.30x" in out and "MOIC 4.00x" in out and "Carry waterfall" in out and "American waterfall" in out and "CLAWBACK" in out
     saved = json.loads((tmp_path / "vf.json").read_text())
     assert saved["fund_metrics"]["tvpi"] == pytest.approx(1.3)
+    assert saved["american_waterfall"]["final_clawback_owed"] == pytest.approx(160_000.0, rel=1e-3)
+
+
+def test_cli_percentage_of_completion(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["percentage-of-completion", str(EX / "percentage_of_completion_demo.json"), "--json-out", str(tmp_path / "poc.json")])
+    out = capsys.readouterr().out
+    assert "revenue to date" in out and "Total revenue recognized:" in out
+    saved = json.loads((tmp_path / "poc.json").read_text())
+    assert saved["completion_schedule"]["total_revenue_recognized"] == pytest.approx(1_200_000.0)
 
 
 def test_cli_cash_flow_forecast(tmp_path, capsys):

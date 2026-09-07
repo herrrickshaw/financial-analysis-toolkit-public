@@ -12,5 +12,13 @@
       "cashflow_dates": ["2019-06-01", "2023-06-01"], "cashflow_amounts": [-1000000, 4000000], "as_of": "2024-01-01"},
     "Portfolio Co B (unrealized)": {"invested": 2000000, "proceeds_to_date": 0, "current_value": 6000000,
       "cashflow_dates": ["2020-01-01"], "cashflow_amounts": [-2000000], "as_of": "2024-01-01"}
+  },
+  "american_waterfall": {
+    "hurdle_rate": 0.08,
+    "carry_pct": 0.20,
+    "deals": [
+      {"name": "Portfolio Co A", "invested": 1000000, "proceeds": 3000000, "invested_date": "2020-01-01", "realized_date": "2021-01-01"},
+      {"name": "Portfolio Co B", "invested": 1000000, "proceeds": 200000, "invested_date": "2020-01-01", "realized_date": "2022-01-01"}
+    ]
   }
 }

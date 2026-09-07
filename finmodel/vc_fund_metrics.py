@@ -14,6 +14,12 @@ Carry waterfall here is the standard "European" (whole-fund) structure: return o
 preferred return (hurdle, compounded from each call's own date), then a 100% GP catch-up up to the target carry
 share of profit-above-capital, then a final LP/GP split (usually 80/20) on everything after — distilled from
 ILPA's own waterfall guidance and Metrick & Yasuda's *Venture Capital and the Finance of Innovation*.
+
+`american_waterfall()` is the deal-by-deal ("American") alternative — flagged as a real, deliberately
+deferred gap in `docs/OPERATING_FINANCE_TOOLS.md` until there was "a real multi-year fund dataset to model it
+against." Revisited in `docs/DEFERRED_GAPS_REVISITED.md`-style reasoning: the objection didn't actually apply
+once a small, hand-constructed multi-deal example (a winner realized before a loser) is enough to demonstrate
+and test the real mechanic a full historical fund dataset was never strictly required for.
 """
 from __future__ import annotations
 
@@ -107,6 +113,55 @@ def carry_waterfall(cashflows: Sequence[CashFlow], nav: float, as_of: str, hurdl
             "effective_carry_pct_of_profit": safe_div(gp_total, max(total_value - paid_in, 1e-9))}
 
 
+def american_waterfall(deals: Sequence[Dict[str, Any]], hurdle_rate: float = 0.08, carry_pct: float = 0.20) -> Dict[str, Any]:
+    """Each deal: {"name": str, "invested": float, "proceeds": float, "invested_date": str, "realized_date":
+    str}. Deals are processed in `realized_date` order; EACH ONE pays out its own return-of-capital/
+    preferred-return/GP-catch-up/residual-split tiers as it is realized (unlike `carry_waterfall`'s
+    whole-fund snapshot), so a GP can receive carry on an early winner before a later loser is realized.
+    After every deal, checks whether the GP's CUMULATIVE carry received so far exceeds `carry_pct` of the
+    fund's CUMULATIVE profit across every deal realized so far; if a later loser shrinks that cumulative
+    profit below what already-paid carry implies, the excess is a real CLAWBACK the GP owes LPs back -- the
+    provision every American-waterfall fund agreement includes precisely because deal-by-deal payout creates
+    this risk that a whole-fund waterfall never has."""
+    from .fin import to_date
+    sorted_deals = sorted(deals, key=lambda dl: to_date(dl["realized_date"]))
+    results: List[Dict[str, Any]] = []
+    cumulative_invested = 0.0
+    cumulative_proceeds = 0.0
+    cumulative_gp_received = 0.0
+    for deal in sorted_deals:
+        invested = deal["invested"]
+        proceeds = deal["proceeds"]
+        years = (to_date(deal["realized_date"]) - to_date(deal["invested_date"])).days / 365.25
+        remaining = proceeds
+        tier1 = min(remaining, invested); remaining -= tier1
+        hurdle_amount = invested * ((1 + hurdle_rate) ** years - 1)
+        tier2 = min(remaining, hurdle_amount); remaining -= tier2
+        catch_up_target = tier2 * carry_pct / (1 - carry_pct) if carry_pct < 1 else remaining
+        tier3 = min(remaining, catch_up_target); remaining -= tier3
+        tier4_gp = remaining * carry_pct
+        tier4_lp = remaining * (1 - carry_pct)
+        gp_this_deal = tier3 + tier4_gp
+        lp_this_deal = tier1 + tier2 + tier4_lp
+
+        cumulative_invested += invested
+        cumulative_proceeds += proceeds
+        cumulative_gp_received += gp_this_deal
+        cumulative_fund_profit = cumulative_proceeds - cumulative_invested
+        target_cumulative_gp_carry = carry_pct * max(0.0, cumulative_fund_profit)
+        clawback_owed = max(0.0, cumulative_gp_received - target_cumulative_gp_carry)
+
+        results.append({"name": deal.get("name"), "invested": invested, "proceeds": proceeds,
+                        "gp_payout": gp_this_deal, "lp_payout": lp_this_deal,
+                        "cumulative_gp_received": cumulative_gp_received,
+                        "cumulative_fund_profit": cumulative_fund_profit,
+                        "target_cumulative_gp_carry": target_cumulative_gp_carry,
+                        "clawback_owed": clawback_owed})
+    return {"deals": results, "total_gp_payout": sum(r["gp_payout"] for r in results),
+            "total_lp_payout": sum(r["lp_payout"] for r in results),
+            "final_clawback_owed": results[-1]["clawback_owed"] if results else 0.0}
+
+
 def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:
     cashflows = [CashFlow(**c) for c in d["cashflows"]]
     out: Dict[str, Any] = {"fund_metrics": fund_metrics(cashflows, d["nav"], d["as_of"])}
@@ -115,4 +170,6 @@ def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:
         out["carry_waterfall"] = carry_waterfall(cashflows, d["nav"], d["as_of"], **c)
     if "deals" in d:
         out["deals"] = {name: deal_metrics(**params) for name, params in d["deals"].items()}
+    if "american_waterfall" in d:
+        out["american_waterfall"] = american_waterfall(**d["american_waterfall"])
     return out

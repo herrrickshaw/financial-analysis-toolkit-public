@@ -360,6 +360,27 @@ def cmd_vc_fund(a):
         w = res["carry_waterfall"]
         print(f"Carry waterfall (whole-fund, European): LP {w['lp_total']:,.0f} ({w['lp_net_tvpi']:.2f}x net)  "
               f"GP {w['gp_total']:,.0f}  (effective carry on profit {w['effective_carry_pct_of_profit']:.1%})")
+    if "american_waterfall" in res:
+        aw = res["american_waterfall"]
+        for d in aw["deals"]:
+            flag = f"  *** CLAWBACK {d['clawback_owed']:,.0f} ***" if d["clawback_owed"] > 1.0 else ""
+            print(f"  {d['name']:12} GP {d['gp_payout']:>12,.0f}  LP {d['lp_payout']:>12,.0f}  cumulative GP received {d['cumulative_gp_received']:>12,.0f}{flag}")
+        print(f"American waterfall (deal-by-deal): total GP {aw['total_gp_payout']:,.0f}  final clawback owed {aw['final_clawback_owed']:,.0f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_percentage_of_completion(a):
+    from . import percentage_of_completion as POC
+    res = POC.from_dict(_load_json(a.inputs))
+    if "percentage_of_completion" in res:
+        r = res["percentage_of_completion"]
+        print(f"% complete {r['pct_complete']:.1%}  revenue to date {r['revenue_recognized_to_date']:,.0f}  "
+              f"gross profit to date {r['gross_profit_to_date']:,.0f}  ({r['classification']}: {r['net_billing_position']:,.0f})")
+    if "completion_schedule" in res:
+        r = res["completion_schedule"]
+        for p in r["periods"]:
+            print(f"  Period {p['period']}: {p['pct_complete']:.1%} complete  revenue this period {p['current_period_revenue']:,.0f}")
+        print(f"Total revenue recognized: {r['total_revenue_recognized']:,.0f}  total gross profit {r['total_gross_profit']:,.0f}")
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
@@ -1015,7 +1036,7 @@ def main(argv=None):
     from . import startup_model as _SM
     su = sp.add_parser("startup", help="new-business 3-statement projection + DCF valuation, benchmarked against real sector peer data"); su.add_argument("inputs"); su.add_argument("--benchmark-sector", choices=list(_SM.SECTOR_PEER_TICKERS)); su.add_argument("--json-out"); su.set_defaults(fn=cmd_startup)
     ct = sp.add_parser("cap-table", help="priced-round dilution (with the option-pool shuffle) and an exit liquidation-preference waterfall"); ct.add_argument("inputs"); ct.add_argument("--json-out"); ct.set_defaults(fn=cmd_cap_table)
-    vf = sp.add_parser("vc-fund", help="VC/PE fund LP metrics (DPI/RVPI/TVPI/IRR), deal-level MOIC/IRR, and a GP/LP carry waterfall"); vf.add_argument("inputs"); vf.add_argument("--json-out"); vf.set_defaults(fn=cmd_vc_fund)
+    vf = sp.add_parser("vc-fund", help="VC/PE fund LP metrics (DPI/RVPI/TVPI/IRR), deal-level MOIC/IRR, and European or American (deal-by-deal, with clawback) carry waterfalls"); vf.add_argument("inputs"); vf.add_argument("--json-out"); vf.set_defaults(fn=cmd_vc_fund)
     cf = sp.add_parser("cash-flow-forecast", help="13-week rolling direct-method cash flow forecast, covenant-breach flagging, forecast-vs-actual variance"); cf.add_argument("inputs"); cf.add_argument("--json-out"); cf.set_defaults(fn=cmd_cash_flow_forecast)
     ic = sp.add_parser("impact", help="2X Criteria gender-lens screen, Impact Management Project ABC classification, GHG intensity"); ic.add_argument("inputs"); ic.add_argument("--json-out"); ic.set_defaults(fn=cmd_impact)
     sf = sp.add_parser("strategy", help="TAM/SAM/SOM market sizing, BCG growth-share matrix, GE-McKinsey nine-box matrix"); sf.add_argument("inputs"); sf.add_argument("--json-out"); sf.set_defaults(fn=cmd_strategy)
@@ -1037,6 +1058,7 @@ def main(argv=None):
     bke = sp.add_parser("breakeven", help="break-even point, margin of safety, degree of operating leverage (CVP analysis)"); bke.add_argument("inputs"); bke.add_argument("--json-out"); bke.set_defaults(fn=cmd_breakeven)
     lr = sp.add_parser("loss-reserving", help="chain-ladder loss development triangle (age-to-age factors, projected ultimates, IBNR) and Bornhuetter-Ferguson"); lr.add_argument("inputs"); lr.add_argument("--json-out"); lr.set_defaults(fn=cmd_loss_reserving)
     eov = sp.add_parser("earnout-valuation", help="M&A contingent-consideration fair value: scenario-weighted expected payout, or a binary metric-threshold digital option"); eov.add_argument("inputs"); eov.add_argument("--json-out"); eov.set_defaults(fn=cmd_earnout_valuation)
+    poc = sp.add_parser("percentage-of-completion", help="cost-to-cost revenue recognition for long-term contracts: percent complete, revenue/gross profit to date, over/under-billing"); poc.add_argument("inputs"); poc.add_argument("--json-out"); poc.set_defaults(fn=cmd_percentage_of_completion)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)

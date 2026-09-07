@@ -1,0 +1,14 @@
+{
+  "percentage_of_completion": {
+    "costs_incurred_to_date": 600000.0,
+    "total_estimated_costs": 1000000.0,
+    "contract_price": 1200000.0,
+    "billings_to_date": 700000.0
+  },
+  "completion_schedule": {
+    "cost_incurred_by_period": [300000.0, 300000.0, 400000.0],
+    "total_estimated_costs": 1000000.0,
+    "contract_price": 1200000.0,
+    "billings_by_period": [350000.0, 350000.0, 500000.0]
+  }
+}

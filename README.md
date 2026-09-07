@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 472 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 483 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -46,7 +46,7 @@ finmodel residual-income examples/residual_income_stld.json              # resid
 finmodel sotp examples/sotp_conglomerate.json                            # sum-of-the-parts across segments
 finmodel startup examples/startup_saas.json                              # new-business 3-statement + DCF, benchmarked against real sector peer data
 finmodel cap-table examples/cap_table_series_ab.json                     # priced-round dilution (option-pool shuffle) + exit waterfall
-finmodel vc-fund examples/vc_fund_demo.json                               # DPI/RVPI/TVPI/IRR, deal MOIC, GP/LP carry waterfall
+finmodel vc-fund examples/vc_fund_demo.json                               # DPI/RVPI/TVPI/IRR, deal MOIC, European or American (deal-by-deal, with clawback) carry waterfall
 finmodel cash-flow-forecast examples/cash_flow_forecast_13wk.json        # 13-week rolling direct-method cash forecast, covenant flags
 finmodel impact examples/impact_scoring_demo.json                        # 2X Criteria, Impact Management Project ABC class, GHG intensity
 finmodel strategy examples/strategy_frameworks_demo.json                 # TAM/SAM/SOM, BCG growth-share matrix, GE-McKinsey nine-box
@@ -81,6 +81,7 @@ finmodel credit-risk examples/credit_risk_demo.json                      # expec
 finmodel interest-rate-risk examples/interest_rate_risk_demo.json        # bank repricing gap and NII sensitivity to a rate shock
 finmodel fixed-income-risk examples/fixed_income_risk_demo.json          # bond price, Macaulay/modified duration, DV01, convexity
 finmodel earnout-valuation examples/earnout_valuation_demo.json          # M&A contingent-consideration fair value: scenario-weighted or binary-digital-option
+finmodel percentage-of-completion examples/percentage_of_completion_demo.json  # cost-to-cost revenue recognition for long-term contracts
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -315,23 +316,35 @@ verified against a classic textbook reference bond and the exact zero-coupon-dur
 `docs/PROFESSOR_COURSE_SURVEY.md` for the full professor/course list, the complete cross-reference table, and
 what was deliberately left out (credit-card/master-trust securitization, FX exotic-derivatives origination).
 
-## Revisiting three deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
+## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 
-Every survey doc in this session records what got deliberately left out and why — this round went back to
-three of those items and found each was buildable after re-examining the actual reason it had been deferred.
-`finmodel.loss_reserving.bornhuetter_ferguson()` blends chain-ladder's own reporting pattern with a
-caller-supplied a-priori expected loss (the "real dataset" the original deferral asked for was never actually
-needed — it's a normal input, not something the module must ship pre-loaded); verified to converge exactly
-to chain-ladder's answer for a fully-developed accident year and to diverge from it for an immature one, the
-real stabilizing effect the method exists to provide. `finmodel.earnout_valuation` implements the two real
-ASC 805 contingent-consideration methods properly: `scenario_weighted_earnout` for discrete milestones, and
-`binary_metric_earnout` for a continuous financial-metric threshold — the "Monte-Carlo" framing that
-originally deferred this was the wrong comparison, since a continuous-metric earnout has a closed-form
-solution as a cash-or-nothing digital option, reusing `finmodel.options.norm_cdf` directly.
-`finmodel.retail_loans.step_up_emi_schedule()` handles the most commonly offered real step-up structure (a
-fixed percentage increase at a fixed frequency), bisecting on the base EMI since there's no closed form for
-an arbitrary step schedule; verified to always cost strictly more total interest than a flat EMI for the same
-loan, the real trade-off behind the product's lower early-year affordability.
+Every survey doc in this session records what got deliberately left out and why — twice now, this session
+has gone back to some of those items and found most of them buildable after re-examining the actual reason
+each had been deferred. Round 1: `finmodel.loss_reserving.bornhuetter_ferguson()` blends chain-ladder's own
+reporting pattern with a caller-supplied a-priori expected loss (the "real dataset" the original deferral
+asked for was never actually needed — it's a normal input, not something the module must ship pre-loaded);
+verified to converge exactly to chain-ladder's answer for a fully-developed accident year and to diverge from
+it for an immature one, the real stabilizing effect the method exists to provide. `finmodel.earnout_valuation`
+implements the two real ASC 805 contingent-consideration methods properly: `scenario_weighted_earnout` for
+discrete milestones, and `binary_metric_earnout` for a continuous financial-metric threshold — the
+"Monte-Carlo" framing that originally deferred this was the wrong comparison, since a continuous-metric
+earnout has a closed-form solution as a cash-or-nothing digital option, reusing `finmodel.options.norm_cdf`
+directly. `finmodel.retail_loans.step_up_emi_schedule()` handles the most commonly offered real step-up
+structure (a fixed percentage increase at a fixed frequency), bisecting on the base EMI since there's no
+closed form for an arbitrary step schedule; verified to always cost strictly more total interest than a flat
+EMI for the same loan, the real trade-off behind the product's lower early-year affordability.
+
+Round 2: `finmodel.vc_fund_metrics.american_waterfall()` — the deal-by-deal PE carry structure, paying out
+each deal's own tiers as it is realized rather than waiting for whole-fund capital return, and tracking
+whether the GP's cumulative carry received exceeds what the fund's cumulative profit actually justifies. The
+"full multi-year fund dataset" the original deferral asked for was unnecessary — a small hand-constructed
+example (a $1M-to-$3M winner realized before a $1M-to-$200,000 loser) is enough to demonstrate and test the
+real CLAWBACK mechanic exactly: the GP's $400,000 carry on the winner alone is later found to exceed what the
+now-lower cumulative fund profit justifies by exactly $160,000, which the GP owes back. `finmodel.
+percentage_of_completion` — cost-to-cost revenue recognition for long-term contracts, exact and
+self-verifying against its own accounting identity (cumulative recognized revenue must equal exactly the
+contract price once costs incurred reach 100% of the total estimate), so no external dataset was ever
+actually required to build and test it correctly.
 
 ## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
 
@@ -375,7 +388,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

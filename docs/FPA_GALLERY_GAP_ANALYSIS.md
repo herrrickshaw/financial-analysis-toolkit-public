@@ -63,11 +63,11 @@ Two more categories were real and distinct, but scoped out:
   rather than general-purpose; its core mechanic (ramping rep productivity by tenure cohort) is close enough
   to `finmodel.cohort_analysis`'s existing retention-curve machinery that it's a natural extension of that
   module rather than a new one, better done when there's a real sales-comp dataset to reconcile against.
-- **WIP / percentage-of-completion contract accounting** (PivotXL) — a real, standard ASC 606
-  revenue-recognition method, but specific to long-term-contract industries (construction, shipbuilding,
-  large custom manufacturing) rather than general corporate FP&A; deferred for the same reason
-  `docs/ADVISORY_SERVICES.md` deferred other vertical-specific work — no real dataset on hand to reconcile it
-  against yet.
+- ~~**WIP / percentage-of-completion contract accounting**~~ (PivotXL) — **RESOLVED**, see
+  `docs/DEFERRED_GAPS_REVISITED.md`: built as `finmodel.percentage_of_completion`. The "real dataset" the
+  original deferral asked for was unnecessary — the cost-to-cost method is exact and self-verifying against
+  its own accounting identity (cumulative recognized revenue must equal exactly the contract price once
+  costs incurred reach 100% of the total estimate).
 
 Three more were ruled out of scope entirely, because they aren't calculations this toolkit's format can
 represent:

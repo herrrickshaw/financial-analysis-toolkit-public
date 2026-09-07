@@ -81,3 +81,55 @@ def test_from_dict_end_to_end():
     assert out["fund_metrics"]["tvpi"] == pytest.approx(1.3)
     assert out["deals"]["Deal 1"]["moic"] == pytest.approx(2.5)
     assert out["carry_waterfall"]["lp_total"] + out["carry_waterfall"]["gp_total"] == pytest.approx(out["carry_waterfall"]["total_value"])
+
+
+def test_american_waterfall_winner_then_loser_triggers_a_clawback():
+    # hand-computed: Deal A (a 3x winner, $1M -> $3M over 1yr) is realized first and pays the GP $400,000 in
+    # carry (exactly 20% of the fund's $2M cumulative profit at that point -- see the module's own worked
+    # derivation). Deal B (a straight loss, $1M -> $200,000) is realized second, shrinking the fund's
+    # cumulative profit to $1.2M -- only $240,000 of carry is now justified, so the GP owes back $160,000.
+    deals = [
+        {"name": "A", "invested": 1_000_000.0, "proceeds": 3_000_000.0, "invested_date": "2020-01-01", "realized_date": "2021-01-01"},
+        {"name": "B", "invested": 1_000_000.0, "proceeds": 200_000.0, "invested_date": "2020-01-01", "realized_date": "2022-01-01"},
+    ]
+    out = VC.american_waterfall(deals, hurdle_rate=0.08, carry_pct=0.20)
+    deal_a, deal_b = out["deals"]
+    assert deal_a["gp_payout"] == pytest.approx(400_000.0, rel=1e-4)
+    assert deal_a["clawback_owed"] == pytest.approx(0.0, abs=1.0)
+    assert deal_b["gp_payout"] == pytest.approx(0.0)  # a straight loss returns none of its own capital, let alone carry
+    assert deal_b["cumulative_fund_profit"] == pytest.approx(1_200_000.0)
+    assert deal_b["target_cumulative_gp_carry"] == pytest.approx(240_000.0)
+    assert deal_b["clawback_owed"] == pytest.approx(160_000.0, rel=1e-3)
+    assert out["final_clawback_owed"] == pytest.approx(160_000.0, rel=1e-3)
+
+
+def test_american_waterfall_two_winners_never_triggers_a_clawback():
+    deals = [
+        {"name": "A", "invested": 1_000_000.0, "proceeds": 2_000_000.0, "invested_date": "2020-01-01", "realized_date": "2021-01-01"},
+        {"name": "B", "invested": 1_000_000.0, "proceeds": 2_500_000.0, "invested_date": "2020-01-01", "realized_date": "2022-01-01"},
+    ]
+    out = VC.american_waterfall(deals, hurdle_rate=0.08, carry_pct=0.20)
+    assert out["final_clawback_owed"] == pytest.approx(0.0, abs=1.0)
+    assert all(d["clawback_owed"] == pytest.approx(0.0, abs=1.0) for d in out["deals"])
+
+
+def test_american_waterfall_processes_deals_in_realization_date_order_regardless_of_input_order():
+    deals_in_order = [
+        {"name": "A", "invested": 1_000_000.0, "proceeds": 3_000_000.0, "invested_date": "2020-01-01", "realized_date": "2021-01-01"},
+        {"name": "B", "invested": 1_000_000.0, "proceeds": 200_000.0, "invested_date": "2020-01-01", "realized_date": "2022-01-01"},
+    ]
+    reversed_input = list(reversed(deals_in_order))
+    out1 = VC.american_waterfall(deals_in_order)
+    out2 = VC.american_waterfall(reversed_input)
+    assert [d["name"] for d in out1["deals"]] == [d["name"] for d in out2["deals"]] == ["A", "B"]
+    assert out1["final_clawback_owed"] == pytest.approx(out2["final_clawback_owed"])
+
+
+def test_from_dict_includes_american_waterfall():
+    out = VC.from_dict({
+        "cashflows": [{"date": "2019-01-01", "amount": -1_000_000}], "nav": 0.0, "as_of": "2024-01-01",
+        "american_waterfall": {"deals": [
+            {"name": "A", "invested": 1_000_000.0, "proceeds": 3_000_000.0, "invested_date": "2020-01-01", "realized_date": "2021-01-01"},
+        ]},
+    })
+    assert out["american_waterfall"]["total_gp_payout"] > 0
