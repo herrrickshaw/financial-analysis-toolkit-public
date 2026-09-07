@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 223 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 256 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -53,6 +53,9 @@ finmodel strategy examples/strategy_frameworks_demo.json                 # TAM/S
 finmodel ppa examples/ppa_demo.json                                      # purchase price allocation: relief-from-royalty, MPEEM, ASC 805 goodwill residual
 finmodel impairment examples/impairment_demo.json                        # ASC 350 goodwill / ASC 350-30 indefinite-lived / ASC 360 long-lived-asset impairment tests
 finmodel audit-analytics examples/audit_analytics_demo.json              # Benford's Law digit-conformity test, rule-based journal-entry testing
+finmodel options examples/options_demo.json                              # Black-Scholes, the Greeks, put-call parity, implied volatility
+finmodel project-finance examples/project_finance_demo.json              # DSCR-based debt sizing/sculpting, LLCR, cap rate/NOI real-estate valuation
+finmodel portfolio examples/portfolio_demo.json                          # Markowitz efficient frontier, tangency portfolio, Capital Allocation Line
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -151,6 +154,21 @@ balance and ASC 360's real two-step undiscounted-cash-flow recoverability screen
 Benford's Law digit-conformity testing with Nigrini's real MAD thresholds, and rule-based journal-entry testing).
 See `docs/BIG4_AUTOMATION.md` for what was surveyed, what was built, and what was deliberately left out (already
 covered elsewhere, or a proprietary platform/workflow product with no publishable methodology to replicate).
+
+## More CFI/BIWS/Wall Street Prep templates (`docs/MORE_CFI_TEMPLATES.md`)
+
+A follow-up gap analysis against this toolkit's own 636-entry template catalog (`finmodel catalog list`) plus
+Wall Street Prep's and Training The Street's course catalogs, turned into three new modules covering real,
+standard techniques this toolkit had zero prior coverage of: `finmodel.options` (Black-Scholes-Merton, the
+Greeks, put-call parity as a real no-arbitrage check, and implied volatility — CFI's own named "Black Scholes
+Calculator" and "Put Call Parity Calculator"), `finmodel.project_finance` (DSCR-based debt sizing and sculpting,
+LLCR, and cap rate/NOI real-estate valuation — a real, distinct curriculum area both Wall Street Prep and BIWS
+teach as a standalone course, separate from corporate 3-statement/DCF modeling), and
+`finmodel.portfolio_optimization` (the real Merton 1972 closed-form Markowitz efficient frontier, the tangency
+portfolio, and the Capital Allocation Line — CFI's own named "Efficient Frontier and CAL Template"). All three
+are pure Python with no numpy/scipy dependency. See `docs/MORE_CFI_TEMPLATES.md` for what was surveyed, what was
+built, and what was deliberately left out (restructuring/distressed investing chief among them — real and
+well-scoped, but substantial enough to deserve its own future pass).
 
 ## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
 

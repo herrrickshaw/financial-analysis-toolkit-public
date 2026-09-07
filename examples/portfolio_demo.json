@@ -1,0 +1,23 @@
+{
+  "_comment": "ILLUSTRATIVE Markowitz portfolio-optimization demo -- three hypothetical assets with plausible expected returns and a real, positive-semidefinite covariance matrix (not derived from live market data). mu/cov are shared inputs across every sub-section below.",
+  "mu": [0.08, 0.12, 0.15],
+  "cov": [
+    [0.04, 0.01, 0.02],
+    [0.01, 0.09, 0.03],
+    [0.02, 0.03, 0.16]
+  ],
+  "global_minimum_variance": {},
+  "efficient_frontier": {
+    "target_returns": [0.08, 0.10, 0.12, 0.14]
+  },
+  "tangency": {
+    "risk_free": 0.03
+  },
+  "capital_allocation_line": {
+    "target_volatilities": [0.05, 0.10, 0.15]
+  },
+  "portfolio_stats": {
+    "weights": [0.34, 0.33, 0.33],
+    "risk_free": 0.03
+  }
+}

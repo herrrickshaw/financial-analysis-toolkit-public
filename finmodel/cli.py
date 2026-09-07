@@ -462,6 +462,66 @@ def cmd_audit_analytics(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_options(a):
+    from . import options as O
+    res = O.from_dict(_load_json(a.inputs))
+    if "black_scholes" in res:
+        r = res["black_scholes"]
+        print(f"{r['option_type'].capitalize()} price: {r['price']:.4f}  (d1={r['d1']:.4f}, d2={r['d2']:.4f})")
+    if "greeks" in res:
+        g = res["greeks"]
+        print(f"Greeks: delta {g['delta']:.4f}  gamma {g['gamma']:.4f}  vega {g['vega']:.4f}  theta {g['theta']:.4f}  rho {g['rho']:.4f}")
+    if "put_call_parity" in res:
+        p = res["put_call_parity"]
+        print(f"Put-call parity: C-P={p['lhs_call_minus_put']:.4f} vs synthetic forward {p['rhs_synthetic_forward']:.4f}  →  holds={p['holds']} (gap {p['arbitrage_gap']:.6f})")
+    if "implied_volatility" in res:
+        print(f"Implied volatility: {res['implied_volatility']:.4%}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_project_finance(a):
+    from . import project_finance as PF
+    res = PF.from_dict(_load_json(a.inputs))
+    if "size_debt_by_dscr" in res:
+        r = res["size_debt_by_dscr"]
+        print(f"Debt sized to target DSCR {r['target_dscr']:.2f}x: max debt {r['max_debt_sized']:,.0f}")
+    if "sculpted_amortization" in res:
+        r = res["sculpted_amortization"]
+        for i, row in enumerate(r["schedule"], 1):
+            print(f"  period {i}: CFADS {row['cfads']:>12,.0f}  debt service {row['debt_service']:>12,.0f}  DSCR {row['dscr']:.2f}x  closing balance {row['closing_balance']:>12,.0f}")
+        print(f"Fully repaid: {r['fully_repaid']}")
+    if "llcr" in res:
+        print(f"LLCR: {res['llcr']['llcr']:.2f}x")
+    if "cap_rate_valuation" in res:
+        print(f"Cap rate valuation: NOI {res['cap_rate_valuation']['noi']:,.0f} / {res['cap_rate_valuation']['cap_rate']:.2%}  →  value {res['cap_rate_valuation']['value']:,.0f}")
+    if "levered_cash_on_cash" in res:
+        print(f"Cash-on-cash return: {res['levered_cash_on_cash']['cash_on_cash_return']:.2%}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_portfolio(a):
+    from . import portfolio_optimization as PO
+    res = PO.from_dict(_load_json(a.inputs))
+    if "global_minimum_variance" in res:
+        r = res["global_minimum_variance"]
+        print(f"Global minimum-variance portfolio: weights {['%.2f%%' % (w*100) for w in r['weights']]}  vol {r['volatility']:.2%}")
+    if "efficient_frontier" in res:
+        print("Efficient frontier:")
+        for p in res["efficient_frontier"]:
+            print(f"  target return {p['target_return']:.2%}  →  vol {p['volatility']:.2%}  weights {['%.2f%%' % (w*100) for w in p['weights']]}")
+    if "tangency" in res:
+        t = res["tangency"]
+        print(f"Tangency portfolio: weights {['%.2f%%' % (w*100) for w in t['weights']]}  return {t['expected_return']:.2%}  vol {t['volatility']:.2%}  Sharpe {t['sharpe_ratio']:.3f}")
+    if "capital_allocation_line" in res:
+        print("Capital Allocation Line:")
+        for p in res["capital_allocation_line"]:
+            print(f"  vol {p['volatility']:.2%}  →  return {p['expected_return']:.2%}  ({p['weight_in_tangency_portfolio']:.1%} in tangency, {p['weight_in_risk_free']:.1%} in risk-free)")
+    if "portfolio_stats" in res:
+        s = res["portfolio_stats"]
+        print(f"Portfolio: return {s['expected_return']:.2%}  vol {s['volatility']:.2%}" + (f"  Sharpe {s['sharpe_ratio']:.3f}" if "sharpe_ratio" in s else ""))
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -569,6 +629,9 @@ def main(argv=None):
     ppa = sp.add_parser("ppa", help="purchase price allocation: relief-from-royalty, MPEEM, cost approach, ASC 805 goodwill residual"); ppa.add_argument("inputs"); ppa.add_argument("--json-out"); ppa.set_defaults(fn=cmd_ppa)
     imp = sp.add_parser("impairment", help="ASC 350 goodwill / ASC 350-30 indefinite-lived intangible / ASC 360 long-lived-asset impairment tests"); imp.add_argument("inputs"); imp.add_argument("--json-out"); imp.set_defaults(fn=cmd_impairment)
     aa = sp.add_parser("audit-analytics", help="Benford's Law digit-conformity test and rule-based journal-entry testing (JET)"); aa.add_argument("inputs"); aa.add_argument("--json-out"); aa.set_defaults(fn=cmd_audit_analytics)
+    opt = sp.add_parser("options", help="Black-Scholes option pricing, the Greeks, put-call parity, implied volatility"); opt.add_argument("inputs"); opt.add_argument("--json-out"); opt.set_defaults(fn=cmd_options)
+    pf = sp.add_parser("project-finance", help="DSCR-based debt sizing/sculpting, LLCR, cap rate/NOI real-estate valuation"); pf.add_argument("inputs"); pf.add_argument("--json-out"); pf.set_defaults(fn=cmd_project_finance)
+    pfo = sp.add_parser("portfolio", help="Markowitz efficient frontier, global minimum-variance and tangency portfolios, Capital Allocation Line"); pfo.add_argument("inputs"); pfo.add_argument("--json-out"); pfo.set_defaults(fn=cmd_portfolio)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)

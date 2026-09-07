@@ -228,6 +228,36 @@ def test_cli_audit_analytics(tmp_path, capsys):
     assert saved["journal_entries"]["n_flagged"] == 4
 
 
+def test_cli_options(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["options", str(root / "examples" / "options_demo.json"), "--json-out", str(tmp_path / "opt.json")])
+    out = capsys.readouterr().out
+    assert "Call price: 10.4506" in out and "Greeks:" in out and "holds=True" in out
+    saved = json.loads((tmp_path / "opt.json").read_text())
+    assert saved["black_scholes"]["price"] == pytest.approx(10.4506, abs=1e-3)
+
+
+def test_cli_project_finance(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["project-finance", str(root / "examples" / "project_finance_demo.json"), "--json-out", str(tmp_path / "pf.json")])
+    out = capsys.readouterr().out
+    assert "Fully repaid: True" in out and "Cap rate valuation:" in out
+    saved = json.loads((tmp_path / "pf.json").read_text())
+    assert saved["sculpted_amortization"]["fully_repaid"] is True
+
+
+def test_cli_portfolio(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["portfolio", str(root / "examples" / "portfolio_demo.json"), "--json-out", str(tmp_path / "port.json")])
+    out = capsys.readouterr().out
+    assert "Global minimum-variance portfolio:" in out and "Tangency portfolio:" in out and "Capital Allocation Line:" in out
+    saved = json.loads((tmp_path / "port.json").read_text())
+    assert sum(saved["global_minimum_variance"]["weights"]) == pytest.approx(1.0)
+
+
 def test_cli_strategy(tmp_path, capsys):
     from finmodel.cli import main
     root = Path(__file__).resolve().parent.parent

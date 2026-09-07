@@ -1,0 +1,28 @@
+{
+  "_comment": "ILLUSTRATIVE Black-Scholes demo -- a 1-year at-the-money call on a $100 stock, 5% risk-free rate, 20% volatility, matching the standard textbook reference case (call price ~10.45, per Hull's 'Options, Futures and Other Derivatives') -- real, standard finance-industry inputs, not company-specific.",
+  "black_scholes": {
+    "spot": 100,
+    "strike": 100,
+    "rate": 0.05,
+    "vol": 0.20,
+    "time": 1.0,
+    "option_type": "call"
+  },
+  "put_call_parity": {
+    "call_price": 10.4506,
+    "put_price": 5.5735,
+    "spot": 100,
+    "strike": 100,
+    "rate": 0.05,
+    "time": 1.0,
+    "tol": 0.001
+  },
+  "implied_volatility": {
+    "option_price": 10.4506,
+    "spot": 100,
+    "strike": 100,
+    "rate": 0.05,
+    "time": 1.0,
+    "option_type": "call"
+  }
+}

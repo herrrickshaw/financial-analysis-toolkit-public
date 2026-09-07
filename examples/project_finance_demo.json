@@ -1,0 +1,28 @@
+{
+  "_comment": "ILLUSTRATIVE project-finance demo -- a hypothetical 5-year renewable-energy project financing, real DSCR/CFADS/LLCR conventions (not a specific named project). CFADS grows modestly year over year as the asset's output ramps toward its contracted level.",
+  "size_debt_by_dscr": {
+    "cfads": [12000000, 12500000, 13000000, 13500000, 14000000],
+    "target_dscr": 1.30,
+    "interest_rate": 0.06
+  },
+  "sculpted_amortization": {
+    "cfads": [12000000, 12500000, 13000000, 13500000, 14000000],
+    "initial_debt": 41935107.52,
+    "target_dscr": 1.30,
+    "interest_rate": 0.06
+  },
+  "llcr": {
+    "cfads_remaining": [12500000, 13000000, 13500000, 14000000],
+    "outstanding_debt": 35000000,
+    "discount_rate": 0.06
+  },
+  "cap_rate_valuation": {
+    "noi": 5000000,
+    "cap_rate": 0.065
+  },
+  "levered_cash_on_cash": {
+    "noi": 5000000,
+    "debt_service": 3000000,
+    "equity_invested": 20000000
+  }
+}
