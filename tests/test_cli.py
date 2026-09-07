@@ -70,3 +70,13 @@ def test_cli_cycle_field_override_for_banking(capsys):
     main(["cycle", str(root / "data" / "edgar" / "USB.json"), "--sector", "banking", "--field", "net_income", "--revenue-field", "equity"])
     out = capsys.readouterr().out
     assert "net_income/equity" in out and "Banks / financial institutions" in out
+
+
+def test_cli_cycle_field_override_for_reit(capsys):
+    # 'ffo' is precomputed into data/edgar/O.json (net_income + real-estate D&A) specifically so this real CLI
+    # invocation — quoted verbatim in docs/FOOTBALL_FIELD_O.md — actually runs rather than dividing by a missing field.
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["cycle", str(root / "data" / "edgar" / "O.json"), "--sector", "reit", "--field", "ffo", "--revenue-field", "revenue"])
+    out = capsys.readouterr().out
+    assert "ffo/revenue" in out and "REITs / real estate" in out and "near normal" in out

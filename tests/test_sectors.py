@@ -154,3 +154,49 @@ def test_default_field_is_meaningless_for_a_bank_on_real_data():
     h = _real_history("STI")
     fy2018 = h["2018-12-31"]
     assert fy2018["operating_income"] > fy2018["revenue"]
+
+
+def _with_ffo(history):
+    h = json.loads(json.dumps(history))
+    for r in h.values():
+        if r.get("net_income") is not None and r.get("da") is not None:
+            r["ffo"] = r["net_income"] + r["da"]
+    return h
+
+
+def test_net_income_understates_ffo_for_every_real_reit_peer():
+    # root cause of docs/FOOTBALL_FIELD_O.md's P/E-vs-P/FFO finding: real-estate D&A is a large enough non-cash
+    # charge that net income is well under FFO for every one of the six real net-lease REITs checked, FY2025 —
+    # this alone (not a chosen price) is why a net-income-based multiple runs high relative to an FFO-based one.
+    for ticker in ("O", "NNN", "WPC", "ADC", "EPRT", "FCPT"):
+        r = _real_history(ticker)["2025-12-31"]
+        ffo = r["net_income"] + r["da"]
+        assert r["net_income"] / ffo < 0.75, f"{ticker}: net income is not meaningfully below FFO"
+
+
+def test_reit_ffo_margin_shows_no_cycle_on_real_data_despite_real_multiple_swing():
+    # the blind-spot finding in SECTOR_PROFILES["reit"]'s note: cycle_diagnostics() on O's real FFO-margin
+    # history reports "near normal" with a weak/none trend, even though O's real year-end P/FFO trading multiple
+    # (computed directly in docs/FOOTBALL_FIELD_O.md, not through this module) swung 12.5x-18.7x over the same
+    # window — this module only ever looks at fundamentals, never a market multiple, so it cannot see that cycle.
+    h = _with_ffo(_real_history("O"))
+    d = sectors.cycle_diagnostics(h, field="ffo", revenue_field="revenue", periods=8, sector="reit")
+    assert d["fiscal_year"] == "2025-12-31"
+    assert d["flag"] == "near normal"
+    assert abs(d["deviation_pct"]) < 0.10
+    t = sectors.trend_diagnostics(h, field="ffo", revenue_field="revenue", periods=8)
+    assert t["trend_strength"] == "weak/none"
+
+
+def test_reit_debt_tags_are_missing_for_some_filers_not_others():
+    # SECTOR_PROFILES["reit"]'s other real finding, and a real correction of an earlier overgeneralization while
+    # writing this check: finmodel.edgar's debt_total/_current/_noncurrent tags return None for the target (O)
+    # and 2 of 5 peers (NNN, ADC) for FY2025 — but NOT for the other 3 peers, which still report a populated
+    # debt_total. This is real filer-by-filer variation, not a sector-wide XBRL gap; the positive-control half of
+    # this test (WPC/EPRT/FCPT) is what makes that a checked fact rather than an unverified absence claim.
+    for ticker in ("O", "NNN", "ADC"):
+        r = _real_history(ticker)["2025-12-31"]
+        assert r.get("debt_total") is None and r.get("debt_current") is None and r.get("debt_noncurrent") is None
+    for ticker in ("WPC", "EPRT", "FCPT"):
+        r = _real_history(ticker)["2025-12-31"]
+        assert r.get("debt_total") is not None

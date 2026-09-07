@@ -11,3 +11,8 @@ out/
 *.tmp
 .DS_Store
 extracted/
+# unlazy skill: per-task completion ledgers and their check scripts are workflow scratch, not a deliverable
+GATES.md
+scripts/_gates/
+.unlazy/
+.unlazy-hook-state.json

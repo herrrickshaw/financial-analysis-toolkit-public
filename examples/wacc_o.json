@@ -1,0 +1,12 @@
+{
+  "_comment": "Realty Income Corporation (O) FY2025 (data/edgar/O.json) plus illustrative market inputs (risk-free = 10yr UST, ERP = Damodaran implied ERP, beta = illustrative for a large-cap net-lease REIT, lower than the market average but real-rate-sensitive). Cost of equity (CAPM) is what feeds the dividend-discount valuation for a REIT -- REITs must distribute >=90% of taxable income as dividends, so a DDM on cost of equity is the textbook-correct DCF-equivalent, and net debt/WACC is not needed the way it is for a normal operating company. debt=0 here is a deliberate simplification (see finmodel.sectors.SECTOR_PROFILES['reit']: finmodel.edgar's debt tags return None for modern REIT 10-Ks anyway, since REITs report disaggregated secured/unsecured/notes-payable tags rather than one aggregate).",
+  "wacc": {
+    "risk_free": 0.042,
+    "equity_risk_premium": 0.045,
+    "beta": 0.90,
+    "market_cap": 57500000000,
+    "debt": 0,
+    "tax_rate": 0.21,
+    "cost_of_debt": 0.05
+  }
+}

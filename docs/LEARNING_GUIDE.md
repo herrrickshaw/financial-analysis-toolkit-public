@@ -233,10 +233,12 @@ template — comps + precedents + DCF + 52-week range together — checked again
 `python scripts/football_field_stld.py` (`docs/FOOTBALL_FIELD_STLD.md`, steel),
 `python scripts/football_field_cvx.py` (`docs/FOOTBALL_FIELD_CVX.md`, oil & gas — a different sector, a genuinely
 different result), `python scripts/football_field_csco.py` (`docs/FOOTBALL_FIELD_CSCO.md`, enterprise
-technology — a third, much lower-cyclicality sector), and `python scripts/football_field_usb.py`
+technology — a third, much lower-cyclicality sector), `python scripts/football_field_usb.py`
 (`docs/FOOTBALL_FIELD_USB.md`, banking — a fourth sector where the template's own EV/EBITDA framework doesn't
-apply at all, and the right fix is different multiples entirely, not just different assumptions). §5 of each
-document also checks the sector-tuning in `finmodel.sectors` below.
+apply at all, and the right fix is different multiples entirely, not just different assumptions), and
+`python scripts/football_field_o.py` (`docs/FOOTBALL_FIELD_O.md`, REITs — a fifth sector where EV/EBITDA is
+computable but P/E isn't the right equity multiple; also surfaces a real blind spot in `finmodel.sectors`
+itself, see 8c-ii below). §5 of each document also checks the sector-tuning in `finmodel.sectors` below.
 
 ---
 
@@ -294,24 +296,29 @@ year happens to fall. `finmodel.sectors` formalizes the fix directly from that f
 Every function above takes `field`/`revenue_field` parameters (default `"operating_income"`/`"revenue"`, an EBIT
 margin) that can be pointed at any other ratio — the banking check (`docs/FOOTBALL_FIELD_USB.md`) uses
 `field="net_income", revenue_field="equity"` to get ROE cyclicality instead, because a bank's standard
-revenue/EBIT tags turned out to be meaningless (see §8c-ii below): the same module, a different ratio.
+revenue/EBIT tags turned out to be meaningless (see §8c-ii below); the REIT check (`docs/FOOTBALL_FIELD_O.md`)
+uses `field="ffo", revenue_field="revenue"` (FFO margin) instead, since FFO — not net income — is what a REIT
+is actually priced on (see §8c-iii below): the same module, a different ratio each time.
 
-Four sectors (`"steel"`, `"oil_gas"`, `"software"`, `"banking"`) are tuned against real multi-year data so far, each
-with a `SECTOR_PROFILE` entry documenting exactly what real range justified its thresholds; every other sector
-falls back to a clearly labelled `"default"` rather than a fabricated industry assumption. All four football-field
-docs' §5 rebuild part or all of their football field with this normalization and compare it to the raw run: at
-STLD it didn't close the gap (the whole peer set shares the same trough, so normalizing both sides of the trade
-moves them together); at Chevron it did change the answer (only the precedent-deal *targets* were cycle-distorted,
-not Chevron itself, so correcting just that one input pushed the precedent-implied range past the price); at Cisco
-the script had to add the trend guard mid-way through, because Salesforce's peer data would otherwise have been
-normalized straight into a misleading number — and even Cisco's own tight-range margin turned out to carry a real
-(if gentle) trend, which is not the same statistical property as a wide cyclical range; at US Bancorp the module
-was pointed at ROE instead of EBIT margin entirely, and correctly found a real, credit-cycle-driven trough in
-FY2020 (the COVID loan-loss reserve build) using a completely different underlying mechanism from a commodity
-price cycle.
+Five sectors (`"steel"`, `"oil_gas"`, `"software"`, `"banking"`, `"reit"`) are tuned against real multi-year data so
+far, each with a `SECTOR_PROFILE` entry documenting exactly what real range justified its thresholds; every other
+sector falls back to a clearly labelled `"default"` rather than a fabricated industry assumption. All five
+football-field docs' §5 rebuild part or all of their football field with this normalization and compare it to the
+raw run: at STLD it didn't close the gap (the whole peer set shares the same trough, so normalizing both sides of
+the trade moves them together); at Chevron it did change the answer (only the precedent-deal *targets* were
+cycle-distorted, not Chevron itself, so correcting just that one input pushed the precedent-implied range past the
+price); at Cisco the script had to add the trend guard mid-way through, because Salesforce's peer data would
+otherwise have been normalized straight into a misleading number — and even Cisco's own tight-range margin turned
+out to carry a real (if gentle) trend, which is not the same statistical property as a wide cyclical range; at US
+Bancorp the module was pointed at ROE instead of EBIT margin entirely, and correctly found a real, credit-cycle-
+driven trough in FY2020 (the COVID loan-loss reserve build) using a completely different underlying mechanism from
+a commodity price cycle; at Realty Income the module was pointed at FFO margin and correctly found *no* cycle —
+which turned out to be the real finding, because the actual cycle lives entirely in the market P/FFO multiple
+(12.5x-18.7x with the interest-rate cycle), somewhere this fundamentals-only module has no visibility into at all.
 
 **Try it.** `finmodel cycle data/edgar/STLD.json --sector steel`; for a bank,
-`finmodel cycle data/edgar/USB.json --sector banking --field net_income --revenue-field equity`.
+`finmodel cycle data/edgar/USB.json --sector banking --field net_income --revenue-field equity`; for a REIT,
+`finmodel cycle data/edgar/O.json --sector reit --field ffo --revenue-field revenue`.
 
 ## 8c-ii. Bank-appropriate valuation: P/B, P/TBV and residual income  (`docs/FOOTBALL_FIELD_USB.md`)
 
@@ -337,6 +344,51 @@ The fix isn't a new engine — it's choosing the right multiples and the right D
 
 **Try it.** `python scripts/football_field_usb.py` — real precedent deals (BB&T/SunTrust, Huntington/TCF) both
 priced near or below tangible book value, the opposite of the control-premium-heavy tech and steel precedents.
+
+## 8c-iii. REIT-appropriate valuation: P/FFO, a dividend discount model, and a real gap in the sector-tuning tool  (`docs/FOOTBALL_FIELD_O.md`)
+
+**What it is.** The fifth football-field check (Realty Income) leads with a different negative finding from
+banking's: a REIT's enterprise value *is* computable, but its most familiar equity multiple — P/E — is badly
+misleading. Real estate depreciation is a large non-cash GAAP charge against an asset that, unlike a factory,
+usually appreciates, so GAAP net income understates cash-generating reality by an inconsistent amount peer to
+peer. Verified across six real net-lease REITs (Realty Income + NNN, W. P. Carey, Agree Realty, Essential
+Properties, Four Corners) on real FY2025 SEC EDGAR data: P/E ranges 22.9x-54.3x, while P/FFO (funds from
+operations = net income + real-estate D&A, the Nareit-standard non-GAAP metric analysts actually price REITs on)
+sits in a much saner 13.6x-19.4x band across the SAME six companies.
+
+- **Comps and precedents**: P/E and P/FFO — both equity-numerator multiples, reusing `finmodel.comps` exactly as
+  the banking check's P/B/P/TBV/P/E did (no new engine code). FFO here is a proxy (net income + D&A): Nareit's
+  official definition also excludes gains/losses on real-estate sales, and AFFO (which further backs out
+  straight-line rent and recurring capex) has no standardized XBRL tag across filers at all — a real
+  data-availability ceiling, not something this toolkit patches around.
+- **DCF-equivalent**: a two-stage dividend discount model (Gordon growth), since REITs must distribute ≥90% of
+  taxable income as dividends — the dividend stream is the natural cash-flow-to-equity proxy here, more directly
+  than for a non-REIT. Growth scenarios come from Realty Income's own real dividend-per-share history: an
+  11-year CAGR of ~3.55%/yr (blue sky) versus a decelerating trailing-3-year CAGR of ~2.77%/yr (bear case), real
+  and driven by the ~4x share-count dilution from stock-funded M&A (the VEREIT and Spirit Realty deals below).
+- **Net debt isn't needed** for either multiple (both are equity-numerator), which turned out to matter: verified
+  that `finmodel.edgar`'s debt tags return `None` for the target and 2 of 5 peers in FY2025 — Realty Income's own
+  aggregate `LongTermDebt` tag stopped being populated after FY2016, replaced by disaggregated
+  `SecuredDebt`/`UnsecuredDebt`/`NotesPayable` tags that are additive components, not fallback alternatives, so
+  summing them needs a different `TAGS` design than this module's first-tag-wins tuples. This is real
+  filer-by-filer variation, not a sector-wide gap: the other 3 of 5 peers still report a populated `debt_total`.
+
+**A real gap this check found in `finmodel.sectors` itself, not in the target company.** Pointing
+`cycle_diagnostics()` at FFO margin (`field="ffo", revenue_field="revenue"`) correctly reports "near normal" with
+a weak/no trend for Realty Income over FY2018-2025 — the fundamental really was that stable. But Realty Income's
+real year-end P/FFO trading multiple swung 12.5x-18.7x over the exact same window, compressing hardest exactly
+when the Fed hiked rates. `cycle_diagnostics()` isn't wrong here; it simply has no way to see this, because it
+only ever looks at a company's own EDGAR fundamentals history, never its market price or trading multiple — and
+for a REIT, the real cycle lives almost entirely in the multiple, driven by the risk-free rate, not in anything
+the fundamentals show. Worth remembering on any sector: a "near normal" fundamentals reading is not the same
+claim as "nothing cyclical is happening to the valuation."
+
+**Learn it.** Nareit's FFO/AFFO white paper and definitions; Damodaran's "valuing real estate/REITs" material;
+Investopedia's *Funds From Operations* and *Dividend Discount Model* entries.
+
+**Try it.** `python scripts/football_field_o.py` — both real precedent deals (Realty Income/VEREIT, Realty
+Income/Spirit Realty) priced below the peer P/FFO trading range, and `finmodel cycle data/edgar/O.json --sector
+reit --field ffo --revenue-field revenue` to see the "near normal" reading for yourself.
 
 ## 8d. Residual income and EVA valuation  (`finmodel.residual_income`)
 
