@@ -1,0 +1,24 @@
+{
+  "fixed_deposit_maturity": {
+    "principal": 500000.0,
+    "annual_rate": 0.072,
+    "tenure_years": 5,
+    "compounding_frequency": 4
+  },
+  "recurring_deposit_maturity": {
+    "monthly_installment": 10000.0,
+    "annual_rate": 0.065,
+    "tenure_months": 60,
+    "compounding_frequency": 4
+  },
+  "recurring_deposit_premature_value": {
+    "monthly_installment": 10000.0,
+    "installments_made": 18,
+    "applicable_rate": 0.05
+  },
+  "tds_on_interest": {
+    "interest_earned": 62000.0,
+    "tds_threshold": 40000.0,
+    "tds_rate": 0.10
+  }
+}

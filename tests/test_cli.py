@@ -423,3 +423,32 @@ def test_cli_working_capital_financing(tmp_path, capsys):
     assert "Factoring:" in out and "Early-payment discount APR:" in out and "ABL availability:" in out
     saved = json.loads((tmp_path / "wcf.json").read_text())
     assert saved["asset_based_lending_availability"]["available_to_draw"] > 0
+
+
+def test_cli_retail_loans(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["retail-loans", str(EX / "retail_loans_demo.json"), "--json-out", str(tmp_path / "rl.json")])
+    out = capsys.readouterr().out
+    assert "Amortization:" in out and "Prepayment" in out and "Foreclosure payoff:" in out
+    saved = json.loads((tmp_path / "rl.json").read_text())
+    assert saved["prepayment_impact"]["interest_saved"] > 0
+    assert saved["loan_eligibility_foir"]["max_eligible_principal"] > 0
+
+
+def test_cli_retail_deposits(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["retail-deposits", str(EX / "retail_deposits_demo.json"), "--json-out", str(tmp_path / "rd.json")])
+    out = capsys.readouterr().out
+    assert "FD maturity:" in out and "RD maturity:" in out and "TDS:" in out
+    saved = json.loads((tmp_path / "rd.json").read_text())
+    assert saved["tds_on_interest"]["tds_applicable"] is True
+
+
+def test_cli_carry_trade(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["carry-trade", str(EX / "carry_trade_demo.json"), "--json-out", str(tmp_path / "ct.json")])
+    out = capsys.readouterr().out
+    assert "CIP forward rate:" in out and "Uncovered carry return:" in out and "Break-even depreciation:" in out
+    saved = json.loads((tmp_path / "ct.json").read_text())
+    assert saved["break_even_depreciation"]["break_even_depreciation_pct"] == pytest.approx(
+        saved["covered_interest_rate_parity"]["forward_premium_pct"])

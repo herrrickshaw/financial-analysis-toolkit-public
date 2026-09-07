@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 390 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 415 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -71,6 +71,9 @@ finmodel loss-reserving examples/loss_reserving_demo.json                # chain
 finmodel tax-provision examples/tax_provision_demo.json                  # deferred tax, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets)
 finmodel real-estate-development examples/real_estate_development_demo.json  # development pro forma: TDC, draw schedule, yield on cost, unlevered IRR
 finmodel working-capital-financing examples/working_capital_financing_demo.json  # factoring cost, early-payment discount APR, ABL borrowing base
+finmodel retail-loans examples/retail_loans_demo.json                    # EMI, amortization, prepayment (reduce-tenure/reduce-EMI), rate reset, foreclosure, FOIR eligibility
+finmodel retail-deposits examples/retail_deposits_demo.json              # FD/RD maturity (per-installment compounding), premature RD closure, Section 194A TDS
+finmodel carry-trade examples/carry_trade_demo.json                      # covered interest rate parity, unhedged FX carry return, break-even depreciation
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -248,6 +251,25 @@ lending borrowing-base availability). See `docs/OPERATING_FINANCE_TOOLS.md` for 
 existing modules to avoid duplication, and what was deliberately deferred (an American deal-by-deal PE carry
 waterfall, ASC 805 earnout valuation, Bornhuetter-Ferguson reserving).
 
+## Retail-banking and FX tools (`docs/RETAIL_BANKING_TOOLS.md`)
+
+A fifth round, this time direct-requested rather than survey-driven: loan (EMI) mechanics, RD/FD deposit
+mechanics, loan amortization adjustments, and FX carry-trade economics. `finmodel.retail_loans` (monthly
+reducing-balance EMI, amortization schedule, part-prepayment with the real reduce-tenure-vs-reduce-EMI
+choice — reduce-tenure provably saves at least as much interest as reduce-EMI for the same prepayment —
+floating-rate reset, foreclosure payoff, and FOIR-based loan eligibility, the underwriting metric Indian
+banks publish directly in their own lending policies), `finmodel.retail_deposits` (Fixed Deposit compound
+interest, Recurring Deposit maturity computed by simulating each monthly installment's own compounding to
+maturity rather than trusting one of the inconsistently-derived closed-form "banker's formulas," premature
+RD closure, and the real Section 194A rule that TDS withholds the FULL interest amount once the threshold is
+crossed, not just the excess), and `finmodel.carry_trade` (covered interest rate parity's no-arbitrage
+forward rate, the unhedged FX carry trade's real cash flow, and a break-even depreciation that this toolkit's
+own test suite confirms is EXACTLY the CIP forward premium — the textbook "forward premium puzzle" result).
+See `docs/RETAIL_BANKING_TOOLS.md` for what was checked against existing debt/FX modules to avoid
+duplication, and what was deliberately deferred (step-up/step-down EMI schedules, balance-transfer
+break-even analysis, a covered/hedged carry trade — riskless by construction once CIP gives the forward
+rate, so there's no separate formula to add).
+
 ## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
 
 The mirror image of the real-company checks above: instead of validating the toolkit against a real filer,
@@ -290,7 +312,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

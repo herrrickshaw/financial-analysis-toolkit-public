@@ -1,0 +1,21 @@
+{
+  "covered_interest_rate_parity": {
+    "spot_rate": 150.0,
+    "domestic_rate": 0.001,
+    "foreign_rate": 0.045,
+    "tenor_years": 1.0
+  },
+  "uncovered_carry_return": {
+    "spot_rate": 150.0,
+    "expected_future_spot_rate": 152.0,
+    "domestic_rate": 0.001,
+    "foreign_rate": 0.045,
+    "tenor_years": 1.0,
+    "notional": 10000000.0
+  },
+  "break_even_depreciation": {
+    "domestic_rate": 0.001,
+    "foreign_rate": 0.045,
+    "tenor_years": 1.0
+  }
+}

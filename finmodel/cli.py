@@ -764,6 +764,65 @@ def cmd_working_capital_financing(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_retail_loans(a):
+    from . import retail_loans as RL
+    res = RL.from_dict(_load_json(a.inputs))
+    if "emi_calculation" in res:
+        print(f"EMI: {res['emi_calculation']['emi']:,.2f}")
+    if "amortization_schedule" in res:
+        r = res["amortization_schedule"]
+        print(f"Amortization: EMI {r['emi']:,.2f}  total interest {r['total_interest']:,.0f}  total payment {r['total_payment']:,.0f}")
+    if "prepayment_impact" in res:
+        r = res["prepayment_impact"]
+        if r["loan_fully_repaid"]:
+            print(f"Prepayment ({r['strategy']}): loan fully repaid, interest saved {r['interest_saved']:,.0f}")
+        else:
+            print(f"Prepayment ({r['strategy']}): new EMI {r['new_emi']:,.2f}  new tenure {r['new_tenure_months']} months  interest saved {r['interest_saved']:,.0f}")
+    if "floating_rate_reset" in res:
+        r = res["floating_rate_reset"]
+        print(f"Rate reset ({r['strategy']}): {r['old_rate']:.2%} -> {r['new_rate']:.2%}  new EMI {r['new_emi']:,.2f}  new tenure {r['new_tenure_months']} months")
+    if "foreclosure_payoff" in res:
+        r = res["foreclosure_payoff"]
+        print(f"Foreclosure payoff: {r['payoff_amount']:,.0f}  interest saved vs completing tenure {r['interest_saved_vs_completing_tenure']:,.0f}")
+    if "loan_eligibility_foir" in res:
+        r = res["loan_eligibility_foir"]
+        print(f"Loan eligibility (FOIR): max eligible principal {r['max_eligible_principal']:,.0f} (available EMI capacity {r['available_emi_capacity']:,.0f})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_retail_deposits(a):
+    from . import retail_deposits as RD
+    res = RD.from_dict(_load_json(a.inputs))
+    if "fixed_deposit_maturity" in res:
+        r = res["fixed_deposit_maturity"]
+        print(f"FD maturity: {r['maturity_value']:,.0f} (interest earned {r['interest_earned']:,.0f})")
+    if "recurring_deposit_maturity" in res:
+        r = res["recurring_deposit_maturity"]
+        print(f"RD maturity: {r['maturity_value']:,.0f} (deposited {r['total_deposited']:,.0f}, interest earned {r['interest_earned']:,.0f})")
+    if "recurring_deposit_premature_value" in res:
+        r = res["recurring_deposit_premature_value"]
+        print(f"RD premature closure value: {r['premature_value']:,.0f} (interest earned {r['interest_earned']:,.0f})")
+    if "tds_on_interest" in res:
+        r = res["tds_on_interest"]
+        print(f"TDS: {'applicable' if r['tds_applicable'] else 'not applicable'} ({r['tds_amount']:,.0f}), net interest {r['net_interest']:,.0f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_carry_trade(a):
+    from . import carry_trade as CT
+    res = CT.from_dict(_load_json(a.inputs))
+    if "covered_interest_rate_parity" in res:
+        r = res["covered_interest_rate_parity"]
+        print(f"CIP forward rate: {r['forward_rate']:,.4f}  (forward premium {r['forward_premium_pct']:.2%})")
+    if "uncovered_carry_return" in res:
+        r = res["uncovered_carry_return"]
+        print(f"Uncovered carry return: {r['return_pct']:.2%}  (profit {r['profit']:,.0f})")
+    if "break_even_depreciation" in res:
+        r = res["break_even_depreciation"]
+        print(f"Break-even depreciation: {r['break_even_depreciation_pct']:.2%}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -888,6 +947,9 @@ def main(argv=None):
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)
+    rl = sp.add_parser("retail-loans", help="EMI, amortization schedule, prepayment (reduce-tenure/reduce-EMI), floating-rate reset, foreclosure payoff, FOIR loan eligibility"); rl.add_argument("inputs"); rl.add_argument("--json-out"); rl.set_defaults(fn=cmd_retail_loans)
+    rdp = sp.add_parser("retail-deposits", help="fixed deposit maturity, recurring deposit maturity (per-installment compounding), premature RD closure, Section 194A TDS"); rdp.add_argument("inputs"); rdp.add_argument("--json-out"); rdp.set_defaults(fn=cmd_retail_deposits)
+    ctd = sp.add_parser("carry-trade", help="covered interest rate parity forward rate, unhedged FX carry return, break-even depreciation"); ctd.add_argument("inputs"); ctd.add_argument("--json-out"); ctd.set_defaults(fn=cmd_carry_trade)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)

@@ -1,0 +1,36 @@
+{
+  "amortization_schedule": {
+    "principal": 3500000.0,
+    "annual_rate": 0.085,
+    "tenure_months": 240
+  },
+  "prepayment_impact": {
+    "principal": 3500000.0,
+    "annual_rate": 0.085,
+    "tenure_months": 240,
+    "prepayment_amount": 500000.0,
+    "prepayment_month": 36,
+    "strategy": "reduce_tenure"
+  },
+  "floating_rate_reset": {
+    "outstanding_balance": 2900000.0,
+    "remaining_tenure_months": 192,
+    "old_rate": 0.085,
+    "new_rate": 0.095,
+    "strategy": "reduce_emi"
+  },
+  "foreclosure_payoff": {
+    "principal": 3500000.0,
+    "annual_rate": 0.085,
+    "tenure_months": 240,
+    "foreclosure_month": 60,
+    "foreclosure_charge_pct": 0.02
+  },
+  "loan_eligibility_foir": {
+    "monthly_gross_income": 180000.0,
+    "existing_emis": 25000.0,
+    "annual_rate": 0.085,
+    "tenure_months": 240,
+    "foir_limit": 0.50
+  }
+}
