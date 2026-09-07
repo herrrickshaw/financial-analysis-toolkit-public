@@ -80,3 +80,16 @@ def test_cli_cycle_field_override_for_reit(capsys):
     main(["cycle", str(root / "data" / "edgar" / "O.json"), "--sector", "reit", "--field", "ffo", "--revenue-field", "revenue"])
     out = capsys.readouterr().out
     assert "ffo/revenue" in out and "REITs / real estate" in out and "near normal" in out
+
+
+def test_cli_cycle_airline_periods5_avoids_the_covid_year(capsys):
+    # unlike banking/REIT, the airline check needs no --field override (the default operating_income/revenue is
+    # correct here) — but it DOES need --periods 5 instead of the CLI's default 8, since the usual 8-year window
+    # pulls in FY2020's pandemic collapse as a "bear case." This is the exact command docs/FOOTBALL_FIELD_ALK.md
+    # cites for the fix.
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["cycle", str(root / "data" / "edgar" / "ALK.json"), "--sector", "airline", "--periods", "5"])
+    out = capsys.readouterr().out
+    assert "Airlines / air transport" in out and "margin" in out  # default fields (no --field override) are correct here
+    assert "-49.8%" not in out and "bear -49" not in out  # FY2020's collapse must not leak into a periods=5 scenario target

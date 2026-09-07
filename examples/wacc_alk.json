@@ -1,0 +1,14 @@
+{
+  "_comment": "Alaska Air Group FY2025 (data/edgar/ALK.json) plus illustrative market inputs (risk-free = 10yr UST, ERP = Damodaran implied ERP, beta = illustrative for a network airline -- high operating leverage and demand cyclicality). Coverage-based synthetic rating (ebit/interest_expense) replaces a real credit rating, same convention as examples/wacc_stld.json -- unlike the bank and REIT checks, an airline's debt is ordinary financing debt (aircraft debt, EETCs, revolvers), so a real debt-weighted WACC applies without the caveats those two checks needed.",
+  "wacc": {
+    "risk_free": 0.042,
+    "equity_risk_premium": 0.045,
+    "beta": 1.30,
+    "market_cap": 6077849680,
+    "debt": 5309000000,
+    "tax_rate": 0.315,
+    "ebit": 303000000,
+    "interest_expense": 272000000,
+    "large_firm": false
+  }
+}

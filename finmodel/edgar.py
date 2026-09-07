@@ -46,14 +46,34 @@ TAGS: Dict[str, Sequence[str]] = {
     "retained_earnings": ("RetainedEarningsAccumulatedDeficit",),
     "cfo": ("NetCashProvidedByUsedInOperatingActivities",),
     "capex": ("PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets"),
+    # NOT a fallback for "capex": some filers (e.g. airlines) split capex into asset-class components that are
+    # ADDITIVE, not alternative tags for the same figure — real, verified on Alaska Air Group's own FY2024 10-K,
+    # where PaymentsForFlightEquipment ($817M) alone understates real total capex by ~26% against
+    # PaymentsForFlightEquipment + PaymentsToAcquireOtherPropertyPlantAndEquipment ($817M + $293M = $1,110M).
+    # Summed into "capex" below only when the primary aggregate tag is absent — same pattern as debt_total.
+    "capex_flight_equipment": ("PaymentsForFlightEquipment",),
+    "capex_other_ppe": ("PaymentsToAcquireOtherPropertyPlantAndEquipment",),
     "dividends": ("PaymentsOfDividends", "PaymentsOfDividendsCommonStock"),
     "diluted_shares": ("WeightedAverageNumberOfDilutedSharesOutstanding",),
     "basic_shares": ("WeightedAverageNumberOfSharesOutstandingBasic",),
     "eps_diluted": ("EarningsPerShareDiluted",),
     "sga": ("SellingGeneralAndAdministrativeExpense",),
     "rnd": ("ResearchAndDevelopmentExpense",),
+    "operating_lease_cost": ("OperatingLeaseCost", "OperatingLeaseExpense"),
+    # deliberately separate fields, NOT fallbacks for operating_lease_cost: for a filer that doesn't disaggregate
+    # (e.g. Southwest), the aggregate "LeaseCost" is dominated by variable lease cost, which ASC 842 expenses as
+    # incurred with no matching capitalized liability — folding it into "operating lease cost" would badly
+    # overstate an EBITDAR add-back. See finmodel.sectors.SECTOR_PROFILES['airline'].
+    "total_lease_cost": ("LeaseCost",),
+    "variable_lease_cost": ("VariableLeaseCost",),
+    # pre-ASC-842 (fiscal years before ~2019) rent expense — the only lease signal available before operating
+    # leases went on the balance sheet; useful for the old rule-of-thumb "capitalize rent at 7-8x" EBITDAR
+    # estimate on a filing this old, since operating_lease_cost/_liability won't exist for it at all.
+    "pre_842_rent_expense": ("OperatingLeasesRentExpenseNet", "AircraftRental"),
+    "operating_lease_liability_current": ("OperatingLeaseLiabilityCurrent",),
+    "operating_lease_liability_noncurrent": ("OperatingLeaseLiabilityNoncurrent",),
 }
-FLOW = {"revenue", "cogs", "gross_profit", "operating_income", "pretax_income", "tax", "net_income", "da", "interest_expense", "interest_income", "cfo", "capex", "dividends", "diluted_shares", "basic_shares", "eps_diluted", "sga", "rnd"}
+FLOW = {"revenue", "cogs", "gross_profit", "operating_income", "pretax_income", "tax", "net_income", "da", "interest_expense", "interest_income", "cfo", "capex", "dividends", "diluted_shares", "basic_shares", "eps_diluted", "sga", "rnd", "operating_lease_cost", "total_lease_cost", "variable_lease_cost", "pre_842_rent_expense", "capex_flight_equipment", "capex_other_ppe"}
 
 
 def fetch(cik: int | str, user_agent: str, cache_dir: Optional[str | Path] = None) -> Dict[str, Any]:
@@ -110,6 +130,14 @@ def annual(facts: Dict[str, Any], tags: Dict[str, Sequence[str]] = TAGS, forms: 
         d = row
         if "debt_total" not in d and ("debt_current" in d or "debt_noncurrent" in d):
             d["debt_total"] = d.get("debt_current", 0) + d.get("debt_noncurrent", 0)
+        if "capex" not in d and ("capex_flight_equipment" in d or "capex_other_ppe" in d):
+            d["capex"] = d.get("capex_flight_equipment", 0) + d.get("capex_other_ppe", 0)
+        if "operating_lease_liability_current" in d or "operating_lease_liability_noncurrent" in d:
+            # ASC 842 (effective FY2019+) put operating leases on the balance sheet with a real, filed present
+            # value — this used to be off-balance-sheet, estimated by capitalizing rent at a rule-of-thumb
+            # multiple (e.g. 7-8x annual rent) for lease-heavy sectors like airlines and retail. Post-ASC 842,
+            # that estimate is obsolete wherever this real figure is available; see SECTOR_PROFILES['airline'].
+            d["operating_lease_liability_total"] = d.get("operating_lease_liability_current", 0) + d.get("operating_lease_liability_noncurrent", 0)
         if "gross_profit" not in d and "revenue" in d and "cogs" in d:
             d["gross_profit"] = d["revenue"] - d["cogs"]
         if "operating_income" not in d and "pretax_income" in d:

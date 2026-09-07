@@ -238,7 +238,10 @@ technology — a third, much lower-cyclicality sector), `python scripts/football
 apply at all, and the right fix is different multiples entirely, not just different assumptions), and
 `python scripts/football_field_o.py` (`docs/FOOTBALL_FIELD_O.md`, REITs — a fifth sector where EV/EBITDA is
 computable but P/E isn't the right equity multiple; also surfaces a real blind spot in `finmodel.sectors`
-itself, see 8c-ii below). §5 of each document also checks the sector-tuning in `finmodel.sectors` below.
+itself, see 8c-iii below), and `python scripts/football_field_alk.py` (`docs/FOOTBALL_FIELD_ALK.md`, airlines —
+a sixth sector where EV/EBITDA is directionally fine but needs a real lease adjustment (EV/EBITDAR); also finds
+a real black-swan trap in `finmodel.sectors`' usual periods=8 default, see 8c-iv below). §5 of each document
+also checks the sector-tuning in `finmodel.sectors` below.
 
 ---
 
@@ -298,27 +301,36 @@ margin) that can be pointed at any other ratio — the banking check (`docs/FOOT
 `field="net_income", revenue_field="equity"` to get ROE cyclicality instead, because a bank's standard
 revenue/EBIT tags turned out to be meaningless (see §8c-ii below); the REIT check (`docs/FOOTBALL_FIELD_O.md`)
 uses `field="ffo", revenue_field="revenue"` (FFO margin) instead, since FFO — not net income — is what a REIT
-is actually priced on (see §8c-iii below): the same module, a different ratio each time.
+is actually priced on (see §8c-iii below). The airline check (`docs/FOOTBALL_FIELD_ALK.md`, §8c-iv below) is the
+one sector so far where the DEFAULT `operating_income`/`revenue` is already the right call — no override needed —
+but it needed `periods=5` instead of the usual `periods=8`, because the wider window's trailing minimum is
+FY2020's pandemic-collapse margin, not a usable "bear case."
 
-Five sectors (`"steel"`, `"oil_gas"`, `"software"`, `"banking"`, `"reit"`) are tuned against real multi-year data so
-far, each with a `SECTOR_PROFILE` entry documenting exactly what real range justified its thresholds; every other
-sector falls back to a clearly labelled `"default"` rather than a fabricated industry assumption. All five
-football-field docs' §5 rebuild part or all of their football field with this normalization and compare it to the
-raw run: at STLD it didn't close the gap (the whole peer set shares the same trough, so normalizing both sides of
-the trade moves them together); at Chevron it did change the answer (only the precedent-deal *targets* were
-cycle-distorted, not Chevron itself, so correcting just that one input pushed the precedent-implied range past the
-price); at Cisco the script had to add the trend guard mid-way through, because Salesforce's peer data would
-otherwise have been normalized straight into a misleading number — and even Cisco's own tight-range margin turned
-out to carry a real (if gentle) trend, which is not the same statistical property as a wide cyclical range; at US
-Bancorp the module was pointed at ROE instead of EBIT margin entirely, and correctly found a real, credit-cycle-
-driven trough in FY2020 (the COVID loan-loss reserve build) using a completely different underlying mechanism from
-a commodity price cycle; at Realty Income the module was pointed at FFO margin and correctly found *no* cycle —
-which turned out to be the real finding, because the actual cycle lives entirely in the market P/FFO multiple
-(12.5x-18.7x with the interest-rate cycle), somewhere this fundamentals-only module has no visibility into at all.
+Six sectors (`"steel"`, `"oil_gas"`, `"software"`, `"banking"`, `"reit"`, `"airline"`) are tuned against real
+multi-year data so far, each with a `SECTOR_PROFILE` entry documenting exactly what real range justified its
+thresholds; every other sector falls back to a clearly labelled `"default"` rather than a fabricated industry
+assumption. All six football-field docs' §5 rebuild part or all of their football field with this normalization
+and compare it to the raw run: at STLD it didn't close the gap (the whole peer set shares the same trough, so
+normalizing both sides of the trade moves them together); at Chevron it did change the answer (only the
+precedent-deal *targets* were cycle-distorted, not Chevron itself, so correcting just that one input pushed the
+precedent-implied range past the price); at Cisco the script had to add the trend guard mid-way through, because
+Salesforce's peer data would otherwise have been normalized straight into a misleading number — and even Cisco's
+own tight-range margin turned out to carry a real (if gentle) trend, which is not the same statistical property as
+a wide cyclical range; at US Bancorp the module was pointed at ROE instead of EBIT margin entirely, and correctly
+found a real, credit-cycle-driven trough in FY2020 (the COVID loan-loss reserve build) using a completely
+different underlying mechanism from a commodity price cycle; at Realty Income the module was pointed at FFO
+margin and correctly found *no* cycle — which turned out to be the real finding, because the actual cycle lives
+entirely in the market P/FFO multiple (12.5x-18.7x with the interest-rate cycle), somewhere this fundamentals-only
+module has no visibility into at all; at Alaska Air Group the module's usual `periods=8` window returned a bear
+case that was literally the FY2020 pandemic collapse — not a plausible recurring low, since a company can't
+sustain that margin for 5 years and still exist — and a short trend window ending right after that same crash
+separately fooled `trend_diagnostics()` into flagging a "strong declining trend" that a longer, recovery-inclusive
+window correctly resolved back to none.
 
 **Try it.** `finmodel cycle data/edgar/STLD.json --sector steel`; for a bank,
 `finmodel cycle data/edgar/USB.json --sector banking --field net_income --revenue-field equity`; for a REIT,
-`finmodel cycle data/edgar/O.json --sector reit --field ffo --revenue-field revenue`.
+`finmodel cycle data/edgar/O.json --sector reit --field ffo --revenue-field revenue`; for an airline (note
+`--periods 5`, not the default 8), `finmodel cycle data/edgar/ALK.json --sector airline --periods 5`.
 
 ## 8c-ii. Bank-appropriate valuation: P/B, P/TBV and residual income  (`docs/FOOTBALL_FIELD_USB.md`)
 
@@ -389,6 +401,58 @@ Investopedia's *Funds From Operations* and *Dividend Discount Model* entries.
 **Try it.** `python scripts/football_field_o.py` — both real precedent deals (Realty Income/VEREIT, Realty
 Income/Spirit Realty) priced below the peer P/FFO trading range, and `finmodel cycle data/edgar/O.json --sector
 reit --field ffo --revenue-field revenue` to see the "near normal" reading for yourself.
+
+## 8c-iv. Airline-appropriate valuation: EV/EBITDAR, and a black-swan trap in the sector-tuning tool  (`docs/FOOTBALL_FIELD_ALK.md`)
+
+**What it is.** The sixth football-field check (Alaska Air Group) is different in kind from the banking and REIT
+checks: EV/EBITDA isn't meaningless for an airline, and net income isn't systematically distorted the way it is
+for a REIT — the gap is narrower and more familiar to credit analysts. An airline that owns its fleet shows that
+cost as debt + depreciation, both already inside EV/EBITDA; one that leases it shows an operating expense that
+reduces EBITDA with, pre-ASC-842, nothing added to EV to compensate. ASC 842 (FY2019+) put the real operating
+lease liability on the balance sheet; `finmodel.edgar` now extracts it (`operating_lease_liability_current`/
+`_noncurrent`, `operating_lease_cost`). Verified real, FY2025: EV/EBITDAR (EBITDA + operating lease cost; EV +
+the real lease liability) compresses the multiple 1-22% across 4 of 5 peers — largest for JetBlue, whose thin
+EBITDA makes the add-back matter proportionally the most.
+
+A real, quoted piece of history ties this to the old convention directly: Alaska's 2016 acquisition of Virgin
+America (pre-ASC-842) had its own press release state the "aggregate transaction value" was "inclusive of...
+capitalized aircraft operating leases" — backing that figure out against Virgin America's own real disclosed
+rent expense gives an implied capitalization multiple of ~7x, landing almost exactly on the classic "7-8x annual
+rent" rule of thumb credit analysts used before operating leases were required on the balance sheet.
+
+A real filer-level data gap, not smoothed over: Southwest's own XBRL filing doesn't disaggregate operating lease
+cost from finance/short-term/variable lease cost — its aggregate `LeaseCost` tag is dominated (~84%) by variable
+lease cost (airport/gate fees ASC 842 expenses as incurred, with no matching capitalized liability), so folding
+it into an EBITDAR add-back would badly overstate Southwest's multiple relative to peers with a clean tag.
+`finmodel.edgar` keeps `operating_lease_cost`/`total_lease_cost`/`variable_lease_cost` as three separate fields
+for exactly this reason, rather than silently falling back from one to another.
+
+**A real second data-quality trap found and fixed while building this check**: some filers (again, Alaska)
+report real total capex split across asset-class-specific tags (`PaymentsForFlightEquipment` for aircraft,
+`PaymentsToAcquireOtherPropertyPlantAndEquipment` for everything else) that are ADDITIVE, not alternatives for
+the same figure — using flight-equipment capex alone understated Alaska's real FY2024 capex by ~26%. Fixed the
+same way `debt_total` already handles the REIT check's analogous debt-tag fragmentation: sum the components when
+the primary aggregate tag is absent, rather than picking one and calling it done.
+
+**A real methodological trap in `finmodel.sectors` itself, not in the target company**: `dcf_scenarios_from_
+history()`'s usual `periods=8` default returns a bear_margin of -49.8% for Alaska — literally FY2020's pandemic
+collapse, not a plausible recurring bear case (a company sustaining that margin for 5 years would be bankrupt,
+not bearish). `periods=5` (the post-recovery years only) gives a real, usable 0.7%/3.8%/11.1% bear/base/blue-sky
+instead. A second, related trap: `trend_diagnostics()` on a 5-year window ending right after the crash
+(`as_of='2020-12-31'`) fires a "strong declining trend" (r=-0.80) — a real result, but a misleading one, since it
+reflects one catastrophic data point dragging a short window's correlation, not a genuine multi-year structural
+decline the way Salesforce's software-check trend was. The SAME company's 8-year window ending FY2025 (which
+includes the recovery) correctly resolves this back to "weak/none" (r=0.11). A correlation coefficient cannot,
+by construction, distinguish "gradual structural decline" from "stable, then one cliff" — both can show a strong
+|r| over a short-enough window ending right after the discontinuity.
+
+**Learn it.** Moody's/S&P airline and retail credit-analysis methodology on EV/EBITDAR and rent capitalization;
+ASC 842 (Topic 842, Leases) transition guidance; Investopedia's *EBITDAR* entry.
+
+**Try it.** `python scripts/football_field_alk.py` — both real precedent deals (Alaska/Virgin America,
+Alaska/Hawaiian Holdings) are all-cash, simpler to verify than the exchange-ratio deals in the banking/REIT
+checks, and `finmodel cycle data/edgar/ALK.json --sector airline --periods 5` to see the COVID-year exclusion
+matter for yourself.
 
 ## 8d. Residual income and EVA valuation  (`finmodel.residual_income`)
 

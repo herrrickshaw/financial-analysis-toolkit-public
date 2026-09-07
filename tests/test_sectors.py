@@ -200,3 +200,70 @@ def test_reit_debt_tags_are_missing_for_some_filers_not_others():
     for ticker in ("WPC", "EPRT", "FCPT"):
         r = _real_history(ticker)["2025-12-31"]
         assert r.get("debt_total") is not None
+
+
+def test_alk_covid_ebit_margin_is_the_most_extreme_real_swing_checked():
+    # SECTOR_PROFILES["airline"]'s headline real finding: Alaska Air Group's FY2020 EBIT margin collapse is the
+    # most extreme swing this module has been tuned on across every sector, and it's a discrete demand shock
+    # (COVID), not a commodity/credit/rate cycle. Grounds "high" cyclicality in an actual observed filer.
+    h = _real_history("ALK")
+    fy2020 = h["2020-12-31"]
+    assert fy2020["operating_income"] / fy2020["revenue"] < -0.45
+
+
+def test_periods_8_bear_case_is_the_covid_year_and_unusable_for_a_dcf():
+    # the DCF trap SECTOR_PROFILES["airline"] documents: dcf_scenarios_from_history's usual periods=8 default
+    # returns the literal FY2020 pandemic margin as "bear_margin" — not a plausible recurring bear case — while
+    # periods=5 (post-recovery years only) gives a real, usable range instead.
+    h = _real_history("ALK")
+    s8 = sectors.dcf_scenarios_from_history(h, periods=8)
+    assert s8["years_used"] == sorted(s8["years_used"])
+    assert s8["bear_margin"] < -0.40, "periods=8's bear case should still be the COVID year"
+    s5 = sectors.dcf_scenarios_from_history(h, periods=5)
+    assert "2020-12-31" not in s5["years_used"]
+    assert -0.05 < s5["bear_margin"] < 0.05, "periods=5's bear case should be a plausible, non-catastrophic margin"
+
+
+def test_trend_detection_flags_covid_cliff_as_a_trend_but_resolves_over_a_longer_window():
+    # the second real trap SECTOR_PROFILES["airline"] documents: a short window ending right after a one-off
+    # catastrophic year can look exactly like a genuine secular trend to a correlation-based detector. The SAME
+    # company's longer window (which includes the recovery) correctly resolves this back to weak/none.
+    h = _real_history("ALK")
+    short = sectors.trend_diagnostics(h, periods=5, as_of="2020-12-31")
+    assert short["trend_strength"] == "strong" and short["correlation"] < 0
+    long = sectors.trend_diagnostics(h, periods=8)
+    assert long["trend_strength"] == "weak/none"
+
+
+def test_airline_ebitdar_lease_adjustment_compresses_the_multiple_on_real_data():
+    # SECTOR_PROFILES["airline"]'s EV/EBITDAR finding: adding back the real, ASC-842-disclosed operating lease
+    # cost/liability compresses the multiple for a real, lease-heavy peer (JetBlue) — verified directly from
+    # committed EDGAR data, not from the doc's prose.
+    r = _real_history("JBLU")["2025-12-31"]
+    ebitda, olc, oll, debt = r["ebitda"], r["operating_lease_cost"], r["operating_lease_liability_total"], r["debt_total"]
+    assert olc is not None and oll is not None
+    ebitdar = ebitda + olc
+    assert ebitdar > ebitda
+    # a real, lease-heavy carrier's lease liability should be a material fraction of its financing debt, not
+    # a rounding error — confirms this isn't a trivial adjustment for JetBlue specifically.
+    assert oll / debt > 0.05
+
+
+def test_southwest_lease_cost_tag_is_dominated_by_uncapitalized_variable_cost():
+    # SECTOR_PROFILES["airline"]'s filer-inconsistency finding: Southwest's own aggregate LeaseCost tag is
+    # mostly VariableLeaseCost, which ASC 842 expenses as incurred with no matching balance-sheet liability —
+    # confirms why finmodel.edgar keeps these as separate fields rather than treating LeaseCost as a safe
+    # fallback for operating_lease_cost.
+    r = _real_history("LUV")["2025-12-31"]
+    assert r.get("operating_lease_cost") is None
+    assert r["total_lease_cost"] is not None and r["variable_lease_cost"] is not None
+    assert r["variable_lease_cost"] / r["total_lease_cost"] > 0.7
+
+
+def test_airline_capex_tags_are_additive_components_not_fallback_alternatives():
+    # a real finding surfaced while building the airline check: Alaska Air Group's real total capex sums two
+    # separate XBRL tags (flight equipment + other PP&E) rather than one aggregate — the same class of trap as
+    # the REIT debt tags, fixed the same way debt_total already was (sum the components, don't pick just one).
+    r = _real_history("ALK")["2024-12-31"]
+    assert r["capex"] == r["capex_flight_equipment"] + r["capex_other_ppe"]
+    assert r["capex_flight_equipment"] / r["capex"] < 0.8, "flight equipment alone should understate real total capex"
