@@ -1,0 +1,9 @@
+{
+  "bond_amortization_schedule": {
+    "face_value": 1000000.0,
+    "coupon_rate": 0.08,
+    "market_rate": 0.10,
+    "periods": 10,
+    "periods_per_year": 2
+  }
+}

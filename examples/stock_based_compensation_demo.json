@@ -1,0 +1,23 @@
+{
+  "rsu_grant_fair_value": {
+    "shares_granted": 10000.0,
+    "grant_date_share_price": 45.0
+  },
+  "stock_option_grant_fair_value": {
+    "shares_granted": 50000.0,
+    "spot": 100.0,
+    "strike": 100.0,
+    "rate": 0.05,
+    "vol": 0.30,
+    "time": 4.0
+  },
+  "graded_vesting_expense_schedule": {
+    "total_fair_value": 1000000.0,
+    "tranches": [
+      {"pct_of_award": 0.25, "vesting_periods": 12},
+      {"pct_of_award": 0.25, "vesting_periods": 24},
+      {"pct_of_award": 0.25, "vesting_periods": 36},
+      {"pct_of_award": 0.25, "vesting_periods": 48}
+    ]
+  }
+}

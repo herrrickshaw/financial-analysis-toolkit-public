@@ -574,3 +574,21 @@ def test_cli_fx_hedging(tmp_path, capsys):
     saved = json.loads((tmp_path / "fxh.json").read_text())
     assert saved["fx_hedge_comparison"]["forward_hedge_value"] == pytest.approx(
         saved["fx_hedge_comparison"]["money_market_hedge_value"])
+
+
+def test_cli_stock_based_compensation(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["stock-based-compensation", str(EX / "stock_based_compensation_demo.json"), "--json-out", str(tmp_path / "sbc.json")])
+    out = capsys.readouterr().out
+    assert "RSU grant fair value:" in out and "Option grant fair value:" in out and "Graded vesting:" in out
+    saved = json.loads((tmp_path / "sbc.json").read_text())
+    assert saved["graded_vesting_expense_schedule"]["schedule"][-1]["cumulative_expense"] == pytest.approx(1_000_000.0)
+
+
+def test_cli_bond_amortization(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["bond-amortization", str(EX / "bond_amortization_demo.json"), "--json-out", str(tmp_path / "ba.json")])
+    out = capsys.readouterr().out
+    assert "Bond issued at discount:" in out
+    saved = json.loads((tmp_path / "ba.json").read_text())
+    assert saved["bond_amortization_schedule"]["schedule"][-1]["carrying_value"] == pytest.approx(1_000_000.0, abs=1e-2)

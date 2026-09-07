@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 522 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 536 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -86,6 +86,8 @@ finmodel credit-card-abs examples/credit_card_abs_demo.json              # credi
 finmodel sales-capacity-planning examples/sales_capacity_planning_demo.json  # rep productivity ramp curves, bookings-capacity forecasting
 finmodel lease-accounting examples/lease_accounting_demo.json            # ASC 842 lease classification, initial measurement, finance/operating expense schedules
 finmodel fx-hedging examples/fx_hedging_demo.json                        # corporate FX exposure hedging: forward vs money-market vs unhedged
+finmodel stock-based-compensation examples/stock_based_compensation_demo.json  # ASC 718 RSU/option grant fair value, straight-line vs graded-vesting expense
+finmodel bond-amortization examples/bond_amortization_demo.json          # effective-interest bond premium/discount amortization schedule
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -337,6 +339,22 @@ algebraically, the same real result `finmodel.carry_trade` already demonstrated 
 the same identity). See `docs/CORPORATE_ACCOUNTING_TREASURY_TOOLS.md` for the full derivation and what each
 module was checked against to confirm it was genuinely new.
 
+## Stock-based compensation and bond issuer accounting (`docs/COMPENSATION_AND_DEBT_ACCOUNTING.md`)
+
+A second fresh pair: `finmodel.stock_based_compensation` (ASC 718 RSU and stock-option grant expense — RSU
+fair value needs no option-pricing model at all, just shares times grant-date price, while option grants
+reuse `finmodel.options.black_scholes` directly rather than re-deriving it; the two real expense-attribution
+methods, straight-line versus graded/accelerated vesting, are verified against a hand-traced four-tranche
+example to expense EXACTLY the same total by completion while graded vesting front-loads more expense into
+early periods) and `finmodel.bond_amortization` (effective-interest premium/discount amortization, ASC
+835-30 — the issuer-side counterpart to `finmodel.fixed_income_risk`'s investor-side duration/convexity;
+verified that a bond's carrying value converges to EXACTLY face value by maturity regardless of whether it
+issued at a premium or a discount). Building this pair's test suite caught and fixed a real (if tiny)
+floating-point bug: a par-priced bond's issue price landed a few billionths of a dollar away from face value
+after summing a discounted cash-flow series, which a naive strict comparison misclassified as a microscopic
+"discount" before a small tolerance band fixed it. See `docs/COMPENSATION_AND_DEBT_ACCOUNTING.md` for the
+full detail.
+
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 
 Every survey doc in this session records what got deliberately left out and why — four times now, this
@@ -432,7 +450,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)
