@@ -1,0 +1,29 @@
+{
+  "_comment": "ILLUSTRATIVE ASC 805 purchase price allocation for a hypothetical $120M all-cash acquisition of a mid-size consumer-products company -- real, named valuation methods (relief-from-royalty for the trade name, MPEEM for customer relationships, cost approach for assembled workforce) feeding a real ASC 805 goodwill residual, per KPMG's own publicly described 'purchase price allocation support' service (see finmodel/ppa_valuation.py's module docstring and docs/BIG4_AUTOMATION.md).",
+  "relief_from_royalty": {
+    "trade_name": {
+      "revenue": [50000000, 53000000, 56000000, 59000000, 62000000],
+      "royalty_rate": 0.02,
+      "tax_rate": 0.25,
+      "discount_rate": 0.12
+    }
+  },
+  "mpeem": {
+    "customer_relationships": {
+      "operating_income": [6500000, 6100000, 5700000, 5300000, 4900000],
+      "contributory_asset_charges": [1500000, 1400000, 1300000, 1200000, 1100000],
+      "tax_rate": 0.25,
+      "discount_rate": 0.13
+    }
+  },
+  "cost_approach": {
+    "assembled_workforce": {
+      "replacement_cost": 3000000,
+      "obsolescence_pct": 0.10
+    }
+  },
+  "allocation": {
+    "purchase_price": 120000000,
+    "net_identifiable_assets_fair_value": 60000000
+  }
+}

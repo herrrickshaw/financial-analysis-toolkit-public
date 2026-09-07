@@ -419,6 +419,49 @@ def cmd_strategy(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_ppa(a):
+    from . import ppa_valuation as PPA
+    res = PPA.from_dict(_load_json(a.inputs))
+    for src in ("relief_from_royalty", "mpeem", "cost_approach"):
+        if src in res:
+            for name, r in res[src].items():
+                print(f"{src} — {name}: value {r['value']:,.0f}" + (f" (TAB factor {r['tab_factor']:.3f})" if "tab_factor" in r else ""))
+    if "allocation" in res:
+        al = res["allocation"]
+        print(f"Allocation: intangibles {al['total_intangibles']:,.0f} + net identifiable assets {al['net_identifiable_assets_fair_value']:,.0f} "
+              f"= {al['total_identifiable_assets']:,.0f}  →  goodwill {al['goodwill']:,.0f} ({al['goodwill_pct_of_price']:.1%} of price)")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_impairment(a):
+    from . import impairment_testing as IT
+    res = IT.from_dict(_load_json(a.inputs))
+    if "goodwill" in res:
+        r = res["goodwill"]
+        print(f"Goodwill (ASC 350): impaired={r['impaired']}, loss {r['impairment_loss']:,.0f}, remaining goodwill {r['remaining_goodwill']:,.0f}")
+    if "indefinite_lived_intangible" in res:
+        r = res["indefinite_lived_intangible"]
+        print(f"Indefinite-lived intangible (ASC 350-30): impaired={r['impaired']}, loss {r['impairment_loss']:,.0f}")
+    if "long_lived_asset" in res:
+        r = res["long_lived_asset"]
+        print(f"Long-lived asset (ASC 360): Step 1 recoverable={r['step1_recoverable']}, impaired={r['impaired']}, loss {r['impairment_loss']:,.0f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_audit_analytics(a):
+    from . import audit_analytics as AA
+    res = AA.from_dict(_load_json(a.inputs))
+    if "benford" in res:
+        b = res["benford"]
+        print(f"Benford's Law (n={b['n']}): MAD {b['mad']:.4f} → {b['conformity']}")
+    if "journal_entries" in res:
+        j = res["journal_entries"]
+        print(f"Journal entry testing: {j['n_flagged']}/{j['n_entries']} entries flagged")
+        for f in j["flagged"]:
+            print(f"  {f.get('id', '?'):>6}  amount {f.get('amount', 0):>12,.0f}  flags: {', '.join(f['flags'])}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -523,6 +566,9 @@ def main(argv=None):
     cf = sp.add_parser("cash-flow-forecast", help="13-week rolling direct-method cash flow forecast, covenant-breach flagging, forecast-vs-actual variance"); cf.add_argument("inputs"); cf.add_argument("--json-out"); cf.set_defaults(fn=cmd_cash_flow_forecast)
     ic = sp.add_parser("impact", help="2X Criteria gender-lens screen, Impact Management Project ABC classification, GHG intensity"); ic.add_argument("inputs"); ic.add_argument("--json-out"); ic.set_defaults(fn=cmd_impact)
     sf = sp.add_parser("strategy", help="TAM/SAM/SOM market sizing, BCG growth-share matrix, GE-McKinsey nine-box matrix"); sf.add_argument("inputs"); sf.add_argument("--json-out"); sf.set_defaults(fn=cmd_strategy)
+    ppa = sp.add_parser("ppa", help="purchase price allocation: relief-from-royalty, MPEEM, cost approach, ASC 805 goodwill residual"); ppa.add_argument("inputs"); ppa.add_argument("--json-out"); ppa.set_defaults(fn=cmd_ppa)
+    imp = sp.add_parser("impairment", help="ASC 350 goodwill / ASC 350-30 indefinite-lived intangible / ASC 360 long-lived-asset impairment tests"); imp.add_argument("inputs"); imp.add_argument("--json-out"); imp.set_defaults(fn=cmd_impairment)
+    aa = sp.add_parser("audit-analytics", help="Benford's Law digit-conformity test and rule-based journal-entry testing (JET)"); aa.add_argument("inputs"); aa.add_argument("--json-out"); aa.set_defaults(fn=cmd_audit_analytics)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)

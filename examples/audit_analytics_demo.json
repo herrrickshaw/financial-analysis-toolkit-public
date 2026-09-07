@@ -1,0 +1,18 @@
+{
+  "_comment": "ILLUSTRATIVE audit-analytics demo -- a small population of invoice amounts and journal entries, per this toolkit's market survey of Deloitte/EY/PwC/KPMG audit-analytics tooling (Omnia/Argus, DataSnipper, etc. -- see finmodel/audit_analytics.py's module docstring and docs/BIG4_AUTOMATION.md). NOTE: Benford's Law needs a reasonably large, unconstrained-magnitude population to be statistically meaningful -- this 20-row illustrative sample is deliberately small, so treat its conformity label as a demonstration of the mechanism, not a real finding; see tests/test_audit_analytics.py for a synthetic dataset built to exactly match (and one built to badly violate) the expected distribution.",
+  "benford": {
+    "values": [1234.56, 1876.20, 2345.10, 1502.00, 1145.75, 2890.40, 3456.00, 1678.90, 4521.30, 1090.15,
+               5234.60, 1345.00, 6789.10, 1456.78, 2001.00, 1789.45, 7890.20, 1234.00, 8901.30, 1567.89]
+  },
+  "journal_entries": {
+    "approval_threshold": 10000,
+    "round_dollar_threshold": 1000,
+    "entries": [
+      {"id": "JE-1001", "amount": 5000, "is_weekend": false, "hour": 14},
+      {"id": "JE-1002", "amount": 48231.17, "is_weekend": true, "hour": 10},
+      {"id": "JE-1003", "amount": 9750.00, "is_weekend": false, "hour": 15},
+      {"id": "JE-1004", "amount": 2200.55, "is_weekend": false, "hour": 23},
+      {"id": "JE-1005", "amount": 15321.42, "is_weekend": false, "hour": 11}
+    ]
+  }
+}

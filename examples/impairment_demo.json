@@ -1,0 +1,17 @@
+{
+  "_comment": "ILLUSTRATIVE ASC 350/360 impairment tests, per Deloitte's own publicly described 'impairment analysis' service (see finmodel/impairment_testing.py's module docstring and docs/BIG4_AUTOMATION.md). Deliberately picked so goodwill's real impairment CAP (it can't be written below zero) and the long-lived-asset test's real Step-1/Step-2 structure both actually fire, not just the simple case.",
+  "goodwill": {
+    "reporting_unit_fair_value": 70000000,
+    "reporting_unit_carrying_value": 95000000,
+    "goodwill_balance": 20000000
+  },
+  "indefinite_lived_intangible": {
+    "fair_value": 8000000,
+    "carrying_value": 10000000
+  },
+  "long_lived_asset": {
+    "undiscounted_cash_flows": [3000000, 3000000, 3000000, 3000000],
+    "carrying_value": 15000000,
+    "fair_value": 9000000
+  }
+}

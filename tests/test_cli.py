@@ -187,6 +187,36 @@ def test_cli_impact(tmp_path, capsys):
     assert saved["ghg"]["scope1_2_tco2e"] == 2000
 
 
+def test_cli_ppa(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["ppa", str(root / "examples" / "ppa_demo.json"), "--json-out", str(tmp_path / "ppa.json")])
+    out = capsys.readouterr().out
+    assert "relief_from_royalty" in out and "Allocation:" in out and "goodwill" in out
+    saved = json.loads((tmp_path / "ppa.json").read_text())
+    assert saved["allocation"]["goodwill"] > 0
+
+
+def test_cli_impairment(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["impairment", str(root / "examples" / "impairment_demo.json"), "--json-out", str(tmp_path / "imp.json")])
+    out = capsys.readouterr().out
+    assert "ASC 350" in out and "ASC 360" in out
+    saved = json.loads((tmp_path / "imp.json").read_text())
+    assert saved["goodwill"]["capped_by_goodwill_balance"] is True
+
+
+def test_cli_audit_analytics(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["audit-analytics", str(root / "examples" / "audit_analytics_demo.json"), "--json-out", str(tmp_path / "aa.json")])
+    out = capsys.readouterr().out
+    assert "Benford's Law" in out and "Journal entry testing" in out
+    saved = json.loads((tmp_path / "aa.json").read_text())
+    assert saved["journal_entries"]["n_flagged"] == 4
+
+
 def test_cli_strategy(tmp_path, capsys):
     from finmodel.cli import main
     root = Path(__file__).resolve().parent.parent
