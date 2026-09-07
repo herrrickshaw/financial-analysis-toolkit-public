@@ -238,10 +238,13 @@ technology — a third, much lower-cyclicality sector), `python scripts/football
 apply at all, and the right fix is different multiples entirely, not just different assumptions), and
 `python scripts/football_field_o.py` (`docs/FOOTBALL_FIELD_O.md`, REITs — a fifth sector where EV/EBITDA is
 computable but P/E isn't the right equity multiple; also surfaces a real blind spot in `finmodel.sectors`
-itself, see 8c-iii below), and `python scripts/football_field_alk.py` (`docs/FOOTBALL_FIELD_ALK.md`, airlines —
+itself, see 8c-iii below), `python scripts/football_field_alk.py` (`docs/FOOTBALL_FIELD_ALK.md`, airlines —
 a sixth sector where EV/EBITDA is directionally fine but needs a real lease adjustment (EV/EBITDAR); also finds
-a real black-swan trap in `finmodel.sectors`' usual periods=8 default, see 8c-iv below). §5 of each document
-also checks the sector-tuning in `finmodel.sectors` below.
+a real black-swan trap in `finmodel.sectors`' usual periods=8 default, see 8c-iv below), and
+`python scripts/football_field_trv.py` (`docs/FOOTBALL_FIELD_TRV.md`, P&C insurance — a seventh sector where
+EV/EBITDA fails for yet another reason, and where BOOK VALUE itself, not the multiple or earnings, turns out to
+be the thing that's rate-exposed; see 8c-v below). §5 of each document also checks the sector-tuning in
+`finmodel.sectors` below.
 
 ---
 
@@ -304,13 +307,16 @@ uses `field="ffo", revenue_field="revenue"` (FFO margin) instead, since FFO — 
 is actually priced on (see §8c-iii below). The airline check (`docs/FOOTBALL_FIELD_ALK.md`, §8c-iv below) is the
 one sector so far where the DEFAULT `operating_income`/`revenue` is already the right call — no override needed —
 but it needed `periods=5` instead of the usual `periods=8`, because the wider window's trailing minimum is
-FY2020's pandemic-collapse margin, not a usable "bear case."
+FY2020's pandemic-collapse margin, not a usable "bear case." The insurance check (`docs/FOOTBALL_FIELD_TRV.md`,
+§8c-v below) reuses banking's exact ROE override (`field="net_income", revenue_field="equity"`) — the first time
+two independently-checked sectors have shared an override rather than each needing its own.
 
-Six sectors (`"steel"`, `"oil_gas"`, `"software"`, `"banking"`, `"reit"`, `"airline"`) are tuned against real
-multi-year data so far, each with a `SECTOR_PROFILE` entry documenting exactly what real range justified its
-thresholds; every other sector falls back to a clearly labelled `"default"` rather than a fabricated industry
-assumption. All six football-field docs' §5 rebuild part or all of their football field with this normalization
-and compare it to the raw run: at STLD it didn't close the gap (the whole peer set shares the same trough, so
+Seven sectors (`"steel"`, `"oil_gas"`, `"software"`, `"banking"`, `"reit"`, `"airline"`, `"insurance"`) are tuned
+against real multi-year data so far, each with a `SECTOR_PROFILE` entry documenting exactly what real range
+justified its thresholds; every other sector falls back to a clearly labelled `"default"` rather than a
+fabricated industry assumption. All seven football-field docs' §5 rebuild part or all of their football field
+with this normalization and compare it to the raw run: at STLD it didn't close the gap (the whole peer set shares
+the same trough, so
 normalizing both sides of the trade moves them together); at Chevron it did change the answer (only the
 precedent-deal *targets* were cycle-distorted, not Chevron itself, so correcting just that one input pushed the
 precedent-implied range past the price); at Cisco the script had to add the trend guard mid-way through, because
@@ -325,12 +331,16 @@ module has no visibility into at all; at Alaska Air Group the module's usual `pe
 case that was literally the FY2020 pandemic collapse — not a plausible recurring low, since a company can't
 sustain that margin for 5 years and still exist — and a short trend window ending right after that same crash
 separately fooled `trend_diagnostics()` into flagging a "strong declining trend" that a longer, recovery-inclusive
-window correctly resolved back to none.
+window correctly resolved back to none; at Travelers the module was pointed at ROE (the same override as US
+Bancorp) and correctly flagged a real "peak" — verified this wasn't a false positive from FY2022's AOCI-driven
+book-value shrinkage alone, since the trend holds up even in 2024-2025, after book value had fully recovered.
 
 **Try it.** `finmodel cycle data/edgar/STLD.json --sector steel`; for a bank,
 `finmodel cycle data/edgar/USB.json --sector banking --field net_income --revenue-field equity`; for a REIT,
 `finmodel cycle data/edgar/O.json --sector reit --field ffo --revenue-field revenue`; for an airline (note
-`--periods 5`, not the default 8), `finmodel cycle data/edgar/ALK.json --sector airline --periods 5`.
+`--periods 5`, not the default 8), `finmodel cycle data/edgar/ALK.json --sector airline --periods 5`; for an
+insurer (the same ROE override as banking), `finmodel cycle data/edgar/TRV.json --sector insurance --field
+net_income --revenue-field equity`.
 
 ## 8c-ii. Bank-appropriate valuation: P/B, P/TBV and residual income  (`docs/FOOTBALL_FIELD_USB.md`)
 
@@ -453,6 +463,55 @@ ASC 842 (Topic 842, Leases) transition guidance; Investopedia's *EBITDAR* entry.
 Alaska/Hawaiian Holdings) are all-cash, simpler to verify than the exchange-ratio deals in the banking/REIT
 checks, and `finmodel cycle data/edgar/ALK.json --sector airline --periods 5` to see the COVID-year exclusion
 matter for yourself.
+
+## 8c-v. Insurance-appropriate valuation: book value is what's rate-exposed, not the multiple or earnings  (`docs/FOOTBALL_FIELD_TRV.md`)
+
+**What it is.** The seventh football-field check (Travelers) shares banking's conclusion (EBITDA doesn't apply,
+use P/B/P/TBV/P/E) but for a genuinely different reason, and its headline finding is new, not a repeat of any
+prior check. Real evidence EV/EBITDA breaks for a P&C insurer: Chubb reports no `da`/`ebitda` tag at all, and
+W. R. Berkley's own `da` value is genuinely NEGATIVE (real, FY2025) because `finmodel.edgar`'s preferred D&A tag
+(`DepreciationAmortizationAndAccretionNet`) bundles in bond-portfolio premium/discount accretion for a filer
+with a large investment book — a different root cause from a bank's revenue-tag mismatch, same fix.
+
+The real, sector-defining finding: verified across five real P&C peers (Travelers, Chubb, Allstate, Progressive,
+Cincinnati Financial) that EVERY ONE showed a real book-value-per-share DECLINE in FY2022 (-9% to -23%) during
+that year's historic bond-market selloff — even though three of five stayed solidly net-income-positive. This is
+mechanistically new: a REIT's operating fundamental stayed flat while its trading MULTIPLE moved with rates; a
+bank's credit losses hit book value AND earnings together. An insurer's available-for-sale bond portfolio marks
+to fair value through OCI (equity), not net income, under GAAP — book value and earnings can genuinely decouple
+in a way they structurally cannot for a bank's amortized-cost loan book.
+
+**A real, connected trap for this sector's ROE override** (`field="net_income", revenue_field="equity"` — the
+same one banking established, the first time two checked sectors have shared an override): Travelers' own
+measured ROE actually ROSE in FY2022, purely because the book-value denominator shrank from the same AOCI hit,
+not because performance improved. Checked, not assumed, that the module's broader "strong improving trend" flag
+on TRV's real ROE isn't just this artifact: 2024-2025's ROE — the highest in the whole series — comes after book
+value had already recovered well past its pre-2022 peak, so the underlying trend is real, sustained profitability
+improvement (a harder P&C pricing market, higher rates flowing through to investment income), the same kind of
+genuine secular trend the software check's guard exists to protect (there, Salesforce's margin expansion; here,
+Travelers' ROE expansion — same guard, opposite-looking but equally real trend, different sector entirely).
+
+**A real, unrelated bonus finding surfaced while building this check**: W. R. Berkley's own
+`WeightedAverageNumberOfDilutedSharesOutstanding` was filed at roughly 1/1000th its real scale for FY2017-2022 —
+a real, persistent XBRL filer error, verified directly against SEC's live API. `finmodel.edgar`'s "latest filing
+wins" logic only self-heals a bad figure while that period still appears as a comparative column in some later
+10-K; FY2023's identical error WAS corrected this way, but FY2017-2022 have since aged out of every subsequent
+filing's comparative window and remain wrong in SEC's own live data today — a reason to sanity-check per-share
+figures against neighboring years rather than trust a single filed value at face value.
+
+Real precedents, both simpler than exchange-ratio deals: AIG/Validus Holdings (2018, all-cash $68.00/share —
+Validus's FY2017 net income was genuinely negative, a real catastrophe-loss year from Hurricanes Harvey/Irma/
+Maria, so its P/E is correctly NM) and Berkshire Hathaway/Alleghany Corporation (2022, all-cash $848.02/share).
+DCF-equivalent: residual income (`finmodel.residual_income`), the exact same generic tool the banking check
+validated, now confirmed on a second, independent financial-services sector.
+
+**Learn it.** GAAP ASC 320/326 (available-for-sale securities, OCI treatment); Damodaran's "valuing financial
+service firms" chapter; Investopedia's *Book Value* and *Combined Ratio* entries.
+
+**Try it.** `python scripts/football_field_trv.py` — both real precedent deals priced at 1.5x+ tangible book
+value, the opposite of the banking check's precedents (which priced near or below it); and `finmodel cycle
+data/edgar/TRV.json --sector insurance --field net_income --revenue-field equity` to see the real "peak" flag on
+a genuinely improving trend.
 
 ## 8d. Residual income and EVA valuation  (`finmodel.residual_income`)
 

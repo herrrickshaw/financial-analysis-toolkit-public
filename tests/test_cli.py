@@ -93,3 +93,13 @@ def test_cli_cycle_airline_periods5_avoids_the_covid_year(capsys):
     out = capsys.readouterr().out
     assert "Airlines / air transport" in out and "margin" in out  # default fields (no --field override) are correct here
     assert "-49.8%" not in out and "bear -49" not in out  # FY2020's collapse must not leak into a periods=5 scenario target
+
+
+def test_cli_cycle_field_override_for_insurance(capsys):
+    # same ROE override as banking (field=net_income, revenue_field=equity), a different sector, confirming the
+    # override generalizes rather than being a banking-only special case.
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["cycle", str(root / "data" / "edgar" / "TRV.json"), "--sector", "insurance", "--field", "net_income", "--revenue-field", "equity"])
+    out = capsys.readouterr().out
+    assert "net_income/equity" in out and "Property & casualty insurance" in out

@@ -267,3 +267,69 @@ def test_airline_capex_tags_are_additive_components_not_fallback_alternatives():
     r = _real_history("ALK")["2024-12-31"]
     assert r["capex"] == r["capex_flight_equipment"] + r["capex_other_ppe"]
     assert r["capex_flight_equipment"] / r["capex"] < 0.8, "flight equipment alone should understate real total capex"
+
+
+def test_wrb_da_tag_is_negative_because_it_bundles_investment_accretion():
+    # SECTOR_PROFILES["insurance"]'s EBITDA finding: W. R. Berkley's own "da" value is genuinely negative for
+    # FY2025, because finmodel.edgar's preferred D&A tag (DepreciationAmortizationAndAccretionNet) bundles in
+    # bond-portfolio premium/discount accretion for a filer with a large investment book -- real evidence that
+    # EBITDA doesn't work for an insurer, a different root cause from banking's revenue-tag mismatch.
+    r = _real_history("WRB")["2025-12-31"]
+    assert r["da"] < 0
+
+
+def test_chubb_has_no_da_or_ebitda_tag_at_all():
+    r = _real_history("CB")["2025-12-31"]
+    assert r.get("da") is None and r.get("ebitda") is None
+
+
+def test_every_real_pc_insurer_peer_shows_a_real_2022_bvps_decline():
+    # the sector-defining real finding: EVERY one of 5 real P&C peers shows a real book-value-per-share decline
+    # in FY2022 (the historic bond selloff), independently re-derived from committed EDGAR data. TRV and CB and
+    # PGR stay net-income-positive that year regardless -- book value and earnings genuinely decouple for an
+    # insurer, unlike a bank (credit losses hit both together).
+    profitable_but_bvps_fell = 0
+    for ticker in ("TRV", "CB", "ALL", "PGR", "CINF"):
+        h = _real_history(ticker)
+        bvps_2021 = h["2021-12-31"]["equity"] / h["2021-12-31"]["diluted_shares"]
+        bvps_2022 = h["2022-12-31"]["equity"] / h["2022-12-31"]["diluted_shares"]
+        assert bvps_2022 < bvps_2021, f"{ticker}: expected a real FY2022 BVPS decline"
+        if h["2022-12-31"]["net_income"] > 0:
+            profitable_but_bvps_fell += 1
+    assert profitable_but_bvps_fell >= 3, "at least 3 of 5 peers should be net-income-positive despite the BVPS decline"
+
+
+def test_trv_roe_rose_in_2022_purely_from_the_shrunken_book_value_denominator():
+    # the connected ROE trap: Travelers' real measured ROE ROSE in FY2022 versus FY2021, purely because its own
+    # AOCI-driven book-value decline shrank the denominator -- not because net income improved.
+    h = _real_history("TRV")
+    r2021, r2022 = h["2021-12-31"], h["2022-12-31"]
+    roe_2021 = r2021["net_income"] / r2021["equity"]
+    roe_2022 = r2022["net_income"] / r2022["equity"]
+    assert roe_2022 > roe_2021
+    assert r2022["net_income"] < r2021["net_income"], "the ROE rise must not be from higher net income"
+
+
+def test_trv_roe_trend_is_strong_and_improving_a_real_trend_guard_callback():
+    # the callback to the software check's trend guard, on a totally different sector: TRV's real ROE trend is
+    # genuinely strong and improving, not the FY2022 denominator artifact alone -- confirmed by checking that
+    # 2024-2025 (the highest ROE years) come after book value had already recovered past its pre-2022 peak.
+    h = _real_history("TRV")
+    t = sectors.trend_diagnostics(h, field="net_income", revenue_field="equity", periods=8)
+    assert t["trend_strength"] == "strong" and t["direction"] == "improving"
+    bvps_2021 = h["2021-12-31"]["equity"] / h["2021-12-31"]["diluted_shares"]
+    bvps_2025 = h["2025-12-31"]["equity"] / h["2025-12-31"]["diluted_shares"]
+    roe_2025 = h["2025-12-31"]["net_income"] / h["2025-12-31"]["equity"]
+    roe_2021 = h["2021-12-31"]["net_income"] / h["2021-12-31"]["equity"]
+    assert bvps_2025 > bvps_2021, "book value must have recovered past its pre-2022 peak"
+    assert roe_2025 > roe_2021, "ROE improvement must persist even once book value is no longer shrunken"
+
+
+def test_wrb_diluted_shares_had_a_real_persistent_xbrl_scale_error():
+    # the bonus finding: W. R. Berkley's own diluted share count was filed at ~1/1000th scale for FY2017-2022,
+    # verified directly against the committed extract, and it remains wrong today (FY2022 never got re-filed as
+    # a comparative year again once it aged out of later 10-Ks' comparative window).
+    h = _real_history("WRB")
+    contaminated = h["2022-12-31"]["diluted_shares"]
+    clean_neighbor = h["2025-12-31"]["diluted_shares"]
+    assert contaminated * 100 < clean_neighbor, "FY2022's share count should still be ~1000x too small"

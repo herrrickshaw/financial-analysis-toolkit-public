@@ -1,0 +1,12 @@
+{
+  "_comment": "Travelers Companies FY2025 (data/edgar/TRV.json) plus illustrative market inputs (risk-free = 10yr UST, ERP = Damodaran implied ERP, beta = illustrative for a large-cap P&C insurer -- moderate, since insurance demand is fairly non-cyclical even though earnings/book value are catastrophe- and rate-exposed). Cost of equity (CAPM) is what feeds the residual-income valuation, same convention as examples/wacc_usb.json -- debt=0 is a deliberate simplification: an insurer's real capital base is policyholder surplus (equity), not the modest holdco debt on its balance sheet, and residual income only needs cost of equity.",
+  "wacc": {
+    "risk_free": 0.042,
+    "equity_risk_premium": 0.045,
+    "beta": 0.85,
+    "market_cap": 77438624000,
+    "debt": 0,
+    "tax_rate": 0.21,
+    "cost_of_debt": 0.05
+  }
+}
