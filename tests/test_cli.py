@@ -243,9 +243,10 @@ def test_cli_options(tmp_path, capsys):
     root = Path(__file__).resolve().parent.parent
     main(["options", str(root / "examples" / "options_demo.json"), "--json-out", str(tmp_path / "opt.json")])
     out = capsys.readouterr().out
-    assert "Call price: 10.4506" in out and "Greeks:" in out and "holds=True" in out
+    assert "Call price: 10.4506" in out and "Greeks:" in out and "holds=True" in out and "Geometric Asian call:" in out
     saved = json.loads((tmp_path / "opt.json").read_text())
     assert saved["black_scholes"]["price"] == pytest.approx(10.4506, abs=1e-3)
+    assert saved["geometric_asian_option"]["price"] > 0
 
 
 def test_cli_project_finance(tmp_path, capsys):
@@ -489,10 +490,11 @@ def test_cli_npa_classification(tmp_path, capsys):
     from finmodel.cli import main
     main(["npa-classification", str(EX / "npa_classification_demo.json"), "--json-out", str(tmp_path / "npa.json")])
     out = capsys.readouterr().out
-    assert "Total provision required:" in out
+    assert "Total provision required:" in out and "commercial_real_estate" in out
     saved = json.loads((tmp_path / "npa.json").read_text())
     assert saved["total_provision_required"] > 0
     assert len(saved["loan_book"]) == 5
+    assert saved["npa_provisioning"]["segment"] == "commercial_real_estate"
 
 
 def test_cli_credit_risk(tmp_path, capsys):

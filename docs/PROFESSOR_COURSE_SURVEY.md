@@ -61,9 +61,14 @@ below, not cataloguing every finance professor globally.
   original deferral worried about turned out to be entirely hand-verifiable without needing a real trust's
   historical data.
 - **FX structured-product origination / exotic derivatives** (HEC Paris' Financial Engineering cluster) —
-  `finmodel.options` already covers vanilla Black-Scholes pricing and the Greeks; barrier options, Asian
-  options, and other exotics are each their own real pricing model with no single unifying formula to build
-  in one pass, better done individually against a specific real product term sheet.
+  **partially resolved**, see `docs/DEFERRED_GAPS_REVISITED.md`: the geometric-average Asian option (real,
+  closed-form, and derived from first principles rather than a memorized formula) is now built as
+  `finmodel.options.geometric_asian_option`. Barrier options and other exotics remain deferred — each is
+  still its own real pricing model with no single unifying formula to build in one pass, and (unlike the
+  Asian option, whose closed form was derivable and independently verifiable via Monte Carlo simulation)
+  several of them carry real transcription risk from memory alone without a similarly solid verification
+  method, so they're better done individually, each against its own careful derivation or a specific real
+  product term sheet.
 - **A full professor/course "knowledge graph" artifact** (matching the JSON-graph pattern used in
   `catalog/fpa_gallery_graph.json`) — considered, but the professor/course list above is short enough (six
   rows) that a graph structure would add indirection without adding clarity; the direct cross-reference table

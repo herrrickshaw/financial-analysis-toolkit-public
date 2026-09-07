@@ -100,6 +100,32 @@ def implied_volatility(option_price: float, spot: float, strike: float, rate: fl
     return (lo + hi) / 2
 
 
+def geometric_asian_option(spot: float, strike: float, rate: float, vol: float, time: float,
+                           dividend_yield: float = 0.0, option_type: str = "call") -> Dict[str, Any]:
+    """Closed-form price of a European option on the CONTINUOUS geometric average of the underlying's price
+    path (Kemna & Vorst, 1990) -- flagged as a real, bounded exotic-derivative gap in
+    `docs/PROFESSOR_COURSE_SURVEY.md`'s "FX structured-product origination" deferral, and resolved here with
+    a self-contained derivation rather than a memorized formula.
+
+    Under risk-neutral GBM, ln(S_t) = ln(S_0) + (rate - dividend_yield - vol^2/2) t + vol * W_t. The
+    continuous geometric average is G = exp((1/T) INT[0,T] ln(S_t) dt); since INT[0,T] W_t dt is itself
+    Gaussian with variance T^3/3 (a standard result for integrated Brownian motion), (1/T) INT[0,T] W_t dt has
+    variance T/3. So ln(G) is normal with variance vol^2 * T / 3 -- i.e. G is lognormal with an EFFECTIVE
+    volatility `vol_A = vol / sqrt(3)`. Matching the mean of ln(G) to a standard risk-neutral lognormal
+    process with that volatility gives an effective cost of carry `b_A = 0.5*(rate - dividend_yield) -
+    vol^2/12`. The option is then priced EXACTLY by this module's own `black_scholes()`, called with
+    `vol_A` and an implied dividend yield of `rate - b_A` -- no new pricing machinery, just the derived
+    adjustment to two inputs. Verified in this module's own test suite against an independent Monte Carlo
+    simulation of the discretized geometric average, not merely against the closed form's own internal
+    consistency."""
+    vol_a = vol / math.sqrt(3)
+    b_a = 0.5 * (rate - dividend_yield) - vol ** 2 / 12
+    implied_dividend_yield = rate - b_a
+    bs = black_scholes(spot, strike, rate, vol_a, time, implied_dividend_yield, option_type)
+    return {"price": bs["price"], "option_type": option_type, "adjusted_volatility": vol_a, "effective_cost_of_carry": b_a,
+            "inputs": {"spot": spot, "strike": strike, "rate": rate, "vol": vol, "time": time, "dividend_yield": dividend_yield}}
+
+
 def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:
     d = {k: v for k, v in d.items() if not str(k).startswith("_")}
     out: Dict[str, Any] = {}
@@ -111,4 +137,6 @@ def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:
         out["put_call_parity"] = put_call_parity_check(**d["put_call_parity"])
     if "implied_volatility" in d:
         out["implied_volatility"] = implied_volatility(**d["implied_volatility"])
+    if "geometric_asian_option" in d:
+        out["geometric_asian_option"] = geometric_asian_option(**d["geometric_asian_option"])
     return out

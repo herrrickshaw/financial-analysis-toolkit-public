@@ -502,6 +502,9 @@ def cmd_options(a):
         print(f"Put-call parity: C-P={p['lhs_call_minus_put']:.4f} vs synthetic forward {p['rhs_synthetic_forward']:.4f}  →  holds={p['holds']} (gap {p['arbitrage_gap']:.6f})")
     if "implied_volatility" in res:
         print(f"Implied volatility: {res['implied_volatility']:.4%}")
+    if "geometric_asian_option" in res:
+        r = res["geometric_asian_option"]
+        print(f"Geometric Asian {r['option_type']}: {r['price']:.4f}  (adjusted vol {r['adjusted_volatility']:.4f}, cost of carry {r['effective_cost_of_carry']:.4f})")
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
@@ -884,10 +887,12 @@ def cmd_npa_classification(a):
     res = NPA.from_dict(_load_json(a.inputs))
     if "npa_provisioning" in res:
         r = res["npa_provisioning"]
-        print(f"Classification: {r['classification']}  provision required {r['provision_required']:,.0f} ({r['provision_rate_effective']:.2%} of outstanding)")
+        seg = f" ({r['segment']})" if "segment" in r else ""
+        print(f"Classification: {r['classification']}{seg}  provision required {r['provision_required']:,.0f} ({r['provision_rate_effective']:.2%} of outstanding)")
     if "loan_book" in res:
         for r in res["loan_book"]:
-            print(f"  {r['classification']:12} outstanding {r['outstanding_amount']:>12,.0f}  provision {r['provision_required']:>12,.0f}")
+            seg = f" [{r['segment']}]" if "segment" in r else ""
+            print(f"  {r['classification']:12}{seg:28} outstanding {r['outstanding_amount']:>12,.0f}  provision {r['provision_required']:>12,.0f}")
         print(f"Total provision required: {res['total_provision_required']:,.0f}")
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 

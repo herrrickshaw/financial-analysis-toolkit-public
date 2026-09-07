@@ -2,6 +2,8 @@
 checked both for a case that holds and one that's a real, tradeable arbitrage, the Greeks are cross-checked
 against their known analytic relationships (not just plausibility), and implied volatility round-trips a price
 back to the vol that produced it."""
+import math
+
 import pytest
 
 from finmodel import options as O
@@ -75,3 +77,51 @@ def test_from_dict_bundles_black_scholes_greeks_and_parity():
          "put_call_parity": {"call_price": 10.4506, "put_price": 5.5735, "spot": 100, "strike": 100, "rate": 0.05, "time": 1.0, "tol": 0.001}}
     out = O.from_dict(d)
     assert "black_scholes" in out and "greeks" in out and out["put_call_parity"]["holds"] is True
+
+
+def test_geometric_asian_option_adjusted_parameters_match_the_derivation():
+    spot, strike, rate, vol, time, q = 100.0, 100.0, 0.05, 0.30, 1.0, 0.0
+    out = O.geometric_asian_option(spot, strike, rate, vol, time, q, "call")
+    assert out["adjusted_volatility"] == pytest.approx(vol / 3 ** 0.5)
+    assert out["effective_cost_of_carry"] == pytest.approx(0.5 * (rate - q) - vol ** 2 / 12)
+
+
+def test_geometric_asian_option_matches_independent_monte_carlo_simulation():
+    # an independent numerical check (not merely the closed form agreeing with itself): simulate the
+    # discretized geometric average along many GBM paths and confirm the closed form lands within a few
+    # percent of the simulated price.
+    import random
+
+    spot, strike, rate, vol, time, q = 100.0, 100.0, 0.05, 0.30, 1.0, 0.0
+    random.seed(42)
+    n_paths, n_steps = 20_000, 50
+    dt = time / n_steps
+    drift = (rate - q - 0.5 * vol * vol) * dt
+    vol_dt = vol * dt ** 0.5
+    total_payoff = 0.0
+    for _ in range(n_paths):
+        log_s = math.log(spot)
+        log_sum = 0.0
+        for _step in range(n_steps):
+            log_s += drift + vol_dt * random.gauss(0, 1)
+            log_sum += log_s
+        geo_avg = math.exp(log_sum / n_steps)
+        total_payoff += max(geo_avg - strike, 0.0)
+    mc_price = math.exp(-rate * time) * total_payoff / n_paths
+
+    closed_form_price = O.geometric_asian_option(spot, strike, rate, vol, time, q, "call")["price"]
+    assert closed_form_price == pytest.approx(mc_price, rel=0.05)
+
+
+def test_geometric_asian_option_is_cheaper_than_the_vanilla_european_option():
+    # a real, well-known property: averaging reduces effective volatility, so an average-price option is
+    # always cheaper than the vanilla European option struck at the same level.
+    kwargs = dict(spot=100.0, strike=100.0, rate=0.05, vol=0.30, time=1.0)
+    vanilla = O.black_scholes(**kwargs, option_type="call")["price"]
+    asian = O.geometric_asian_option(**kwargs, option_type="call")["price"]
+    assert asian < vanilla
+
+
+def test_geometric_asian_from_dict():
+    out = O.from_dict({"geometric_asian_option": {"spot": 100.0, "strike": 100.0, "rate": 0.05, "vol": 0.3, "time": 1.0}})
+    assert out["geometric_asian_option"]["price"] > 0

@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 497 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 504 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -53,7 +53,7 @@ finmodel strategy examples/strategy_frameworks_demo.json                 # TAM/S
 finmodel ppa examples/ppa_demo.json                                      # purchase price allocation: relief-from-royalty, MPEEM, ASC 805 goodwill residual
 finmodel impairment examples/impairment_demo.json                        # ASC 350 goodwill / ASC 350-30 indefinite-lived / ASC 360 long-lived-asset impairment tests
 finmodel audit-analytics examples/audit_analytics_demo.json              # Benford's Law digit-conformity test, rule-based journal-entry testing
-finmodel options examples/options_demo.json                              # Black-Scholes, the Greeks, put-call parity, implied volatility
+finmodel options examples/options_demo.json                              # Black-Scholes, the Greeks, put-call parity, implied volatility, geometric Asian option
 finmodel project-finance examples/project_finance_demo.json              # DSCR-based debt sizing/sculpting, LLCR, cap rate/NOI real-estate valuation
 finmodel portfolio examples/portfolio_demo.json                          # Markowitz efficient frontier, tangency portfolio, Capital Allocation Line
 finmodel restructuring examples/restructuring_demo.json                  # absolute-priority recovery waterfall, fulcrum security, DIP financing sizing
@@ -320,7 +320,7 @@ what was deliberately left out (credit-card/master-trust securitization, FX exot
 
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 
-Every survey doc in this session records what got deliberately left out and why — three times now, this
+Every survey doc in this session records what got deliberately left out and why — four times now, this
 session has gone back to some of those items and found most of them buildable after re-examining the actual
 reason each had been deferred. Round 1: `finmodel.loss_reserving.bornhuetter_ferguson()` blends chain-ladder's own
 reporting pattern with a caller-supplied a-priori expected loss (the "real dataset" the original deferral
@@ -358,6 +358,18 @@ amortization). `finmodel.sales_capacity_planning` — rep productivity ramp curv
 forecasting, built as its own module rather than an extension of `finmodel.cohort_analysis` after
 reconsidering that the two track fundamentally different metrics (quota attainment versus customer
 retention) on their cohorts, even though both use a cohort-by-tenure structure.
+
+Round 4 (partial): `finmodel.options.geometric_asian_option()` — a closed-form geometric-average Asian
+option, re-derived from first principles (a continuous geometric average's logarithm is itself normally
+distributed under risk-neutral GBM, reducing the option exactly to a vanilla Black-Scholes price with an
+adjusted volatility and cost of carry) rather than trusting a memorized formula by name, and independently
+verified against a Monte Carlo simulation of the discretized average. Other exotics (barrier options in
+particular) stay deferred — they carry real transcription risk from memory without an equally solid
+verification method at hand, so this item is only partially resolved. `finmodel.npa_classification.
+provisioning_requirement()` gained a `segment` argument selecting among RBI's real, differentiated
+standard-asset rates (general, agriculture/SME, commercial real estate, CRE residential housing, housing
+loans at a teaser rate) — the "specific portfolio mix" the original deferral wanted was unnecessary, since a
+segment-rate table is a lookup, not a formula with anything to reconcile.
 
 ## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
 

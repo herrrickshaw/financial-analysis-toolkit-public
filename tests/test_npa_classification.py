@@ -55,6 +55,29 @@ def test_provisioning_rejects_unknown_classification():
         NPA.provisioning_requirement("Bogus", outstanding_amount=1.0)
 
 
+def test_segment_specific_standard_rates_differ_from_general():
+    general = NPA.provisioning_requirement("Standard", outstanding_amount=1_000_000.0, segment="general")
+    cre = NPA.provisioning_requirement("Standard", outstanding_amount=1_000_000.0, segment="commercial_real_estate")
+    agri = NPA.provisioning_requirement("Standard", outstanding_amount=1_000_000.0, segment="agriculture_sme")
+    assert general["provision_rate_effective"] == pytest.approx(0.0040)
+    assert cre["provision_rate_effective"] == pytest.approx(0.0100)
+    assert agri["provision_rate_effective"] == pytest.approx(0.0025)
+    assert cre["provision_required"] > general["provision_required"] > agri["provision_required"]
+
+
+def test_segment_differentiation_does_not_apply_once_an_account_is_an_npa():
+    # segment only affects the Standard-asset rate table; NPA buckets use the same secured/unsecured rates
+    # regardless of segment
+    with_segment = NPA.provisioning_requirement("Sub-standard", outstanding_amount=1_000_000.0, segment="commercial_real_estate")
+    without_segment = NPA.provisioning_requirement("Sub-standard", outstanding_amount=1_000_000.0)
+    assert with_segment["provision_required"] == pytest.approx(without_segment["provision_required"])
+
+
+def test_provisioning_rejects_unknown_segment():
+    with pytest.raises(ValueError):
+        NPA.provisioning_requirement("Standard", outstanding_amount=1.0, segment="bogus_segment")
+
+
 def test_npa_provisioning_end_to_end():
     out = NPA.npa_provisioning(days_past_due=200, outstanding_amount=1_000_000.0, npa_age_days=100, secured_amount=600_000.0)
     assert out["classification"] == "Sub-standard"

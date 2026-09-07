@@ -16,12 +16,29 @@ so a live provisioning calculation should be checked against the current circula
   * Provisioning is charged at different rates for the SECURED and UNSECURED portions of an NPA's
     outstanding balance -- unsecured exposure is provisioned much more aggressively, up to 100% from the
     first NPA day count in Doubtful-2 onward.
+  * The STANDARD-asset provisioning rate itself is not one flat number -- RBI's Master Circular on Standard
+    Asset Provisioning sets a materially higher rate for certain segments RBI treats as inherently riskier
+    even while still fully performing: Commercial Real Estate (CRE) exposures, CRE-Residential Housing (a
+    lower rate than general CRE), and housing loans extended at a "teaser" introductory rate, versus a lower
+    concessional rate for direct advances to agriculture and SME borrowers. `provisioning_requirement()`'s
+    `segment` argument selects the applicable rate; segment differentiation applies only at the Standard/SMA
+    stage -- once an account becomes an NPA, the same secured/unsecured rate table above applies regardless
+    of segment.
 """
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
-STANDARD_PROVISION_RATE = 0.0040  # RBI's general/standard-asset provisioning rate (segment-specific rates vary)
+# RBI's standard-asset provisioning rate by segment (Master Circular on Standard Asset Provisioning);
+# illustrative of the published norms -- RBI amends specific segment rates periodically.
+STANDARD_PROVISION_RATES_BY_SEGMENT = {
+    "general": 0.0040,
+    "agriculture_sme": 0.0025,
+    "commercial_real_estate": 0.0100,
+    "commercial_real_estate_residential_housing": 0.0075,
+    "housing_teaser_rate": 0.0200,
+}
+STANDARD_PROVISION_RATE = STANDARD_PROVISION_RATES_BY_SEGMENT["general"]
 
 # (secured_rate, unsecured_rate) by classification bucket, per RBI's published provisioning norms
 _PROVISION_RATES = {
@@ -53,15 +70,19 @@ def classify_asset(days_past_due: int, npa_age_days: int = 0) -> str:
     return "Doubtful-3"
 
 
-def provisioning_requirement(classification: str, outstanding_amount: float, secured_amount: float = None) -> Dict[str, Any]:
+def provisioning_requirement(classification: str, outstanding_amount: float, secured_amount: Optional[float] = None,
+                             segment: str = "general") -> Dict[str, Any]:
     if secured_amount is None:
         secured_amount = outstanding_amount
     secured_amount = min(secured_amount, outstanding_amount)
     unsecured_amount = outstanding_amount - secured_amount
     if classification in ("Standard", "SMA-0", "SMA-1", "SMA-2"):
-        provision = outstanding_amount * STANDARD_PROVISION_RATE
-        return {"classification": classification, "outstanding_amount": outstanding_amount,
-                "provision_required": provision, "provision_rate_effective": STANDARD_PROVISION_RATE}
+        if segment not in STANDARD_PROVISION_RATES_BY_SEGMENT:
+            raise ValueError(f"unknown segment: {segment}")
+        rate = STANDARD_PROVISION_RATES_BY_SEGMENT[segment]
+        provision = outstanding_amount * rate
+        return {"classification": classification, "segment": segment, "outstanding_amount": outstanding_amount,
+                "provision_required": provision, "provision_rate_effective": rate}
     if classification not in _PROVISION_RATES:
         raise ValueError(f"unknown classification: {classification}")
     secured_rate, unsecured_rate = _PROVISION_RATES[classification]
@@ -72,9 +93,10 @@ def provisioning_requirement(classification: str, outstanding_amount: float, sec
             "provision_required": provision, "provision_rate_effective": provision / outstanding_amount if outstanding_amount else 0.0}
 
 
-def npa_provisioning(days_past_due: int, outstanding_amount: float, npa_age_days: int = 0, secured_amount: float = None) -> Dict[str, Any]:
+def npa_provisioning(days_past_due: int, outstanding_amount: float, npa_age_days: int = 0,
+                     secured_amount: Optional[float] = None, segment: str = "general") -> Dict[str, Any]:
     classification = classify_asset(days_past_due, npa_age_days)
-    return provisioning_requirement(classification, outstanding_amount, secured_amount)
+    return provisioning_requirement(classification, outstanding_amount, secured_amount, segment)
 
 
 def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:

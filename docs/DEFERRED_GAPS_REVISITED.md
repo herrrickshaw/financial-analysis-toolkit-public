@@ -1,12 +1,13 @@
 # Revisiting previously-deferred gaps
 
 Every prior survey this session documented not just what got built but what got deliberately left out, and
-why. Three times now, this session has gone back to some of those "deferred" items, re-examined the actual
+why. Four times now, this session has gone back to some of those "deferred" items, re-examined the actual
 reason each was deferred, and found most of them buildable after all — either because the original objection
 didn't actually apply, or because a genuine formula existed that just hadn't been assembled yet. Round 1
 (below) covered Bornhuetter-Ferguson reserving, earnout valuation, and step-up EMI schedules; round 2 covers
 an American (deal-by-deal) PE carry waterfall with clawback, and percentage-of-completion revenue
-recognition; round 3 covers credit-card master-trust securitization and sales-capacity planning.
+recognition; round 3 covers credit-card master-trust securitization and sales-capacity planning; round 4
+covers a geometric-average Asian option and segment-specific NPA standard-asset provisioning rates.
 
 ## 1. Bornhuetter-Ferguson reserving (`finmodel.loss_reserving.bornhuetter_ferguson`)
 
@@ -158,3 +159,42 @@ example above under both amortization methods. `tests/test_sales_capacity_planni
 checks the capacity schedule against a hand calc tracing two overlapping hire cohorts independently through
 the ramp curve, checks that tenure beyond the ramp curve's length holds at full productivity, and checks that
 the reps-needed calculation is the exact inverse of the capacity calculation via a round-trip.
+
+## 8. Geometric-average Asian option (`finmodel.options.geometric_asian_option`)
+
+**Originally deferred in** `docs/PROFESSOR_COURSE_SURVEY.md`: "barrier options, Asian options, and other
+exotics are each their own real pricing model with no single unifying formula to build in one pass, better
+done individually against a specific real product term sheet."
+
+**Why it's buildable now — but only partially resolved.** Rather than trusting a memorized "Kemna-Vorst
+formula" by name, the closed form was re-derived from first principles: under risk-neutral GBM, the
+continuous geometric average's logarithm is itself normally distributed (a standard result for integrated
+Brownian motion), which means a geometric-average option reduces EXACTLY to a vanilla Black-Scholes option
+with an adjusted volatility (`vol/sqrt(3)`) and cost of carry. That derivation, plus an INDEPENDENT
+verification against a Monte Carlo simulation of the discretized geometric average (not merely the closed
+form agreeing with itself), gave enough confidence to build and ship it. Other exotics (barrier options in
+particular) remain genuinely deferred — their real closed forms have many more terms and a materially higher
+risk of a silent transcription error from memory, without an equally solid independent verification method
+readily at hand, so this item is only partially resolved, not fully closed like the others in this document.
+
+## 9. Segment-specific NPA standard-asset provisioning rates (`finmodel.npa_classification`)
+
+**Originally deferred in** `docs/RETAIL_BANKING_TOOLS.md`: "a segment-rate table is a real, bounded future
+extension once there's a specific portfolio mix to reconcile it against."
+
+**Why it's buildable now.** Same pattern as several items above: a segment-rate table is a lookup, not a
+formula with anything to numerically reconcile against a real dataset. `provisioning_requirement()` now takes
+a `segment` argument selecting among RBI's real, differentiated standard-asset rates (general, agriculture/
+SME, commercial real estate, CRE residential housing, and housing loans at a teaser rate) — applying only at
+the Standard/SMA stage, since NPA buckets use the same secured/unsecured rate table regardless of segment,
+which the toolkit's test suite confirms directly.
+
+## Test coverage (round 4)
+
+`tests/test_options.py` gained 5 tests for the geometric Asian option: the adjusted-parameter derivation
+checked against its own formula, an independent Monte Carlo simulation of the discretized geometric average
+(a real numerical cross-check, not a self-consistency check), the real property that averaging makes the
+option strictly cheaper than the equivalent vanilla European option, and `from_dict` wiring.
+`tests/test_npa_classification.py` gained 3 tests for segment-specific rates: confirming the three segments
+used in the demo produce distinct, correctly-ordered provisioning amounts, confirming segment has no effect
+once an account becomes an NPA, and rejecting an unknown segment.

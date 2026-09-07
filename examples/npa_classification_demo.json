@@ -1,7 +1,12 @@
 {
+  "npa_provisioning": {
+    "days_past_due": 10,
+    "outstanding_amount": 10000000.0,
+    "segment": "commercial_real_estate"
+  },
   "loan_book": [
-    {"days_past_due": 5, "outstanding_amount": 5000000.0},
-    {"days_past_due": 45, "outstanding_amount": 2000000.0},
+    {"days_past_due": 5, "outstanding_amount": 5000000.0, "segment": "agriculture_sme"},
+    {"days_past_due": 45, "outstanding_amount": 2000000.0, "segment": "commercial_real_estate"},
     {"days_past_due": 200, "npa_age_days": 100, "outstanding_amount": 1500000.0, "secured_amount": 900000.0},
     {"days_past_due": 600, "npa_age_days": 500, "outstanding_amount": 800000.0, "secured_amount": 300000.0},
     {"days_past_due": 1200, "npa_age_days": 1100, "outstanding_amount": 400000.0, "secured_amount": 100000.0}

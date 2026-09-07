@@ -78,11 +78,12 @@ context rather than a duplicate:
   once `covered_interest_rate_parity` gives the no-arbitrage forward rate (the whole point of CIP is that a
   hedged carry trade earns exactly zero excess return); there is no separate formula to build beyond what
   `covered_interest_rate_parity` already returns.
-- **Segment-specific standard-asset provisioning rates** (RBI's circular sets different standard-provisioning
-  percentages for, e.g., commercial real estate versus agriculture versus general advances, rather than one
-  flat rate) — `finmodel.npa_classification` uses a single illustrative standard rate and documents that a
-  live calculation should be checked against the current circular; a segment-rate table is a real, bounded
-  future extension once there's a specific portfolio mix to reconcile it against.
+- ~~**Segment-specific standard-asset provisioning rates**~~ — **RESOLVED**, see
+  `docs/DEFERRED_GAPS_REVISITED.md`: `provisioning_requirement()` now takes a `segment` argument selecting
+  among RBI's differentiated standard-asset rates (general, agriculture/SME, commercial real estate, CRE
+  residential housing, housing loans at a teaser rate). The "specific portfolio mix" the original deferral
+  asked for was unnecessary — it's a lookup table, not a formula with anything to reconcile against a real
+  dataset.
 - **DPD-reset-on-partial-payment mechanics** — real banks track complex rules for when a partial payment
   resets or merely reduces the days-past-due clock; `finmodel.npa_classification` takes `days_past_due` and
   `npa_age_days` as direct inputs rather than deriving them from a payment history, which keeps the
