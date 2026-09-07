@@ -29,6 +29,20 @@ TAGS: Dict[str, Sequence[str]] = {
     "tax": ("IncomeTaxExpenseBenefit",),
     "net_income": ("NetIncomeLoss", "ProfitLoss", "NetIncomeLossAvailableToCommonStockholdersBasic"),
     "da": ("DepreciationDepletionAndAmortization", "DepreciationAndAmortization", "DepreciationAmortizationAndAccretionNet", "Depreciation"),
+    # NOT a fallback for "da": real, verified on AbbVie's and Merck's own FY2025 10-Ks, that a pharma filer
+    # heavily built by M&A can report ONLY the plain "Depreciation" tag (PP&E depreciation) with none of the
+    # combined tags above ever populated — silently dropping real, material intangible amortization (AbbVie's
+    # own real FY2025 figure: $7,377M, ~10x its $762M reported "Depreciation" alone). AmortizationOfIntangibleAssets
+    # is a true ADDITIVE component here, summed into "da" below only when the tag actually picked for "da" was
+    # the narrow "Depreciation" one — a combined tag (when present) already includes intangible amortization by
+    # its own XBRL definition, so summing unconditionally would double-count it.
+    "amortization_of_intangibles": ("AmortizationOfIntangibleAssets",),
+    # real, distinct GAAP concept from ordinary R&D expense or the semiconductor check's capitalizable organic
+    # R&D: in-process R&D ACQUIRED via an asset acquisition (not a full business combination) with no alternative
+    # future use must be expensed immediately (ASC 730-10-25-2c) — a real, lumpy, acquisition-driven charge that
+    # distorts a single year's operating margin the way a restructuring charge would, not something to amortize.
+    # Verified real and material on AbbVie's own FY2020-2025 10-Ks (see SECTOR_PROFILES['pharma']).
+    "acquired_iprd_writeoff": ("ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff",),
     "interest_expense": ("InterestExpense", "InterestExpenseNonoperating", "InterestExpenseDebt", "InterestAndDebtExpense"),
     "interest_income": ("InvestmentIncomeInterest", "InterestIncomeOther", "InvestmentIncomeInterestAndDividend"),
     "cash": ("CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsAndShortTermInvestments", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"),
@@ -81,7 +95,7 @@ TAGS: Dict[str, Sequence[str]] = {
     "operating_lease_liability_current": ("OperatingLeaseLiabilityCurrent",),
     "operating_lease_liability_noncurrent": ("OperatingLeaseLiabilityNoncurrent",),
 }
-FLOW = {"revenue", "cogs", "gross_profit", "operating_income", "pretax_income", "tax", "net_income", "da", "interest_expense", "interest_income", "cfo", "capex", "dividends", "diluted_shares", "basic_shares", "eps_diluted", "sga", "rnd", "operating_lease_cost", "total_lease_cost", "variable_lease_cost", "pre_842_rent_expense", "capex_flight_equipment", "capex_other_ppe"}
+FLOW = {"revenue", "cogs", "gross_profit", "operating_income", "pretax_income", "tax", "net_income", "da", "interest_expense", "interest_income", "cfo", "capex", "dividends", "diluted_shares", "basic_shares", "eps_diluted", "sga", "rnd", "operating_lease_cost", "total_lease_cost", "variable_lease_cost", "pre_842_rent_expense", "capex_flight_equipment", "capex_other_ppe", "amortization_of_intangibles", "acquired_iprd_writeoff"}
 
 
 def fetch(cik: int | str, user_agent: str, cache_dir: Optional[str | Path] = None) -> Dict[str, Any]:
@@ -140,6 +154,12 @@ def annual(facts: Dict[str, Any], tags: Dict[str, Sequence[str]] = TAGS, forms: 
             d["debt_total"] = d.get("debt_current", 0) + d.get("debt_noncurrent", 0)
         if "capex" not in d and ("capex_flight_equipment" in d or "capex_other_ppe" in d):
             d["capex"] = d.get("capex_flight_equipment", 0) + d.get("capex_other_ppe", 0)
+        if d.get("_tags", {}).get("da") == "Depreciation" and "amortization_of_intangibles" in d:
+            # real fallback for filers (AbbVie, Merck — see the TAGS comment above) whose "da" resolved all the
+            # way down to plain PP&E depreciation with no combined tag ever populated: add back the real,
+            # separately-tagged intangible amortization rather than silently understating EBITDA.
+            d["da"] = d["da"] + d["amortization_of_intangibles"]
+            d["_tags"]["da"] = "Depreciation + AmortizationOfIntangibleAssets"
         if "operating_lease_liability_current" in d or "operating_lease_liability_noncurrent" in d:
             # ASC 842 (effective FY2019+) put operating leases on the balance sheet with a real, filed present
             # value — this used to be off-balance-sheet, estimated by capitalizing rent at a rule-of-thumb

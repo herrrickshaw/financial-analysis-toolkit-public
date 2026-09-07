@@ -248,8 +248,11 @@ be the thing that's rate-exposed; see 8c-v below), and `python scripts/football_
 R&D expensing understates it; see 8c-vi below), and `python scripts/football_field_duk.py`
 (`docs/FOOTBALL_FIELD_DUK.md`, regulated utilities — a ninth, deliberately low-cyclicality sector where the
 standard EV-based framework needs no fix at all, but a thin, structurally-negative-in-places unlevered free
-cash flow makes the DCF's terminal-growth assumption the whole ballgame; see 8c-vii below). §5 of each document
-also checks the sector-tuning in `finmodel.sectors` below.
+cash flow makes the DCF's terminal-growth assumption the whole ballgame; see 8c-vii below), and
+`python scripts/football_field_abbv.py` (`docs/FOOTBALL_FIELD_ABBV.md`, pharmaceuticals — a tenth sector where
+a real GAAP quirk (acquired IPR&D write-offs) distorts the margin trend until added back, and a real patent
+cliff turns out not to be existential for a diversified major with a real, funded pipeline; see 8c-viii below).
+§5 of each document also checks the sector-tuning in `finmodel.sectors` below.
 
 ---
 
@@ -316,11 +319,11 @@ FY2020's pandemic-collapse margin, not a usable "bear case." The insurance check
 §8c-v below) reuses banking's exact ROE override (`field="net_income", revenue_field="equity"`) — the first time
 two independently-checked sectors have shared an override rather than each needing its own.
 
-Nine sectors (`"steel"`, `"oil_gas"`, `"software"`, `"banking"`, `"reit"`, `"airline"`, `"insurance"`,
-`"semiconductor"`, `"utility"`) are tuned against real multi-year data so far, each with a `SECTOR_PROFILE` entry
-documenting exactly what real range justified its thresholds; every other sector falls back to a clearly
-labelled `"default"` rather than a fabricated industry assumption. All nine football-field docs' §5 rebuild part
-or all
+Ten sectors (`"steel"`, `"oil_gas"`, `"software"`, `"banking"`, `"reit"`, `"airline"`, `"insurance"`,
+`"semiconductor"`, `"utility"`, `"pharma"`) are tuned against real multi-year data so far, each with a
+`SECTOR_PROFILE` entry documenting exactly what real range justified its thresholds; every other sector falls
+back to a clearly labelled `"default"` rather than a fabricated industry assumption. All ten football-field
+docs' §5 rebuild part or all
 of their football field
 with this normalization and compare it to the raw run: at STLD it didn't close the gap (the whole peer set shares
 the same trough, so
@@ -579,6 +582,49 @@ methodology and its assumptions about unregulated issuers.
 **Try it.** `python scripts/football_field_duk.py`, and `finmodel cycle data/edgar/DUK.json --sector utility`
 to see the real secular margin-improvement trend (rate-base growth, not a cyclical peak) without any field
 override.
+
+## 8c-viii. Pharmaceuticals: a real GAAP quirk distorts the trend, and a real patent cliff isn't always fatal  (`docs/FOOTBALL_FIELD_ABBV.md`)
+
+**What it is.** The tenth football-field check (AbbVie) is a fourth sector (after airlines, semiconductors and
+utilities) where the default `operating_income`/`revenue` field needs no OVERRIDE — but it's the first sector
+where the field needs a real ADJUSTMENT before its year-to-year history can be trusted at all, a third distinct
+pattern alongside "wrong field entirely" (banking/REIT/insurance) and "right field, nothing to fix" (airlines/
+semiconductors/utilities). The cause: AbbVie's own GAAP-mandated (ASC 730-10-25-2c) acquired-in-process-R&D
+write-offs — expensed immediately when acquired via an asset acquisition with no alternative future use — ran
+real, verified $0.7B-$5.0B/year FY2020-2025, with FY2025's real $5.0B charge (from the 2024-closed ImmunoGen and
+Cerevel Therapeutics deals) alone compressing reported operating margin by 8.2 percentage points. On the raw
+field, `trend_diagnostics()` shows a misleadingly negative-leaning correlation (r=-0.33) driven by that single
+FY2024 charge-year trough; on the field with the charge added back it resolves to a genuinely weak trend
+(r=-0.09) — meaning the GENERIC `dcf_scenarios_from_history()` trailing min/median/max is the right tool here,
+unlike DUK/TRV/CSCO's real secular trends, provided the input is fixed first. This is mechanically different
+from the semiconductor check's R&D capitalization: that module amortizes a real multi-year asset (organic R&D)
+that GAAP expenses too early; an acquired-IPR&D write-off is a real one-time acquisition cost GAAP correctly
+expenses all at once — normalizing it means adding it back like a restructuring charge, not capitalizing it.
+
+The real, sector-defining finding is separate: AbbVie's own genuine Humira patent cliff (US exclusivity lost
+2023; real global Humira revenue $21.2B FY2022 → $8.99B FY2024, AbbVie's own disclosed figures) never dragged
+AbbVie's total revenue down more than 6.4% in any single year and fully recovered within two, because its own
+real, disclosed Skyrizi+Rinvoq replacement franchise grew from roughly $16B to $25.9B in a single year (2027
+guidance raised to a combined $31B) — a real, generalizable lesson that a naive "patent cliff sinks the company"
+DCF assumption is right for a single-product biotech (the real Pfizer/Seagen precedent here is a genuinely
+pre-profitability biotech with negative EBIT AND EBITDA, making EV/Revenue the only usable multiple for that
+$42B deal) and wrong for a diversified major pharma with a real, funded pipeline.
+
+Two further real findings surfaced while building this check: a genuine `finmodel.edgar` extraction gap
+(AbbVie's and Merck's own "da" tag resolved all the way down to plain PP&E `Depreciation`, silently dropping
+real, material `AmortizationOfIntangibleAssets` — now a real additive fix, summed in only when the picked tag
+was the narrow one, to avoid double-counting for filers that already report a combined tag), and an unrelated
+real `market_data` warehouse bug (ABBV specifically carries duplicate, unpurged OHLC batches — an older,
+unadjusted load never removed after a newer, dividend-adjusted reload — the same class of bug this repo's own
+recent OHLC-cache fix addressed elsewhere, now found in a second table and fixed here by de-duplicating on the
+latest `batch_id` per date).
+
+**Learn it.** ASC 730 (in-process R&D) and its asset-acquisition-vs-business-combination distinction; real
+pharma patent-cliff case studies (Humira/AbbVie is one of the most publicly documented); Damodaran's material on
+distinguishing a real accounting distortion from a real business trend before applying any cycle normalization.
+
+**Try it.** `python scripts/football_field_abbv.py`, and `finmodel cycle data/edgar/ABBV.json --sector pharma`
+to see the raw field's misleading correlation (compare against the adjusted field computed in the script).
 
 ## 8d. Residual income and EVA valuation  (`finmodel.residual_income`)
 

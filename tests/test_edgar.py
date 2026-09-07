@@ -55,6 +55,33 @@ def test_diluted_shares_falls_back_to_net_income_over_eps():
     assert edgar.annual(f2)["2025-12-31"]["diluted_shares"] == 41
 
 
+def test_da_adds_back_intangible_amortization_when_it_resolves_to_plain_depreciation():
+    # AbbVie's and Merck's real gap: no combined D&A tag is ever populated, so "da" falls all the way down to
+    # plain PP&E "Depreciation" -- AmortizationOfIntangibleAssets is a real, separate, ADDITIVE component that
+    # must be summed in, not treated as an alternative.
+    f = facts(fact("Revenues", 1000, "2025-12-31", "2025-01-01"), fact("NetIncomeLoss", 100, "2025-12-31", "2025-01-01"),
+              fact("Depreciation", 50, "2025-12-31", "2025-01-01"), fact("AmortizationOfIntangibleAssets", 400, "2025-12-31", "2025-01-01"))
+    rows = edgar.annual(f)
+    assert rows["2025-12-31"]["da"] == 450
+    assert rows["2025-12-31"]["_tags"]["da"] == "Depreciation + AmortizationOfIntangibleAssets"
+
+
+def test_da_does_not_double_count_when_a_combined_tag_is_already_populated():
+    # a filer that DOES report a combined tag (Pfizer/BMS/Eli Lilly) already includes intangible amortization by
+    # the tag's own XBRL definition -- summing AmortizationOfIntangibleAssets on top would double-count it.
+    f = facts(fact("Revenues", 1000, "2025-12-31", "2025-01-01"), fact("NetIncomeLoss", 100, "2025-12-31", "2025-01-01"),
+              fact("DepreciationAndAmortization", 300, "2025-12-31", "2025-01-01"), fact("AmortizationOfIntangibleAssets", 200, "2025-12-31", "2025-01-01"))
+    rows = edgar.annual(f)
+    assert rows["2025-12-31"]["da"] == 300
+    assert rows["2025-12-31"]["_tags"]["da"] == "DepreciationAndAmortization"
+
+
+def test_acquired_iprd_writeoff_tag_is_extracted():
+    f = facts(fact("Revenues", 1000, "2025-12-31", "2025-01-01"), fact("NetIncomeLoss", 100, "2025-12-31", "2025-01-01"),
+              fact("ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff", 5000, "2025-12-31", "2025-01-01"))
+    assert edgar.annual(f)["2025-12-31"]["acquired_iprd_writeoff"] == 5000
+
+
 def test_revenue_falls_back_to_regulated_operating_revenue_tag():
     # Xcel Energy's own consolidated top line moved onto this utility-industry-specific tag starting FY2022 (its
     # plain "Revenues" tag has zero entries from FY2022 onward, real, verified against SEC's live XBRL API) —
@@ -69,7 +96,7 @@ def test_revenue_falls_back_to_regulated_operating_revenue_tag():
 
 def test_committed_extracts_are_consistent():
     root = Path(__file__).resolve().parent.parent / "data" / "edgar"
-    for t in ("MSFT", "STLD", "HES", "DUK", "XEL"):
+    for t in ("MSFT", "STLD", "HES", "DUK", "XEL", "ABBV"):
         d = json.loads((root / f"{t}.json").read_text())
         last = d["years"][sorted(d["years"])[-1]]
         assert last["revenue"] > 0 and last["diluted_shares"] > 0 and abs(last["net_income"] / last["diluted_shares"] - last["eps_diluted"]) / abs(last["eps_diluted"]) < 0.05

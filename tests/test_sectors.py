@@ -396,3 +396,40 @@ def test_xel_roe_dilution_is_a_real_trend_not_the_usual_cyclicality_drivers():
     assert max(roe.values()) - min(roe.values()) < 0.01, "XEL's ROE should be remarkably tight FY2018-2024"
     assert h["2025-12-31"]["net_income"] / h["2025-12-31"]["equity"] < min(roe.values()) - 0.01
     assert h["2025-12-31"]["equity"] / h["2024-12-31"]["equity"] - 1 > 0.15, "the real equity jump behind the ROE drop"
+
+
+def test_abbv_raw_margin_trend_is_distorted_by_real_iprd_charges():
+    # SECTOR_PROFILES["pharma"]'s headline finding: the RAW field shows a misleadingly negative-leaning
+    # correlation driven by the real FY2024 acquired-IPR&D charge trough.
+    h = _real_history("ABBV")
+    trend_raw = sectors.trend_diagnostics(h, field="operating_income", revenue_field="revenue", periods=8)
+    assert trend_raw["correlation"] < -0.25
+
+
+def test_abbv_adjusted_margin_trend_is_genuinely_weak_once_iprd_is_removed():
+    # once the real, lumpy, one-time acquired-IPR&D write-offs are added back (adjusted_operating_income,
+    # precomputed in data/edgar/ABBV.json), the trend resolves to genuinely weak -- meaning the GENERIC
+    # dcf_scenarios_from_history() trailing min/median/max is appropriate here, unlike DUK/TRV/CSCO.
+    h = _real_history("ABBV")
+    trend_adj = sectors.trend_diagnostics(h, field="adjusted_operating_income", revenue_field="revenue", periods=8)
+    assert abs(trend_adj["correlation"]) < 0.20
+    assert trend_adj["trend_strength"] == "weak/none"
+
+
+def test_abbv_real_acquired_iprd_writeoff_is_material_and_growing():
+    # real, verified against SEC's live XBRL API: AbbVie's own acquired-IPR&D write-off ran $0.7B-$5.0B/year
+    # FY2020-2025, with FY2025's real charge the largest in the series (from the 2024-closed ImmunoGen and
+    # Cerevel Therapeutics acquisitions).
+    h = _real_history("ABBV")
+    charges = {y: h[y]["acquired_iprd_writeoff"] for y in ("2020-12-31", "2021-12-31", "2022-12-31", "2023-12-31", "2024-12-31", "2025-12-31")}
+    assert all(c > 0 for c in charges.values())
+    assert charges["2025-12-31"] == max(charges.values())
+    assert charges["2025-12-31"] / h["2025-12-31"]["revenue"] > 0.05
+
+
+def test_abbv_iprd_writeoff_compresses_reported_margin_materially_in_fy2025():
+    h = _real_history("ABBV")
+    r = h["2025-12-31"]
+    reported_margin = r["operating_income"] / r["revenue"]
+    adjusted_margin = r["adjusted_operating_income"] / r["revenue"]
+    assert adjusted_margin - reported_margin > 0.05, "the real FY2025 IPR&D charge should compress margin by several points"

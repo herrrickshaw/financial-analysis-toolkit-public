@@ -126,6 +126,17 @@ def test_cli_cycle_utility_no_override_needed(capsys):
     assert "Regulated utilities" in out and "margin" in out
 
 
+def test_cli_cycle_pharma_no_override_needed_but_needs_adjustment(capsys):
+    # like airlines/semiconductors/utilities, pharma needs no --field/--revenue-field override -- but see
+    # test_sectors.py for the real finding that the field's history still needs an IPR&D adjustment before its
+    # trend can be trusted (a third distinct pattern from "wrong field" and "right field, no fix needed").
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["cycle", str(root / "data" / "edgar" / "ABBV.json"), "--sector", "pharma"])
+    out = capsys.readouterr().out
+    assert "Pharmaceuticals" in out and "margin" in out
+
+
 def test_cli_startup(tmp_path, capsys):
     from finmodel.cli import main
     root = Path(__file__).resolve().parent.parent

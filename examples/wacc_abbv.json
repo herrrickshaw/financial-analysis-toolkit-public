@@ -1,0 +1,14 @@
+{
+  "_comment": "AbbVie FY2025 (data/edgar/ABBV.json) plus illustrative market inputs (risk-free = 10yr UST, ERP = Damodaran implied ERP, unlevered beta = 0.75 -- illustrative, Damodaran-style, reflecting real large-pharma defensiveness: medicine demand is far less cyclical than steel/oil/semiconductors, though not as low-risk as a regulated utility's cost-of-service revenue -- see finmodel.sectors.SECTOR_PROFILES['pharma']). Relevered to AbbVie's own real FY2025 market-value capital structure via finmodel.wacc.relever_beta to 0.818. Real, low leverage (D/E 0.14) gives strong coverage (5.21x) -- synthetic rating 'A' lines up with AbbVie's real published investment-grade rating, a useful contrast to the utility check's coverage-based mismatch: the synthetic-rating table works fine here because AbbVie isn't a regulated, deliberately-high-leverage business.",
+  "wacc": {
+    "risk_free": 0.042,
+    "equity_risk_premium": 0.045,
+    "beta": 0.818,
+    "market_cap": 459605719391,
+    "debt": 64503000000,
+    "tax_rate": 0.358,
+    "ebit": 15075000000,
+    "interest_expense": 2893000000,
+    "large_firm": true
+  }
+}
