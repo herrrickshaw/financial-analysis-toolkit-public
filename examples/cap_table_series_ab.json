@@ -1,0 +1,13 @@
+{
+  "_comment": "ILLUSTRATIVE cap table -- a hypothetical startup raising a Series A then a Series B, each with a pre-money option-pool top-up, then an exit. Mirrors the kind of cap-table/ESOP modeling a fractional-CFO firm (e.g. Flipcarbon's ESOP scheme design) or a VC fund's portfolio-support team would build.",
+  "initial_holders": [
+    {"name": "Founders", "shares": 8000000}
+  ],
+  "rounds": [
+    {"name": "Series A", "pre_money": 8000000, "investment": 2000000, "target_option_pool_pct": 0.10,
+     "investor_name": "Series A investor", "liquidation_preference_multiple": 1.0, "participating": false},
+    {"name": "Series B", "pre_money": 30000000, "investment": 10000000, "target_option_pool_pct": 0.12,
+     "investor_name": "Series B investor", "liquidation_preference_multiple": 1.0, "participating": false}
+  ],
+  "exit_proceeds": 60000000
+}

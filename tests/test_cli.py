@@ -132,3 +132,55 @@ def test_cli_startup_benchmark_sector_override(capsys):
     main(["startup", str(root / "examples" / "startup_saas.json"), "--benchmark-sector", "airline"])
     out = capsys.readouterr().out
     assert "Benchmark vs real airline peers" in out
+
+
+def test_cli_cap_table(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["cap-table", str(root / "examples" / "cap_table_series_ab.json"), "--json-out", str(tmp_path / "ct.json")])
+    out = capsys.readouterr().out
+    assert "Final ownership:" in out and "Exit waterfall on $60,000,000:" in out
+    saved = json.loads((tmp_path / "ct.json").read_text())
+    assert saved["cap_table"]["ownership"]["Founders"] == pytest.approx(0.49, abs=1e-6)
+    assert sum(saved["exit_waterfall"]["payouts"].values()) == pytest.approx(60_000_000)
+
+
+def test_cli_vc_fund(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["vc-fund", str(root / "examples" / "vc_fund_demo.json"), "--json-out", str(tmp_path / "vf.json")])
+    out = capsys.readouterr().out
+    assert "TVPI 1.30x" in out and "MOIC 4.00x" in out and "Carry waterfall" in out
+    saved = json.loads((tmp_path / "vf.json").read_text())
+    assert saved["fund_metrics"]["tvpi"] == pytest.approx(1.3)
+
+
+def test_cli_cash_flow_forecast(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["cash-flow-forecast", str(root / "examples" / "cash_flow_forecast_13wk.json"), "--json-out", str(tmp_path / "cf.json")])
+    out = capsys.readouterr().out
+    assert "BELOW COVENANT" in out and "Covenant breach weeks: 2026-02-06" in out
+    saved = json.loads((tmp_path / "cf.json").read_text())
+    assert len(saved["forecast"]["weeks"]) == 13
+    assert len(saved["forecast"]["covenant_breach_weeks"]) == 3
+
+
+def test_cli_impact(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["impact", str(root / "examples" / "impact_scoring_demo.json"), "--json-out", str(tmp_path / "ic.json")])
+    out = capsys.readouterr().out
+    assert "2X eligible: True" in out and "Impact classification: B" in out and "tCO2e/$M revenue" in out
+    saved = json.loads((tmp_path / "ic.json").read_text())
+    assert saved["ghg"]["scope1_2_tco2e"] == 2000
+
+
+def test_cli_strategy(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["strategy", str(root / "examples" / "strategy_frameworks_demo.json"), "--json-out", str(tmp_path / "sf.json")])
+    out = capsys.readouterr().out
+    assert "SOM = 1.50% of TAM" in out and "Flagship product" in out and "Star" in out and "Invest/Grow" in out
+    saved = json.loads((tmp_path / "sf.json").read_text())
+    assert saved["bcg_matrix"]["units"][0]["classification"] == "Star"

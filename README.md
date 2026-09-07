@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 127 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 179 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -45,6 +45,11 @@ finmodel wacc examples/wacc_stld.json                                    # CAPM 
 finmodel residual-income examples/residual_income_stld.json              # residual-income (EBO) / EVA equity valuation
 finmodel sotp examples/sotp_conglomerate.json                            # sum-of-the-parts across segments
 finmodel startup examples/startup_saas.json                              # new-business 3-statement + DCF, benchmarked against real sector peer data
+finmodel cap-table examples/cap_table_series_ab.json                     # priced-round dilution (option-pool shuffle) + exit waterfall
+finmodel vc-fund examples/vc_fund_demo.json                               # DPI/RVPI/TVPI/IRR, deal MOIC, GP/LP carry waterfall
+finmodel cash-flow-forecast examples/cash_flow_forecast_13wk.json        # 13-week rolling direct-method cash forecast, covenant flags
+finmodel impact examples/impact_scoring_demo.json                        # 2X Criteria, Impact Management Project ABC class, GHG intensity
+finmodel strategy examples/strategy_frameworks_demo.json                 # TAM/SAM/SOM, BCG growth-share matrix, GE-McKinsey nine-box
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -115,6 +120,19 @@ Also: wage expense defaults to gross wages (`wage_expense_basis="gross"`); pass 
 - `docs/GAP_ANALYSIS.md` — feature gap analysis against the 144 GitHub repositories found for financial modelling / valuation and the EUA–ATHENA financial-management toolkit; what was added in response (`edgar`, `scores`, `comps`, `costing`, reverse and Monte-Carlo DCF).
 - `docs/PYTHON_PACKAGES.md` — the narrower, complementary survey: existing *installable PyPI packages* for this kind of analysis (EDGAR access, ratios/DCF, core financial math, Excel-formula transpilation). Confirms there's no dedicated comps/precedent-transaction package on PyPI at all, and that the Excel-formula-parsing packages that exist aren't documented as verified against real, complex workbooks the way `finmodel.xlcalc` is.
 
+## Advisory-services modules (`docs/ADVISORY_SERVICES.md`)
+
+A market survey of what real fractional-CFO firms ([Flipcarbon](https://flipcarbon.com/fractional-cfo-service)),
+impact-investing advisories ([Sagana](https://sagana.com/fund-managers/)), VC funds, and MBB strategy
+consultants actually sell, turned into five new modules: `finmodel.cap_table` (priced-round dilution with the
+option-pool shuffle, and an exit liquidation-preference waterfall), `finmodel.vc_fund_metrics` (DPI/RVPI/TVPI/
+IRR LP reporting and a GP/LP carry waterfall), `finmodel.cash_flow_forecast` (13-week rolling direct-method
+cash forecasting with covenant-breach flagging), `finmodel.impact_scoring` (2X Criteria gender-lens screening,
+the Impact Management Project's ABC classification, GHG intensity), and `finmodel.strategy_frameworks`
+(TAM/SAM/SOM market sizing, the BCG Growth-Share Matrix, the GE-McKinsey Nine-Box Matrix). See
+`docs/ADVISORY_SERVICES.md` for what was surveyed, what was built, and what was deliberately left out (already
+covered elsewhere, or fundamentally qualitative consulting work with no defensible model to write).
+
 ## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
 
 The mirror image of the real-company checks above: instead of validating the toolkit against a real filer,
@@ -157,7 +175,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

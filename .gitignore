@@ -16,3 +16,5 @@ GATES.md
 scripts/_gates/
 .unlazy/
 .unlazy-hook-state.json
+# background knowledge-graph indexer output, not a deliverable
+graphify-out/

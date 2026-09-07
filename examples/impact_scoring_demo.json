@@ -1,0 +1,26 @@
+{
+  "_comment": "ILLUSTRATIVE impact screen for a hypothetical portfolio company -- the kind of gender-lens (2X Criteria) and climate (GHG intensity) screening an impact-investing advisory firm (e.g. Sagana's real, named 'Gender-Smart Integration' and 'Climate Strategy Development' services) runs on a fund's portfolio.",
+  "two_x": {
+    "founder_is_woman_or_cofounded": false,
+    "women_on_board_pct": 0.20,
+    "women_in_senior_management_pct": 0.35,
+    "has_gender_inclusive_governance_policy": true,
+    "women_employees_pct": 0.15,
+    "workforce_is_historically_male_dominated_sector": true,
+    "has_quality_employment_policies_for_women": false,
+    "product_or_service_specifically_benefits_women": false
+  },
+  "impact_classification": {
+    "has_intent_to_benefit_stakeholders": true,
+    "measures_and_manages_outcomes": true,
+    "avoids_or_mitigates_material_harm": true,
+    "contributes_beyond_business_as_usual": true,
+    "contribution_is_evidenced": false
+  },
+  "ghg": {
+    "revenue": 25000000,
+    "scope1_tco2e": 800,
+    "scope2_tco2e": 1200,
+    "scope3_tco2e": 15000
+  }
+}

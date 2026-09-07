@@ -1,0 +1,20 @@
+{
+  "_comment": "ILLUSTRATIVE 13-week rolling cash flow forecast (direct method) -- the specific liquidity-planning deliverable a fractional-CFO practice (e.g. Flipcarbon's fractional/virtual CFO service) runs weekly for a client. min_cash_covenant flags any week the projected balance would breach a lender's minimum-liquidity requirement. Payroll alternates biweekly (a real, common pattern), AP is paid weekly.",
+  "opening_cash": 400000,
+  "min_cash_covenant": 150000,
+  "weeks": [
+    {"week_ending": "2026-01-09", "receipts": {"AR collections": 220000, "cash sales": 30000}, "disbursements": {"payroll": 180000, "AP": 90000, "rent": 20000}},
+    {"week_ending": "2026-01-16", "receipts": {"AR collections": 150000, "cash sales": 28000}, "disbursements": {"payroll": 0, "AP": 85000, "rent": 20000}},
+    {"week_ending": "2026-01-23", "receipts": {"AR collections": 140000, "cash sales": 32000}, "disbursements": {"payroll": 180000, "AP": 95000, "rent": 20000}},
+    {"week_ending": "2026-01-30", "receipts": {"AR collections": 100000, "cash sales": 29000}, "disbursements": {"payroll": 0, "AP": 90000, "rent": 20000}},
+    {"week_ending": "2026-02-06", "receipts": {"AR collections": 130000, "cash sales": 31000}, "disbursements": {"payroll": 180000, "AP": 100000, "rent": 20000, "quarterly taxes": 60000}},
+    {"week_ending": "2026-02-13", "receipts": {"AR collections": 155000, "cash sales": 27000}, "disbursements": {"payroll": 0, "AP": 88000, "rent": 20000}},
+    {"week_ending": "2026-02-20", "receipts": {"AR collections": 225000, "cash sales": 33000}, "disbursements": {"payroll": 185000, "AP": 92000, "rent": 20000}},
+    {"week_ending": "2026-02-27", "receipts": {"AR collections": 160000, "cash sales": 30000}, "disbursements": {"payroll": 0, "AP": 87000, "rent": 20000}},
+    {"week_ending": "2026-03-06", "receipts": {"AR collections": 145000, "cash sales": 29000}, "disbursements": {"payroll": 185000, "AP": 96000, "rent": 20000}},
+    {"week_ending": "2026-03-13", "receipts": {"AR collections": 165000, "cash sales": 31000}, "disbursements": {"payroll": 0, "AP": 89000, "rent": 20000}},
+    {"week_ending": "2026-03-20", "receipts": {"AR collections": 215000, "cash sales": 34000}, "disbursements": {"payroll": 185000, "AP": 98000, "rent": 20000}},
+    {"week_ending": "2026-03-27", "receipts": {"AR collections": 158000, "cash sales": 28000}, "disbursements": {"payroll": 0, "AP": 90000, "rent": 20000}},
+    {"week_ending": "2026-04-03", "receipts": {"AR collections": 150000, "cash sales": 30000}, "disbursements": {"payroll": 185000, "AP": 94000, "rent": 20000}}
+  ]
+}

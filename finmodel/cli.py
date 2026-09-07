@@ -319,6 +319,106 @@ def ts_table_summary(ts):
     return "\n".join(lines)
 
 
+def cmd_cap_table(a):
+    from . import cap_table as CT
+    res = CT.from_dict(_load_json(a.inputs))
+    ct = res["cap_table"]
+    for rnd in ct["rounds_applied"]:
+        print(f"{rnd['round']:16} pre {rnd['pre_money']:>14,.0f}  +{rnd['investment']:>12,.0f}  "
+              f"price/sh {rnd['price_per_share']:>8.4f}  pool top-up {rnd['option_pool_topup']:>12,.0f}  "
+              f"investor owns {rnd['new_investor_ownership_pct']:.1%}")
+    print("Final ownership:")
+    for name, pct in sorted(ct["ownership"].items(), key=lambda kv: -kv[1]):
+        print(f"  {name:24} {pct:.2%}")
+    if "exit_waterfall" in res:
+        w = res["exit_waterfall"]
+        print(f"Exit waterfall on ${w['exit_proceeds']:,.0f}:")
+        for name, amount in sorted(w["payouts"].items(), key=lambda kv: -kv[1]):
+            print(f"  {name:24} {amount:>14,.0f}")
+        if w["converted_to_common"]:
+            print(f"  (converted to as-converted common: {', '.join(w['converted_to_common'])})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_vc_fund(a):
+    from . import vc_fund_metrics as VC
+    res = VC.from_dict(_load_json(a.inputs))
+    m = res["fund_metrics"]
+    irr_str = f"{m['irr']:.1%}" if m["irr"] is not None else "n/a"
+    print(f"Paid-in {m['paid_in']:,.0f}  distributions {m['distributions']:,.0f}  NAV {m['nav']:,.0f}")
+    print(f"DPI {m['dpi']:.2f}x  RVPI {m['rvpi']:.2f}x  TVPI {m['tvpi']:.2f}x  IRR {irr_str}")
+    if "deals" in res:
+        for name, d in res["deals"].items():
+            irr_str = f"{d['irr']:.1%}" if d.get("irr") is not None else "n/a"
+            print(f"  {name:24} MOIC {d['moic']:.2f}x  IRR {irr_str}")
+    if "carry_waterfall" in res:
+        w = res["carry_waterfall"]
+        print(f"Carry waterfall (whole-fund, European): LP {w['lp_total']:,.0f} ({w['lp_net_tvpi']:.2f}x net)  "
+              f"GP {w['gp_total']:,.0f}  (effective carry on profit {w['effective_carry_pct_of_profit']:.1%})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_cash_flow_forecast(a):
+    from . import cash_flow_forecast as CF
+    res = CF.from_dict(_load_json(a.inputs))
+    f = res["forecast"]
+    print(f"Opening cash {f['opening_cash']:,.0f}")
+    for w in f["weeks"]:
+        flag = "  *** BELOW COVENANT ***" if w["covenant_breach"] else ""
+        print(f"  {w['week_ending']}  receipts {w['total_receipts']:>12,.0f}  disbursements {w['total_disbursements']:>12,.0f}  closing {w['closing_cash']:>12,.0f}{flag}")
+    print(f"13-week total: receipts {f['total_receipts']:,.0f}  disbursements {f['total_disbursements']:,.0f}  "
+          f"closing {f['closing_cash']:,.0f}  min projected cash {f['min_projected_cash']:,.0f}")
+    if f["covenant_breach_weeks"]:
+        print(f"Covenant breach weeks: {', '.join(f['covenant_breach_weeks'])}")
+    if "variance" in res:
+        v = res["variance"]
+        print(f"Forecast-vs-actual: total net variance {v['total_net_variance']:,.0f}  "
+              f"mean |receipts variance| {v['mean_absolute_receipts_variance_pct']:.1%}  "
+              f"mean |disbursements variance| {v['mean_absolute_disbursements_variance_pct']:.1%}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_impact(a):
+    from . import impact_scoring as IS
+    res = IS.from_dict(_load_json(a.inputs))
+    if "two_x" in res:
+        t = res["two_x"]
+        print(f"2X eligible: {t['eligible']} (dimensions met: {', '.join(t['dimensions_met_list']) or 'none'})")
+    if "impact_classification" in res:
+        c = res["impact_classification"]
+        print(f"Impact classification: {c['class'] or 'none'} — {c['label']}" + (f" ({c['note']})" if c.get("note") else ""))
+    if "ghg" in res:
+        g = res["ghg"]
+        line = f"GHG intensity: {g['scope1_2_intensity_per_million_revenue']:.1f} tCO2e/$M revenue (Scope 1+2)"
+        if "scope1_2_3_intensity_per_million_revenue" in g:
+            line += f", {g['scope1_2_3_intensity_per_million_revenue']:.1f} incl. Scope 3 ({g['scope3_share_of_total']:.0%} of total)"
+        print(line)
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_strategy(a):
+    from . import strategy_frameworks as SF
+    res = SF.from_dict(_load_json(a.inputs))
+    if "market_sizing_top_down" in res:
+        m = res["market_sizing_top_down"]
+        print(f"Market sizing (top-down): TAM {m['tam']:,.0f}  SAM {m['sam']:,.0f}  SOM {m['som']:,.0f}  (SOM = {m['som_pct_of_tam']:.2%} of TAM)")
+    if "market_sizing_bottom_up" in res:
+        m = res["market_sizing_bottom_up"]
+        print(f"Market sizing (bottom-up): TAM {m['tam']:,.0f}  SOM {m['som']:,.0f}  (SOM = {m['som_pct_of_tam']:.2%} of TAM)")
+        for s in m["segments"]:
+            print(f"  {s['segment']:16} TAM {s['segment_tam']:>14,.0f}  SOM {s['segment_som']:>14,.0f}")
+    if "bcg_matrix" in res:
+        print("BCG Growth-Share Matrix:")
+        for u in res["bcg_matrix"]["units"]:
+            print(f"  {u['name']:16} rel. share {u['relative_market_share']:.2f}x  growth {u['market_growth_rate']:.1%}  → {u['classification']}")
+    if "ge_mckinsey_matrix" in res:
+        print("GE-McKinsey Nine-Box Matrix:")
+        for u in res["ge_mckinsey_matrix"]["units"]:
+            print(f"  {u['name']:16} attractiveness {u['industry_attractiveness_bucket']:6} ({u['industry_attractiveness_score']:.2f})  "
+                  f"strength {u['business_strength_bucket']:6} ({u['business_strength_score']:.2f})  → {u['zone']}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -418,6 +518,11 @@ def main(argv=None):
     so = sp.add_parser("sotp", help="sum-of-the-parts valuation across segments"); so.add_argument("inputs"); so.add_argument("--json-out"); so.set_defaults(fn=cmd_sotp)
     from . import startup_model as _SM
     su = sp.add_parser("startup", help="new-business 3-statement projection + DCF valuation, benchmarked against real sector peer data"); su.add_argument("inputs"); su.add_argument("--benchmark-sector", choices=list(_SM.SECTOR_PEER_TICKERS)); su.add_argument("--json-out"); su.set_defaults(fn=cmd_startup)
+    ct = sp.add_parser("cap-table", help="priced-round dilution (with the option-pool shuffle) and an exit liquidation-preference waterfall"); ct.add_argument("inputs"); ct.add_argument("--json-out"); ct.set_defaults(fn=cmd_cap_table)
+    vf = sp.add_parser("vc-fund", help="VC/PE fund LP metrics (DPI/RVPI/TVPI/IRR), deal-level MOIC/IRR, and a GP/LP carry waterfall"); vf.add_argument("inputs"); vf.add_argument("--json-out"); vf.set_defaults(fn=cmd_vc_fund)
+    cf = sp.add_parser("cash-flow-forecast", help="13-week rolling direct-method cash flow forecast, covenant-breach flagging, forecast-vs-actual variance"); cf.add_argument("inputs"); cf.add_argument("--json-out"); cf.set_defaults(fn=cmd_cash_flow_forecast)
+    ic = sp.add_parser("impact", help="2X Criteria gender-lens screen, Impact Management Project ABC classification, GHG intensity"); ic.add_argument("inputs"); ic.add_argument("--json-out"); ic.set_defaults(fn=cmd_impact)
+    sf = sp.add_parser("strategy", help="TAM/SAM/SOM market sizing, BCG growth-share matrix, GE-McKinsey nine-box matrix"); sf.add_argument("inputs"); sf.add_argument("--json-out"); sf.set_defaults(fn=cmd_strategy)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)

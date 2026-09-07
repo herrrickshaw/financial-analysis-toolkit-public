@@ -1,0 +1,16 @@
+{
+  "_comment": "ILLUSTRATIVE VC fund: a $10M fund called in one tranche, one $5M realized distribution, and an $8M NAV of remaining portfolio, valued as of 2024-01-01 -- the quarterly LP-reporting metrics (DPI/RVPI/TVPI/IRR) a fund's finance function or an outsourced fund administrator would produce, plus a European whole-fund carry waterfall and two example portfolio-company MOICs.",
+  "cashflows": [
+    {"date": "2019-01-01", "amount": -10000000},
+    {"date": "2023-01-01", "amount": 5000000}
+  ],
+  "nav": 8000000,
+  "as_of": "2024-01-01",
+  "carry": {"hurdle_rate": 0.08, "carry_pct": 0.20},
+  "deals": {
+    "Portfolio Co A (realized)": {"invested": 1000000, "proceeds_to_date": 4000000, "current_value": 0,
+      "cashflow_dates": ["2019-06-01", "2023-06-01"], "cashflow_amounts": [-1000000, 4000000], "as_of": "2024-01-01"},
+    "Portfolio Co B (unrealized)": {"invested": 2000000, "proceeds_to_date": 0, "current_value": 6000000,
+      "cashflow_dates": ["2020-01-01"], "cashflow_amounts": [-2000000], "as_of": "2024-01-01"}
+  }
+}
