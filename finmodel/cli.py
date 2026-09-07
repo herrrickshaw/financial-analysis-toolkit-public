@@ -823,6 +823,34 @@ def cmd_carry_trade(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_revolving_credit(a):
+    from . import revolving_credit as RC
+    res = RC.from_dict(_load_json(a.inputs))
+    if "daily_balance_interest" in res:
+        r = res["daily_balance_interest"]
+        print(f"Daily-balance interest: {r['total_interest']:,.2f} over {r['num_days']} days (average balance {r['average_balance']:,.0f})")
+    if "credit_card_minimum_payment_schedule" in res:
+        r = res["credit_card_minimum_payment_schedule"]
+        if r["paid_off"]:
+            print(f"Minimum-payment schedule: paid off in {r['months_to_payoff']} months, total interest {r['total_interest_paid']:,.0f}")
+        else:
+            print(f"Minimum-payment schedule: NOT paid off within the simulated window (negative amortization or too slow); interest so far {r['total_interest_paid']:,.0f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_npa_classification(a):
+    from . import npa_classification as NPA
+    res = NPA.from_dict(_load_json(a.inputs))
+    if "npa_provisioning" in res:
+        r = res["npa_provisioning"]
+        print(f"Classification: {r['classification']}  provision required {r['provision_required']:,.0f} ({r['provision_rate_effective']:.2%} of outstanding)")
+    if "loan_book" in res:
+        for r in res["loan_book"]:
+            print(f"  {r['classification']:12} outstanding {r['outstanding_amount']:>12,.0f}  provision {r['provision_required']:>12,.0f}")
+        print(f"Total provision required: {res['total_provision_required']:,.0f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -950,6 +978,8 @@ def main(argv=None):
     rl = sp.add_parser("retail-loans", help="EMI, amortization schedule, prepayment (reduce-tenure/reduce-EMI), floating-rate reset, foreclosure payoff, FOIR loan eligibility"); rl.add_argument("inputs"); rl.add_argument("--json-out"); rl.set_defaults(fn=cmd_retail_loans)
     rdp = sp.add_parser("retail-deposits", help="fixed deposit maturity, recurring deposit maturity (per-installment compounding), premature RD closure, Section 194A TDS"); rdp.add_argument("inputs"); rdp.add_argument("--json-out"); rdp.set_defaults(fn=cmd_retail_deposits)
     ctd = sp.add_parser("carry-trade", help="covered interest rate parity forward rate, unhedged FX carry return, break-even depreciation"); ctd.add_argument("inputs"); ctd.add_argument("--json-out"); ctd.set_defaults(fn=cmd_carry_trade)
+    rvc = sp.add_parser("revolving-credit", help="cash-credit/overdraft and credit-card daily-balance interest; the minimum-payment trap"); rvc.add_argument("inputs"); rvc.add_argument("--json-out"); rvc.set_defaults(fn=cmd_revolving_credit)
+    npa = sp.add_parser("npa-classification", help="RBI IRAC asset classification (Standard/SMA/NPA buckets) and secured/unsecured provisioning"); npa.add_argument("inputs"); npa.add_argument("--json-out"); npa.set_defaults(fn=cmd_npa_classification)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)

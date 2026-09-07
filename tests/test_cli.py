@@ -452,3 +452,22 @@ def test_cli_carry_trade(tmp_path, capsys):
     saved = json.loads((tmp_path / "ct.json").read_text())
     assert saved["break_even_depreciation"]["break_even_depreciation_pct"] == pytest.approx(
         saved["covered_interest_rate_parity"]["forward_premium_pct"])
+
+
+def test_cli_revolving_credit(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["revolving-credit", str(EX / "revolving_credit_demo.json"), "--json-out", str(tmp_path / "rc.json")])
+    out = capsys.readouterr().out
+    assert "Daily-balance interest:" in out and "Minimum-payment schedule:" in out
+    saved = json.loads((tmp_path / "rc.json").read_text())
+    assert saved["credit_card_minimum_payment_schedule"]["paid_off"] is True
+
+
+def test_cli_npa_classification(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["npa-classification", str(EX / "npa_classification_demo.json"), "--json-out", str(tmp_path / "npa.json")])
+    out = capsys.readouterr().out
+    assert "Total provision required:" in out
+    saved = json.loads((tmp_path / "npa.json").read_text())
+    assert saved["total_provision_required"] > 0
+    assert len(saved["loan_book"]) == 5
