@@ -103,3 +103,22 @@ def test_cli_cycle_field_override_for_insurance(capsys):
     main(["cycle", str(root / "data" / "edgar" / "TRV.json"), "--sector", "insurance", "--field", "net_income", "--revenue-field", "equity"])
     out = capsys.readouterr().out
     assert "net_income/equity" in out and "Property & casualty insurance" in out
+
+
+def test_cli_startup(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["startup", str(root / "examples" / "startup_saas.json"), "--json-out", str(tmp_path / "s.json")])
+    out = capsys.readouterr().out
+    assert "Balance sheet balances: True" in out and "DCF: enterprise value" in out and "Benchmark vs real software peers" in out
+    saved = json.loads((tmp_path / "s.json").read_text())
+    assert saved["three_statement"]["balanced"] is True and saved["benchmark"]["sector"] == "software"
+
+
+def test_cli_startup_benchmark_sector_override(capsys):
+    # --benchmark-sector on the CLI should override whatever (if anything) the input file specifies
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["startup", str(root / "examples" / "startup_saas.json"), "--benchmark-sector", "airline"])
+    out = capsys.readouterr().out
+    assert "Benchmark vs real airline peers" in out

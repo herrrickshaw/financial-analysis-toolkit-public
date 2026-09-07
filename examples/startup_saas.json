@@ -1,0 +1,30 @@
+{
+  "_comment": "ILLUSTRATIVE, hypothetical B2B SaaS startup -- every number here is a scenario assumption, not real company data (unlike data/edgar/*.json, which is real SEC filings). year0 is a beta-launch snapshot; revenue_path is the 5-year ramp a seed/Series-A SaaS business plan might target. benchmark_sector reuses this repo's REAL software peer data (data/edgar/{CSCO,MSFT,ORCL,IBM,ADBE,CRM}.json) to sanity-check whether the assumed exit-year operating margin is anywhere near what real, mature software companies actually report -- the same real data docs/FOOTBALL_FIELD_CSCO.md is built on.",
+  "startup": {
+    "name": "Illustrative B2B SaaS Co.",
+    "forecast_years": 5,
+    "year0_revenue": 200000,
+    "revenue_path": [800000, 2500000, 6000000, 12000000, 20000000],
+    "gross_margin": [0.65, 0.70, 0.74, 0.77, 0.80],
+    "payroll_pct_revenue": [0.90, 0.70, 0.55, 0.45, 0.40],
+    "other_opex_pct_revenue": [0.50, 0.35, 0.25, 0.20, 0.15],
+    "capex_pct_revenue": 0.02,
+    "da_pct_ppe": 0.25,
+    "ar_days": 45,
+    "inventory_days": 0,
+    "ap_days": 30,
+    "tax_rate": 0.21,
+    "interest_pct_debt": 0.0,
+    "starting_cash": 3000000,
+    "starting_ppe": 150000,
+    "equity_raised": {"1": 8000000},
+    "debt_raised": {}
+  },
+  "dcf": {
+    "discount_rate": 0.30,
+    "perpetual_growth": 0.04,
+    "shares_outstanding": 10000000,
+    "tax_rate": 0.21
+  },
+  "benchmark_sector": "software"
+}

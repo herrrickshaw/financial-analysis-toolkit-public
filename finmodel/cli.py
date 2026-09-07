@@ -292,6 +292,33 @@ def cmd_sotp(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_startup(a):
+    from . import startup_model as SM
+    d = _load_json(a.inputs)
+    if a.benchmark_sector: d["benchmark_sector"] = a.benchmark_sector
+    res = SM.from_dict(d)
+    ts = res["three_statement"]
+    print(ts_table_summary(ts))
+    print(f"Balance sheet balances: {ts['balanced']}")
+    if "dcf" in res:
+        dd = res["dcf"]
+        print(f"DCF: enterprise value {dd['enterprise_value']:,.0f}  equity value {dd['equity_value']:,.0f}  per share {dd['value_per_share']:.4f}")
+    if "benchmark" in res:
+        b = res["benchmark"]
+        lo, hi = b["real_range"]["low"], b["real_range"]["high"]
+        print(f"Benchmark vs real {b['sector']} peers ({b['field']}/{b['revenue_field']}, FY{b['exit_year']}): "
+              f"this plan {b['startup_margin']:.1%} vs real range {lo:.1%}-{hi:.1%} → {b['note']}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def ts_table_summary(ts):
+    years = ts["years"]; n_h = ts["n_hist"]; r = ts["rows"]
+    lines = [f"{'':16}" + "".join(f"{y:>14}" for y in years)]
+    for k in ("Revenue", "Gross Profit", "Net Earnings", "Cash", "Closing Cash Balance"):
+        lines.append(f"{k:16}" + "".join(f"{v:>14,.0f}" for v in r[k]))
+    return "\n".join(lines)
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -389,6 +416,8 @@ def main(argv=None):
     wc = sp.add_parser("wacc", help="CAPM cost of equity, synthetic-rating cost of debt, bottom-up beta and WACC"); wc.add_argument("inputs"); wc.add_argument("--json-out"); wc.set_defaults(fn=cmd_wacc)
     ri = sp.add_parser("residual-income", help="residual-income (EBO) equity valuation and/or EVA firm valuation"); ri.add_argument("inputs"); ri.add_argument("--json-out"); ri.set_defaults(fn=cmd_residual_income)
     so = sp.add_parser("sotp", help="sum-of-the-parts valuation across segments"); so.add_argument("inputs"); so.add_argument("--json-out"); so.set_defaults(fn=cmd_sotp)
+    from . import startup_model as _SM
+    su = sp.add_parser("startup", help="new-business 3-statement projection + DCF valuation, benchmarked against real sector peer data"); su.add_argument("inputs"); su.add_argument("--benchmark-sector", choices=list(_SM.SECTOR_PEER_TICKERS)); su.add_argument("--json-out"); su.set_defaults(fn=cmd_startup)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)

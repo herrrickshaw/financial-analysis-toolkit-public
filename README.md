@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 102 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 115 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -44,6 +44,7 @@ finmodel cycle data/edgar/STLD.json --sector steel                       # where
 finmodel wacc examples/wacc_stld.json                                    # CAPM cost of equity, synthetic-rating cost of debt, WACC
 finmodel residual-income examples/residual_income_stld.json              # residual-income (EBO) / EVA equity valuation
 finmodel sotp examples/sotp_conglomerate.json                            # sum-of-the-parts across segments
+finmodel startup examples/startup_saas.json                              # new-business 3-statement + DCF, benchmarked against real sector peer data
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -112,6 +113,17 @@ Also: wage expense defaults to gross wages (`wage_expense_basis="gross"`); pass 
 - `docs/GAP_ANALYSIS.md` — feature gap analysis against the 144 GitHub repositories found for financial modelling / valuation and the EUA–ATHENA financial-management toolkit; what was added in response (`edgar`, `scores`, `comps`, `costing`, reverse and Monte-Carlo DCF).
 - `docs/PYTHON_PACKAGES.md` — the narrower, complementary survey: existing *installable PyPI packages* for this kind of analysis (EDGAR access, ratios/DCF, core financial math, Excel-formula transpilation). Confirms there's no dedicated comps/precedent-transaction package on PyPI at all, and that the Excel-formula-parsing packages that exist aren't documented as verified against real, complex workbooks the way `finmodel.xlcalc` is.
 
+## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
+
+The mirror image of the real-company checks above: instead of validating the toolkit against a real filer,
+`finmodel startup <inputs.json>` generates a hypothetical new business's three-statement projection
+(`finmodel.three_statement`) and DCF valuation (`finmodel.dcf`) from a small set of high-level assumptions (a
+revenue ramp, a margin trajectory, funding rounds), then checks the plan's assumed exit-year margin against the
+REAL per-sector peer data the seven football-field checks above already collected (`data/edgar/*.json`) — so a
+founder's assumptions get sanity-checked against real market data, not a fabricated "typical startup" range.
+`examples/startup_saas.json` is a worked, fully-illustrative SaaS example, benchmarked against the real software
+sector peers from `docs/FOOTBALL_FIELD_CSCO.md`.
+
 ## Charts, glossary, paid-template knowledge base
 
 - `docs/CHARTS.md` — the chart template: for each engine, which data feeds which chart and the analysis question it answers. Rendering follows the data-viz method (validated palette, thin marks, 2px gaps, legends, tooltips, table view, light/dark).
@@ -143,8 +155,8 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
-examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, ma_case_study.py (regenerate the real-data docs)
 catalog/           source lists (cfi_dashboard_raw.txt, open_sources_verified.txt) -> catalog.json / catalog.md

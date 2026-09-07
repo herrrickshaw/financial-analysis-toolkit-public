@@ -559,6 +559,33 @@ which is the point: a workbook can recalculate perfectly and still be full of un
 
 `finmodel audit path/to/workbook.xlsx --recompute --markdown-out out/audit.md`.
 
+## 8g. New-business / startup model  (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
+
+The mirror image of §8c's real-company checks: instead of validating this toolkit against a real filer,
+`finmodel startup <inputs.json>` generates a HYPOTHETICAL new business's financials from a handful of high-level
+assumptions (a revenue ramp, a margin trajectory, funding rounds) — then checks the plan against the REAL peer
+data those real-company checks already collected, rather than a fabricated "typical startup" benchmark.
+
+No new modeling engine: `build_three_statement()` translates the assumptions into `finmodel.three_statement`
+(the same CFI-workbook-reconciled linked 3-statement engine from §1), and `dcf_from_projection()` translates the
+resulting forecast into `finmodel.dcf` (the same engine from §2, EBIT = EBT + interest add-back). The one new
+piece, `benchmark_against_sector()`, reads `data/edgar/<ticker>.json` for whichever of the seven validated
+sectors (steel, oil & gas, software, banking, REITs, airlines, insurance) is the closest real-world comparison,
+and reports where the plan's assumed exit-year margin sits relative to those real companies' own most recent
+fiscal year — it raises rather than fabricating a benchmark for a sector without real peer data on disk.
+
+A real bug worth knowing about if you extend this: giving the seed year "free" starting PP&E (an asset with no
+matching capex/financing entry) balances the two balance-sheet totals but breaks the cash-flow waterfall, since
+the model's `equity_issued` field is implicitly a CASH raise. The fix — model any starting PP&E as a same-day
+equipment purchase (day-0 capex funded by day-0 equity) rather than a free opening balance — is a genuine, if
+narrow, three-statement-modeling lesson: a non-cash contribution needs its own capex/financing entries, not just
+a balance-sheet plug.
+
+**Try it.** `finmodel startup examples/startup_saas.json` — a fully-illustrative SaaS example (see
+`docs/STARTUP_MODEL.md`), benchmarked against the real software peers from §8c-i/`docs/FOOTBALL_FIELD_CSCO.md`.
+`--benchmark-sector airline` on the same file shows what an assumption OUTSIDE a real sector's actual range
+looks like, using a deliberately poor real-world comparison.
+
 ---
 
 ## 9. Capital budgeting (NPV / IRR / payback) and options
