@@ -859,6 +859,42 @@ def cmd_pipeline(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_credit_risk(a):
+    from . import credit_risk as CR
+    res = CR.from_dict(_load_json(a.inputs))
+    if "expected_loss" in res:
+        r = res["expected_loss"]
+        print(f"Expected loss: {r['expected_loss']:,.2f} (PD {r['pd']:.2%} x LGD {r['lgd']:.2%} x EAD {r['ead']:,.0f})")
+    if "basel_irb_corporate" in res:
+        r = res["basel_irb_corporate"]
+        print(f"Basel IRB: risk weight {r['risk_weight_pct']:.1%}  RWA {r['risk_weighted_assets']:,.0f}  min capital {r['minimum_capital_required']:,.0f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_interest_rate_risk(a):
+    from . import interest_rate_risk as IRR
+    res = IRR.from_dict(_load_json(a.inputs))
+    if "repricing_gap" in res:
+        r = res["repricing_gap"]
+        for b in r["buckets"]:
+            print(f"  {b['name']:10} gap {b['gap']:>14,.0f}  cumulative {b['cumulative_gap']:>14,.0f}")
+        print(f"Total gap: {r['total_gap']:,.0f}  (gap ratio {r['gap_ratio']:.1%})")
+    if "nii_sensitivity" in res:
+        r = res["nii_sensitivity"]
+        print(f"NII sensitivity to {r['rate_shock']:+.2%} rate shock: {r['delta_nii']:+,.0f} ({'asset' if r['nii_rises_with_rates'] else 'liability'}-sensitive)")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_fixed_income_risk(a):
+    from . import fixed_income_risk as FIR
+    res = FIR.from_dict(_load_json(a.inputs))
+    if "bond_price_and_duration" in res:
+        r = res["bond_price_and_duration"]
+        print(f"Bond: price {r['price']:,.4f}  Macaulay duration {r['macaulay_duration_years']:.4f}y  "
+              f"modified duration {r['modified_duration']:.4f}  DV01 {r['dv01']:.4f}  convexity {r['convexity']:.4f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -989,6 +1025,9 @@ def main(argv=None):
     rvc = sp.add_parser("revolving-credit", help="cash-credit/overdraft and credit-card daily-balance interest; the minimum-payment trap"); rvc.add_argument("inputs"); rvc.add_argument("--json-out"); rvc.set_defaults(fn=cmd_revolving_credit)
     npa = sp.add_parser("npa-classification", help="RBI IRAC asset classification (Standard/SMA/NPA buckets) and secured/unsecured provisioning"); npa.add_argument("inputs"); npa.add_argument("--json-out"); npa.set_defaults(fn=cmd_npa_classification)
     pln = sp.add_parser("pipeline", help="chain multiple finmodel modules together, referencing earlier steps' outputs with ${step.path} placeholders"); pln.add_argument("inputs"); pln.add_argument("--json-out"); pln.set_defaults(fn=cmd_pipeline)
+    crk = sp.add_parser("credit-risk", help="expected loss (PD x LGD x EAD) and the Basel IRB risk-weighted-assets formula"); crk.add_argument("inputs"); crk.add_argument("--json-out"); crk.set_defaults(fn=cmd_credit_risk)
+    irr = sp.add_parser("interest-rate-risk", help="bank repricing gap and first-order NII sensitivity to a rate shock"); irr.add_argument("inputs"); irr.add_argument("--json-out"); irr.set_defaults(fn=cmd_interest_rate_risk)
+    fir = sp.add_parser("fixed-income-risk", help="bond price, Macaulay/modified duration, DV01, convexity"); fir.add_argument("inputs"); fir.add_argument("--json-out"); fir.set_defaults(fn=cmd_fixed_income_risk)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)

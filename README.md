@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 439 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 457 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -77,6 +77,9 @@ finmodel carry-trade examples/carry_trade_demo.json                      # cover
 finmodel revolving-credit examples/revolving_credit_demo.json            # cash-credit/overdraft daily-balance interest, credit-card minimum-payment trap
 finmodel npa-classification examples/npa_classification_demo.json        # RBI IRAC asset classification (Standard/SMA/NPA) and secured/unsecured provisioning
 finmodel pipeline examples/pipeline_retail_lending_demo.json             # chain modules together: FOIR eligibility -> amortization -> NPA provisioning
+finmodel credit-risk examples/credit_risk_demo.json                      # expected loss (PD x LGD x EAD) and the Basel IRB risk-weighted-assets formula
+finmodel interest-rate-risk examples/interest_rate_risk_demo.json        # bank repricing gap and NII sensitivity to a rate shock
+finmodel fixed-income-risk examples/fixed_income_risk_demo.json          # bond price, Macaulay/modified duration, DV01, convexity
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -295,6 +298,22 @@ being independently made up. See `docs/PIPELINE.md` for what was deliberately le
 parallel-execution dependency graph, conditional branching) and why a strict ordered list is the right size
 for chaining pure, fast finance calculations rather than a general workflow engine.
 
+## Professor and course survey (`docs/PROFESSOR_COURSE_SURVEY.md`)
+
+A different kind of survey: instead of a template gallery or a reading list, this one cross-references real,
+named professors and their real, currently-taught courses (checked live via web search) — Bruce Tuckman's
+NYU Stern fixed-income course, P C Narayan's IIM Bangalore banking-risk course, Ohio State's Financial
+Institutions syllabus, NYU Stern's real-estate specialization, HEC Paris' financial-engineering electives,
+and the P&C actuarial ratemaking/reserving curriculum taught across several universities — against this
+toolkit's coverage. Three real, course-confirmed gaps were closed: `finmodel.credit_risk` (expected loss and
+the real Basel II/III Foundation IRB risk-weighted-assets formula, verified against Basel's own published
+corporate risk-weight reference point), `finmodel.interest_rate_risk` (the repricing-gap model and NII
+sensitivity to a rate shock — closing a gap this toolkit's own literature survey had previously flagged as
+deferred), and `finmodel.fixed_income_risk` (bond price, Macaulay/modified duration, DV01, and convexity,
+verified against a classic textbook reference bond and the exact zero-coupon-duration identity). See
+`docs/PROFESSOR_COURSE_SURVEY.md` for the full professor/course list, the complete cross-reference table, and
+what was deliberately left out (credit-card/master-trust securitization, FX exotic-derivatives origination).
+
 ## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
 
 The mirror image of the real-company checks above: instead of validating the toolkit against a real filer,
@@ -337,7 +356,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

@@ -1,0 +1,13 @@
+{
+  "expected_loss": {
+    "pd": 0.015,
+    "lgd": 0.40,
+    "ead": 5000000.0
+  },
+  "basel_irb_corporate": {
+    "pd": 0.015,
+    "lgd": 0.40,
+    "ead": 5000000.0,
+    "maturity_years": 3.0
+  }
+}

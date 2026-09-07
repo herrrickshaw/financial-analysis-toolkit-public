@@ -1,0 +1,17 @@
+{
+  "repricing_gap": {
+    "buckets": [
+      {"name": "0-3m", "rate_sensitive_assets": 8000000.0, "rate_sensitive_liabilities": 5000000.0},
+      {"name": "3-12m", "rate_sensitive_assets": 3000000.0, "rate_sensitive_liabilities": 6000000.0},
+      {"name": "1-5y", "rate_sensitive_assets": 4000000.0, "rate_sensitive_liabilities": 2000000.0}
+    ]
+  },
+  "nii_sensitivity": {
+    "buckets": [
+      {"name": "0-3m", "rate_sensitive_assets": 8000000.0, "rate_sensitive_liabilities": 5000000.0},
+      {"name": "3-12m", "rate_sensitive_assets": 3000000.0, "rate_sensitive_liabilities": 6000000.0},
+      {"name": "1-5y", "rate_sensitive_assets": 4000000.0, "rate_sensitive_liabilities": 2000000.0}
+    ],
+    "rate_shock": 0.01
+  }
+}

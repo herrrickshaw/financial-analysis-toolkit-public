@@ -473,6 +473,33 @@ def test_cli_npa_classification(tmp_path, capsys):
     assert len(saved["loan_book"]) == 5
 
 
+def test_cli_credit_risk(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["credit-risk", str(EX / "credit_risk_demo.json"), "--json-out", str(tmp_path / "cr.json")])
+    out = capsys.readouterr().out
+    assert "Expected loss:" in out and "Basel IRB:" in out
+    saved = json.loads((tmp_path / "cr.json").read_text())
+    assert 0.0 < saved["basel_irb_corporate"]["risk_weight_pct"] < 5.0
+
+
+def test_cli_interest_rate_risk(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["interest-rate-risk", str(EX / "interest_rate_risk_demo.json"), "--json-out", str(tmp_path / "irr.json")])
+    out = capsys.readouterr().out
+    assert "Total gap:" in out and "NII sensitivity" in out
+    saved = json.loads((tmp_path / "irr.json").read_text())
+    assert saved["repricing_gap"]["total_gap"] == pytest.approx(saved["nii_sensitivity"]["total_gap"])
+
+
+def test_cli_fixed_income_risk(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["fixed-income-risk", str(EX / "fixed_income_risk_demo.json"), "--json-out", str(tmp_path / "fir.json")])
+    out = capsys.readouterr().out
+    assert "Macaulay duration" in out
+    saved = json.loads((tmp_path / "fir.json").read_text())
+    assert saved["bond_price_and_duration"]["price"] > 0
+
+
 def test_cli_pipeline(tmp_path, capsys):
     from finmodel.cli import main
     main(["pipeline", str(EX / "pipeline_retail_lending_demo.json"), "--json-out", str(tmp_path / "pl.json")])
