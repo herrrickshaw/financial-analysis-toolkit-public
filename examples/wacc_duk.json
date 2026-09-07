@@ -1,0 +1,14 @@
+{
+  "_comment": "Duke Energy FY2025 (data/edgar/DUK.json) plus illustrative market inputs (risk-free = 10yr UST, ERP = Damodaran implied ERP, unlevered beta = 0.35 -- illustrative, Damodaran-style, the lowest of any sector this toolkit has profiled, see finmodel.sectors.SECTOR_PROFILES['utility'] -- relevered to DUK's own FY2025 market-value capital structure via finmodel.wacc.relever_beta to 0.622). Coverage-based synthetic rating (ebit/interest_expense) gives 'BB+' here -- a real, verified MISMATCH against DUK's actual investment-grade rating (BBB/S&P, Baa2/Moody's, both stable, Feb 2026): regulated utilities are allowed to run structurally low coverage because rate-of-return regulation makes debt-service recovery through rates close to guaranteed, something the coverage ratio alone can't see. Kept as real, uncorrected output -- see docs/FOOTBALL_FIELD_DUK.md for the full writeup.",
+  "wacc": {
+    "risk_free": 0.042,
+    "equity_risk_premium": 0.045,
+    "beta": 0.622,
+    "market_cap": 99529815000,
+    "debt": 87212000000,
+    "tax_rate": 0.1124,
+    "ebit": 8626000000,
+    "interest_expense": 3634000000,
+    "large_firm": true
+  }
+}

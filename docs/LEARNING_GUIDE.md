@@ -245,8 +245,11 @@ a real black-swan trap in `finmodel.sectors`' usual periods=8 default, see 8c-iv
 EV/EBITDA fails for yet another reason, and where BOOK VALUE itself, not the multiple or earnings, turns out to
 be the thing that's rate-exposed; see 8c-v below), and `python scripts/football_field_txn.py`
 (`docs/FOOTBALL_FIELD_TXN.md`, semiconductors — an eighth sector where EV/EBIT is directionally right but GAAP
-R&D expensing understates it; see 8c-vi below). §5 of each document also checks the sector-tuning in
-`finmodel.sectors` below.
+R&D expensing understates it; see 8c-vi below), and `python scripts/football_field_duk.py`
+(`docs/FOOTBALL_FIELD_DUK.md`, regulated utilities — a ninth, deliberately low-cyclicality sector where the
+standard EV-based framework needs no fix at all, but a thin, structurally-negative-in-places unlevered free
+cash flow makes the DCF's terminal-growth assumption the whole ballgame; see 8c-vii below). §5 of each document
+also checks the sector-tuning in `finmodel.sectors` below.
 
 ---
 
@@ -313,10 +316,11 @@ FY2020's pandemic-collapse margin, not a usable "bear case." The insurance check
 §8c-v below) reuses banking's exact ROE override (`field="net_income", revenue_field="equity"`) — the first time
 two independently-checked sectors have shared an override rather than each needing its own.
 
-Eight sectors (`"steel"`, `"oil_gas"`, `"software"`, `"banking"`, `"reit"`, `"airline"`, `"insurance"`,
-`"semiconductor"`) are tuned against real multi-year data so far, each with a `SECTOR_PROFILE` entry documenting
-exactly what real range justified its thresholds; every other sector falls back to a clearly labelled
-`"default"` rather than a fabricated industry assumption. All eight football-field docs' §5 rebuild part or all
+Nine sectors (`"steel"`, `"oil_gas"`, `"software"`, `"banking"`, `"reit"`, `"airline"`, `"insurance"`,
+`"semiconductor"`, `"utility"`) are tuned against real multi-year data so far, each with a `SECTOR_PROFILE` entry
+documenting exactly what real range justified its thresholds; every other sector falls back to a clearly
+labelled `"default"` rather than a fabricated industry assumption. All nine football-field docs' §5 rebuild part
+or all
 of their football field
 with this normalization and compare it to the raw run: at STLD it didn't close the gap (the whole peer set shares
 the same trough, so
@@ -540,6 +544,41 @@ template; Investopedia's *Capitalized Cost* entry.
 
 **Try it.** `python scripts/football_field_txn.py`, and `finmodel cycle data/edgar/TXN.json --sector
 semiconductor` to see the real "silicon cycle" (pandemic chip-shortage peak, FY2022) without any field override.
+
+## 8c-vii. Regulated utilities: thin free cash flow makes the terminal-growth assumption everything  (`docs/FOOTBALL_FIELD_DUK.md`)
+
+**What it is.** The ninth football-field check (Duke Energy) is the deliberate low-cyclicality bookend to the
+eight prior sectors, and the third (after airlines and semiconductors) where the default `operating_income`/
+`revenue` fields are already correct — but here that's the LEAST interesting part. A regulated utility's real
+capex ran 39.6%-45.7% of revenue every single year FY2019-2025 (persistently ~1.8-2.1x real D&A, not a
+temporary supercycle the way TXN's was), leaving unlevered free cash flow negative in 2 of those 7 years and
+never exceeding ~$1.3B against $87B of debt — not distress, but the entire rate-of-return regulatory mechanism
+working as designed: a utility earns its allowed ROE on a rate base that only grows if it keeps building it.
+
+With near-term cash flow this thin, terminal value ends up carrying the large majority of enterprise value —
+verified directly: a generic 2.5% terminal growth rate (a perfectly normal assumption for a mature industrial)
+produces a NEGATIVE implied equity value for a real, solvent, investment-grade company, because it silently
+assumes DUK's own real, disclosed $103B 2026-2030 capital plan (5%-7% guided long-run EPS growth, 9.6% rate-base
+growth) stops mattering the instant the 5-year forecast window ends. The fix: anchor terminal growth to the
+company's own real guidance, moderated safely below WACC (since a Gordon-growth perpetuity is mathematically
+undefined once growth reaches the discount rate) — kept alongside the naive case, not silently replacing it,
+since the failure mode itself is the lesson.
+
+Two further real, verified findings: `finmodel.wacc.synthetic_rating()`'s coverage-based table maps DUK's real
+thin interest coverage (2.37x) to a synthetic junk rating, while DUK's actual rating is investment-grade
+(BBB/Baa2) — regulated utilities are allowed structurally low coverage because rate-of-return regulation makes
+debt-service recovery through rates close to guaranteed, the same low-coverage signal the airline check saw on
+a genuinely distressed company, with the opposite real-world meaning here. And peer Xcel Energy's real ROE held
+a tight band for seven straight years before a real FY2025 drop caused by a disclosed forward equity offering
+funding its own capital plan — a real dilution mechanism distinct from every other sector's cyclicality driver.
+
+**Learn it.** Regulated-utility rate-base/allowed-ROE mechanics (any utility-sector equity research primer);
+Gordon-growth perpetuity mechanics and why g must stay below the discount rate; Damodaran's synthetic-rating
+methodology and its assumptions about unregulated issuers.
+
+**Try it.** `python scripts/football_field_duk.py`, and `finmodel cycle data/edgar/DUK.json --sector utility`
+to see the real secular margin-improvement trend (rate-base growth, not a cyclical peak) without any field
+override.
 
 ## 8d. Residual income and EVA valuation  (`finmodel.residual_income`)
 

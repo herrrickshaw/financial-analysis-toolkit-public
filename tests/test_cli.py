@@ -115,6 +115,17 @@ def test_cli_cycle_semiconductor_no_override_needed(capsys):
     assert "Semiconductors / analog" in out and "margin" in out
 
 
+def test_cli_cycle_utility_no_override_needed(capsys):
+    # like airlines and semiconductors, the utility sector needs no --field/--revenue-field override -- the
+    # default operating_income/revenue is correct, but (unlike airlines/semis) the real finding is a genuine
+    # secular improving trend (rate-base growth), not mean-reverting cyclicality -- see docs/FOOTBALL_FIELD_DUK.md.
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["cycle", str(root / "data" / "edgar" / "DUK.json"), "--sector", "utility"])
+    out = capsys.readouterr().out
+    assert "Regulated utilities" in out and "margin" in out
+
+
 def test_cli_startup(tmp_path, capsys):
     from finmodel.cli import main
     root = Path(__file__).resolve().parent.parent

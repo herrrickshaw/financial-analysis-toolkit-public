@@ -17,7 +17,11 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence
 
 TAGS: Dict[str, Sequence[str]] = {
-    "revenue": ("Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax", "SalesRevenueNet", "RevenueFromContractWithCustomerIncludingAssessedTax"),
+    # RegulatedAndUnregulatedOperatingRevenue is a real, verified fallback: Xcel Energy's own consolidated top
+    # line moved onto this utility-industry-specific tag starting FY2022 (its plain "Revenues" tag has zero
+    # entries from FY2022 onward), while remaining a true alternative for the same figure — not an additive
+    # component — since it's the filer's own single, undisaggregated total operating revenue.
+    "revenue": ("Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax", "SalesRevenueNet", "RevenueFromContractWithCustomerIncludingAssessedTax", "RegulatedAndUnregulatedOperatingRevenue"),
     "cogs": ("CostOfRevenue", "CostOfGoodsAndServicesSold", "CostOfGoodsSold"),
     "gross_profit": ("GrossProfit",),
     "operating_income": ("OperatingIncomeLoss",),

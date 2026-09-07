@@ -361,3 +361,38 @@ def test_on_semi_real_rnd_spend_has_declined_since_its_2021_peak():
     # while every other real peer with a growing R&D budget shows a positive one.
     h = _real_history("ON")
     assert h["2021-12-31"]["rnd"] > h["2025-12-31"]["rnd"]
+
+
+def test_duk_default_field_needs_no_override_but_shows_a_real_secular_trend():
+    # SECTOR_PROFILES["utility"]'s headline finding: unlike banking/REIT/insurance, DUK's default field
+    # (operating_income/revenue) needs no override -- but unlike airlines/semiconductors (where the default field
+    # showed real mean-reverting cyclicality), DUK's real margin shows a genuine, strong SECULAR IMPROVEMENT
+    # (rate-base growth), a third sector confirming the software/insurance trend-guard generalizes.
+    h = _real_history("DUK")
+    diag = sectors.cycle_diagnostics(h, field="operating_income", revenue_field="revenue", periods=8, sector="utility")
+    trend = sectors.trend_diagnostics(h, field="operating_income", revenue_field="revenue", periods=8)
+    assert diag["latest_margin"] > 0.25 and diag["flag"].startswith("peak")
+    assert trend["trend_strength"] == "strong" and trend["direction"] == "improving"
+
+
+def test_duk_real_capex_persistently_exceeds_da_every_year():
+    # the real, sector-defining finding this check is built around: capex has run ~1.8-2.1x real D&A every single
+    # year FY2019-2025 -- not a temporary supercycle (semiconductors) but a persistent structural pattern, the
+    # reason a utility DCF should hold capex/revenue flat rather than taper it.
+    h = _real_history("DUK")
+    years = [y for y in sorted(h)[-7:] if h[y].get("capex") and h[y].get("da")]
+    assert len(years) == 7
+    for y in years:
+        assert h[y]["capex"] > 1.5 * h[y]["da"], f"{y}: capex should persistently exceed D&A for a rate-base-growth utility"
+
+
+def test_xel_roe_dilution_is_a_real_trend_not_the_usual_cyclicality_drivers():
+    # peer Xcel Energy's real ROE (net_income/equity, the banking/insurance override) held a tight band for seven
+    # straight years before a real FY2025 drop -- caused by a real forward equity offering funding its capital
+    # plan, not any prior sector's cyclicality mechanism (commodity price, credit losses, rate-sensitivity, demand
+    # shock, catastrophe losses, the silicon cycle).
+    h = _real_history("XEL")
+    roe = {y: h[y]["net_income"] / h[y]["equity"] for y in ("2018-12-31", "2019-12-31", "2020-12-31", "2021-12-31", "2022-12-31", "2023-12-31", "2024-12-31")}
+    assert max(roe.values()) - min(roe.values()) < 0.01, "XEL's ROE should be remarkably tight FY2018-2024"
+    assert h["2025-12-31"]["net_income"] / h["2025-12-31"]["equity"] < min(roe.values()) - 0.01
+    assert h["2025-12-31"]["equity"] / h["2024-12-31"]["equity"] - 1 > 0.15, "the real equity jump behind the ROE drop"

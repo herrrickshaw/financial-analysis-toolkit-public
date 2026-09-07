@@ -55,9 +55,21 @@ def test_diluted_shares_falls_back_to_net_income_over_eps():
     assert edgar.annual(f2)["2025-12-31"]["diluted_shares"] == 41
 
 
+def test_revenue_falls_back_to_regulated_operating_revenue_tag():
+    # Xcel Energy's own consolidated top line moved onto this utility-industry-specific tag starting FY2022 (its
+    # plain "Revenues" tag has zero entries from FY2022 onward, real, verified against SEC's live XBRL API) —
+    # confirm it's a real fallback, and that a filer with BOTH tags still prefers the more common "Revenues" one.
+    f = facts(fact("RegulatedAndUnregulatedOperatingRevenue", 14669, "2025-12-31", "2025-01-01"),
+              fact("NetIncomeLoss", 100, "2025-12-31", "2025-01-01"))
+    assert edgar.annual(f)["2025-12-31"]["revenue"] == 14669
+    f2 = facts(fact("Revenues", 5000, "2025-12-31", "2025-01-01"),
+               fact("RegulatedAndUnregulatedOperatingRevenue", 14669, "2025-12-31", "2025-01-01"))
+    assert edgar.annual(f2)["2025-12-31"]["revenue"] == 5000
+
+
 def test_committed_extracts_are_consistent():
     root = Path(__file__).resolve().parent.parent / "data" / "edgar"
-    for t in ("MSFT", "STLD", "HES"):
+    for t in ("MSFT", "STLD", "HES", "DUK", "XEL"):
         d = json.loads((root / f"{t}.json").read_text())
         last = d["years"][sorted(d["years"])[-1]]
         assert last["revenue"] > 0 and last["diluted_shares"] > 0 and abs(last["net_income"] / last["diluted_shares"] - last["eps_diluted"]) / abs(last["eps_diluted"]) < 0.05
