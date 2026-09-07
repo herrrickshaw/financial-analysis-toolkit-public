@@ -1,0 +1,18 @@
+{
+  "_comment": "ILLUSTRATIVE break-even / CVP demo -- a hypothetical product line priced at $50/unit with $30/unit variable cost and $500,000 of fixed costs, planned to sell 30,000 units (well above the break-even point).",
+  "break_even_point": {
+    "fixed_costs": 500000,
+    "price_per_unit": 50,
+    "variable_cost_per_unit": 30
+  },
+  "margin_of_safety": {
+    "actual_or_planned_units": 30000,
+    "price_per_unit": 50
+  },
+  "degree_of_operating_leverage": {
+    "units": 30000,
+    "price_per_unit": 50,
+    "variable_cost_per_unit": 30,
+    "fixed_costs": 500000
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "_comment": "ILLUSTRATIVE budget-vs-actual variance and trend-analysis demo -- a hypothetical business unit that sold more units than planned but at a lower average price (a real, common real-world pattern: discounting to win volume), plus a two-product mix shift and a 3-year income-statement trend.",
+  "budget_vs_actual_variance": {
+    "budget_volume": 10000,
+    "actual_volume": 11000,
+    "budget_price": 10.0,
+    "actual_price": 9.5
+  },
+  "sales_mix_and_volume_variance": {
+    "products": [
+      {"name": "Standard", "budget_units": 6000, "actual_units": 5000, "budget_contribution_margin_per_unit": 5.0},
+      {"name": "Premium", "budget_units": 4000, "actual_units": 6000, "budget_contribution_margin_per_unit": 8.0}
+    ]
+  },
+  "horizontal_analysis": {
+    "line_items_by_period": {
+      "Revenue": [1000000, 1150000, 1300000],
+      "Operating expenses": [700000, 780000, 845000]
+    }
+  },
+  "vertical_analysis": {
+    "line_items_by_period": {
+      "Cost of goods sold": [400000, 450000, 500000],
+      "Operating expenses": [700000, 780000, 845000]
+    },
+    "base_line_values": [1000000, 1150000, 1300000]
+  }
+}

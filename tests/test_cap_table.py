@@ -112,3 +112,43 @@ def test_from_dict_end_to_end():
     })
     assert out["cap_table"]["ownership"]["Founders"] == pytest.approx(0.7)
     assert sum(out["exit_waterfall"]["payouts"].values()) == pytest.approx(20_000_000)
+
+
+def test_vc_method_valuation_matches_hand_calc():
+    # $2M targeting a 40% IRR over 5 years to a $200M exit, no future dilution
+    out = CT.vc_method_valuation(investment_amount=2_000_000.0, target_exit_value=200_000_000.0, years_to_exit=5,
+                                 target_irr=0.40, expected_future_dilution_pct=0.0)
+    expected_multiple = 1.40 ** 5
+    assert out["required_multiple"] == pytest.approx(expected_multiple)
+    expected_ownership = (2_000_000.0 * expected_multiple) / 200_000_000.0
+    assert out["ownership_required_at_exit"] == pytest.approx(expected_ownership)
+    assert out["ownership_required_today"] == pytest.approx(expected_ownership)  # no dilution -> same as at exit
+    assert out["implied_post_money_valuation"] == pytest.approx(2_000_000.0 / expected_ownership)
+
+
+def test_vc_method_future_dilution_increases_required_ownership_today():
+    no_dilution = CT.vc_method_valuation(investment_amount=2_000_000.0, target_exit_value=200_000_000.0, years_to_exit=5, target_irr=0.40)
+    with_dilution = CT.vc_method_valuation(investment_amount=2_000_000.0, target_exit_value=200_000_000.0, years_to_exit=5,
+                                           target_irr=0.40, expected_future_dilution_pct=0.30)
+    assert with_dilution["ownership_required_today"] > no_dilution["ownership_required_today"]
+    assert with_dilution["implied_pre_money_valuation"] < no_dilution["implied_pre_money_valuation"]
+
+
+def test_vc_method_accepts_a_target_multiple_directly_instead_of_irr():
+    out = CT.vc_method_valuation(investment_amount=1_000_000.0, target_exit_value=50_000_000.0, years_to_exit=4, target_multiple=10.0)
+    assert out["required_multiple"] == 10.0
+    assert out["ownership_required_at_exit"] == pytest.approx(10_000_000.0 / 50_000_000.0)
+
+
+def test_vc_method_rejects_both_or_neither_of_irr_and_multiple():
+    with pytest.raises(ValueError):
+        CT.vc_method_valuation(investment_amount=1.0, target_exit_value=10.0, years_to_exit=1)
+    with pytest.raises(ValueError):
+        CT.vc_method_valuation(investment_amount=1.0, target_exit_value=10.0, years_to_exit=1, target_irr=0.3, target_multiple=2.0)
+
+
+def test_from_dict_handles_vc_method_valuation_alone_without_a_cap_table():
+    out = CT.from_dict({"vc_method_valuation": {"investment_amount": 1_000_000.0, "target_exit_value": 50_000_000.0,
+                                                "years_to_exit": 4, "target_multiple": 10.0}})
+    assert "cap_table" not in out
+    assert out["vc_method_valuation"]["required_multiple"] == 10.0

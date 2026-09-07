@@ -333,6 +333,47 @@ def test_cli_cmo(tmp_path, capsys):
     assert wal["A"] < wal["B"] < wal["C"]
 
 
+def test_cli_variance_analysis(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["variance-analysis", str(root / "examples" / "variance_analysis_demo.json"), "--json-out", str(tmp_path / "va.json")])
+    out = capsys.readouterr().out
+    assert "total variance" in out
+    saved = json.loads((tmp_path / "va.json").read_text())
+    assert saved["budget_vs_actual_variance"]["reconciles"] is True
+
+
+def test_cli_fpa_planning(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["fpa-planning", str(root / "examples" / "fpa_planning_demo.json"), "--json-out", str(tmp_path / "fp.json")])
+    out = capsys.readouterr().out
+    assert "Headcount monthly cost" in out and "Rolling forecast" in out
+    saved = json.loads((tmp_path / "fp.json").read_text())
+    assert saved["headcount_cost_schedule"]["total_cost"] > 0
+
+
+def test_cli_breakeven(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["breakeven", str(root / "examples" / "breakeven_demo.json"), "--json-out", str(tmp_path / "be.json")])
+    out = capsys.readouterr().out
+    assert "Break-even:" in out and "Degree of operating leverage:" in out
+    saved = json.loads((tmp_path / "be.json").read_text())
+    assert saved["break_even_point"]["break_even_units"] == pytest.approx(25000.0)
+
+
+def test_cli_cap_table_vc_method(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["cap-table", str(root / "examples" / "vc_method_demo.json"), "--json-out", str(tmp_path / "vc.json")])
+    out = capsys.readouterr().out
+    assert "VC method:" in out
+    saved = json.loads((tmp_path / "vc.json").read_text())
+    assert "cap_table" not in saved
+    assert saved["vc_method_valuation"]["required_multiple"] > 1.0
+
+
 def test_cli_strategy(tmp_path, capsys):
     from finmodel.cli import main
     root = Path(__file__).resolve().parent.parent

@@ -1,0 +1,16 @@
+{
+  "_comment": "ILLUSTRATIVE FP&A planning demo -- a hypothetical 12-month hiring plan (engineering from month 1, sales added from month 7) and a driver-based rolling forecast extending 3 real months of actuals forward.",
+  "headcount_cost_schedule": {
+    "roles": [
+      {"title": "Software Engineer", "start_month": 0, "monthly_base_salary": 10000, "count": 3},
+      {"title": "Account Executive", "start_month": 6, "monthly_base_salary": 8000, "count": 2}
+    ],
+    "months": 12,
+    "benefits_load_pct": 0.25
+  },
+  "rolling_forecast": {
+    "actuals_to_date": [100000, 110000, 121000],
+    "driver_growth_rate": 0.05,
+    "forecast_periods": 3
+  }
+}

@@ -322,14 +322,15 @@ def ts_table_summary(ts):
 def cmd_cap_table(a):
     from . import cap_table as CT
     res = CT.from_dict(_load_json(a.inputs))
-    ct = res["cap_table"]
-    for rnd in ct["rounds_applied"]:
-        print(f"{rnd['round']:16} pre {rnd['pre_money']:>14,.0f}  +{rnd['investment']:>12,.0f}  "
-              f"price/sh {rnd['price_per_share']:>8.4f}  pool top-up {rnd['option_pool_topup']:>12,.0f}  "
-              f"investor owns {rnd['new_investor_ownership_pct']:.1%}")
-    print("Final ownership:")
-    for name, pct in sorted(ct["ownership"].items(), key=lambda kv: -kv[1]):
-        print(f"  {name:24} {pct:.2%}")
+    if "cap_table" in res:
+        ct = res["cap_table"]
+        for rnd in ct["rounds_applied"]:
+            print(f"{rnd['round']:16} pre {rnd['pre_money']:>14,.0f}  +{rnd['investment']:>12,.0f}  "
+                  f"price/sh {rnd['price_per_share']:>8.4f}  pool top-up {rnd['option_pool_topup']:>12,.0f}  "
+                  f"investor owns {rnd['new_investor_ownership_pct']:.1%}")
+        print("Final ownership:")
+        for name, pct in sorted(ct["ownership"].items(), key=lambda kv: -kv[1]):
+            print(f"  {name:24} {pct:.2%}")
     if "exit_waterfall" in res:
         w = res["exit_waterfall"]
         print(f"Exit waterfall on ${w['exit_proceeds']:,.0f}:")
@@ -337,6 +338,10 @@ def cmd_cap_table(a):
             print(f"  {name:24} {amount:>14,.0f}")
         if w["converted_to_common"]:
             print(f"  (converted to as-converted common: {', '.join(w['converted_to_common'])})")
+    if "vc_method_valuation" in res:
+        v = res["vc_method_valuation"]
+        print(f"VC method: required multiple {v['required_multiple']:.2f}x, ownership required today {v['ownership_required_today']:.2%}, "
+              f"implied pre-money {v['implied_pre_money_valuation']:,.0f}, post-money {v['implied_post_money_valuation']:,.0f}")
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
@@ -649,6 +654,55 @@ def cmd_cmo(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_variance_analysis(a):
+    from . import variance_analysis as V
+    res = V.from_dict(_load_json(a.inputs))
+    if "budget_vs_actual_variance" in res:
+        r = res["budget_vs_actual_variance"]
+        print(f"Budget {r['budget_total']:,.0f}  actual {r['actual_total']:,.0f}  →  total variance {r['total_variance']:,.0f} "
+              f"(volume {r['volume_variance']:,.0f}, price {r['price_variance']:,.0f})")
+    if "sales_mix_and_volume_variance" in res:
+        r = res["sales_mix_and_volume_variance"]
+        for p in r["products"]:
+            print(f"  {p['name']:16} mix variance {p['mix_variance']:>12,.0f}  quantity variance {p['quantity_variance']:>12,.0f}")
+        print(f"Total: mix {r['total_sales_mix_variance']:,.0f}  quantity {r['total_sales_quantity_variance']:,.0f}")
+    if "horizontal_analysis" in res:
+        for name, r in res["horizontal_analysis"].items():
+            pct = ["n/a" if p is None else f"{p:+.1%}" for p in r["pct_change"]]
+            print(f"  {name:24} {r['values']}  →  {pct}")
+    if "vertical_analysis" in res:
+        for name, pcts in res["vertical_analysis"].items():
+            print(f"  {name:24} {['%.1f%%' % (p*100) for p in pcts]}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_fpa_planning(a):
+    from . import fpa_planning as F
+    res = F.from_dict(_load_json(a.inputs))
+    if "headcount_cost_schedule" in res:
+        r = res["headcount_cost_schedule"]
+        print(f"Headcount monthly cost: {['%.0f' % v for v in r['monthly_cost']]}  total {r['total_cost']:,.0f}")
+    if "rolling_forecast" in res:
+        r = res["rolling_forecast"]
+        print(f"Rolling forecast: actuals {r['actuals_to_date']}  →  forecast {['%.1f' % v for v in r['forecast']]}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_breakeven(a):
+    from . import breakeven as B
+    res = B.from_dict(_load_json(a.inputs))
+    if "break_even_point" in res:
+        r = res["break_even_point"]
+        print(f"Break-even: {r['break_even_units']:,.0f} units ({r['break_even_revenue']:,.0f} revenue), contribution margin {r['contribution_margin_ratio']:.1%}")
+    if "margin_of_safety" in res:
+        r = res["margin_of_safety"]
+        print(f"Margin of safety: {r['unit_cushion']:,.0f} units ({r['margin_of_safety_pct']:.1%})")
+    if "degree_of_operating_leverage" in res:
+        r = res["degree_of_operating_leverage"]
+        print(f"Degree of operating leverage: {r['degree_of_operating_leverage']:.2f}x (operating profit {r['operating_profit']:,.0f})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -766,6 +820,9 @@ def main(argv=None):
     cvb = sp.add_parser("convertible", help="convertible bond bond-floor + embedded-option (two-component) valuation, conversion premium"); cvb.add_argument("inputs"); cvb.add_argument("--json-out"); cvb.set_defaults(fn=cmd_convertible_bonds)
     cmo = sp.add_parser("cmo", help="CMO: PSA prepayment modeling, sequential-pay tranching, weighted average life"); cmo.add_argument("inputs"); cmo.add_argument("--json-out"); cmo.set_defaults(fn=cmd_cmo)
     dcfd = sp.add_parser("dcf-diagnostics", help="flags a DCF that double-counts the interest tax shield (levered cash taxes in an unlevered FCF)"); dcfd.add_argument("inputs"); dcfd.add_argument("--json-out"); dcfd.set_defaults(fn=cmd_dcf_diagnostics)
+    va = sp.add_parser("variance-analysis", help="budget-vs-actual volume/price/mix variance, horizontal and vertical (common-size) analysis"); va.add_argument("inputs"); va.add_argument("--json-out"); va.set_defaults(fn=cmd_variance_analysis)
+    fpap = sp.add_parser("fpa-planning", help="headcount/workforce cost schedule, driver-based rolling forecast"); fpap.add_argument("inputs"); fpap.add_argument("--json-out"); fpap.set_defaults(fn=cmd_fpa_planning)
+    bke = sp.add_parser("breakeven", help="break-even point, margin of safety, degree of operating leverage (CVP analysis)"); bke.add_argument("inputs"); bke.add_argument("--json-out"); bke.set_defaults(fn=cmd_breakeven)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)

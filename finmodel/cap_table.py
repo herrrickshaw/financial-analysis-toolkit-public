@@ -157,11 +157,37 @@ def exit_waterfall(cap_table: CapTableResult, exit_proceeds: float) -> Dict[str,
             "participating_tiers": sorted({h.seniority for h in participating_remainder})}
 
 
+def vc_method_valuation(investment_amount: float, target_exit_value: float, years_to_exit: float,
+                        target_irr: Optional[float] = None, target_multiple: Optional[float] = None,
+                        expected_future_dilution_pct: float = 0.0) -> Dict[str, Any]:
+    """The real, standard "VC Method" (Sahlman, HBS) for pricing an early-stage round: work BACKWARD from a
+    target exit value and a target return to the ownership percentage required today, and the valuation that
+    implies — the mirror image of this module's other functions, which take a round's terms as given and
+    compute the resulting ownership/waterfall. `expected_future_dilution_pct` grosses up today's required
+    ownership for real, anticipated dilution from LATER financing rounds between now and exit, since the
+    investor's stake at exit is what has to hit the target, not the stake right after this round closes."""
+    if (target_irr is None) == (target_multiple is None):
+        raise ValueError("give exactly one of target_irr or target_multiple")
+    multiple = target_multiple if target_multiple is not None else (1 + target_irr) ** years_to_exit
+    required_future_value = investment_amount * multiple
+    ownership_at_exit = safe_div(required_future_value, target_exit_value)
+    ownership_today = safe_div(ownership_at_exit, 1 - expected_future_dilution_pct)
+    post_money = safe_div(investment_amount, ownership_today)
+    pre_money = post_money - investment_amount
+    return {"required_multiple": multiple, "ownership_required_at_exit": ownership_at_exit,
+            "ownership_required_today": ownership_today, "implied_post_money_valuation": post_money,
+            "implied_pre_money_valuation": pre_money}
+
+
 def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:
-    initial = [Holder(**h) for h in d["initial_holders"]]
-    rounds = [Round(**r) for r in d["rounds"]]
-    result = simulate_rounds(initial, rounds)
-    out: Dict[str, Any] = {"cap_table": result.to_dict()}
-    if "exit_proceeds" in d:
-        out["exit_waterfall"] = exit_waterfall(result, d["exit_proceeds"])
+    out: Dict[str, Any] = {}
+    if "initial_holders" in d and "rounds" in d:
+        initial = [Holder(**h) for h in d["initial_holders"]]
+        rounds = [Round(**r) for r in d["rounds"]]
+        result = simulate_rounds(initial, rounds)
+        out["cap_table"] = result.to_dict()
+        if "exit_proceeds" in d:
+            out["exit_waterfall"] = exit_waterfall(result, d["exit_proceeds"])
+    if "vc_method_valuation" in d:
+        out["vc_method_valuation"] = vc_method_valuation(**d["vc_method_valuation"])
     return out

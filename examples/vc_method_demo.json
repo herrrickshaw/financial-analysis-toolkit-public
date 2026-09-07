@@ -1,0 +1,10 @@
+{
+  "_comment": "ILLUSTRATIVE VC Method valuation -- a hypothetical $2M Series A check targeting a 40% IRR over a 5-year hold to a $200M exit, with 30% expected dilution from later financing rounds before that exit. Answers 'what ownership/valuation does this investor need today' -- the real, standard early-stage pricing technique (Sahlman, HBS), the mirror image of finmodel.cap_table's other functions (which take agreed round terms and compute the resulting cap table).",
+  "vc_method_valuation": {
+    "investment_amount": 2000000,
+    "target_exit_value": 200000000,
+    "years_to_exit": 5,
+    "target_irr": 0.40,
+    "expected_future_dilution_pct": 0.30
+  }
+}

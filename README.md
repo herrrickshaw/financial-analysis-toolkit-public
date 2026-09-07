@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 334 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 361 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -63,6 +63,10 @@ finmodel insurance-pricing examples/insurance_pricing_demo.json          # combi
 finmodel convertible examples/convertible_bonds_demo.json                # convertible bond: bond floor + embedded option (two-component) valuation
 finmodel cmo examples/cmo_demo.json                                       # CMO: PSA prepayment modeling, sequential-pay tranching, weighted average life
 finmodel dcf-diagnostics examples/dcf_diagnostics_demo.json               # flags a DCF that double-counts the interest tax shield
+finmodel variance-analysis examples/variance_analysis_demo.json          # budget-vs-actual + sales mix/quantity variance, horizontal/vertical analysis
+finmodel fpa-planning examples/fpa_planning_demo.json                     # headcount cost schedule, driver-based rolling forecast
+finmodel breakeven examples/breakeven_demo.json                          # break-even units/revenue, margin of safety, degree of operating leverage
+finmodel cap-table examples/vc_method_demo.json                          # VC Method: required multiple/ownership -> implied pre-/post-money valuation
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -204,6 +208,25 @@ years cover the bullet, the real question a stand-alone maturity-year DSCR can't
 `compare_debt_structures()` (the real total-interest-vs-cash-flow-relief trade-off, quantified side by side
 across all three structures on the same cash flow).
 
+## FP&A template-gallery gap analysis (`docs/FPA_GALLERY_GAP_ANALYSIS.md`)
+
+A survey of ten free-template galleries published by FP&A *software vendors* (Cube Software, the Microsoft
+Excel Cloud gallery, Smartsheet, Vertex42, insightsoftware, Vena Solutions, PivotXL, Wall Street Prep,
+Coefficient, SCORE.org) — the operating-process templates finance teams reach for once a model leaves the
+classroom-CFI world, distinct from the CFI/BIWS catalog surveys above. The full source-to-category-to-
+module cross-reference is a machine-readable graph at
+[`catalog/fpa_gallery_graph.json`](catalog/fpa_gallery_graph.json). Seven categories were cited by multiple
+independent galleries, were genuinely new, and had a real formula-defined technique behind them — all seven
+are now built: `finmodel.variance_analysis` (budget-vs-actual price/volume variance, Horngren's multi-
+product sales mix/quantity variance, horizontal/vertical statement analysis), `finmodel.fpa_planning`
+(headcount cost schedule with staggered start dates, driver-based rolling forecast that re-anchors off the
+latest actual), `finmodel.breakeven` (contribution margin, break-even point, margin of safety, degree of
+operating leverage), and `finmodel.cap_table.vc_method_valuation()` (Sahlman's VC Method — HBS — working
+backward from a target exit value/return to required ownership and implied pre-/post-money valuation). See
+`docs/FPA_GALLERY_GAP_ANALYSIS.md` for what else was found and why it was deferred (sales quota planning,
+WIP/percentage-of-completion) or ruled out of scope (AOP orchestration, close checklists, trial-balance
+automation, personal-finance calculators).
+
 ## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
 
 The mirror image of the real-company checks above: instead of validating the toolkit against a real filer,
@@ -246,7 +269,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)
