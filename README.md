@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 548 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 563 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -90,6 +90,8 @@ finmodel stock-based-compensation examples/stock_based_compensation_demo.json  #
 finmodel bond-amortization examples/bond_amortization_demo.json          # effective-interest bond premium/discount amortization schedule
 finmodel fx-translation examples/fx_translation_demo.json                # ASC 830 current-rate translation of a foreign subsidiary, with the CTA plug
 finmodel inventory-costing examples/inventory_costing_demo.json          # FIFO/LIFO/weighted-average cost of goods sold and ending inventory
+finmodel pension-accounting examples/pension_accounting_demo.json        # ASC 715 PBO/plan-asset roll-forwards, funded status, net periodic pension cost
+finmodel nwc-peg examples/nwc_peg_demo.json                              # M&A net-working-capital peg and closing true-up purchase-price adjustment
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -372,6 +374,21 @@ available for sale gets split, never changing the total — and against the clas
 reports the lowest cost of goods sold and LIFO the highest in a period of rising costs). See
 `docs/TRANSLATION_AND_INVENTORY_ACCOUNTING.md` for the full detail.
 
+## Pension accounting and the M&A working-capital peg (`docs/PENSION_AND_MA_WORKING_CAPITAL.md`)
+
+A fourth fresh pair: `finmodel.pension_accounting` (ASC 715's PBO and plan-asset roll-forwards, funded
+status, and net periodic pension cost — `service_cost` and `actuarial_gain_loss` are caller-supplied inputs,
+the same design choice already made for Bornhuetter-Ferguson's a-priori expected loss, since a plan
+actuary's own PBO model is the real source of these figures in practice; the module's central real mechanic
+is the deliberate gap between the EXPECTED return smoothing the income-statement cost and the ACTUAL return
+driving the balance-sheet roll-forward, verified across all four functions using the same underlying numbers
+to confirm they cohere) and `finmodel.nwc_peg` (the net-working-capital peg — typically a trailing average of
+the target's own historical NWC, since a single snapshot can be seasonally distorted — and the closing
+true-up that adjusts the purchase price dollar-for-dollar against that peg, with a real de-minimis threshold
+below which small differences don't trigger a settlement; distinct from `finmodel.merger`/`comps`/`lbo`,
+which all price a deal at signing but none of which implement the POST-signing adjustment every real
+definitive purchase agreement includes). See `docs/PENSION_AND_MA_WORKING_CAPITAL.md` for the full detail.
+
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 
 Every survey doc in this session records what got deliberately left out and why — four times now, this
@@ -467,7 +484,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, pension_accounting, nwc_peg, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

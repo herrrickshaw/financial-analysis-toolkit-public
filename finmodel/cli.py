@@ -1056,6 +1056,37 @@ def cmd_inventory_costing(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_pension_accounting(a):
+    from . import pension_accounting as PA
+    res = PA.from_dict(_load_json(a.inputs))
+    if "pbo_rollforward" in res:
+        r = res["pbo_rollforward"]
+        print(f"PBO: {r['beginning_pbo']:,.0f} -> {r['ending_pbo']:,.0f}")
+    if "plan_assets_rollforward" in res:
+        r = res["plan_assets_rollforward"]
+        print(f"Plan assets: {r['beginning_plan_assets']:,.0f} -> {r['ending_plan_assets']:,.0f}")
+    if "funded_status" in res:
+        r = res["funded_status"]
+        print(f"Funded status: {r['funded_status']:+,.0f} ({r['classification']})")
+    if "net_periodic_pension_cost" in res:
+        r = res["net_periodic_pension_cost"]
+        print(f"Net periodic pension cost: {r['net_periodic_pension_cost']:,.0f}")
+    if "asset_gain_loss" in res:
+        print(f"Asset gain/loss: {res['asset_gain_loss']['value']:+,.0f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_nwc_peg(a):
+    from . import nwc_peg as NWC
+    res = NWC.from_dict(_load_json(a.inputs))
+    for key in ("nwc_true_up", "working_capital_adjustment"):
+        if key in res:
+            r = res[key]
+            print(f"NWC true-up: actual {r['actual_nwc_at_closing']:,.0f} vs peg {r['peg_nwc']:,.0f}  "
+                  f"adjustment {r['purchase_price_adjustment']:+,.0f} ({r['direction']})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -1187,6 +1218,8 @@ def main(argv=None):
     bam = sp.add_parser("bond-amortization", help="effective-interest bond premium/discount amortization schedule"); bam.add_argument("inputs"); bam.add_argument("--json-out"); bam.set_defaults(fn=cmd_bond_amortization)
     fct = sp.add_parser("fx-translation", help="ASC 830 current-rate method: translate a foreign subsidiary's statements, with the Cumulative Translation Adjustment plug"); fct.add_argument("inputs"); fct.add_argument("--json-out"); fct.set_defaults(fn=cmd_foreign_currency_translation)
     ivc = sp.add_parser("inventory-costing", help="FIFO, LIFO, and weighted-average cost-flow assumptions for cost of goods sold and ending inventory"); ivc.add_argument("inputs"); ivc.add_argument("--json-out"); ivc.set_defaults(fn=cmd_inventory_costing)
+    pea = sp.add_parser("pension-accounting", help="ASC 715 PBO/plan-asset roll-forwards, funded status, and net periodic pension cost"); pea.add_argument("inputs"); pea.add_argument("--json-out"); pea.set_defaults(fn=cmd_pension_accounting)
+    nwc = sp.add_parser("nwc-peg", help="M&A net-working-capital peg and closing true-up purchase-price adjustment"); nwc.add_argument("inputs"); nwc.add_argument("--json-out"); nwc.set_defaults(fn=cmd_nwc_peg)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)

@@ -612,3 +612,21 @@ def test_cli_inventory_costing(tmp_path, capsys):
     saved = json.loads((tmp_path / "ic.json").read_text())
     r = saved["compare_costing_methods"]
     assert r["fifo"]["cogs"] < r["weighted_average"]["cogs"] < r["lifo"]["cogs"]
+
+
+def test_cli_pension_accounting(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["pension-accounting", str(EX / "pension_accounting_demo.json"), "--json-out", str(tmp_path / "pa.json")])
+    out = capsys.readouterr().out
+    assert "Funded status:" in out and "underfunded" in out and "Net periodic pension cost:" in out
+    saved = json.loads((tmp_path / "pa.json").read_text())
+    assert saved["funded_status"]["classification"] == "underfunded"
+
+
+def test_cli_nwc_peg(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["nwc-peg", str(EX / "nwc_peg_demo.json"), "--json-out", str(tmp_path / "nwc.json")])
+    out = capsys.readouterr().out
+    assert "NWC true-up:" in out and "increase to seller" in out
+    saved = json.loads((tmp_path / "nwc.json").read_text())
+    assert saved["working_capital_adjustment"]["purchase_price_adjustment"] == pytest.approx(1_000_000.0)

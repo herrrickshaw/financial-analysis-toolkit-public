@@ -1,0 +1,7 @@
+{
+  "working_capital_adjustment": {
+    "historical_nwc_values": [10500000.0, 11200000.0, 10800000.0, 11500000.0],
+    "actual_nwc_at_closing": 12000000.0,
+    "threshold": 100000.0
+  }
+}
