@@ -1,0 +1,13 @@
+{
+  "current_rate_translation": {
+    "revenue_fc": 500000.0,
+    "expenses_fc": 400000.0,
+    "average_rate": 0.022,
+    "total_assets_fc": 1000000.0,
+    "total_liabilities_fc": 400000.0,
+    "common_stock_fc": 300000.0,
+    "historical_rate_common_stock": 0.020,
+    "beginning_retained_earnings_reporting_currency": 5000.0,
+    "current_rate": 0.025
+  }
+}

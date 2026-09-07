@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 536 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 548 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -88,6 +88,8 @@ finmodel lease-accounting examples/lease_accounting_demo.json            # ASC 8
 finmodel fx-hedging examples/fx_hedging_demo.json                        # corporate FX exposure hedging: forward vs money-market vs unhedged
 finmodel stock-based-compensation examples/stock_based_compensation_demo.json  # ASC 718 RSU/option grant fair value, straight-line vs graded-vesting expense
 finmodel bond-amortization examples/bond_amortization_demo.json          # effective-interest bond premium/discount amortization schedule
+finmodel fx-translation examples/fx_translation_demo.json                # ASC 830 current-rate translation of a foreign subsidiary, with the CTA plug
+finmodel inventory-costing examples/inventory_costing_demo.json          # FIFO/LIFO/weighted-average cost of goods sold and ending inventory
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -355,6 +357,21 @@ after summing a discounted cash-flow series, which a naive strict comparison mis
 "discount" before a small tolerance band fixed it. See `docs/COMPENSATION_AND_DEBT_ACCOUNTING.md` for the
 full detail.
 
+## Foreign currency translation and inventory costing (`docs/TRANSLATION_AND_INVENTORY_ACCOUNTING.md`)
+
+A third fresh pair: `finmodel.foreign_currency_translation` (ASC 830's current rate method for consolidating
+a foreign subsidiary — assets/liabilities at the current rate, equity at historical rates, the income
+statement at the average rate, with a Cumulative Translation Adjustment computed as the exact plug that
+balances the translated balance sheet, verified to be positive when the foreign currency appreciated during
+the period and negative when it depreciated — a real, commonly-confused distinction from `finmodel.
+fx_hedging`'s transaction-exposure hedging, since translation exposure arises automatically from
+consolidation every period and flows through OCI, not net income, whether or not anything is hedged) and
+`finmodel.inventory_costing` (FIFO/LIFO/weighted-average cost-flow assumptions, verified against the
+universal cost-conservation identity — the three methods only decide how the same total cost of goods
+available for sale gets split, never changing the total — and against the classic real property that FIFO
+reports the lowest cost of goods sold and LIFO the highest in a period of rising costs). See
+`docs/TRANSLATION_AND_INVENTORY_ACCOUNTING.md` for the full detail.
+
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 
 Every survey doc in this session records what got deliberately left out and why — four times now, this
@@ -450,7 +467,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

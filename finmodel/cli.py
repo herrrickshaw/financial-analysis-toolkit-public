@@ -1030,6 +1030,32 @@ def cmd_bond_amortization(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_foreign_currency_translation(a):
+    from . import foreign_currency_translation as FCT
+    res = FCT.from_dict(_load_json(a.inputs))
+    if "current_rate_translation" in res:
+        r = res["current_rate_translation"]
+        print(f"Translated net income: {r['translated_net_income']:,.2f}")
+        print(f"Translated assets {r['translated_assets']:,.2f} = liabilities {r['translated_liabilities']:,.2f} + "
+              f"equity {r['total_translated_equity']:,.2f}  (CTA {r['cumulative_translation_adjustment']:+,.2f})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_inventory_costing(a):
+    from . import inventory_costing as IC
+    res = IC.from_dict(_load_json(a.inputs))
+    for method in ("fifo", "lifo", "weighted_average"):
+        if method in res:
+            r = res[method]
+            print(f"{method}: COGS {r['cogs']:,.2f}  ending inventory {r['ending_inventory_value']:,.2f}")
+    if "compare_costing_methods" in res:
+        r = res["compare_costing_methods"]
+        print(f"Total cost available: {r['total_cost_available']:,.2f}")
+        for method in ("fifo", "weighted_average", "lifo"):
+            print(f"  {method:16} COGS {r[method]['cogs']:>12,.2f}  ending inventory {r[method]['ending_inventory_value']:>12,.2f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -1159,6 +1185,8 @@ def main(argv=None):
     fxh = sp.add_parser("fx-hedging", help="corporate FX exposure hedging: forward hedge vs money-market hedge vs unhedged"); fxh.add_argument("inputs"); fxh.add_argument("--json-out"); fxh.set_defaults(fn=cmd_fx_hedging)
     sbc = sp.add_parser("stock-based-compensation", help="ASC 718 RSU/option grant fair value and straight-line vs graded-vesting expense attribution"); sbc.add_argument("inputs"); sbc.add_argument("--json-out"); sbc.set_defaults(fn=cmd_stock_based_compensation)
     bam = sp.add_parser("bond-amortization", help="effective-interest bond premium/discount amortization schedule"); bam.add_argument("inputs"); bam.add_argument("--json-out"); bam.set_defaults(fn=cmd_bond_amortization)
+    fct = sp.add_parser("fx-translation", help="ASC 830 current-rate method: translate a foreign subsidiary's statements, with the Cumulative Translation Adjustment plug"); fct.add_argument("inputs"); fct.add_argument("--json-out"); fct.set_defaults(fn=cmd_foreign_currency_translation)
+    ivc = sp.add_parser("inventory-costing", help="FIFO, LIFO, and weighted-average cost-flow assumptions for cost of goods sold and ending inventory"); ivc.add_argument("inputs"); ivc.add_argument("--json-out"); ivc.set_defaults(fn=cmd_inventory_costing)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)

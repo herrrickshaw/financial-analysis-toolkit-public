@@ -592,3 +592,23 @@ def test_cli_bond_amortization(tmp_path, capsys):
     assert "Bond issued at discount:" in out
     saved = json.loads((tmp_path / "ba.json").read_text())
     assert saved["bond_amortization_schedule"]["schedule"][-1]["carrying_value"] == pytest.approx(1_000_000.0, abs=1e-2)
+
+
+def test_cli_fx_translation(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["fx-translation", str(EX / "fx_translation_demo.json"), "--json-out", str(tmp_path / "fct.json")])
+    out = capsys.readouterr().out
+    assert "Translated net income:" in out and "CTA" in out
+    saved = json.loads((tmp_path / "fct.json").read_text())
+    r = saved["current_rate_translation"]
+    assert r["translated_assets"] == pytest.approx(r["translated_liabilities"] + r["total_translated_equity"])
+
+
+def test_cli_inventory_costing(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["inventory-costing", str(EX / "inventory_costing_demo.json"), "--json-out", str(tmp_path / "ic.json")])
+    out = capsys.readouterr().out
+    assert "Total cost available:" in out and "fifo" in out and "lifo" in out
+    saved = json.loads((tmp_path / "ic.json").read_text())
+    r = saved["compare_costing_methods"]
+    assert r["fifo"]["cogs"] < r["weighted_average"]["cogs"] < r["lifo"]["cogs"]
