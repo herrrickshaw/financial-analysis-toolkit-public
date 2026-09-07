@@ -1,0 +1,22 @@
+{
+  "_comment": "ILLUSTRATIVE convertible bond demo -- a hypothetical $1,000-par, 2% coupon, 5-year convertible with a $50 conversion price, issuer stock at $45 (modestly out-of-the-money), a 6% straight-debt yield, and 35% volatility -- real, standard convertible-bond parameters, not a specific named issuer.",
+  "bond_floor": {
+    "coupon_rate": 0.02,
+    "par_value": 1000,
+    "years_to_maturity": 5,
+    "straight_yield": 0.06
+  },
+  "convertible_bond_value": {
+    "par_value": 1000,
+    "conversion_price": 50,
+    "stock_price": 45,
+    "coupon_rate": 0.02,
+    "years_to_maturity": 5,
+    "straight_yield": 0.06,
+    "risk_free_rate": 0.04,
+    "volatility": 0.35
+  },
+  "conversion_premium": {
+    "bond_price": 1050
+  }
+}

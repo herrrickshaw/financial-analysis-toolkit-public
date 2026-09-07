@@ -1,0 +1,35 @@
+{
+  "_comment": "ILLUSTRATIVE regional-bank operating model -- a hypothetical $1B-earning-asset bank with a real, typical net interest margin (~3.8%), efficiency ratio (~58%) and well-capitalized regulatory ratios, not a specific named institution.",
+  "income_statement": {
+    "avg_earning_assets": 1000000000,
+    "asset_yield": 0.058,
+    "avg_interest_bearing_liabilities": 800000000,
+    "cost_of_funds": 0.02,
+    "loans": 700000000,
+    "expected_loss_rate": 0.004,
+    "noninterest_income": 20000000,
+    "noninterest_expense": 35000000,
+    "tax_rate": 0.21
+  },
+  "projection": {
+    "years": 5,
+    "avg_earning_assets_0": 1000000000,
+    "asset_yield": 0.058,
+    "avg_interest_bearing_liabilities_0": 800000000,
+    "cost_of_funds": 0.02,
+    "loan_growth": 0.06,
+    "loans_0": 700000000,
+    "expected_loss_rate": 0.004,
+    "noninterest_income_0": 20000000,
+    "noninterest_expense_0": 35000000,
+    "tax_rate": 0.21,
+    "opex_growth": 0.03
+  },
+  "regulatory_capital_ratios": {
+    "cet1_capital": 90000000,
+    "tier1_capital": 95000000,
+    "total_capital": 110000000,
+    "risk_weighted_assets": 900000000,
+    "average_total_assets": 1100000000
+  }
+}

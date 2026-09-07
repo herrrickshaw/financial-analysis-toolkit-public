@@ -1,0 +1,17 @@
+{
+  "_comment": "ILLUSTRATIVE P&C insurance pricing demo -- a hypothetical mid-size carrier's underwriting-year results (combined ratio in the mid-90s, real and typical for a profitable book) plus a loss-cost-multiplier rate filing example.",
+  "combined_ratio": {
+    "incurred_losses": 650000000,
+    "underwriting_expenses": 300000000,
+    "earned_premium": 1000000000
+  },
+  "operating_ratio": {
+    "investment_income": 80000000,
+    "earned_premium": 1000000000
+  },
+  "rate_making_premium": {
+    "pure_premium": 500,
+    "expense_ratio_value": 0.25,
+    "target_profit_margin": 0.05
+  }
+}

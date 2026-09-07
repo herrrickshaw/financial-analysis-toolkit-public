@@ -1,4 +1,4 @@
-# More CFI/BIWS/Wall Street Prep templates: four real, standard techniques not yet in this toolkit
+# More CFI/BIWS/Wall Street Prep templates: eight real, standard techniques not yet in this toolkit
 
 A follow-up gap analysis: this toolkit already carries a 636-entry catalog of CFI, BIWS, Macabacus, Damodaran,
 A Simple Model and exinfm templates (`finmodel catalog list`), with 127 paid CFI titles individually checked
@@ -30,11 +30,13 @@ computes generically.
 - **Training The Street's course catalog**: core financial modeling/valuation, private equity, capital markets
   and Excel — no distinctive category beyond what CFI/WSP already cover and this toolkit already replicates.
 
-Four threads were concrete, real, and clean enough to build as tested code: **option pricing**, **project
-finance**, **portfolio optimization**, and — in a dedicated follow-up pass — **financial restructuring /
-distressed investing**, the one category the first pass deferred as substantial enough to deserve its own build.
+Eight threads were concrete, real, and clean enough to build as tested code, across three passes: **option
+pricing**, **project finance**, **portfolio optimization**, **financial restructuring / distressed investing**
+(the one category the first pass deferred as substantial enough to deserve its own build), and — closing out
+every remaining item this survey originally flagged — a **bank/FIG operating model**, **SaaS cohort analysis**,
+**insurance pricing**, and **convertible bonds** (the last of which reuses `finmodel.options` directly).
 
-## The four new modules
+## The eight new modules
 
 ### 1. `finmodel.options` — Black-Scholes, the Greeks, put-call parity, implied volatility
 
@@ -103,23 +105,72 @@ off a target leverage ratio, not the pre-petition load that drove the distress.
 finmodel restructuring examples/restructuring_demo.json
 ```
 
+### 5. `finmodel.bank_model` — bank operating model: NII/NIM, provision for credit losses, regulatory capital
+
+CFI's own named "Bank and FIG Financial Model Template", real and distinct from what the banking sector check
+(`docs/FOOTBALL_FIELD_USB.md`) already built (comps/valuation — P/B, P/TBV, residual income — not a forward
+operating projection). A bank's income statement runs on the SPREAD between what it earns on assets and pays on
+liabilities: `net_interest_income()` computes NII and NIM from earning-asset and interest-bearing-liability
+balances and their respective yields; `provision_for_credit_losses()` is a real, forward-looking (CECL-style)
+charge taken through the income statement, not a lagging write-off. `regulatory_capital_ratios()` checks CET1/
+Tier 1/Total capital against risk-weighted assets plus the (non-risk-weighted) Tier 1 leverage ratio against the
+real US Prompt Corrective Action "well capitalized" thresholds (12 CFR 324.403), verified on both a bank that
+clears them and one that doesn't.
+
+```bash
+finmodel bank-model examples/bank_model_demo.json
+```
+
+### 6. `finmodel.cohort_analysis` — SaaS cohort retention, GRR/NRR, LTV, LTV:CAC
+
+CFI's own named "Cohort Analysis" and "LTV CAC Ratio" templates, a natural extension of `finmodel.startup_model`
+for subscription-business unit economics specifically. `ltv_from_retention_curve()` (the real, exact form — sum
+of each future period's retained revenue, discounted) is checked against `ltv_simplified()` (the real, standard
+closed-form ARPU × margin ÷ churn-rate approximation assuming constant geometric churn). `revenue_retention()`
+is checked for the real, defining difference between GRR and NRR: NRR credits back expansion/upsell revenue from
+the SAME existing customers and can exceed 100%, while GRR (churn/contraction only) cannot — a real, easy point
+of confusion this toolkit's tests pin down explicitly. `cohort_revenue_projection()` aggregates multiple cohorts'
+own (offset) retention curves into one calendar-period forecast, the real mechanic that makes cohort-based
+forecasting different from applying one blended growth rate to total revenue.
+
+```bash
+finmodel cohort examples/cohort_analysis_demo.json
+```
+
+### 7. `finmodel.insurance_pricing` — combined ratio, operating ratio, loss-cost-multiplier rate making
+
+CFI's own named "InsurTech Pricer Model", distinct from the insurance sector check's VALUATION focus
+(`docs/FOOTBALL_FIELD_TRV.md`). `combined_ratio()` is the real, standard P&C underwriting-profitability metric
+(loss ratio + expense ratio; below 100% is an underwriting profit). `operating_ratio()` is checked for the real
+refinement that matters in practice: a real insurer can run a combined ratio modestly ABOVE 100% and still be
+overall profitable once float/investment income is credited back — verified as an explicit test case, not just
+described. `rate_making_premium()` implements the real, standard loss-cost-multiplier actuarial pricing formula.
+
+```bash
+finmodel insurance-pricing examples/insurance_pricing_demo.json
+```
+
+### 8. `finmodel.convertible_bonds` — bond floor + embedded option, a real integration with `finmodel.options`
+
+A real, named fixed-income category at both CFI and Wall Street Prep, and a natural real use of the option-
+pricing module built earlier this pass: by real market convention, a convertible bond IS a straight bond plus an
+embedded call option on the issuer's own stock. `bond_floor()` computes the PV of the bond's cash flows at a
+comparable straight-debt yield; `convertible_bond_value()` implements the real, standard two-component
+practitioner approximation (bond floor + `finmodel.options.black_scholes`'s call value, scaled by the conversion
+ratio), checked for the real, exact property that makes it economically sane: the estimated value can never fall
+below immediate conversion value (you could always convert right now), and a deep out-of-the-money convertible
+should trade close to its bond floor — both verified explicitly, not just plausible-looking output.
+
+```bash
+finmodel convertible examples/convertible_bonds_demo.json
+```
+
 ## What wasn't built, and why
 
-- **Bank and FIG Financial Model Template** (CFI) — a full bank OPERATING/projection model (deposit and loan
-  book growth, net interest margin, provision for credit losses, regulatory capital ratios) is real and distinct
-  from what the banking sector check (`docs/FOOTBALL_FIELD_USB.md`) already built, which covered comps/valuation
-  (P/B, P/TBV, residual income) rather than a forward 3-statement projection — a real, defensible future
-  extension, not attempted here to keep this pass's scope to genuinely NEW capability categories.
-- **Cohort analysis** (CFI) — a real, standard SaaS/subscription retention-and-LTV-by-cohort technique; a
-  natural extension of `finmodel.startup_model` specifically, left for a future pass focused on that module
-  rather than bundled into this broader toolkit-gap survey.
-- **InsurTech Pricer Model** (CFI) — insurance premium/loss-ratio pricing; the insurance sector check
-  (`docs/FOOTBALL_FIELD_TRV.md`) already covers P&C insurer VALUATION (P/B, P/TBV, residual income), and a
-  genuine pricing-actuarial model is a different, more specialized discipline than the corporate-finance/
-  valuation focus of the rest of this toolkit.
-- **Convertible bonds and CMO (Collateralized Mortgage Obligation) models** — real, named categories at these
-  platforms, but genuinely more specialized fixed-income/structured-credit topics with real, non-trivial
-  prepayment/tranching mechanics; flagged as real but out of scope for this pass.
+- **CMO (Collateralized Mortgage Obligation) models** — a real, named category at these platforms, but a
+  genuinely more specialized structured-credit topic (tranching, real prepayment-speed modeling like PSA/CPR
+  conventions) than the rest of this toolkit's corporate-finance/valuation focus; flagged as real but out of
+  scope.
 - **Training The Street** surfaced no distinctive gap beyond what CFI/WSP already cover.
 
 ## Sources
@@ -137,3 +188,6 @@ finmodel restructuring examples/restructuring_demo.json
 - Hull, *Options, Futures and Other Derivatives* — the S=K=$100/r=5%/vol=20%/T=1yr Black-Scholes reference case
   this toolkit's tests are pinned against.
 - 11 U.S.C. § 1129(b)(2) — the absolute priority rule `finmodel.restructuring`'s recovery waterfall implements.
+- 12 CFR § 324.403 — the US Prompt Corrective Action "well capitalized" thresholds `finmodel.bank_model` checks.
+- CFI's own catalog entries for "Bank and FIG Financial Model Template", "Cohort Analysis", "LTV CAC Ratio", and
+  "InsurTech Pricer Model" (`catalog/paid_templates.json`).

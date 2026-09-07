@@ -269,6 +269,47 @@ def test_cli_restructuring(tmp_path, capsys):
     assert saved["dip_financing_sizing"]["required_dip_facility"] == 4000000
 
 
+def test_cli_bank_model(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["bank-model", str(root / "examples" / "bank_model_demo.json"), "--json-out", str(tmp_path / "bm.json")])
+    out = capsys.readouterr().out
+    assert "NII" in out and "well-capitalized=True" in out
+    saved = json.loads((tmp_path / "bm.json").read_text())
+    assert saved["regulatory_capital_ratios"]["well_capitalized"] is True
+    assert len(saved["projection"]) == 5
+
+
+def test_cli_cohort(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["cohort", str(root / "examples" / "cohort_analysis_demo.json"), "--json-out", str(tmp_path / "co.json")])
+    out = capsys.readouterr().out
+    assert "LTV:CAC ratio:" in out and "CAC payback:" in out
+    saved = json.loads((tmp_path / "co.json").read_text())
+    assert saved["revenue_retention"]["net_revenue_retention"] == pytest.approx(1.0)
+
+
+def test_cli_insurance_pricing(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["insurance-pricing", str(root / "examples" / "insurance_pricing_demo.json"), "--json-out", str(tmp_path / "ip.json")])
+    out = capsys.readouterr().out
+    assert "combined ratio 95.0%" in out
+    saved = json.loads((tmp_path / "ip.json").read_text())
+    assert saved["operating_ratio"]["overall_profitable"] is True
+
+
+def test_cli_convertible(tmp_path, capsys):
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["convertible", str(root / "examples" / "convertible_bonds_demo.json"), "--json-out", str(tmp_path / "cv.json")])
+    out = capsys.readouterr().out
+    assert "estimated value" in out and "Conversion premium:" in out
+    saved = json.loads((tmp_path / "cv.json").read_text())
+    assert saved["convertible_bond_value"]["estimated_value"] >= saved["convertible_bond_value"]["conversion_value"]
+
+
 def test_cli_strategy(tmp_path, capsys):
     from finmodel.cli import main
     root = Path(__file__).resolve().parent.parent

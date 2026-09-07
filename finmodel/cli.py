@@ -546,6 +546,71 @@ def cmd_restructuring(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_bank_model(a):
+    from . import bank_model as B
+    res = B.from_dict(_load_json(a.inputs))
+    if "income_statement" in res:
+        r = res["income_statement"]
+        print(f"NII {r['nii']:,.0f} (NIM {r['nim']:.2%})  provision {r['provision']:,.0f}  efficiency ratio {r['efficiency_ratio']:.1%}  net income {r['net_income']:,.0f}")
+    if "projection" in res:
+        for row in res["projection"]:
+            print(f"  year {row['year']}: NII {row['nii']:>14,.0f}  net income {row['net_income']:>14,.0f}  efficiency ratio {row['efficiency_ratio']:.1%}")
+    if "regulatory_capital_ratios" in res:
+        r = res["regulatory_capital_ratios"]
+        print(f"CET1 {r['cet1_ratio']:.2%}  Tier1 {r['tier1_ratio']:.2%}  Total capital {r['total_capital_ratio']:.2%}  leverage {r['leverage_ratio']:.2%}  well-capitalized={r['well_capitalized']}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_cohort_analysis(a):
+    from . import cohort_analysis as C
+    res = C.from_dict(_load_json(a.inputs))
+    if "retention_curve" in res:
+        print(f"Retention curve: {['%.1f%%' % (p*100) for p in res['retention_curve']['retention_pct']]}")
+    if "ltv_from_retention_curve" in res:
+        print(f"LTV (from retention curve): {res['ltv_from_retention_curve']['ltv']:,.2f}")
+    if "ltv_simplified" in res:
+        print(f"LTV (simplified, ARPU x margin / churn): {res['ltv_simplified']['ltv']:,.2f}  (avg lifetime {res['ltv_simplified']['average_customer_lifetime_months']:.1f} months)")
+    if "revenue_retention" in res:
+        r = res["revenue_retention"]
+        print(f"GRR {r['gross_revenue_retention']:.1%}  NRR {r['net_revenue_retention']:.1%}")
+    if "ltv_to_cac" in res:
+        print(f"LTV:CAC ratio: {res['ltv_to_cac']['ratio']:.2f}x")
+    if "cac_payback_months" in res:
+        print(f"CAC payback: {res['cac_payback_months']['cac_payback_months']:.1f} months")
+    if "cohort_revenue_projection" in res:
+        print(f"Cohort revenue by period: {['%.0f' % v for v in res['cohort_revenue_projection']['revenue_by_period']]}  total {res['cohort_revenue_projection']['total_revenue']:,.0f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_insurance_pricing(a):
+    from . import insurance_pricing as I
+    res = I.from_dict(_load_json(a.inputs))
+    if "combined_ratio" in res:
+        r = res["combined_ratio"]
+        print(f"Loss ratio {r['loss_ratio']:.1%}  expense ratio {r['expense_ratio']:.1%}  combined ratio {r['combined_ratio']:.1%}  underwriting profitable={r['underwriting_profitable']}")
+    if "operating_ratio" in res:
+        r = res["operating_ratio"]
+        print(f"Operating ratio {r['operating_ratio']:.1%}  overall profitable={r['overall_profitable']}")
+    if "rate_making_premium" in res:
+        r = res["rate_making_premium"]
+        print(f"Gross premium: {r['gross_premium']:,.2f}  (loss cost multiplier {r['loss_cost_multiplier']:.3f})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_convertible_bonds(a):
+    from . import convertible_bonds as CB
+    res = CB.from_dict(_load_json(a.inputs))
+    if "bond_floor" in res:
+        print(f"Bond floor: {res['bond_floor']['bond_floor']:,.2f}")
+    if "convertible_bond_value" in res:
+        v = res["convertible_bond_value"]
+        print(f"Conversion ratio {v['conversion_ratio']:.2f}  bond floor {v['bond_floor']:,.2f}  option value {v['option_value']:,.2f}  "
+              f"conversion value {v['conversion_value']:,.2f}  estimated value {v['estimated_value']:,.2f}")
+    if "conversion_premium" in res:
+        print(f"Conversion premium: {res['conversion_premium']:.2%}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -657,6 +722,10 @@ def main(argv=None):
     pf = sp.add_parser("project-finance", help="DSCR-based debt sizing/sculpting, LLCR, cap rate/NOI real-estate valuation"); pf.add_argument("inputs"); pf.add_argument("--json-out"); pf.set_defaults(fn=cmd_project_finance)
     pfo = sp.add_parser("portfolio", help="Markowitz efficient frontier, global minimum-variance and tangency portfolios, Capital Allocation Line"); pfo.add_argument("inputs"); pfo.add_argument("--json-out"); pfo.set_defaults(fn=cmd_portfolio)
     rs = sp.add_parser("restructuring", help="absolute-priority recovery waterfall, fulcrum security, DIP financing sizing, post-emergence capital structure"); rs.add_argument("inputs"); rs.add_argument("--json-out"); rs.set_defaults(fn=cmd_restructuring)
+    bm = sp.add_parser("bank-model", help="bank operating model: NII/NIM, provision for credit losses, efficiency ratio, regulatory capital ratios"); bm.add_argument("inputs"); bm.add_argument("--json-out"); bm.set_defaults(fn=cmd_bank_model)
+    ca = sp.add_parser("cohort", help="SaaS cohort retention curves, GRR/NRR, LTV, LTV:CAC, CAC payback"); ca.add_argument("inputs"); ca.add_argument("--json-out"); ca.set_defaults(fn=cmd_cohort_analysis)
+    ip = sp.add_parser("insurance-pricing", help="loss/expense/combined/operating ratios, loss-cost-multiplier rate making"); ip.add_argument("inputs"); ip.add_argument("--json-out"); ip.set_defaults(fn=cmd_insurance_pricing)
+    cvb = sp.add_parser("convertible", help="convertible bond bond-floor + embedded-option (two-component) valuation, conversion premium"); cvb.add_argument("inputs"); cvb.add_argument("--json-out"); cvb.set_defaults(fn=cmd_convertible_bonds)
     au = sp.add_parser("audit", help="workbook audit: error values, hard-coded plugs, inconsistent formulas, links, hidden sheets"); au.add_argument("file"); au.add_argument("--recompute", action="store_true", help="also verify every formula against its cached value (finmodel.xlcalc)"); au.add_argument("--show", type=int, default=20); au.add_argument("--json-out"); au.add_argument("--markdown-out"); au.set_defaults(fn=cmd_audit)
     ch = sp.add_parser("charts", help="render the chart template for an engine's inputs to a self-contained HTML report"); ch.add_argument("engine", choices=["three_statement", "dcf", "lbo", "merger", "projection", "comps"]); ch.add_argument("inputs"); ch.add_argument("-o", "--out", default="out/charts.html"); ch.add_argument("--title"); ch.set_defaults(fn=cmd_charts)
     gl = sp.add_parser("glossary", help="look up a financial term (definition, formula, GAAP vs IFRS note)"); gl.add_argument("query", nargs="+"); gl.add_argument("--deep", action="store_true"); gl.add_argument("--limit", type=int, default=5); gl.set_defaults(fn=cmd_glossary)

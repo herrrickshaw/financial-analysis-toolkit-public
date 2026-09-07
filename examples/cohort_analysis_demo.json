@@ -1,0 +1,41 @@
+{
+  "_comment": "ILLUSTRATIVE SaaS cohort-analysis demo -- a hypothetical B2B subscription business, real-shaped retention curve (steep early churn, flattening later, the standard SaaS pattern) and typical unit economics.",
+  "retention_curve": {
+    "cohort_size": 1000,
+    "retained_customers_by_period": [1000, 850, 750, 680, 630, 600]
+  },
+  "ltv_from_retention_curve": {
+    "retention_pct": [1.0, 0.85, 0.75, 0.68, 0.63, 0.60],
+    "arpu": 50,
+    "gross_margin": 0.80,
+    "discount_rate": 0.01
+  },
+  "ltv_simplified": {
+    "arpu": 50,
+    "gross_margin": 0.80,
+    "monthly_churn_rate": 0.05
+  },
+  "revenue_retention": {
+    "beginning_revenue": 1000000,
+    "expansion": 150000,
+    "contraction": 50000,
+    "churned": 100000
+  },
+  "ltv_to_cac": {
+    "ltv": 800.0,
+    "cac": 300
+  },
+  "cac_payback_months": {
+    "cac": 300,
+    "arpu": 50,
+    "gross_margin": 0.80
+  },
+  "cohort_revenue_projection": {
+    "cohorts": [
+      {"starting_period": 0, "size": 1000, "retention_pct": [1.0, 0.85, 0.75, 0.68], "arpu": 50},
+      {"starting_period": 1, "size": 1200, "retention_pct": [1.0, 0.85, 0.75, 0.68], "arpu": 50},
+      {"starting_period": 2, "size": 1400, "retention_pct": [1.0, 0.85, 0.75, 0.68], "arpu": 50}
+    ],
+    "periods": 6
+  }
+}
