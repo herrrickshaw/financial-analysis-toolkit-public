@@ -389,9 +389,10 @@ def test_cli_loss_reserving(tmp_path, capsys):
     root = Path(__file__).resolve().parent.parent
     main(["loss-reserving", str(root / "examples" / "loss_reserving_demo.json"), "--json-out", str(tmp_path / "lr.json")])
     out = capsys.readouterr().out
-    assert "Total IBNR:" in out
+    assert "Total IBNR:" in out and "Total BF ultimate:" in out
     saved = json.loads((tmp_path / "lr.json").read_text())
     assert saved["chain_ladder"]["total_ibnr"] > 0
+    assert saved["bornhuetter_ferguson"]["total_bf_ultimate"] > 0
 
 
 def test_cli_tax_provision(tmp_path, capsys):
@@ -429,10 +430,21 @@ def test_cli_retail_loans(tmp_path, capsys):
     from finmodel.cli import main
     main(["retail-loans", str(EX / "retail_loans_demo.json"), "--json-out", str(tmp_path / "rl.json")])
     out = capsys.readouterr().out
-    assert "Amortization:" in out and "Prepayment" in out and "Foreclosure payoff:" in out
+    assert "Amortization:" in out and "Prepayment" in out and "Foreclosure payoff:" in out and "Step-up EMI:" in out
     saved = json.loads((tmp_path / "rl.json").read_text())
     assert saved["prepayment_impact"]["interest_saved"] > 0
     assert saved["loan_eligibility_foir"]["max_eligible_principal"] > 0
+    assert saved["step_up_emi_schedule"]["closing_balance"] == pytest.approx(0.0, abs=1.0)
+
+
+def test_cli_earnout_valuation(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["earnout-valuation", str(EX / "earnout_valuation_demo.json"), "--json-out", str(tmp_path / "eo.json")])
+    out = capsys.readouterr().out
+    assert "Scenario-weighted earnout:" in out and "Binary metric earnout:" in out
+    saved = json.loads((tmp_path / "eo.json").read_text())
+    assert saved["scenario_weighted_earnout"]["present_value"] > 0
+    assert 0.0 < saved["binary_metric_earnout"]["risk_neutral_probability_achieved"] < 1.0
 
 
 def test_cli_retail_deposits(tmp_path, capsys):

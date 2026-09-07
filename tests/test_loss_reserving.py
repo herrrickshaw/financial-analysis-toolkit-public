@@ -64,3 +64,37 @@ def test_chain_ladder_rejects_an_empty_triangle():
 def test_from_dict():
     out = LR.from_dict({"triangle": TRIANGLE})
     assert out["chain_ladder"]["total_ibnr"] > 0
+
+
+A_PRIORI_EXPECTED_LOSSES = [1800.0, 2200.0, 1900.0, 1200.0]
+
+
+def test_bornhuetter_ferguson_matches_chain_ladder_for_the_fully_developed_year():
+    out = LR.bornhuetter_ferguson(TRIANGLE, A_PRIORI_EXPECTED_LOSSES)
+    ay0 = out["accident_years"][0]  # AY0 is already at its latest known (fully developed) period, CDF == 1.0
+    assert ay0["pct_reported"] == pytest.approx(1.0)
+    assert ay0["bf_ibnr"] == pytest.approx(0.0)
+    assert ay0["bf_ultimate"] == pytest.approx(ay0["chain_ladder_ultimate"])
+
+
+def test_bornhuetter_ferguson_diverges_from_chain_ladder_for_the_least_mature_year():
+    out = LR.bornhuetter_ferguson(TRIANGLE, A_PRIORI_EXPECTED_LOSSES)
+    ay3 = out["accident_years"][3]  # the least mature accident year (only one known period)
+    expected_pct_reported = 1.0 / ay3["cdf_to_ultimate"]
+    expected_bf_ibnr = 1200.0 * (1 - expected_pct_reported)
+    assert ay3["pct_reported"] == pytest.approx(expected_pct_reported)
+    assert ay3["bf_ibnr"] == pytest.approx(expected_bf_ibnr)
+    assert ay3["bf_ultimate"] == pytest.approx(900.0 + expected_bf_ibnr)
+    # BF leans on the independent a-priori estimate here rather than chain-ladder's own volatile extrapolation
+    assert ay3["bf_ultimate"] != pytest.approx(ay3["chain_ladder_ultimate"])
+
+
+def test_bornhuetter_ferguson_rejects_mismatched_length():
+    with pytest.raises(ValueError):
+        LR.bornhuetter_ferguson(TRIANGLE, [1.0, 2.0])
+
+
+def test_from_dict_includes_bornhuetter_ferguson_when_requested():
+    out = LR.from_dict({"triangle": TRIANGLE, "a_priori_expected_losses": A_PRIORI_EXPECTED_LOSSES})
+    assert "bornhuetter_ferguson" in out
+    assert out["bornhuetter_ferguson"]["total_bf_ultimate"] > 0

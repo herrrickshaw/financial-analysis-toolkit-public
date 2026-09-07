@@ -64,12 +64,12 @@ context rather than a duplicate:
 
 ## What was deliberately left out
 
-- **Step-up/step-down EMI schedules** (a real product for early-career or near-retirement borrowers, where
-  the EMI itself grows or shrinks on a schedule rather than staying level) — a real and distinct amortization
-  shape, but every bank implements the step schedule differently (a fixed annual % step, or a manually
-  specified path); deferred until there's a real product term sheet to reconcile a specific implementation
-  against, rather than inventing a generic step convention with no bank's actual disclosure to check it
-  against.
+- ~~**Step-up/step-down EMI schedules**~~ — **RESOLVED**, see `docs/DEFERRED_GAPS_REVISITED.md`: built as
+  `finmodel.retail_loans.step_up_emi_schedule()` for the fixed-percentage-step-up structure (the most
+  commonly offered real version). The objection above was about the absence of one canonical convention
+  across banks, not about the math being unclear — a fixed % step at a fixed frequency has a well-defined
+  correct answer (bisected on the base EMI, since there's no closed form for an arbitrary step schedule)
+  regardless of which specific bank's product it represents.
 - **Balance-transfer break-even analysis** (should a borrower refinance an existing loan elsewhere) — real,
   but it is a thin wrapper: compare `amortization_schedule`'s total interest for the existing loan's remaining
   term against a new `amortization_schedule` at the new lender's rate, net of transfer/processing fees. No new

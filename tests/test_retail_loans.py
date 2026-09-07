@@ -83,3 +83,31 @@ def test_loan_eligibility_foir_round_trips_through_emi():
 def test_from_dict_bundles_everything():
     out = RL.from_dict({"emi_calculation": {"principal": 100000.0, "annual_rate": 0.10, "tenure_months": 12}})
     assert out["emi_calculation"]["emi"] > 0
+
+
+def test_step_up_emi_schedule_pays_off_exactly_by_tenure():
+    out = RL.step_up_emi_schedule(principal=1_000_000.0, annual_rate=0.09, tenure_months=240,
+                                  step_up_pct=0.05, step_up_frequency_months=12)
+    assert out["closing_balance"] == pytest.approx(0.0, abs=1.0)
+    assert len(out["schedule"]) == 240
+
+
+def test_step_up_emi_starts_below_and_ends_above_the_flat_emi():
+    flat = RL.emi(1_000_000.0, 0.09, 240)
+    out = RL.step_up_emi_schedule(principal=1_000_000.0, annual_rate=0.09, tenure_months=240,
+                                  step_up_pct=0.05, step_up_frequency_months=12)
+    assert out["base_emi"] < flat
+    assert out["final_emi"] > flat
+
+
+def test_step_up_emi_costs_more_total_interest_than_a_flat_emi():
+    flat_schedule = RL.amortization_schedule(1_000_000.0, 0.09, 240)
+    step_up = RL.step_up_emi_schedule(principal=1_000_000.0, annual_rate=0.09, tenure_months=240,
+                                      step_up_pct=0.05, step_up_frequency_months=12)
+    assert step_up["total_interest"] > flat_schedule["total_interest"]
+
+
+def test_step_up_emi_from_dict():
+    out = RL.from_dict({"step_up_emi_schedule": {"principal": 500000.0, "annual_rate": 0.10, "tenure_months": 120,
+                                                 "step_up_pct": 0.05, "step_up_frequency_months": 12}})
+    assert out["step_up_emi_schedule"]["closing_balance"] == pytest.approx(0.0, abs=1.0)

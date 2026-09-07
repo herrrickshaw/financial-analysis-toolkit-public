@@ -32,5 +32,12 @@
     "annual_rate": 0.085,
     "tenure_months": 240,
     "foir_limit": 0.50
+  },
+  "step_up_emi_schedule": {
+    "principal": 3500000.0,
+    "annual_rate": 0.085,
+    "tenure_months": 240,
+    "step_up_pct": 0.05,
+    "step_up_frequency_months": 12
   }
 }

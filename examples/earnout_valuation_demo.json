@@ -1,0 +1,19 @@
+{
+  "scenario_weighted_earnout": {
+    "scenarios": [
+      {"probability": 0.5, "payout": 10000000.0},
+      {"probability": 0.3, "payout": 5000000.0},
+      {"probability": 0.2, "payout": 0.0}
+    ],
+    "discount_rate": 0.10,
+    "years_to_payout": 2.0
+  },
+  "binary_metric_earnout": {
+    "metric_current_value": 40000000.0,
+    "threshold": 50000000.0,
+    "volatility": 0.30,
+    "risk_free_rate": 0.05,
+    "years_to_measurement": 2.0,
+    "payout_if_achieved": 10000000.0
+  }
+}

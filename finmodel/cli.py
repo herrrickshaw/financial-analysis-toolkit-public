@@ -712,6 +712,23 @@ def cmd_loss_reserving(a):
         for ay in r["accident_years"]:
             print(f"  AY{ay['accident_year_index']}: latest {ay['latest_cumulative']:,.0f}  ultimate {ay['ultimate']:,.0f}  IBNR {ay['ibnr']:,.0f}")
         print(f"Total IBNR: {r['total_ibnr']:,.0f}  (total ultimate {r['total_ultimate']:,.0f})")
+    if "bornhuetter_ferguson" in res:
+        r = res["bornhuetter_ferguson"]
+        for ay in r["accident_years"]:
+            print(f"  AY{ay['accident_year_index']}: {ay['pct_reported']:.1%} reported  BF ultimate {ay['bf_ultimate']:,.0f}  (chain-ladder {ay['chain_ladder_ultimate']:,.0f})")
+        print(f"Total BF ultimate: {r['total_bf_ultimate']:,.0f}  (BF IBNR {r['total_bf_ibnr']:,.0f})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_earnout_valuation(a):
+    from . import earnout_valuation as EO
+    res = EO.from_dict(_load_json(a.inputs))
+    if "scenario_weighted_earnout" in res:
+        r = res["scenario_weighted_earnout"]
+        print(f"Scenario-weighted earnout: expected payout {r['expected_payout']:,.0f}  PV {r['present_value']:,.0f}")
+    if "binary_metric_earnout" in res:
+        r = res["binary_metric_earnout"]
+        print(f"Binary metric earnout: P(achieved) {r['risk_neutral_probability_achieved']:.1%}  PV {r['present_value']:,.0f}")
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
@@ -787,6 +804,9 @@ def cmd_retail_loans(a):
     if "loan_eligibility_foir" in res:
         r = res["loan_eligibility_foir"]
         print(f"Loan eligibility (FOIR): max eligible principal {r['max_eligible_principal']:,.0f} (available EMI capacity {r['available_emi_capacity']:,.0f})")
+    if "step_up_emi_schedule" in res:
+        r = res["step_up_emi_schedule"]
+        print(f"Step-up EMI: base {r['base_emi']:,.2f} -> final {r['final_emi']:,.2f}  total interest {r['total_interest']:,.0f}")
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
@@ -1015,11 +1035,12 @@ def main(argv=None):
     va = sp.add_parser("variance-analysis", help="budget-vs-actual volume/price/mix variance, horizontal and vertical (common-size) analysis"); va.add_argument("inputs"); va.add_argument("--json-out"); va.set_defaults(fn=cmd_variance_analysis)
     fpap = sp.add_parser("fpa-planning", help="headcount/workforce cost schedule, driver-based rolling forecast"); fpap.add_argument("inputs"); fpap.add_argument("--json-out"); fpap.set_defaults(fn=cmd_fpa_planning)
     bke = sp.add_parser("breakeven", help="break-even point, margin of safety, degree of operating leverage (CVP analysis)"); bke.add_argument("inputs"); bke.add_argument("--json-out"); bke.set_defaults(fn=cmd_breakeven)
-    lr = sp.add_parser("loss-reserving", help="chain-ladder loss development triangle: age-to-age factors, projected ultimates, IBNR"); lr.add_argument("inputs"); lr.add_argument("--json-out"); lr.set_defaults(fn=cmd_loss_reserving)
+    lr = sp.add_parser("loss-reserving", help="chain-ladder loss development triangle (age-to-age factors, projected ultimates, IBNR) and Bornhuetter-Ferguson"); lr.add_argument("inputs"); lr.add_argument("--json-out"); lr.set_defaults(fn=cmd_loss_reserving)
+    eov = sp.add_parser("earnout-valuation", help="M&A contingent-consideration fair value: scenario-weighted expected payout, or a binary metric-threshold digital option"); eov.add_argument("inputs"); eov.add_argument("--json-out"); eov.set_defaults(fn=cmd_earnout_valuation)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)
-    rl = sp.add_parser("retail-loans", help="EMI, amortization schedule, prepayment (reduce-tenure/reduce-EMI), floating-rate reset, foreclosure payoff, FOIR loan eligibility"); rl.add_argument("inputs"); rl.add_argument("--json-out"); rl.set_defaults(fn=cmd_retail_loans)
+    rl = sp.add_parser("retail-loans", help="EMI, amortization schedule, prepayment (reduce-tenure/reduce-EMI), floating-rate reset, foreclosure payoff, FOIR loan eligibility, step-up EMI"); rl.add_argument("inputs"); rl.add_argument("--json-out"); rl.set_defaults(fn=cmd_retail_loans)
     rdp = sp.add_parser("retail-deposits", help="fixed deposit maturity, recurring deposit maturity (per-installment compounding), premature RD closure, Section 194A TDS"); rdp.add_argument("inputs"); rdp.add_argument("--json-out"); rdp.set_defaults(fn=cmd_retail_deposits)
     ctd = sp.add_parser("carry-trade", help="covered interest rate parity forward rate, unhedged FX carry return, break-even depreciation"); ctd.add_argument("inputs"); ctd.add_argument("--json-out"); ctd.set_defaults(fn=cmd_carry_trade)
     rvc = sp.add_parser("revolving-credit", help="cash-credit/overdraft and credit-card daily-balance interest; the minimum-payment trap"); rvc.add_argument("inputs"); rvc.add_argument("--json-out"); rvc.set_defaults(fn=cmd_revolving_credit)

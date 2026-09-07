@@ -15,6 +15,12 @@ only on the OUTSTANDING balance, and the EMI is the level payment that fully amo
   * Loan eligibility by FOIR (Fixed Obligation to Income Ratio) is the underwriting metric Indian banks
     (SBI, HDFC, ICICI and others) publish directly in their retail-lending policies: total EMI obligations
     (existing + proposed) must not exceed a fixed fraction of gross monthly income.
+  * A step-up EMI schedule (a real product several Indian banks offer early-career borrowers) starts at a
+    lower payment that steps up by a fixed percentage on a fixed schedule, still paying the loan off exactly
+    by the original tenure. There's no closed form for an arbitrary step schedule, so `step_up_emi_schedule`
+    bisects on the base EMI (the loan's final balance is monotonically decreasing in the base payment, so
+    bisection converges exactly); it always costs MORE total interest than a flat EMI for the same loan,
+    since deferring principal repayment leaves the balance outstanding for longer.
 """
 from __future__ import annotations
 
@@ -136,6 +142,45 @@ def loan_eligibility_foir(monthly_gross_income: float, existing_emis: float, ann
             "max_eligible_principal": max_eligible_principal}
 
 
+def step_up_emi_schedule(principal: float, annual_rate: float, tenure_months: int, step_up_pct: float,
+                         step_up_frequency_months: int) -> Dict[str, Any]:
+    """Finds the base EMI (paid for the first `step_up_frequency_months` months) such that stepping the
+    payment up by `step_up_pct` at every subsequent step boundary pays the loan off exactly by
+    `tenure_months` -- bisected on the base EMI since there's no closed form for an arbitrary step
+    schedule (the final balance is a monotonically decreasing function of the base payment)."""
+    monthly_rate = annual_rate / 12
+
+    def simulate(base_payment: float) -> Dict[str, Any]:
+        balance = principal
+        payment = base_payment
+        schedule: List[Dict[str, Any]] = []
+        for m in range(1, tenure_months + 1):
+            if m > 1 and (m - 1) % step_up_frequency_months == 0:
+                payment *= (1 + step_up_pct)
+            interest = balance * monthly_rate
+            principal_component = payment - interest
+            if principal_component >= balance:
+                principal_component = balance
+            balance -= principal_component
+            schedule.append({"month": m, "emi": payment, "interest": interest,
+                             "principal": principal_component, "closing_balance": balance})
+        return {"closing_balance": balance, "schedule": schedule}
+
+    flat_emi = emi(principal, annual_rate, tenure_months)
+    lo, hi = flat_emi * 0.1, flat_emi * 2.0
+    for _ in range(100):
+        mid = (lo + hi) / 2
+        if simulate(mid)["closing_balance"] > 0:
+            lo = mid
+        else:
+            hi = mid
+    result = simulate(hi)
+    total_interest = sum(r["interest"] for r in result["schedule"])
+    return {"base_emi": hi, "final_emi": result["schedule"][-1]["emi"], "schedule": result["schedule"],
+            "total_interest": total_interest, "total_payment": principal + total_interest,
+            "closing_balance": result["closing_balance"]}
+
+
 def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:
     out: Dict[str, Any] = {}
     if "emi_calculation" in d:
@@ -150,4 +195,6 @@ def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:
         out["foreclosure_payoff"] = foreclosure_payoff(**d["foreclosure_payoff"])
     if "loan_eligibility_foir" in d:
         out["loan_eligibility_foir"] = loan_eligibility_foir(**d["loan_eligibility_foir"])
+    if "step_up_emi_schedule" in d:
+        out["step_up_emi_schedule"] = step_up_emi_schedule(**d["step_up_emi_schedule"])
     return out
