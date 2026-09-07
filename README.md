@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 563 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 578 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -92,6 +92,8 @@ finmodel fx-translation examples/fx_translation_demo.json                # ASC 8
 finmodel inventory-costing examples/inventory_costing_demo.json          # FIFO/LIFO/weighted-average cost of goods sold and ending inventory
 finmodel pension-accounting examples/pension_accounting_demo.json        # ASC 715 PBO/plan-asset roll-forwards, funded status, net periodic pension cost
 finmodel nwc-peg examples/nwc_peg_demo.json                              # M&A net-working-capital peg and closing true-up purchase-price adjustment
+finmodel eps examples/eps_demo.json                                      # ASC 260 basic/diluted EPS: treasury stock method, if-converted method, antidilution test
+finmodel investment-securities examples/investment_securities_demo.json  # ASC 320 trading/AFS/HTM classification, OCI reclassification on sale
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -389,6 +391,19 @@ below which small differences don't trigger a settlement; distinct from `finmode
 which all price a deal at signing but none of which implement the POST-signing adjustment every real
 definitive purchase agreement includes). See `docs/PENSION_AND_MA_WORKING_CAPITAL.md` for the full detail.
 
+## EPS calculation and investment securities classification (`docs/EPS_AND_INVESTMENT_SECURITIES.md`)
+
+A fifth fresh pair: `finmodel.eps_calculation` (ASC 260 basic and diluted EPS — the treasury stock method for
+options, where an out-of-the-money option contributes exactly zero incremental shares by construction, and
+the if-converted method for convertible debt, with the real antidilution rule that a security is only
+included if it actually reduces EPS, verified directly with a deliberately antidilutive convertible that
+gets correctly excluded — which is also why diluted EPS can never exceed basic EPS) and
+`finmodel.investment_securities` (ASC 320's trading/available-for-sale/held-to-maturity classification,
+verified by running the SAME cost basis and fair value through all three to confirm they route the identical
+unrealized gain/loss to three genuinely different places — net income, OCI, or nowhere at all — plus the real
+OCI "recycling" mechanic on an AFS sale, checked to fire only for that one classification). See
+`docs/EPS_AND_INVESTMENT_SECURITIES.md` for the full detail.
+
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 
 Every survey doc in this session records what got deliberately left out and why — four times now, this
@@ -484,7 +499,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, pension_accounting, nwc_peg, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, pension_accounting, nwc_peg, eps_calculation, investment_securities, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

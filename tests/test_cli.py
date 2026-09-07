@@ -630,3 +630,21 @@ def test_cli_nwc_peg(tmp_path, capsys):
     assert "NWC true-up:" in out and "increase to seller" in out
     saved = json.loads((tmp_path / "nwc.json").read_text())
     assert saved["working_capital_adjustment"]["purchase_price_adjustment"] == pytest.approx(1_000_000.0)
+
+
+def test_cli_eps(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["eps", str(EX / "eps_demo.json"), "--json-out", str(tmp_path / "eps.json")])
+    out = capsys.readouterr().out
+    assert "Diluted EPS:" in out and "2 dilutive securities included" in out
+    saved = json.loads((tmp_path / "eps.json").read_text())
+    assert saved["diluted_eps"]["diluted_eps"] < saved["diluted_eps"]["basic_eps"]
+
+
+def test_cli_investment_securities(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["investment-securities", str(EX / "investment_securities_demo.json"), "--json-out", str(tmp_path / "is.json")])
+    out = capsys.readouterr().out
+    assert "available_for_sale:" in out and "Realized gain/loss:" in out
+    saved = json.loads((tmp_path / "is.json").read_text())
+    assert saved["classify_and_measure"]["oci_impact"] == pytest.approx(15_000.0)

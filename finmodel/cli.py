@@ -1087,6 +1087,31 @@ def cmd_nwc_peg(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_eps_calculation(a):
+    from . import eps_calculation as EPSC
+    res = EPSC.from_dict(_load_json(a.inputs))
+    if "basic_eps" in res:
+        print(f"Basic EPS: {res['basic_eps']['basic_eps']:.4f}")
+    if "diluted_eps" in res:
+        r = res["diluted_eps"]
+        print(f"Diluted EPS: {r['diluted_eps']:.4f}  (basic {r['basic_eps']:.4f}, "
+              f"{len(r['dilutive_securities_included'])} dilutive securities included)")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_investment_securities(a):
+    from . import investment_securities as IS
+    res = IS.from_dict(_load_json(a.inputs))
+    if "classify_and_measure" in res:
+        r = res["classify_and_measure"]
+        print(f"{r['classification']}: carrying value {r['carrying_value']:,.0f}  "
+              f"(income statement impact {r['income_statement_impact']:+,.0f}, OCI impact {r['oci_impact']:+,.0f})")
+    if "realized_gain_loss_on_sale" in res:
+        r = res["realized_gain_loss_on_sale"]
+        print(f"Realized gain/loss: {r['realized_gain_loss']:+,.0f}  (reclassified from OCI {r['reclassification_adjustment_from_oci']:+,.0f})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -1220,6 +1245,8 @@ def main(argv=None):
     ivc = sp.add_parser("inventory-costing", help="FIFO, LIFO, and weighted-average cost-flow assumptions for cost of goods sold and ending inventory"); ivc.add_argument("inputs"); ivc.add_argument("--json-out"); ivc.set_defaults(fn=cmd_inventory_costing)
     pea = sp.add_parser("pension-accounting", help="ASC 715 PBO/plan-asset roll-forwards, funded status, and net periodic pension cost"); pea.add_argument("inputs"); pea.add_argument("--json-out"); pea.set_defaults(fn=cmd_pension_accounting)
     nwc = sp.add_parser("nwc-peg", help="M&A net-working-capital peg and closing true-up purchase-price adjustment"); nwc.add_argument("inputs"); nwc.add_argument("--json-out"); nwc.set_defaults(fn=cmd_nwc_peg)
+    epsc = sp.add_parser("eps", help="ASC 260 basic and diluted EPS (treasury stock method, if-converted method, antidilution test)"); epsc.add_argument("inputs"); epsc.add_argument("--json-out"); epsc.set_defaults(fn=cmd_eps_calculation)
+    invs = sp.add_parser("investment-securities", help="ASC 320 trading/AFS/HTM classification and unrealized gain/loss routing, OCI reclassification on sale"); invs.add_argument("inputs"); invs.add_argument("--json-out"); invs.set_defaults(fn=cmd_investment_securities)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)

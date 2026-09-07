@@ -1,0 +1,13 @@
+{
+  "diluted_eps": {
+    "net_income": 1000000.0,
+    "preferred_dividends": 100000.0,
+    "weighted_average_shares": 500000.0,
+    "options": [
+      {"options_outstanding": 50000.0, "strike_price": 20.0, "average_market_price": 25.0}
+    ],
+    "convertibles": [
+      {"convertible_face_value": 5000000.0, "coupon_rate": 0.05, "tax_rate": 0.21, "total_shares_if_converted": 200000.0}
+    ]
+  }
+}
