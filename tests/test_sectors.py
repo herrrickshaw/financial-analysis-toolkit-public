@@ -333,3 +333,31 @@ def test_wrb_diluted_shares_had_a_real_persistent_xbrl_scale_error():
     contaminated = h["2022-12-31"]["diluted_shares"]
     clean_neighbor = h["2025-12-31"]["diluted_shares"]
     assert contaminated * 100 < clean_neighbor, "FY2022's share count should still be ~1000x too small"
+
+
+def test_txn_silicon_cycle_shows_a_real_pandemic_peak_and_normalization():
+    # SECTOR_PROFILES["semiconductor"]'s cyclicality finding: TXN's real EBIT margin swung to a genuine
+    # pandemic-chip-shortage peak in FY2022 and has since normalized lower -- a sixth distinct real mechanism
+    # (inventory/demand bullwhip), verified directly against the committed extract.
+    h = _real_history("TXN")
+    margins = {y: h[y]["operating_income"] / h[y]["revenue"] for y in h if h[y].get("operating_income") and h[y].get("revenue")}
+    assert max(margins, key=margins.get) == "2022-12-31"
+    assert margins["2022-12-31"] > 0.48
+    assert margins["2025-12-31"] < margins["2022-12-31"] - 0.10, "margin should have normalized well below the pandemic peak"
+
+
+def test_on_semi_rnd_tag_fallback_is_real_and_populated():
+    # a real, narrower tag-fallback fix: ON Semiconductor's own R&D tag is
+    # ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost, not the plain tag this module otherwise
+    # expects -- confirms the fallback actually populates real data, not just that it doesn't crash.
+    r = _real_history("ON")["2025-12-31"]
+    assert r.get("rnd") is not None and r["rnd"] > 0
+    assert r["rnd"] / r["revenue"] < 0.15, "ON's real R&D intensity should be the lowest of the semiconductor peer set"
+
+
+def test_on_semi_real_rnd_spend_has_declined_since_its_2021_peak():
+    # grounds SECTOR_PROFILES["semiconductor"]'s counter-example claim: ON's own real R&D spend trajectory is
+    # flat-to-declining since FY2021, the real reason its own R&D-capitalization uplift comes out negative
+    # while every other real peer with a growing R&D budget shows a positive one.
+    h = _real_history("ON")
+    assert h["2021-12-31"]["rnd"] > h["2025-12-31"]["rnd"]

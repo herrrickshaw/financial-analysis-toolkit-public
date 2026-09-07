@@ -243,7 +243,9 @@ a sixth sector where EV/EBITDA is directionally fine but needs a real lease adju
 a real black-swan trap in `finmodel.sectors`' usual periods=8 default, see 8c-iv below), and
 `python scripts/football_field_trv.py` (`docs/FOOTBALL_FIELD_TRV.md`, P&C insurance — a seventh sector where
 EV/EBITDA fails for yet another reason, and where BOOK VALUE itself, not the multiple or earnings, turns out to
-be the thing that's rate-exposed; see 8c-v below). §5 of each document also checks the sector-tuning in
+be the thing that's rate-exposed; see 8c-v below), and `python scripts/football_field_txn.py`
+(`docs/FOOTBALL_FIELD_TXN.md`, semiconductors — an eighth sector where EV/EBIT is directionally right but GAAP
+R&D expensing understates it; see 8c-vi below). §5 of each document also checks the sector-tuning in
 `finmodel.sectors` below.
 
 ---
@@ -311,10 +313,11 @@ FY2020's pandemic-collapse margin, not a usable "bear case." The insurance check
 §8c-v below) reuses banking's exact ROE override (`field="net_income", revenue_field="equity"`) — the first time
 two independently-checked sectors have shared an override rather than each needing its own.
 
-Seven sectors (`"steel"`, `"oil_gas"`, `"software"`, `"banking"`, `"reit"`, `"airline"`, `"insurance"`) are tuned
-against real multi-year data so far, each with a `SECTOR_PROFILE` entry documenting exactly what real range
-justified its thresholds; every other sector falls back to a clearly labelled `"default"` rather than a
-fabricated industry assumption. All seven football-field docs' §5 rebuild part or all of their football field
+Eight sectors (`"steel"`, `"oil_gas"`, `"software"`, `"banking"`, `"reit"`, `"airline"`, `"insurance"`,
+`"semiconductor"`) are tuned against real multi-year data so far, each with a `SECTOR_PROFILE` entry documenting
+exactly what real range justified its thresholds; every other sector falls back to a clearly labelled
+`"default"` rather than a fabricated industry assumption. All eight football-field docs' §5 rebuild part or all
+of their football field
 with this normalization and compare it to the raw run: at STLD it didn't close the gap (the whole peer set shares
 the same trough, so
 normalizing both sides of the trade moves them together); at Chevron it did change the answer (only the
@@ -512,6 +515,31 @@ service firms" chapter; Investopedia's *Book Value* and *Combined Ratio* entries
 value, the opposite of the banking check's precedents (which priced near or below it); and `finmodel cycle
 data/edgar/TRV.json --sector insurance --field net_income --revenue-field equity` to see the real "peak" flag on
 a genuinely improving trend.
+
+## 8c-vi. R&D capitalization: EV/EBIT understates an R&D-intensive company  (`finmodel.rd_capitalization`, `docs/FOOTBALL_FIELD_TXN.md`)
+
+**What it is.** The eighth football-field check (Texas Instruments) is the second sector (after airlines) where
+the default `operating_income`/`revenue` fields are already correct — the gap isn't which fields to use, it's
+that GAAP expenses R&D immediately even though it creates a multi-year economic asset (chip designs) the same
+way capex does. `finmodel.rd_capitalization` (new) capitalizes each historical year's R&D as its own vintage,
+straight-line-amortized over an assumed useful life (5 years for semiconductors) — `amortization_schedule()`
+reconciles exactly to CFI's real `RD-Capitalization.xlsx` single-vintage template, then `capitalize_rd()`
+generalizes it to Damodaran's cross-sectional method (every vintage amortizing simultaneously; the current
+year's own spend hasn't amortized at all yet).
+
+Real, verified uplift across five of six real peers with growing R&D budgets (TXN +6.1% to SWKS +43.0%);
+ON Semiconductor is the real counter-example (its own R&D spend has declined since FY2021, so capitalizing it
+LOWERS adjusted EBIT). The same adjustment compresses both real 2019 all-cash precedent deals (NVIDIA/Mellanox,
+Infineon/Cypress) from ~60x raw EV/EBIT to ~38-40x once each target's own real R&D history is capitalized — and
+recovers Microchip's raw multiple from `NM` (>=100x) entirely, a real bonus of the adjustment beyond simple
+compression. Also: TXN's own real capex/revenue (25.7%, a disclosed capacity-expansion supercycle) needed the
+same flat-vs-normalized DCF fix the airline check's fleet-renewal capex needed.
+
+**Learn it.** Damodaran's R&D-capitalization research and "Value of Growth" material; CFI's `RD-Capitalization`
+template; Investopedia's *Capitalized Cost* entry.
+
+**Try it.** `python scripts/football_field_txn.py`, and `finmodel cycle data/edgar/TXN.json --sector
+semiconductor` to see the real "silicon cycle" (pandemic chip-shortage peak, FY2022) without any field override.
 
 ## 8d. Residual income and EVA valuation  (`finmodel.residual_income`)
 

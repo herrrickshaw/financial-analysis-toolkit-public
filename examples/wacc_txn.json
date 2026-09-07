@@ -1,0 +1,14 @@
+{
+  "_comment": "Texas Instruments FY2025 (data/edgar/TXN.json) plus illustrative market inputs (risk-free = 10yr UST, ERP = Damodaran implied ERP, beta = illustrative for a cyclical analog semiconductor company). Coverage-based synthetic rating (ebit/interest_expense) replaces a real credit rating, same convention as examples/wacc_stld.json/wacc_alk.json -- TXN's real FY2025 interest coverage (EBIT $6,023M vs interest expense $543M, ~11x) is strong, unlike the airline check's distressed coverage.",
+  "wacc": {
+    "risk_free": 0.042,
+    "equity_risk_premium": 0.045,
+    "beta": 1.20,
+    "market_cap": 266532090000,
+    "debt": 14048000000,
+    "tax_rate": 0.124,
+    "ebit": 6023000000,
+    "interest_expense": 543000000,
+    "large_firm": true
+  }
+}

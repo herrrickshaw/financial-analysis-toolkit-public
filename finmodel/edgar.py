@@ -58,7 +58,11 @@ TAGS: Dict[str, Sequence[str]] = {
     "basic_shares": ("WeightedAverageNumberOfSharesOutstandingBasic",),
     "eps_diluted": ("EarningsPerShareDiluted",),
     "sga": ("SellingGeneralAndAdministrativeExpense",),
-    "rnd": ("ResearchAndDevelopmentExpense",),
+    # ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost is a real, verified fallback (ON Semiconductor
+    # uses it, not the plain tag) — a true alternative, not an additive-component trap: it's ongoing R&D expense
+    # net of lumpy, acquisition-accounting IPR&D write-offs, which is the more comparable figure for margin
+    # analysis anyway.
+    "rnd": ("ResearchAndDevelopmentExpense", "ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost"),
     "operating_lease_cost": ("OperatingLeaseCost", "OperatingLeaseExpense"),
     # deliberately separate fields, NOT fallbacks for operating_lease_cost: for a filer that doesn't disaggregate
     # (e.g. Southwest), the aggregate "LeaseCost" is dominated by variable lease cost, which ASC 842 expenses as

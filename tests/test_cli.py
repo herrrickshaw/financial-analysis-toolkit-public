@@ -105,6 +105,16 @@ def test_cli_cycle_field_override_for_insurance(capsys):
     assert "net_income/equity" in out and "Property & casualty insurance" in out
 
 
+def test_cli_cycle_semiconductor_no_override_needed(capsys):
+    # like airlines, the semiconductor sector needs no --field/--revenue-field override -- the default
+    # operating_income/revenue is already correct here (a real, useful contrast to banking/REIT/insurance).
+    from finmodel.cli import main
+    root = Path(__file__).resolve().parent.parent
+    main(["cycle", str(root / "data" / "edgar" / "TXN.json"), "--sector", "semiconductor"])
+    out = capsys.readouterr().out
+    assert "Semiconductors / analog" in out and "margin" in out
+
+
 def test_cli_startup(tmp_path, capsys):
     from finmodel.cli import main
     root = Path(__file__).resolve().parent.parent
