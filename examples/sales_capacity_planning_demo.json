@@ -1,0 +1,13 @@
+{
+  "sales_capacity_schedule": {
+    "hiring_plan": [2, 0, 0, 3, 0, 0, 0, 0],
+    "ramp_curve": [0.2, 0.5, 0.8, 1.0],
+    "quota_per_rep_per_period": 100000.0
+  },
+  "reps_needed_for_target": {
+    "target_bookings_per_period": 500000.0,
+    "ramp_curve": [0.2, 0.5, 0.8, 1.0],
+    "quota_per_rep_per_period": 100000.0,
+    "periods_since_hire": 3
+  }
+}

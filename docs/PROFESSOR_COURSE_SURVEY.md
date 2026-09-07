@@ -34,7 +34,7 @@ below, not cataloguing every finance professor globally.
 | **Bond duration, convexity, DV01** | **No — a real gap.** Tuckman's own course is built entirely around these tools, and this toolkit already touches bonds (`finmodel.convertible_bonds`, `finmodel.cmo`) without ever computing them | **Built this round: `finmodel.fixed_income_risk`** |
 | **Credit risk: PD/LGD/EAD, Basel IRB risk-weighted assets** | **No — a real gap.** Named explicitly in P C Narayan's course and every credit-risk curriculum (TU Delft, GARP FRM Part II), and distinct from this toolkit's existing India-specific (`finmodel.npa_classification`) or US-CECL-style (`finmodel.bank_model`) provisioning | **Built this round: `finmodel.credit_risk`** |
 | **Bank interest-rate risk: repricing gap, NII sensitivity** | **No — a real gap**, and one this toolkit's OWN `docs/BANKING_LITERATURE_SURVEY.md` had already flagged as deferred ("needs a full bank balance sheet... to reconcile against") — re-examined here and built anyway, since a standalone bucketed-gap input (which every course teaches the technique on) is enough to compute it correctly without needing a specific real bank's full balance sheet | **Built this round: `finmodel.interest_rate_risk`** |
-| Asset securitization: RMBS and credit-card master-trust structures | Partially — `finmodel.cmo` covers RMBS-style sequential-pay tranching, but NOT a credit-card securitization's structurally different revolving/early-amortization mechanic (named explicitly in P C Narayan's course) | **Deferred — see below** |
+| Asset securitization: RMBS and credit-card master-trust structures | Partially — `finmodel.cmo` covers RMBS-style sequential-pay tranching; the credit-card master-trust mechanic (named explicitly in P C Narayan's course) | **RESOLVED — `finmodel.credit_card_abs`, see `docs/DEFERRED_GAPS_REVISITED.md`** |
 | FX derivatives trading / structured-product origination (HEC Paris) | Partially — `finmodel.options` covers vanilla option pricing; exotic FX structured products are a real, much larger scope | **Deferred — see below** |
 
 ## What was built this round
@@ -54,11 +54,12 @@ below, not cataloguing every finance professor globally.
 
 ## What was deliberately left out
 
-- **Credit-card / master-trust securitization** (P C Narayan's course names it explicitly, distinct from
-  `finmodel.cmo`'s RMBS-style sequential-pay tranching) — a real, structurally different mechanic (a
-  revolving period where new receivables replace paid-down ones, followed by an early-amortization trigger
-  if portfolio performance deteriorates) that would need its own careful, separately-verified formula set
-  rather than a quick extension of the existing CMO module; flagged as a real future candidate.
+- ~~**Credit-card / master-trust securitization**~~ — **RESOLVED**, see `docs/DEFERRED_GAPS_REVISITED.md`:
+  built as `finmodel.credit_card_abs` (excess spread, the real 3-month-average early-amortization trigger
+  every master-trust prospectus defines, and the revolving-vs-amortization cash-flow mechanic under both
+  pass-through and controlled-amortization methods). The "own careful, separately-verified formula set" the
+  original deferral worried about turned out to be entirely hand-verifiable without needing a real trust's
+  historical data.
 - **FX structured-product origination / exotic derivatives** (HEC Paris' Financial Engineering cluster) —
   `finmodel.options` already covers vanilla Black-Scholes pricing and the Greeks; barrier options, Asian
   options, and other exotics are each their own real pricing model with no single unifying formula to build

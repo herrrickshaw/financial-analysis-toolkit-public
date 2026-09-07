@@ -936,6 +936,36 @@ def cmd_fixed_income_risk(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_credit_card_abs(a):
+    from . import credit_card_abs as CCA
+    res = CCA.from_dict(_load_json(a.inputs))
+    if "excess_spread" in res:
+        print(f"Excess spread: {res['excess_spread']['value']:.2%}")
+    if "early_amortization_trigger" in res:
+        r = res["early_amortization_trigger"]
+        status = f"triggered at month {r['triggered_month']}" if r["triggered"] else "not triggered"
+        print(f"Early amortization: {status}")
+    if "master_trust_cash_flows" in res:
+        r = res["master_trust_cash_flows"]
+        print(f"Master trust: {r['months_to_full_paydown']} months to full paydown "
+              f"({r['revolving_period_months']} revolving, fully paid down: {r['fully_paid_down']})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_sales_capacity_planning(a):
+    from . import sales_capacity_planning as SCP
+    res = SCP.from_dict(_load_json(a.inputs))
+    if "sales_capacity_schedule" in res:
+        r = res["sales_capacity_schedule"]
+        for p in r["periods"]:
+            print(f"  Period {p['period']}: headcount {p['headcount']:.1f}  bookings capacity {p['bookings_capacity']:,.0f}")
+        print(f"Total capacity: {r['total_capacity']:,.0f}")
+    if "reps_needed_for_target" in res:
+        r = res["reps_needed_for_target"]
+        print(f"Reps needed: {r['reps_needed']:.1f} (effective quota {r['effective_quota_per_rep']:,.0f} at {r['ramp_fraction_at_target_period']:.0%} ramp)")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -1059,6 +1089,8 @@ def main(argv=None):
     lr = sp.add_parser("loss-reserving", help="chain-ladder loss development triangle (age-to-age factors, projected ultimates, IBNR) and Bornhuetter-Ferguson"); lr.add_argument("inputs"); lr.add_argument("--json-out"); lr.set_defaults(fn=cmd_loss_reserving)
     eov = sp.add_parser("earnout-valuation", help="M&A contingent-consideration fair value: scenario-weighted expected payout, or a binary metric-threshold digital option"); eov.add_argument("inputs"); eov.add_argument("--json-out"); eov.set_defaults(fn=cmd_earnout_valuation)
     poc = sp.add_parser("percentage-of-completion", help="cost-to-cost revenue recognition for long-term contracts: percent complete, revenue/gross profit to date, over/under-billing"); poc.add_argument("inputs"); poc.add_argument("--json-out"); poc.set_defaults(fn=cmd_percentage_of_completion)
+    cca = sp.add_parser("credit-card-abs", help="credit-card master-trust securitization: excess spread, the 3-month early-amortization trigger, revolving/amortization cash flows"); cca.add_argument("inputs"); cca.add_argument("--json-out"); cca.set_defaults(fn=cmd_credit_card_abs)
+    scp = sp.add_parser("sales-capacity-planning", help="rep productivity ramp curves, bookings-capacity forecasting, reps needed to hit a target"); scp.add_argument("inputs"); scp.add_argument("--json-out"); scp.set_defaults(fn=cmd_sales_capacity_planning)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)

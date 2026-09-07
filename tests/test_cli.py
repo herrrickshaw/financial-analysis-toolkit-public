@@ -533,3 +533,22 @@ def test_cli_pipeline(tmp_path, capsys):
     outstanding = saved["steps"]["schedule"]["amortization_schedule"]["schedule"][23]["closing_balance"]
     assert outstanding < principal
     assert saved["steps"]["delinquency"]["npa_provisioning"]["outstanding_amount"] == pytest.approx(outstanding)
+
+
+def test_cli_credit_card_abs(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["credit-card-abs", str(EX / "credit_card_abs_demo.json"), "--json-out", str(tmp_path / "cca.json")])
+    out = capsys.readouterr().out
+    assert "Excess spread:" in out and "Early amortization: triggered" in out and "Master trust:" in out
+    saved = json.loads((tmp_path / "cca.json").read_text())
+    assert saved["master_trust_cash_flows"]["fully_paid_down"] is True
+    assert saved["early_amortization_trigger"]["triggered_month"] == 6
+
+
+def test_cli_sales_capacity_planning(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["sales-capacity-planning", str(EX / "sales_capacity_planning_demo.json"), "--json-out", str(tmp_path / "scp.json")])
+    out = capsys.readouterr().out
+    assert "Total capacity:" in out and "Reps needed:" in out
+    saved = json.loads((tmp_path / "scp.json").read_text())
+    assert saved["reps_needed_for_target"]["reps_needed"] == pytest.approx(5.0)

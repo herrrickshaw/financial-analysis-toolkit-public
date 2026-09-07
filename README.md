@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 483 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 497 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -82,6 +82,8 @@ finmodel interest-rate-risk examples/interest_rate_risk_demo.json        # bank 
 finmodel fixed-income-risk examples/fixed_income_risk_demo.json          # bond price, Macaulay/modified duration, DV01, convexity
 finmodel earnout-valuation examples/earnout_valuation_demo.json          # M&A contingent-consideration fair value: scenario-weighted or binary-digital-option
 finmodel percentage-of-completion examples/percentage_of_completion_demo.json  # cost-to-cost revenue recognition for long-term contracts
+finmodel credit-card-abs examples/credit_card_abs_demo.json              # credit-card master trust: excess spread, early-amortization trigger, revolving/amortization cash flows
+finmodel sales-capacity-planning examples/sales_capacity_planning_demo.json  # rep productivity ramp curves, bookings-capacity forecasting
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -318,9 +320,9 @@ what was deliberately left out (credit-card/master-trust securitization, FX exot
 
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 
-Every survey doc in this session records what got deliberately left out and why — twice now, this session
-has gone back to some of those items and found most of them buildable after re-examining the actual reason
-each had been deferred. Round 1: `finmodel.loss_reserving.bornhuetter_ferguson()` blends chain-ladder's own
+Every survey doc in this session records what got deliberately left out and why — three times now, this
+session has gone back to some of those items and found most of them buildable after re-examining the actual
+reason each had been deferred. Round 1: `finmodel.loss_reserving.bornhuetter_ferguson()` blends chain-ladder's own
 reporting pattern with a caller-supplied a-priori expected loss (the "real dataset" the original deferral
 asked for was never actually needed — it's a normal input, not something the module must ship pre-loaded);
 verified to converge exactly to chain-ladder's answer for a fully-developed accident year and to diverge from
@@ -345,6 +347,17 @@ percentage_of_completion` — cost-to-cost revenue recognition for long-term con
 self-verifying against its own accounting identity (cumulative recognized revenue must equal exactly the
 contract price once costs incurred reach 100% of the total estimate), so no external dataset was ever
 actually required to build and test it correctly.
+
+Round 3: `finmodel.credit_card_abs` — credit-card master-trust securitization (excess spread, the real
+3-month-average early-amortization trigger every master-trust prospectus defines, and the revolving-vs-
+amortization cash-flow mechanic under both pass-through and controlled-amortization methods), whose "own
+careful, separately-verified formula set" the original deferral worried about turned out to be entirely
+hand-verifiable: a $100M receivables pool with an 80M certificate balance stays flat through a 24-month
+revolving period, then pays down in exactly 6 months (pass-through) or exactly 10 level months (controlled
+amortization). `finmodel.sales_capacity_planning` — rep productivity ramp curves and bookings-capacity
+forecasting, built as its own module rather than an extension of `finmodel.cohort_analysis` after
+reconsidering that the two track fundamentally different metrics (quota attainment versus customer
+retention) on their cohorts, even though both use a cohort-by-tenure structure.
 
 ## New-business / startup model (`finmodel.startup_model`, `docs/STARTUP_MODEL.md`)
 
@@ -388,7 +401,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

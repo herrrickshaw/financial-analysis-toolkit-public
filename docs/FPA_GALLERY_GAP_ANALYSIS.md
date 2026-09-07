@@ -59,10 +59,12 @@ post-money) and is exercised by the same `from_dict()` entry point.
 
 Two more categories were real and distinct, but scoped out:
 
-- **Sales quota & rep-capacity planning** (Cube, Vena) — a genuine FP&A discipline, but sales-ops-specific
-  rather than general-purpose; its core mechanic (ramping rep productivity by tenure cohort) is close enough
-  to `finmodel.cohort_analysis`'s existing retention-curve machinery that it's a natural extension of that
-  module rather than a new one, better done when there's a real sales-comp dataset to reconcile against.
+- ~~**Sales quota & rep-capacity planning**~~ (Cube, Vena) — **RESOLVED**, see
+  `docs/DEFERRED_GAPS_REVISITED.md`: built as its own module, `finmodel.sales_capacity_planning`, rather than
+  as an extension of `finmodel.cohort_analysis` after all — the unit of analysis is genuinely different (rep
+  productivity ramps and quota attainment, not customer retention), even though both use a cohort-by-tenure
+  structure. The "real sales-comp dataset" the original deferral asked for was unnecessary — a hand-traced
+  ramp-curve example is enough to build and verify the mechanic correctly.
 - ~~**WIP / percentage-of-completion contract accounting**~~ (PivotXL) — **RESOLVED**, see
   `docs/DEFERRED_GAPS_REVISITED.md`: built as `finmodel.percentage_of_completion`. The "real dataset" the
   original deferral asked for was unnecessary — the cost-to-cost method is exact and self-verifying against

@@ -1,11 +1,12 @@
 # Revisiting previously-deferred gaps
 
 Every prior survey this session documented not just what got built but what got deliberately left out, and
-why. Twice now, this session has gone back to some of those "deferred" items, re-examined the actual reason
-each was deferred, and found most of them buildable after all — either because the original objection didn't
-actually apply, or because a genuine formula existed that just hadn't been assembled yet. Round 1 (below)
-covered Bornhuetter-Ferguson reserving, earnout valuation, and step-up EMI schedules; round 2 covers an
-American (deal-by-deal) PE carry waterfall with clawback, and percentage-of-completion revenue recognition.
+why. Three times now, this session has gone back to some of those "deferred" items, re-examined the actual
+reason each was deferred, and found most of them buildable after all — either because the original objection
+didn't actually apply, or because a genuine formula existed that just hadn't been assembled yet. Round 1
+(below) covered Bornhuetter-Ferguson reserving, earnout valuation, and step-up EMI schedules; round 2 covers
+an American (deal-by-deal) PE carry waterfall with clawback, and percentage-of-completion revenue
+recognition; round 3 covers credit-card master-trust securitization and sales-capacity planning.
 
 ## 1. Bornhuetter-Ferguson reserving (`finmodel.loss_reserving.bornhuetter_ferguson`)
 
@@ -115,3 +116,45 @@ cumulative profit only grows, a check that deals are processed in realization-da
 order, and `from_dict` wiring. `tests/test_percentage_of_completion.py` (6 tests, new file) checks the
 single-period calculation against hand-computed values for both the over-billed and under-billed cases, and
 checks the multi-period schedule against its self-verifying revenue-equals-contract-price identity.
+
+## 6. Credit-card master-trust securitization (`finmodel.credit_card_abs`)
+
+**Originally deferred in** `docs/PROFESSOR_COURSE_SURVEY.md`: "a real, structurally different mechanic...
+that would need its own careful, separately-verified formula set rather than a quick extension of the
+existing CMO module; flagged as a real future candidate."
+
+**Why it's buildable now.** The "careful, separately-verified formula set" this needed turned out to be
+entirely hand-verifiable without a real trust's historical data: excess spread is a direct subtraction
+(portfolio yield less certificate rate, servicing fee, and charge-offs), the early-amortization trigger is a
+simple trailing rolling average crossing zero (the exact, real convention every card master-trust prospectus
+defines), and the revolving-vs-amortization cash-flow walk is a straightforward month-by-month simulation.
+`finmodel.credit_card_abs`'s test suite traces a full hand-computed example: a $100M receivables pool with a
+15% monthly payment rate, an 80M certificate balance flat through a 24-month revolving period (interest-only
+throughout), then paid down in exactly 6 amortization months under a pass-through structure (5 full $15M
+months plus one final $5M month) or exactly 10 level $8M months under a controlled-amortization structure.
+
+## 7. Sales capacity planning (`finmodel.sales_capacity_planning`)
+
+**Originally deferred in** `docs/FPA_GALLERY_GAP_ANALYSIS.md`: "its core mechanic (ramping rep productivity
+by tenure cohort) is close enough to `finmodel.cohort_analysis`'s existing retention-curve machinery that
+it's a natural extension of that module rather than a new one, better done when there's a real sales-comp
+dataset to reconcile against."
+
+**Why it's buildable now.** Re-examining the "close enough to cohort_analysis" reasoning: the two modules
+track fundamentally different real metrics on their cohorts (customer retention/revenue versus sales-rep
+quota attainment), so treating one as a natural extension of the other would have forced an awkward, leaky
+abstraction rather than saving real work — a small, clean, standalone module was the more honest design once
+that was reconsidered. And, as with every other item in this document, the "real sales-comp dataset" was
+never actually required: a hand-traced example with two overlapping hire cohorts moving through a standard
+20/50/80/100% quarterly ramp curve is enough to build and verify the capacity-forecasting formula and its
+exact inverse (reps needed for a target) correctly.
+
+## Test coverage (round 3)
+
+`tests/test_credit_card_abs.py` (7 tests, new file) checks excess spread against a hand calc, checks the
+early-amortization trigger against both a hand-traced rolling-average crossing and a series that never
+triggers, and checks the master-trust cash-flow walk against the full hand-computed revolving/amortization
+example above under both amortization methods. `tests/test_sales_capacity_planning.py` (5 tests, new file)
+checks the capacity schedule against a hand calc tracing two overlapping hire cohorts independently through
+the ramp curve, checks that tenure beyond the ramp curve's length holds at full productivity, and checks that
+the reps-needed calculation is the exact inverse of the capacity calculation via a round-trip.
