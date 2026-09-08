@@ -1112,6 +1112,35 @@ def cmd_investment_securities(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_consolidation(a):
+    from . import consolidation as CONS
+    res = CONS.from_dict(_load_json(a.inputs))
+    if "consolidated_net_income" in res:
+        r = res["consolidated_net_income"]
+        print(f"Consolidated NI: {r['consolidated_net_income']:,.0f}  NCI share {r['nci_share_of_net_income']:,.0f}  "
+              f"attributable to parent {r['net_income_attributable_to_parent']:,.0f}")
+    if "nci_balance_sheet" in res:
+        r = res["nci_balance_sheet"]
+        print(f"NCI balance: {r['nci_balance']:,.0f}  (parent share {r['parent_share_of_subsidiary_equity']:,.0f})")
+    if "nci_at_acquisition_fair_value_method" in res:
+        print(f"NCI at acquisition (fair value method): {res['nci_at_acquisition_fair_value_method']['nci_initial_value']:,.0f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_debt_covenants(a):
+    from . import debt_covenants as DC
+    res = DC.from_dict(_load_json(a.inputs))
+    for key in ("leverage_ratio_covenant", "interest_coverage_covenant", "fixed_charge_coverage_covenant"):
+        if key in res:
+            r = res[key]
+            status = "OK" if r["compliant"] else "*** BREACH ***"
+            print(f"  {r['covenant']:28} headroom {r['headroom']:+.3f}  {status}")
+    if "covenant_compliance_summary" in res:
+        s = res["covenant_compliance_summary"]
+        print(f"Covenant summary: {s['total_covenants_tested']} tested, all compliant: {s['all_compliant']}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -1247,6 +1276,8 @@ def main(argv=None):
     nwc = sp.add_parser("nwc-peg", help="M&A net-working-capital peg and closing true-up purchase-price adjustment"); nwc.add_argument("inputs"); nwc.add_argument("--json-out"); nwc.set_defaults(fn=cmd_nwc_peg)
     epsc = sp.add_parser("eps", help="ASC 260 basic and diluted EPS (treasury stock method, if-converted method, antidilution test)"); epsc.add_argument("inputs"); epsc.add_argument("--json-out"); epsc.set_defaults(fn=cmd_eps_calculation)
     invs = sp.add_parser("investment-securities", help="ASC 320 trading/AFS/HTM classification and unrealized gain/loss routing, OCI reclassification on sale"); invs.add_argument("inputs"); invs.add_argument("--json-out"); invs.set_defaults(fn=cmd_investment_securities)
+    cons = sp.add_parser("consolidation", help="ASC 810 consolidated net income, noncontrolling interest (NCI) carve-out, NCI at acquisition"); cons.add_argument("inputs"); cons.add_argument("--json-out"); cons.set_defaults(fn=cmd_consolidation)
+    dcv = sp.add_parser("debt-covenants", help="borrower-side leverage/interest-coverage/fixed-charge-coverage covenant compliance testing"); dcv.add_argument("inputs"); dcv.add_argument("--json-out"); dcv.set_defaults(fn=cmd_debt_covenants)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)

@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 578 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 591 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -94,6 +94,8 @@ finmodel pension-accounting examples/pension_accounting_demo.json        # ASC 7
 finmodel nwc-peg examples/nwc_peg_demo.json                              # M&A net-working-capital peg and closing true-up purchase-price adjustment
 finmodel eps examples/eps_demo.json                                      # ASC 260 basic/diluted EPS: treasury stock method, if-converted method, antidilution test
 finmodel investment-securities examples/investment_securities_demo.json  # ASC 320 trading/AFS/HTM classification, OCI reclassification on sale
+finmodel consolidation examples/consolidation_demo.json                  # ASC 810 consolidated net income, NCI carve-out, NCI at acquisition
+finmodel debt-covenants examples/debt_covenants_demo.json                # leverage/interest-coverage/fixed-charge-coverage covenant compliance testing
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -404,6 +406,19 @@ unrealized gain/loss to three genuinely different places — net income, OCI, or
 OCI "recycling" mechanic on an AFS sale, checked to fire only for that one classification). See
 `docs/EPS_AND_INVESTMENT_SECURITIES.md` for the full detail.
 
+## Consolidation accounting and debt covenants (`docs/CONSOLIDATION_AND_DEBT_COVENANTS.md`)
+
+A sixth fresh pair: `finmodel.consolidation` (ASC 810's full consolidation of a majority-owned subsidiary —
+100% of its net income included, with the Noncontrolling Interest carved OUT afterward rather than only the
+parent's proportionate share included from the start, verified against that exact identity; plus NCI's real,
+GAAP-specific fair-value measurement at acquisition, documented alongside the real IFRS proportionate-share
+alternative the same way ASC 842 vs. IFRS 16 already is in `finmodel.lease_accounting`) and
+`finmodel.debt_covenants` (the real leverage/interest-coverage/fixed-charge-coverage covenants governing most
+corporate credit agreements, tested from the borrower's own side and distinct from `finmodel.bank_model`'s
+unrelated bank regulatory leverage ratio; every test reports a real "headroom" figure, verified exactly at
+and just past each covenant's compliance boundary). See `docs/CONSOLIDATION_AND_DEBT_COVENANTS.md` for the
+full detail.
+
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 
 Every survey doc in this session records what got deliberately left out and why — four times now, this
@@ -499,7 +514,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, pension_accounting, nwc_peg, eps_calculation, investment_securities, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, pension_accounting, nwc_peg, eps_calculation, investment_securities, consolidation, debt_covenants, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

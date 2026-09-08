@@ -1,0 +1,20 @@
+{
+  "leverage_ratio_covenant": {
+    "total_debt": 4000000.0,
+    "ebitda": 1000000.0,
+    "max_leverage_ratio": 4.0
+  },
+  "interest_coverage_covenant": {
+    "ebitda": 1000000.0,
+    "interest_expense": 400000.0,
+    "min_interest_coverage": 3.0
+  },
+  "fixed_charge_coverage_covenant": {
+    "ebitda": 1000000.0,
+    "capex": 100000.0,
+    "cash_taxes": 50000.0,
+    "interest_expense": 200000.0,
+    "scheduled_principal_payments": 100000.0,
+    "min_fccr": 1.2
+  }
+}

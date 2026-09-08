@@ -1,0 +1,15 @@
+{
+  "consolidated_net_income": {
+    "parent_standalone_net_income": 5000000.0,
+    "subsidiary_net_income": 1000000.0,
+    "nci_ownership_pct": 0.20
+  },
+  "nci_balance_sheet": {
+    "subsidiary_total_equity": 10000000.0,
+    "nci_ownership_pct": 0.20
+  },
+  "nci_at_acquisition_fair_value_method": {
+    "subsidiary_fair_value": 20000000.0,
+    "nci_ownership_pct": 0.20
+  }
+}

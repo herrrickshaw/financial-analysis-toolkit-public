@@ -648,3 +648,22 @@ def test_cli_investment_securities(tmp_path, capsys):
     assert "available_for_sale:" in out and "Realized gain/loss:" in out
     saved = json.loads((tmp_path / "is.json").read_text())
     assert saved["classify_and_measure"]["oci_impact"] == pytest.approx(15_000.0)
+
+
+def test_cli_consolidation(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["consolidation", str(EX / "consolidation_demo.json"), "--json-out", str(tmp_path / "cons.json")])
+    out = capsys.readouterr().out
+    assert "Consolidated NI:" in out and "NCI balance:" in out
+    saved = json.loads((tmp_path / "cons.json").read_text())
+    assert saved["consolidated_net_income"]["net_income_attributable_to_parent"] == pytest.approx(5_800_000.0)
+
+
+def test_cli_debt_covenants(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["debt-covenants", str(EX / "debt_covenants_demo.json"), "--json-out", str(tmp_path / "dc.json")])
+    out = capsys.readouterr().out
+    assert "BREACH" in out and "Covenant summary:" in out
+    saved = json.loads((tmp_path / "dc.json").read_text())
+    assert saved["covenant_compliance_summary"]["all_compliant"] is False
+    assert len(saved["covenant_compliance_summary"]["breaches"]) == 1
