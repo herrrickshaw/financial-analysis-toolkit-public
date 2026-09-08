@@ -667,3 +667,21 @@ def test_cli_debt_covenants(tmp_path, capsys):
     saved = json.loads((tmp_path / "dc.json").read_text())
     assert saved["covenant_compliance_summary"]["all_compliant"] is False
     assert len(saved["covenant_compliance_summary"]["breaches"]) == 1
+
+
+def test_cli_aro(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["aro", str(EX / "aro_demo.json"), "--json-out", str(tmp_path / "aro.json")])
+    out = capsys.readouterr().out
+    assert "Initial ARO liability:" in out and "Accretion schedule:" in out and "Settlement:" in out
+    saved = json.loads((tmp_path / "aro.json").read_text())
+    assert saved["accretion_schedule"]["final_aro_liability"] == pytest.approx(1_000_000.0, abs=1.0)
+
+
+def test_cli_warranty_receivables(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["warranty-receivables", str(EX / "warranty_receivables_demo.json"), "--json-out", str(tmp_path / "wra.json")])
+    out = capsys.readouterr().out
+    assert "Warranty reserve:" in out and "Total allowance:" in out
+    saved = json.loads((tmp_path / "wra.json").read_text())
+    assert saved["receivables_allowance_aging_method"]["total_allowance"] == pytest.approx(43_000.0)

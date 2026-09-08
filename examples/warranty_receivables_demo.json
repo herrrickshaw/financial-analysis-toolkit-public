@@ -1,0 +1,17 @@
+{
+  "warranty_reserve_rollforward": {
+    "beginning_reserve": 100000.0,
+    "units_sold": 10000.0,
+    "failure_rate": 0.02,
+    "average_repair_cost": 50.0,
+    "actual_warranty_costs_incurred": 80000.0
+  },
+  "receivables_allowance_aging_method": {
+    "aging_buckets": [
+      {"bucket": "current", "balance": 500000.0, "expected_loss_rate": 0.01},
+      {"bucket": "31-60", "balance": 100000.0, "expected_loss_rate": 0.05},
+      {"bucket": "61-90", "balance": 40000.0, "expected_loss_rate": 0.20},
+      {"bucket": "90+", "balance": 50000.0, "expected_loss_rate": 0.50}
+    ]
+  }
+}

@@ -1141,6 +1141,35 @@ def cmd_debt_covenants(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_asset_retirement_obligations(a):
+    from . import asset_retirement_obligations as ARO
+    res = ARO.from_dict(_load_json(a.inputs))
+    if "initial_aro_recognition" in res:
+        r = res["initial_aro_recognition"]
+        print(f"Initial ARO liability: {r['initial_aro_liability']:,.2f}")
+    if "accretion_schedule" in res:
+        r = res["accretion_schedule"]
+        print(f"Accretion schedule: {len(r['schedule'])} years  final ARO liability {r['final_aro_liability']:,.2f}")
+    if "settlement_gain_loss" in res:
+        r = res["settlement_gain_loss"]
+        print(f"Settlement: {r['gain_loss']:+,.2f} ({r['classification']})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
+def cmd_warranty_and_receivables_allowance(a):
+    from . import warranty_and_receivables_allowance as WRA
+    res = WRA.from_dict(_load_json(a.inputs))
+    if "warranty_reserve_rollforward" in res:
+        r = res["warranty_reserve_rollforward"]
+        print(f"Warranty reserve: {r['beginning_reserve']:,.0f} -> {r['ending_reserve']:,.0f}  (additions {r['additions']:,.0f})")
+    if "receivables_allowance_aging_method" in res:
+        r = res["receivables_allowance_aging_method"]
+        for b in r["buckets"]:
+            print(f"  {b['bucket']:10} balance {b['balance']:>12,.0f}  allowance {b['allowance']:>10,.0f}")
+        print(f"Total allowance: {r['total_allowance']:,.0f}  (net realizable {r['net_realizable_receivables']:,.0f})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -1278,6 +1307,8 @@ def main(argv=None):
     invs = sp.add_parser("investment-securities", help="ASC 320 trading/AFS/HTM classification and unrealized gain/loss routing, OCI reclassification on sale"); invs.add_argument("inputs"); invs.add_argument("--json-out"); invs.set_defaults(fn=cmd_investment_securities)
     cons = sp.add_parser("consolidation", help="ASC 810 consolidated net income, noncontrolling interest (NCI) carve-out, NCI at acquisition"); cons.add_argument("inputs"); cons.add_argument("--json-out"); cons.set_defaults(fn=cmd_consolidation)
     dcv = sp.add_parser("debt-covenants", help="borrower-side leverage/interest-coverage/fixed-charge-coverage covenant compliance testing"); dcv.add_argument("inputs"); dcv.add_argument("--json-out"); dcv.set_defaults(fn=cmd_debt_covenants)
+    aro = sp.add_parser("aro", help="ASC 410 asset retirement obligation: initial PV recognition, accretion schedule, settlement gain/loss"); aro.add_argument("inputs"); aro.add_argument("--json-out"); aro.set_defaults(fn=cmd_asset_retirement_obligations)
+    wra = sp.add_parser("warranty-receivables", help="warranty reserve roll-forward (expected-cost method) and CECL aging-method receivables allowance"); wra.add_argument("inputs"); wra.add_argument("--json-out"); wra.set_defaults(fn=cmd_warranty_and_receivables_allowance)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)
