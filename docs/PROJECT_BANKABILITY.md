@@ -36,14 +36,14 @@ flagged in `docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md`: its land rate is ano
 every other state and may not be a like-for-like comparison.)
 
 **Projects incentives make bankable, not just cheaper:** at a 14% hurdle, **Gujarat** (4.8% IRR on its own
-economics → 23.6% with its confirmed net-SGST-reimbursement scheme and the central Auto PLI) and **Odisha**
-(10.6% → 25.5% with its confirmed 100%-of-net-SGST, 200%-of-P&M-cap reimbursement) both cross from
-unbankable to comfortably bankable. Every other state's IRR improves with incentives too (incentives never
-make IRR worse, by construction — the test suite checks this directly), but Karnataka, Andhra Pradesh, Madhya
-Pradesh, Telangana, Maharashtra, Haryana, Rajasthan, and Punjab all remain below the illustrative hurdle even
-after incentives, in this particular illustrative scenario — their capex (chiefly land cost) or their
-confirmed incentive parameters aren't strong enough to close the gap at these assumed cash-flow and hurdle
-levels.
+economics → 23.6% with its confirmed net-SGST-reimbursement scheme and the central Auto PLI), **Odisha**
+(10.6% → 25.5% with its confirmed 100%-of-net-SGST, 200%-of-P&M-cap reimbursement), and **Karnataka**
+(12.2% → 18.9% with its confirmed 25%-of-FCI capital subsidy) all cross from unbankable to comfortably
+bankable. Every other state's IRR improves with incentives too (incentives never make IRR worse, by
+construction — the test suite checks this directly), but Andhra Pradesh, Madhya Pradesh, Telangana,
+Maharashtra, Haryana, Rajasthan, and Punjab all remain below the illustrative hurdle even after incentives,
+in this particular illustrative scenario — their capex (chiefly land cost) or their confirmed incentive
+parameters aren't strong enough to close the gap at these assumed cash-flow and hurdle levels.
 
 **This ranking is exactly as reliable as its two illustrative inputs** (the flat assumed cash flow and the
 hurdle rate) **and exactly as reliable as each state's own incentive-catalog confidence** (see
@@ -67,10 +67,13 @@ flags (REC's own published rate card is ~3 years old).
 
 Run over the same 12-state matrix against the generic SBI/REC-style case (70% debt:equity, an illustrative
 10.5% rate, 1.20x minimum DSCR, using only *operating* cash flow — not incentive income — as the
-conservative bank-side view) via `examples/dscr_matrix_demo.json`: only **Tamil Nadu, Odisha, and Uttar
-Pradesh** clear the covenant. This is a genuinely different, complementary question to the IRR-based
-bankability above — a project can have an attractive IRR-with-incentives and still fail a lender's DSCR test
-if the bank won't credit that incentive income toward debt service.
+conservative bank-side view) via `examples/dscr_matrix_demo.json`: **Tamil Nadu, Karnataka, Odisha, Uttar
+Pradesh, and Madhya Pradesh** clear the covenant. This is a genuinely different, complementary question to
+the IRR-based bankability above — a project can have an attractive IRR-with-incentives and still fail a
+lender's DSCR test if the bank won't credit that incentive income toward debt service; conversely Madhya
+Pradesh clears the conservative DSCR test on operating cash flow alone despite not clearing the higher,
+incentive-inclusive IRR hurdle above — a project can be "bankable" in the narrow debt-service sense without
+yet being an attractive enough investment to actually pursue.
 
 ## Test coverage
 

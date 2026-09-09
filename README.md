@@ -481,10 +481,10 @@ added (correctly timed, via `sector_investment_model`'s own per-year detail, nev
 `rank_projects` ranks a list of state/sector projects by IRR both ways and flags
 `incentive_enabled_projects` — every project below the hurdle on its own merits that clears it once
 incentives are added. Run over the same 12-state matrix (`examples/project_bankability_demo.json`) at an
-illustrative 14% hurdle: Tamil Nadu and Odisha lead on ROI without any government support (largely a land-cost
-efficiency story), while Gujarat (4.8% → 23.6% IRR) and Odisha (10.6% → 25.5%) are the two projects incentives
-specifically make bankable — every project's IRR improves with incentives (verified as an invariant), but
-most don't cross the hurdle even so.
+illustrative 14% hurdle: Tamil Nadu and Karnataka lead on ROI without any government support (largely a
+land-cost efficiency story), while Gujarat (4.8% → 23.6% IRR), Odisha (10.6% → 25.5%), and Karnataka
+(12.2% → 18.9%) are the three projects incentives specifically make bankable — every project's IRR improves
+with incentives (verified as an invariant), but most don't cross the hurdle even so.
 
 The same module also answers the narrower, more concrete question a lender tests before disbursing:
 `debt_service_coverage_ratio` checks operating cash flow against a loan's own amortized annual repayment
@@ -493,10 +493,11 @@ with sourcing and staleness flags in `docs/INDIA_PROJECT_FINANCE_LENDING_TERMS.m
 publishes an explicit, dated 1.2x–1.4x DSCR schedule for renewable-energy projects; SBI and REC disclose no
 DSCR floor at all for general project finance, so the 1.20x industry-norm figure used for this toolkit's
 (non-RE) 12-state matrix is a general convention, not a lender-specific number. Run at a conservative
-70%-debt, 1.20x-covenant, operating-cash-flow-only basis (`examples/dscr_matrix_demo.json`): only Tamil Nadu,
-Odisha, and Uttar Pradesh clear it — a genuinely different, complementary answer to the IRR-based ranking
-above, since a lender won't necessarily credit incentive income toward debt-service capacity the way an
-investor credits it toward IRR. See `docs/PROJECT_BANKABILITY.md` for the full detail.
+70%-debt, 1.20x-covenant, operating-cash-flow-only basis (`examples/dscr_matrix_demo.json`): Tamil Nadu,
+Karnataka, Odisha, Uttar Pradesh, and Madhya Pradesh clear it — a genuinely different, complementary answer
+to the IRR-based ranking above, since a lender won't necessarily credit incentive income toward
+debt-service capacity the way an investor credits it toward IRR. See `docs/PROJECT_BANKABILITY.md` for the
+full detail.
 
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 

@@ -237,8 +237,8 @@
       },
       {
         "state": "Karnataka",
-        "sector": "Electronics / Auto Components",
-        "total_capex": 68.0,
+        "sector": "General Manufacturing / MSME",
+        "total_capex": 42.55,
         "upfront_incentive_value": 9.5,
         "incentive_detail": [
           {
@@ -254,8 +254,8 @@
       },
       {
         "state": "Andhra Pradesh",
-        "sector": "General Manufacturing",
-        "total_capex": 68.0,
+        "sector": "Pharmaceuticals",
+        "total_capex": 67.473,
         "upfront_incentive_value": 7.0,
         "incentive_detail": [
           {
@@ -271,8 +271,8 @@
       },
       {
         "state": "Madhya Pradesh",
-        "sector": "Food Processing",
-        "total_capex": 68.0,
+        "sector": "Automobile & Auto Components",
+        "total_capex": 50.966,
         "upfront_incentive_value": 0.0,
         "incentive_detail": [
           {

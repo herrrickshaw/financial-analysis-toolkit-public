@@ -257,10 +257,10 @@
     },
     {
       "state": "Karnataka",
-      "sector": "Electronics / Auto Components",
+      "sector": "General Manufacturing / MSME",
       "land": {
         "area_acres": 10.0,
-        "rate_per_acre": 3.0
+        "rate_per_acre": 0.455
       },
       "capex_components": {
         "plant_and_machinery": 30.0,
@@ -275,14 +275,14 @@
         }
       ],
       "discount_rate": 0.1,
-      "note": "LAND RATE IS AN ILLUSTRATIVE PLACEHOLDER (Rs 3.0 cr/acre) -- no current, trustworthy Karnataka land rate could be confirmed (KIADB's portal yielded no scrapable rate page); do not treat as sourced. See docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md."
+      "note": "Land rate: KIADB GIS portal-confirmed -- Sira Industrial Area, Tumakuru, plot 108 (2 acres, Rs91 lakh total, allotted). This is a historical ALLOTTED-plot price at the time of that allotment, not a current asking rate, and the per-acre figure (Rs45.5 lakh) is derived by dividing the quoted lump sum by area, not itself a quoted rate. See docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md."
     },
     {
       "state": "Andhra Pradesh",
-      "sector": "General Manufacturing",
+      "sector": "Pharmaceuticals",
       "land": {
         "area_acres": 10.0,
-        "rate_per_acre": 3.0
+        "rate_per_acre": 2.9473
       },
       "capex_components": {
         "plant_and_machinery": 30.0,
@@ -297,14 +297,14 @@
         }
       ],
       "discount_rate": 0.1,
-      "note": "LAND RATE IS AN ILLUSTRATIVE PLACEHOLDER (Rs 3.0 cr/acre) -- APIIC's only located figures were 15-years-expired (valid upto 2011); do not treat as sourced. See docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md."
+      "note": "Land rate: APIIC digital land bank API-confirmed (JN Pharma City, Parawada, Anakapalli district) -- an official, dated rate (effective 01.04.2026-31.03.2027, proceeding ref Letter No.3199852/Infra/A1/2026) directly superseding an earlier, lower-confidence figure found for AP via a GIS map scrape. See docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md."
     },
     {
       "state": "Madhya Pradesh",
-      "sector": "Food Processing",
+      "sector": "Automobile & Auto Components",
       "land": {
         "area_acres": 10.0,
-        "rate_per_acre": 3.0
+        "rate_per_acre": 1.2966
       },
       "capex_components": {
         "plant_and_machinery": 30.0,
@@ -325,7 +325,7 @@
         }
       ],
       "discount_rate": 0.1,
-      "note": "LAND RATE IS AN ILLUSTRATIVE PLACEHOLDER (Rs 3.0 cr/acre) -- MPIDC's own portal surfaced no rupee figure for Pithampur/Mandideep/Dewas in this pass; do not treat as sourced. See docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md."
+      "note": "Land rate: MPIDC's official Land Availability Report and LBA portal-confirmed (Pithampur-1 & 2, Dhar district; Rs2,204/sqm land rate + Rs1,000/sqm development charge). Sector reflects Pithampur's real, well-documented character as MP's largest industrial area, anchored by automobile-ancillary manufacturing. See docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md."
     },
     {
       "state": "Maharashtra",

@@ -72,30 +72,30 @@
     },
     {
       "state": "Karnataka",
-      "sector": "Electronics / Auto Components",
+      "sector": "General Manufacturing / MSME",
       "lender": "SBI/REC-style (generic, non-RE)",
       "annual_cash_flow": 7.6000000000000005,
-      "loan_amount": 47.599999999999994,
+      "loan_amount": 29.784999999999997,
       "interest_rate": 0.105,
       "tenure_years": 10,
       "min_dscr": 1.2
     },
     {
       "state": "Andhra Pradesh",
-      "sector": "General Manufacturing",
+      "sector": "Pharmaceuticals",
       "lender": "SBI/REC-style (generic, non-RE)",
       "annual_cash_flow": 7.6000000000000005,
-      "loan_amount": 47.599999999999994,
+      "loan_amount": 47.2311,
       "interest_rate": 0.105,
       "tenure_years": 10,
       "min_dscr": 1.2
     },
     {
       "state": "Madhya Pradesh",
-      "sector": "Food Processing",
+      "sector": "Automobile & Auto Components",
       "lender": "SBI/REC-style (generic, non-RE)",
       "annual_cash_flow": 7.6000000000000005,
-      "loan_amount": 47.599999999999994,
+      "loan_amount": 35.6762,
       "interest_rate": 0.105,
       "tenure_years": 10,
       "min_dscr": 1.2

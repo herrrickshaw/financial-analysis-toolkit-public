@@ -73,24 +73,51 @@ component — before relying on it.**
 | Maharashtra | Butibori, Nagpur | general | ₹2,000/sq.m | ₹0.81 cr/acre | mahaindustry.com aggregator (unverified) |
 | Maharashtra | Marol, Mumbai | general (extreme high end, metro) | ₹63,180/sq.m | ₹25.57 cr/acre | mahaindustry.com aggregator (unverified) |
 
-## Not confirmed — no current, trustworthy figure found
+## Update: Madhya Pradesh, Andhra Pradesh, and Karnataka — all three now confirmed
 
-- **Madhya Pradesh (MPIDC)**: `invest.mp.gov.in/land-search` and the MPIDC portal pages are functional but
-  surfaced no visible rupee rate for Pithampur, Mandideep, or Dewas in this pass; an unscoped land-search
-  query returned "No Land Booking Found." **No figure is reported for MP — do not substitute a plausible
-  number.**
-- **Karnataka (KIADB)**: `en.kiadb.in` redirects to a JS-rendered shell (`kiadb.karnataka.gov.in`) with no
-  scrapable rate page found. Only farmer acquisition-compensation figures were found (e.g. ₹40 lakh/acre
-  near Ballari, ₹60–75 lakh/acre near Devanahalli) — these are payouts TO land sellers, not allotment rates
-  charged TO industry, and are deliberately excluded here rather than misused as a land-cost input.
-- **Andhra Pradesh (APIIC)**: only historical figures found, explicitly marked stale on APIIC's own page
-  (₹35 lakh/acre at Visakhapatnam SEZ, ₹16 lakh/acre at Nellore SEZ, both "valid upto 31/03/2011" — 15 years
-  expired). **Not usable as a current input.**
+A follow-up pass found real, sourced rates for all three states this catalog previously had to leave blank.
+Each is tiered by its own confidence, same convention as above.
+
+### Confirmed, official, dated — Madhya Pradesh and Andhra Pradesh
+
+| State | Industrial area / park | Sector character | Rate as quoted | Converted | Source |
+|---|---|---|---|---|---|
+| Madhya Pradesh | Pithampur-1 & 2, Dhar district | automobile & auto-components hub (MP's largest industrial area) | Land Rate ₹2,204/sq.m + Development Charge ₹1,000/sq.m | ₹1.30 cr/acre | MPIDC's public "Land Availability Report" (invest.mp.gov.in/public-service/land_availability_report, no login) and the LBA portal's own Charges Details tab (invest.mp.gov.in/LBA/home) — both agree on this figure |
+| Madhya Pradesh | Mandideep, Raisen district | general | ₹2,907/sq.m + ₹580/sq.m development | ₹1.41 cr/acre | same MPIDC sources |
+| Madhya Pradesh | Dewas Sector 2 & 3 | general | ₹1,785/sq.m + ₹670/sq.m development | ₹0.99 cr/acre | same MPIDC sources |
+| Andhra Pradesh | JN Pharma City, Parawada (Anakapalli district) | pharmaceuticals (a well-known, large pharma SEZ) | ₹7,283/sq.m | ₹2.95 cr/acre | APIIC's public digital land bank API (`digital.apiic.in/landbankapi/availability/property-wise`), explicitly dated effective 01.04.2026–31.03.2027, citing proceeding ref "Letter No.3199852/Infra/A1/2026, Dt.31-03-2026" — the cleanest, most authoritative source found in this entire catalog, superseding an earlier lower-confidence AP figure from a raw GIS map scrape |
+| Andhra Pradesh | IP-BP SEZ, Ongole (Prakasam district) | general/SEZ | ₹1,255/sq.m (unit stated verbatim in the source field) | ₹0.51 cr/acre | same APIIC digital land bank API |
+
+Cross-check: Andhra Pradesh's Stamps & Registration Department publishes government guideline (circle) rates
+by village (registration.ap.gov.in/igrs/newPropertyvalue, no login) — Pudimadaka village (the same village
+JN Pharma City sits in) shows a **Residential**-classified guideline rate of ₹1,100–2,500/sq.m effective
+01.02.2025. This is a different land-use classification, not a direct substitute for the industrial rate
+above, but its similar order of magnitude is a useful independent cross-check that APIIC's ₹7,283/sq.m
+industrial figure isn't wildly out of line with the government's own general land valuation for the area.
+
+MP's Land Availability Report is itself a much larger resource than the two rows used here — it's a public,
+no-login table covering **139+ industrial areas across all 8 of MP's regional offices** (Bhopal, Chambal,
+Gwalior, Indore, Jabalpur, Narmadapuram, Rewa, Shahdol, Ujjain), each with its own Land Rate, Development
+Charge, and Maintenance Charge, plus plot counts and vacant-area figures. Only two entries are used in this
+toolkit's current worked matrix; the rest are a ready-made source for extending MP's coverage to more
+sectors/parks without further research.
+
+### Confirmed, official API, but a historical allotted-plot price — Karnataka
+
+| State | Industrial area / park | Sector character | Rate as quoted | Converted | Source |
+|---|---|---|---|---|---|
+| Karnataka | Sira Industrial Area, Tumakuru district, Plot 108 | general (2-acre plot, status "Allotted") | "Plot Rate in Lakhs: 91" — i.e. ₹91,00,000 total for the plot | ₹0.455 cr/acre (₹91L ÷ 2 acres — this division is derived, not itself a quoted per-acre rate) | KIADB's GIS portal (kiadb.karnataka.gov.in/kiadbgisportal), "Search Data → By Land Bank" tool, plot-popup detail |
+
+Flag: this is the price at the time that specific plot was **allotted**, not necessarily today's asking
+price for a new plot — the same limitation already noted for historical AP/Telangana-style figures
+elsewhere in this catalog. Only 4 Karnataka districts (Ballari, Mysuru, Tumakuru, Vijayapura) expose a "Land
+Bank" in this tool; Bengaluru-area parks (e.g. Electronic City Phase 2) show an aggregate panel whose
+"Outright Land Sale Price" field read 0 for the one park checked, likely because it's fully allotted.
 
 ## How this feeds the calculator
 
-`docs/INDIA_STATE_SECTOR_INCENTIVE_MATRIX.md` uses the "Confirmed" and "official live portal" rows above as
-the `rate_per_acre` input for 7 of the 12 states' worked sample calculations, explicitly uses the press- and
-aggregator-sourced Punjab/Maharashtra rows with their confidence caveat carried through, and uses a clearly
-labeled illustrative placeholder — never a number presented as sourced — for Madhya Pradesh, Karnataka, and
-Andhra Pradesh, where no current land rate could be confirmed.
+`docs/INDIA_STATE_SECTOR_INCENTIVE_MATRIX.md` now uses a real, sourced land rate for **all 12** states —
+the "Confirmed, official" and "official live portal" rows for 9 of them, and the press-sourced
+(Punjab)/aggregator-sourced (Maharashtra)/historical-allotted-plot (Karnataka) rows for the remaining 3,
+each with its own confidence caveat carried through into that state's entry rather than smoothed over. No
+state in the current matrix uses an unsourced illustrative placeholder for land cost any longer.

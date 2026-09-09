@@ -717,7 +717,7 @@ def test_cli_project_bankability_flags_incentive_enabled_states(tmp_path, capsys
     saved = json.loads((tmp_path / "bank.json").read_text())["rank_projects"]
     assert len(saved["projects"]) == 12
     enabled_states = {p["state"] for p in saved["incentive_enabled_projects"]}
-    assert enabled_states == {"Gujarat", "Odisha"}
+    assert enabled_states == {"Gujarat", "Odisha", "Karnataka"}
     # every project's IRR-with-incentives must be >= its IRR-without (incentives never hurt bankability)
     for p in saved["projects"]:
         assert p["irr_with_incentives"] >= p["irr_without_incentives"]
@@ -731,7 +731,7 @@ def test_cli_dscr_matrix_demo_flags_conservative_bank_case_breaches(tmp_path, ca
     saved = json.loads((tmp_path / "dscr.json").read_text())["dscr_matrix"]
     assert len(saved) == 12
     compliant_states = {r["state"] for r in saved if r["compliant"]}
-    assert compliant_states == {"Tamil Nadu", "Odisha", "Uttar Pradesh"}
+    assert compliant_states == {"Tamil Nadu", "Odisha", "Uttar Pradesh", "Karnataka", "Madhya Pradesh"}
 
 
 def test_cli_state_sector_matrix_demo_covers_all_12_states(tmp_path, capsys):

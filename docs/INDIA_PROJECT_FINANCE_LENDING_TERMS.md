@@ -82,11 +82,12 @@ pricing; they're reported for completeness with this flag attached.
 the general industry norm, since neither SBI nor REC discloses its own floor), computed using only each
 project's *operating* cash flow (not incentive income) as the conservative, bank-side cash flow available
 for debt service — lenders typically don't credit uncertain subsidy income toward a DSCR test the way they
-credit contracted revenue. Only **Tamil Nadu, Odisha, and Uttar Pradesh** clear this conservative 1.20x
-covenant on operating cash flow alone; the other 9 states' illustrative projects would need either a smaller
-loan (more promoter equity), a longer tenure, or bankable incentive cash flow layered in before a lender in
-this generic mold would extend 70% leverage — a genuinely different question from the IRR-based
-"bankability" in `docs/PROJECT_BANKABILITY.md`, and one worth reading alongside it rather than instead of it.
+credit contracted revenue. **Tamil Nadu, Karnataka, Odisha, Uttar Pradesh, and Madhya Pradesh** clear this
+conservative 1.20x covenant on operating cash flow alone; the other 7 states' illustrative projects would
+need either a smaller loan (more promoter equity), a longer tenure, or bankable incentive cash flow layered
+in before a lender in this generic mold would extend 70% leverage — a genuinely different question from the
+IRR-based "bankability" in `docs/PROJECT_BANKABILITY.md`, and one worth reading alongside it rather than
+instead of it.
 
 The day a renewable-energy sector entry is added to the matrix, it should use IREDA's own disclosed rate and
 DSCR figures above rather than this generic case, since IREDA's terms are lender-specific, dated, and
