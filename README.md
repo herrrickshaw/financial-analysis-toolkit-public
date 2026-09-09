@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 628 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 635 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -101,6 +101,7 @@ finmodel warranty-receivables examples/warranty_receivables_demo.json    # warra
 finmodel investment-incentives examples/investment_incentives_demo.json  # capital/interest/net-tax/employment investment-incentive mechanics (India central + state schemes)
 finmodel sector-investment-model examples/state_sector_matrix_demo.json  # 12-state precursor model: land cost + capex netted against a discounted incentive package, per state/sector
 finmodel project-bankability examples/project_bankability_demo.json      # IRR/ROI/payback with and without incentives, ranked by state/sector, flagging incentive-enabled projects
+finmodel project-bankability examples/dscr_matrix_demo.json              # DSCR covenant check (SBI/REC-style 70% leverage) across all 12 states, using real lender debt:equity + industry-norm covenant
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -483,7 +484,19 @@ incentives are added. Run over the same 12-state matrix (`examples/project_banka
 illustrative 14% hurdle: Tamil Nadu and Odisha lead on ROI without any government support (largely a land-cost
 efficiency story), while Gujarat (4.8% → 23.6% IRR) and Odisha (10.6% → 25.5%) are the two projects incentives
 specifically make bankable — every project's IRR improves with incentives (verified as an invariant), but
-most don't cross the hurdle even so. See `docs/PROJECT_BANKABILITY.md` for the full detail.
+most don't cross the hurdle even so.
+
+The same module also answers the narrower, more concrete question a lender tests before disbursing:
+`debt_service_coverage_ratio` checks operating cash flow against a loan's own amortized annual repayment
+(`finmodel.fin.pmt`) at a minimum DSCR covenant. Real published lender terms (SBI, IREDA, REC — cataloged
+with sourcing and staleness flags in `docs/INDIA_PROJECT_FINANCE_LENDING_TERMS.md`) feed this: IREDA
+publishes an explicit, dated 1.2x–1.4x DSCR schedule for renewable-energy projects; SBI and REC disclose no
+DSCR floor at all for general project finance, so the 1.20x industry-norm figure used for this toolkit's
+(non-RE) 12-state matrix is a general convention, not a lender-specific number. Run at a conservative
+70%-debt, 1.20x-covenant, operating-cash-flow-only basis (`examples/dscr_matrix_demo.json`): only Tamil Nadu,
+Odisha, and Uttar Pradesh clear it — a genuinely different, complementary answer to the IRR-based ranking
+above, since a lender won't necessarily credit incentive income toward debt-service capacity the way an
+investor credits it toward IRR. See `docs/PROJECT_BANKABILITY.md` for the full detail.
 
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 

@@ -723,6 +723,17 @@ def test_cli_project_bankability_flags_incentive_enabled_states(tmp_path, capsys
         assert p["irr_with_incentives"] >= p["irr_without_incentives"]
 
 
+def test_cli_dscr_matrix_demo_flags_conservative_bank_case_breaches(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["project-bankability", str(EX / "dscr_matrix_demo.json"), "--json-out", str(tmp_path / "dscr.json")])
+    out = capsys.readouterr().out
+    assert "BREACH" in out and "OK" in out
+    saved = json.loads((tmp_path / "dscr.json").read_text())["dscr_matrix"]
+    assert len(saved) == 12
+    compliant_states = {r["state"] for r in saved if r["compliant"]}
+    assert compliant_states == {"Tamil Nadu", "Odisha", "Uttar Pradesh"}
+
+
 def test_cli_state_sector_matrix_demo_covers_all_12_states(tmp_path, capsys):
     from finmodel.cli import main
     main(["sector-investment-model", str(EX / "state_sector_matrix_demo.json"), "--json-out", str(tmp_path / "matrix.json")])

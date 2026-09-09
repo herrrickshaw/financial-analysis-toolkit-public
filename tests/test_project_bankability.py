@@ -98,6 +98,23 @@ def test_rank_projects_sorts_correctly_and_flags_only_the_incentive_enabled_proj
     assert enabled_states == {"A"}
 
 
+def test_debt_service_coverage_ratio_matches_independent_annuity_formula():
+    r, n, loan = 0.10, 10, 100.0
+    expected_annual_debt_service = loan * r / (1 - (1 + r) ** -n)
+    out = PB.debt_service_coverage_ratio(annual_cash_flow=20.0, loan_amount=loan, interest_rate=r,
+                                         tenure_years=n, min_dscr=1.2)
+    assert out["annual_debt_service"] == pytest.approx(expected_annual_debt_service)
+    assert out["dscr"] == pytest.approx(20.0 / expected_annual_debt_service)
+    assert out["compliant"] is True  # dscr ~1.229 >= 1.2
+
+
+def test_debt_service_coverage_ratio_flags_noncompliance_against_a_stricter_covenant():
+    out = PB.debt_service_coverage_ratio(annual_cash_flow=20.0, loan_amount=100.0, interest_rate=0.10,
+                                         tenure_years=10, min_dscr=1.3)
+    assert out["dscr"] == pytest.approx(1.2289134211409374)
+    assert out["compliant"] is False  # dscr ~1.229 < 1.3
+
+
 def test_from_dict_bundles_everything():
     out = PB.from_dict({
         "project_returns": {"total_capex": 100.0, "upfront_incentive_value": 20.0,

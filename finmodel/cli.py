@@ -1262,6 +1262,16 @@ def cmd_project_bankability(a):
                 print(f"  {p['state']:16} {p['sector']:38} {p['irr_without_incentives']:>8.2%} -> {p['irr_with_incentives']:>8.2%}")
         else:
             print("No project crosses the hurdle rate solely because of incentives.")
+    if "debt_service_coverage_ratio" in res:
+        r = res["debt_service_coverage_ratio"]
+        status = "OK" if r["compliant"] else "*** BREACH ***"
+        print(f"DSCR: {r['dscr']:.3f}  (min required {r['min_dscr_required']:.2f}, annual debt service "
+              f"{r['annual_debt_service']:,.2f})  {status}")
+    if "dscr_matrix" in res:
+        for r in res["dscr_matrix"]:
+            status = "OK" if r["compliant"] else "*** BREACH ***"
+            lender = f" [{r['lender']}]" if r.get("lender") else ""
+            print(f"  {r['state']:16} {r['sector']:38} DSCR {r['dscr']:>6.3f} (min {r['min_dscr_required']:.2f})  {status}{lender}")
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 

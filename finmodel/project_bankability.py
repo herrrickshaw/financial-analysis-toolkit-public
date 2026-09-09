@@ -14,12 +14,21 @@ Incentive cash-flow timing is taken directly from `finmodel.sector_investment_mo
 own `detail` list -- an upfront component is netted against day-zero capex (matching how that module already
 treats it), and a recurring component's own `annual_amounts` are added, year by year, to the project's
 operating cash flow -- never re-derived or re-assumed here.
+
+`debt_service_coverage_ratio` adds the specific covenant a lender actually tests before disbursing: is
+operating cash flow enough to cover the loan's own annual repayment (principal + interest, via
+`finmodel.fin.pmt`'s amortization math), by at least the lender's minimum DSCR. Real lender terms differ in
+one important way this function is built to respect: IREDA (for renewable-energy projects) publishes an
+explicit, dated minimum-DSCR schedule (1.2x-1.4x depending on sector and loan structure); SBI and REC do not
+publicly disclose a DSCR floor at all for general project finance, so the generic 1.20x-1.25x figure used for
+those cases is a general project-finance industry convention, not a specific disclosed lender requirement --
+`docs/INDIA_PROJECT_FINANCE_LENDING_TERMS.md` catalogs exactly which is which, with sourcing.
 """
 from __future__ import annotations
 
 from typing import Any, Dict, List, Sequence
 
-from .fin import irr, safe_div
+from .fin import irr, pmt, safe_div
 
 
 def annual_incentive_cashflow(incentive_detail: Sequence[Dict[str, Any]], project_life_years: int) -> List[float]:
@@ -90,6 +99,17 @@ def rank_projects(entries: Sequence[Dict[str, Any]], hurdle_rate: float) -> Dict
     }
 
 
+def debt_service_coverage_ratio(annual_cash_flow: float, loan_amount: float, interest_rate: float,
+                                tenure_years: int, min_dscr: float) -> Dict[str, Any]:
+    """`loan_amount` is the debt portion of capex (e.g. 70% under the common 70:30 debt:equity norm both SBI
+    and REC apply). Annual debt service is the loan's own level annual repayment via `finmodel.fin.pmt`
+    (Excel-PMT convention, so its return is negated back to a positive outflow here)."""
+    annual_debt_service = -pmt(interest_rate, tenure_years, loan_amount)
+    dscr = safe_div(annual_cash_flow, annual_debt_service)
+    return {"annual_debt_service": annual_debt_service, "dscr": dscr, "min_dscr_required": min_dscr,
+            "compliant": dscr >= min_dscr}
+
+
 def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:
     out: Dict[str, Any] = {}
     if "project_returns" in d:
@@ -97,4 +117,14 @@ def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:
     if "rank_projects" in d:
         p = d["rank_projects"]
         out["rank_projects"] = rank_projects(p["entries"], p["hurdle_rate"])
+    if "debt_service_coverage_ratio" in d:
+        out["debt_service_coverage_ratio"] = debt_service_coverage_ratio(**d["debt_service_coverage_ratio"])
+    if "dscr_matrix" in d:
+        results = []
+        for e in d["dscr_matrix"]:
+            r = debt_service_coverage_ratio(annual_cash_flow=e["annual_cash_flow"], loan_amount=e["loan_amount"],
+                                            interest_rate=e["interest_rate"], tenure_years=e["tenure_years"],
+                                            min_dscr=e["min_dscr"])
+            results.append({"state": e["state"], "sector": e["sector"], "lender": e.get("lender", ""), **r})
+        out["dscr_matrix"] = results
     return out
