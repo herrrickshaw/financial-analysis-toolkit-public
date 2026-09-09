@@ -148,11 +148,42 @@ resolved fully and served a live official rate table in this research pass, cont
 unrelated finding (from a different project's research) that it was a parked/hijacked domain — domain status
 can change, so don't assume a stale "hijacked" flag still holds without re-checking.
 
+## Third research pass — 5 hill/central states + 6 Union Territories
+
+Same confidence-tiering convention as above. One structural complication surfaced in this pass, flagged
+prominently: not every territory's land rate is a one-time purchase/lease premium the way every row above
+is — Andaman & Nicobar Islands' rate is confirmed as **annual lease rent**, a fundamentally different basis
+that cannot be dropped into the same one-time `rate_per_acre` field without misrepresenting an ongoing
+obligation as a capital cost.
+
+| State/UT | Industrial area / park | Sector character | Rate as quoted | Converted | Confidence | Source |
+|---|---|---|---|---|---|---|
+| Himachal Pradesh | IA Baddi, Solan | General (well-known pharma/FMCG hub) | ₹5,000/sq.m | ₹2.02 cr/acre | Confirmed, official, dated (eff. 01.04.2019 cycle; may be stale — no newer cycle located) | emerginghimachal.hp.gov.in premium circular |
+| Himachal Pradesh | IA Parwanoo, Solan | General | ₹8,784/sq.m | ₹3.55 cr/acre | Confirmed, official, dated (same cycle) | same |
+| Himachal Pradesh | IE Chambaghat, Solan | General | ₹7,000/sq.m | ₹2.83 cr/acre | Confirmed, official, dated (same cycle) | same |
+| Uttarakhand | Integrated Industrial Estate, Sitarganj Phase-II | General (auto/FMCG belt) | ₹3,700/sq.m | ₹1.50 cr/acre | Confirmed, official live portal, no effective date | siidcul.com |
+| Jharkhand | Adityapur, Saraikela-Kharsawan | Automobile & auto components | ₹90 lakh/acre (30-yr lease) | ₹0.90 cr/acre | Third-party aggregator (EMC indicative rate doc), dated ~July 2022, not a primary JIADA notification | secondary compilation citing emcpms.gov.in |
+| Chhattisgarh | Any CSIDC/Directorate of Industries industrial area | General | **100% land-premium exemption**, nominal ₹1/acre/year lease | **≈ Rs0 cr/acre** (policy-subsidized) | Confirmed, official (IDP 2024-30) | industries.cg.gov.in / csidc.in |
+| Chhattisgarh | Naya Raipur, Village-Tuta Sector-22 (pre-exemption notional value) | General | ₹28 lakh/acre (99-yr lease) | ₹0.28 cr/acre | Secondary compilation, dated ~July 2022 | — |
+| Goa | Goa-IDC estates (unspecified; range across the portfolio) | General | ₹1,020–2,680/sq.m | ₹0.41–1.08 cr/acre | Confirmed, official, dated (eff. 01.04.2021; a ~10% hike was under consideration as of Feb 2026 reporting, not yet approved) | goa.gov.in GIDC plot-rate circular |
+| Jammu & Kashmir | Zone A (J&K Industrial Land Allotment Policy 2021-30) | General | ₹5.0 lakh/Kanal (99-yr lease) | ₹0.40 cr/acre | Confirmed via press coverage citing the official policy; primary policy PDF not independently re-extracted | Deccan Herald + jkindustriescommerce.nic.in |
+| Ladakh | Urban industrial estates, largest plot tier (>20 Kanal) | General | ₹6.0 lakh/Kanal (one-time premium; a separate, unquantified annual lease rent also applies) | ₹0.48 cr/acre | Confirmed, official, primary PDF fully read (Ladakh Industrial Land Allotment Policy 2023) — best-sourced entry in this whole exercise | industries.ladakh.gov.in policy PDF |
+| Ladakh | Urban industrial estates, smallest plot tier (≤5 Kanal) | General | ₹2.5 lakh/Kanal | ₹0.20 cr/acre | Confirmed, official, primary PDF | same |
+| Puducherry | Mettupalayam Industrial Estate | General (167 acres, PIPDIC's largest) | ₹1,000/sq.m (99-yr lease premium) | ₹0.405 cr/acre | Confirmed, official — cross-validated by two independent research passes | pipdic.com/pipdic.in |
+| Puducherry | Sedarapet Industrial Estate | General | ₹450/sq.m | ₹0.182 cr/acre | Confirmed, official | pipdic.com |
+| Puducherry | Sedarapet Industrial Estate, Phase-I (anomaly) | General | ₹1,320/sq.ft | ₹5.75 cr/acre | **Internal discrepancy — ~30x the original Sedarapet estate rate in the same document; not reconciled, verify before use** | pipdic.in rate PDF |
+| Andaman & Nicobar Islands | Garacharama / Dollygunj / Mithakhari estates | General (annual lease rent, NOT a purchase premium) | ₹388.58/sq.m/year (50% discount years 1-15) | ≈₹15.73 lakh/acre/year (a rent, not a capitalized cost — do not convert to `rate_per_acre`) | Confirmed, official live portal, no effective date, different pricing basis than every other row in this catalog | industrialestate.andamannicobar.gov.in |
+| Dadra & Nagar Haveli and Daman & Diu | Any DIC/DPDDC industrial estate (Silvassa/Masat/Khadoli; Dabhel/Bhimpore/Kachigam/Kadaiya) | General | Not confirmed | Not confirmed | **Not found** — the one document that would likely contain it (a 2020-dated vacant-plot list PDF) resisted extraction; private resale listings exist but are excluded as unofficial and internally inconsistent | dnh.gov.in vacant-plot-list PDF (unreadable) |
+| Lakshadweep | — | — | — | **No industrial land market found** | No official rate schedule exists anywhere checked — plausibly explained by Lakshadweep's restrictive, indigenous-islander-reserved land-ownership regime (a structural explanation, not independently verified against a specific land-law citation) | — |
+
 ## How this feeds the calculator
 
-`docs/INDIA_STATE_SECTOR_INCENTIVE_MATRIX.md` now uses a real, sourced land rate for **all 18** states/UTs —
-the "Confirmed, official" and "official live portal" rows for the great majority of them, and the
-press-sourced (Punjab, Chandigarh)/aggregator-sourced (Maharashtra)/historical-allotted-plot (Karnataka)/
-dated-but-stale (Delhi) rows for the rest, each with its own confidence caveat carried through into that
-state's entry rather than smoothed over. No state in the current matrix uses an unsourced illustrative
-placeholder for land cost any longer.
+`docs/INDIA_STATE_SECTOR_INCENTIVE_MATRIX.md` uses a real, sourced land rate for every state/UT it includes
+— the "Confirmed, official" and "official live portal" rows for the great majority of them, and the
+press-sourced (Punjab, Chandigarh)/aggregator-sourced (Maharashtra, Jharkhand)/historical-allotted-plot
+(Karnataka)/dated-but-stale (Delhi, Himachal Pradesh's premium cycle)/policy-subsidized-to-near-zero
+(Chhattisgarh) rows for the rest, each with its own confidence caveat carried through into that state's
+entry rather than smoothed over. Andaman & Nicobar Islands (annual-rent basis) and Lakshadweep (no land
+market at all) are catalogued above but deliberately excluded from that quantitative matrix, since neither
+fits the one-time-purchase shape every other row uses — a candidate for a future leasehold-cost extension to
+`finmodel.sector_investment_model`, not a data gap.

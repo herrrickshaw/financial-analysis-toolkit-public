@@ -27,7 +27,7 @@ this module builds the land/capex/timing layer around it, not a second copy of t
 
 `sample_project_matrix` runs `sample_project_model` across a whole list of state/sector entries and sums
 capex and incentive present value across all of them — the state × sector × central/state-scheme "matrix"
-requested as a precursor calculation, worked in full for 18 states/UTs in
+requested as a precursor calculation, worked in full for 27 states/UTs in
 `docs/INDIA_STATE_SECTOR_INCENTIVE_MATRIX.md` and `examples/state_sector_matrix_demo.json`. Each entry can
 carry an optional `note`, which the aggregator carries through untouched into that entry's own result — so a
 data-confidence caveat (an unverified land rate, an assumption behind a scheme parameter) travels with the
@@ -50,4 +50,4 @@ hand, checks `incentive_present_value` against an NPV expression written indepen
 discounted recurring stream, checks the full `sample_project_model` end-to-end result against a hand
 calculation, and checks that `sample_project_matrix` sums correctly across entries and carries each entry's
 `note` through untouched. `tests/test_cli.py` adds two CLI round-trip tests, including one against the full
-18-state matrix demo file.
+27-state matrix demo file.

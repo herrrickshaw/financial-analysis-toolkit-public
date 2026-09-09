@@ -179,6 +179,96 @@
       "interest_rate": 0.105,
       "tenure_years": 10,
       "min_dscr": 1.2
+    },
+    {
+      "state": "Himachal Pradesh",
+      "sector": "Pharmaceuticals",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 40.74,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
+    },
+    {
+      "state": "Uttarakhand",
+      "sector": "Automobile & Auto Components",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 37.099999999999994,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
+    },
+    {
+      "state": "Jharkhand",
+      "sector": "Automobile & Auto Components",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 32.9,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
+    },
+    {
+      "state": "Chhattisgarh",
+      "sector": "General Manufacturing / MSME",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 26.599999999999998,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
+    },
+    {
+      "state": "Goa",
+      "sector": "General Manufacturing / MSME",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 31.815,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
+    },
+    {
+      "state": "Jammu & Kashmir",
+      "sector": "General Manufacturing / MSME",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 29.4,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
+    },
+    {
+      "state": "Ladakh",
+      "sector": "General Manufacturing / MSME",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 29.959999999999997,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
+    },
+    {
+      "state": "Puducherry (UT)",
+      "sector": "General Manufacturing / MSME",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 29.434999999999995,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
+    },
+    {
+      "state": "Dadra & Nagar Haveli and Daman & Diu (UT)",
+      "sector": "General Manufacturing / MSME",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 40.599999999999994,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
     }
   ]
 }

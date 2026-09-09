@@ -77,15 +77,16 @@ pricing; they're reported for completeness with this flag attached.
 | DSCR — lender's own disclosed figure | None | **1.2x–1.4x, explicit and dated** | None |
 | DSCR — general industry norm (not lender-specific) | 1.20x–1.25x | (has its own, doesn't need the norm) | 1.20x–1.25x |
 
-`examples/dscr_matrix_demo.json` models all 18 states'/UTs' projects against the **generic SBI/REC-style
+`examples/dscr_matrix_demo.json` models all 27 states'/UTs' projects against the **generic SBI/REC-style
 case** (70% debt:equity, an illustrative 10.5% derived interest rate, 1.20x minimum DSCR — the conservative
 end of the general industry norm, since neither SBI nor REC discloses its own floor), computed using only
 each project's *operating* cash flow (not incentive income) as the conservative, bank-side cash flow
 available for debt service — lenders typically don't credit uncertain subsidy income toward a DSCR test the
-way they credit contracted revenue. **Tamil Nadu, Karnataka, Odisha, West Bengal, Uttar Pradesh, Madhya
-Pradesh, and Kerala** clear this conservative 1.20x covenant on operating cash flow alone; the other 11
-states'/UTs' illustrative projects would need either a smaller loan (more promoter equity), a longer tenure,
-or bankable incentive cash flow layered in before a lender in this generic mold would extend 70% leverage —
+way they credit contracted revenue. **Chhattisgarh, Tamil Nadu, Jammu & Kashmir, Puducherry, Karnataka,
+Ladakh, Goa, Odisha, West Bengal, Jharkhand, Uttar Pradesh, Madhya Pradesh, Kerala, and Uttarakhand** — 14 of
+27 — clear this conservative 1.20x covenant on operating cash flow alone; the other 13 states'/UTs'
+illustrative projects would need either a smaller loan (more promoter equity), a longer tenure, or bankable
+incentive cash flow layered in before a lender in this generic mold would extend 70% leverage —
 Delhi and Chandigarh are the two most extreme cases (0.141x and 0.192x DSCR), where their land cost alone
 makes 70% leverage essentially unworkable at this illustrative cash-flow level — a genuinely different
 question from the IRR-based "bankability" in `docs/PROJECT_BANKABILITY.md`, and one worth reading alongside

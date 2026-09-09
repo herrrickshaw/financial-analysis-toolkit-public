@@ -20,36 +20,36 @@ is below the hurdle rate on its own merits but clears it once incentives are add
 answer to "how do lower-feasibility projects become more feasible with incentives" — not a vague statement
 that incentives help, but the specific list of which projects cross the specific line.
 
-## Worked example: the 18-state matrix
+## Worked example: the 27-state matrix
 
-`examples/project_bankability_demo.json` runs this over the same 18-state matrix from
+`examples/project_bankability_demo.json` runs this over the same 27-state matrix from
 `docs/INDIA_STATE_SECTOR_INCENTIVE_MATRIX.md`, holding one more thing constant across every state for
 comparability: an illustrative annual operating cash flow of ₹7.6 crore (20% of the ₹38cr non-land FCI used
 throughout that matrix — a flat assumption, not a real revenue forecast for any of these sectors), a 10-year
 project life, and an illustrative 14% hurdle rate (a common corporate WACC-range assumption, not sourced for
 any specific state or lender). Run via `finmodel project-bankability examples/project_bankability_demo.json`.
 
-**Highest ROI without any government support:** Tamil Nadu (Textiles & Apparel, 14.1% IRR) and Karnataka
-(General Manufacturing / MSME, 12.2% IRR) lead purely on low land cost — this is largely their capex
-efficiency showing through, not incentive generosity. (Tamil Nadu's #1 spot should be read alongside the
-caveat already flagged in `docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md`: its land rate is anomalously low
-compared to every other state and may not be a like-for-like comparison.)
+**Highest ROI without any government support: Chhattisgarh (15.1% IRR)** now tops the ranking — not from any
+incentive, but because its land is confirmed policy-subsidized to near-zero (100% land-premium exemption
+under IDP 2024-30). Tamil Nadu (14.1%) and Jammu & Kashmir (12.6%) follow. This is the clearest illustration
+yet that land-cost policy can matter as much as, or more than, capital incentives — Chhattisgarh's ranking
+is a pure capex-efficiency story. (Tamil Nadu's spot should still be read alongside the caveat already
+flagged in `docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md`: its land rate is anomalously low.)
 
-**Projects incentives make bankable, not just cheaper:** at a 14% hurdle, **Gujarat** (4.8% IRR on its own
-economics → 23.6% with its confirmed net-SGST-reimbursement scheme and the central Auto PLI), **Odisha**
-(10.6% → 25.5% with its confirmed 100%-of-net-SGST, 200%-of-P&M-cap reimbursement), and **Karnataka**
-(12.2% → 18.9% with its confirmed 25%-of-FCI capital subsidy) all cross from unbankable to comfortably
-bankable. Every other state's IRR improves with incentives too (incentives never make IRR worse, by
-construction — the test suite checks this directly).
+**Projects incentives make bankable, not just cheaper:** at a 14% hurdle, **Gujarat** (4.8% → 23.6%),
+**Odisha** (10.6% → 25.5%), **Karnataka** (12.2% → 18.9%), and now **Jharkhand** (9.9% → 15.5%, on its
+confirmed 25%-of-FCI capital subsidy) all cross from unbankable to comfortably bankable. Every other state's
+IRR improves with incentives too (incentives never make IRR worse, by construction — the test suite checks
+this directly).
 
-**The two worst entries in the entire matrix, on every measure at once:** Delhi and Chandigarh. Both carry
-the highest and third-highest land costs of all 18 states/UTs (₹42.54cr/acre and ₹30.30cr/acre respectively)
-*and* have zero state-tier incentive to offset it — a confirmed finding (neither currently runs an
-investment-linked incentive scheme), not a data gap. Their IRR-without and IRR-with incentives are identical
-(-24.05% and -20.84%), since there is no incentive cash flow to add. West Bengal sits in between: its own
-land cost and location are reasonably competitive (10.6% IRR without incentives, tied for 3rd), but its
-entire incentive framework is mid-revocation, so it too shows zero incentive value despite not being a
-structurally unfavorable location the way Delhi/Chandigarh are.
+**The two worst entries in the entire matrix, on every measure at once, remain Delhi and Chandigarh** — the
+highest and third-highest land costs of all 27 states/UTs (₹42.54cr/acre and ₹30.30cr/acre) *and* zero
+state-tier incentive to offset it. **Jammu & Kashmir adds a new, distinct story**: real land cost, a
+genuinely rich central scheme on paper (NCSS 2021, ₹28,400cr) — but its registration window for new
+applicants closed 30.09.2024, so its incentive value here is also zero, despite the scheme being far from
+absent in the way Delhi/Chandigarh's is. **Ladakh** likewise shows zero incentive, but for yet another
+reason — its own UT policy was keyword-searched directly and confirmed to have no capital/interest/GST
+mechanic at all, even though it has the best-sourced (and lowest) land rate in the whole matrix.
 
 **This ranking is exactly as reliable as its two illustrative inputs** (the flat assumed cash flow and the
 hurdle rate) **and exactly as reliable as each state's own incentive-catalog confidence** (see
@@ -71,18 +71,18 @@ used for those cases is a general industry convention, not a specific lender's d
 `docs/INDIA_PROJECT_FINANCE_LENDING_TERMS.md` catalogs exactly which is which, with sourcing and staleness
 flags (REC's own published rate card is ~3 years old).
 
-Run over the same 18-state matrix against the generic SBI/REC-style case (70% debt:equity, an illustrative
+Run over the same 27-state matrix against the generic SBI/REC-style case (70% debt:equity, an illustrative
 10.5% rate, 1.20x minimum DSCR, using only *operating* cash flow — not incentive income — as the
-conservative bank-side view) via `examples/dscr_matrix_demo.json`: **Tamil Nadu, Karnataka, Odisha, West
-Bengal, Uttar Pradesh, Madhya Pradesh, and Kerala** clear the covenant. This is a genuinely different,
-complementary question to the IRR-based bankability above — a project can have an attractive
-IRR-with-incentives and still fail a lender's DSCR test if the bank won't credit that incentive income
-toward debt service; conversely Madhya Pradesh and West Bengal both clear the conservative DSCR test on
-operating cash flow alone despite West Bengal having zero incentive value at all right now — a project can
-be "bankable" in the narrow debt-service sense purely on its own land cost and cash flow, independent of
-whether any incentive exists to support it. Delhi and Chandigarh, unsurprisingly, are the two worst DSCR
-results in the matrix (0.141x and 0.192x) — their extreme land cost alone makes debt service on 70% leverage
-essentially impossible at this illustrative cash-flow level.
+conservative bank-side view) via `examples/dscr_matrix_demo.json`: **Chhattisgarh, Tamil Nadu, Jammu &
+Kashmir, Puducherry, Karnataka, Ladakh, Goa, Odisha, West Bengal, Jharkhand, Uttar Pradesh, Madhya Pradesh,
+Kerala, and Uttarakhand** — 14 of 27 — clear the covenant. This is a genuinely different, complementary
+question to the IRR-based bankability above: J&K and Ladakh both clear DSCR comfortably despite showing zero
+incentive value in the IRR ranking (a project can be "bankable" in the narrow debt-service sense purely on
+its own land cost and cash flow, independent of whether any incentive exists to support it), while a project
+can have an attractive IRR-with-incentives and still fail a lender's DSCR test if the bank won't credit that
+incentive income toward debt service. Delhi and Chandigarh remain the two worst DSCR results in the matrix
+(0.141x and 0.192x) — their extreme land cost alone makes debt service on 70% leverage essentially
+impossible at this illustrative cash-flow level.
 
 ## Beyond capital incentives: tax election and loan-access effects
 

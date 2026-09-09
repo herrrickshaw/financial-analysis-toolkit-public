@@ -429,6 +429,150 @@
         "incentive_detail": [],
         "annual_operating_cash_flow": 7.6000000000000005,
         "project_life_years": 10
+      },
+      {
+        "state": "Himachal Pradesh",
+        "sector": "Pharmaceuticals",
+        "total_capex": 58.2,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [
+          {
+            "scheme_name": "HP Industrial Investment Policy 2019 -- net SGST reimbursement, Category A/Large: 50% for 5yrs, capped 80% of FCI (both confirmed, primary source)",
+            "jurisdiction": "state",
+            "timing": "recurring",
+            "nominal_total": 15.0,
+            "present_value": 11.372360308225343,
+            "annual_amounts": [
+              3.0,
+              3.0,
+              3.0,
+              3.0,
+              3.0
+            ]
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Uttarakhand",
+        "sector": "Automobile & Auto Components",
+        "total_capex": 53.0,
+        "upfront_incentive_value": 3.8,
+        "incentive_detail": [
+          {
+            "scheme_name": "Uttarakhand Mega Industrial & Investment Policy-2025 -- Large-tier capital subsidy (10% of FCI, cap Rs20cr; confirmed)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 3.8,
+            "present_value": 3.8
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Jharkhand",
+        "sector": "Automobile & Auto Components",
+        "total_capex": 47.0,
+        "upfront_incentive_value": 9.5,
+        "incentive_detail": [
+          {
+            "scheme_name": "Jharkhand Industrial and Investment Promotion Policy (JIIPP) 2021 -- CPIS, non-MSME tier: 25% of FCI, cap Rs25cr (confirmed, primary gazette)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 9.5,
+            "present_value": 9.5
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Chhattisgarh",
+        "sector": "General Manufacturing / MSME",
+        "total_capex": 38.0,
+        "upfront_incentive_value": 13.3,
+        "incentive_detail": [
+          {
+            "scheme_name": "Chhattisgarh Industrial Development Policy (IDP) 2024-30 -- FCI capital subsidy, 35% midpoint of the 30-45% confirmed range by District Group/Thrust-Sector (one of two mutually-exclusive options; the other, net SGST 100%/10yrs capped 150% of FCI, is not modeled here)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 13.3,
+            "present_value": 13.3
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Goa",
+        "sector": "General Manufacturing / MSME",
+        "total_capex": 45.45,
+        "upfront_incentive_value": 0.25,
+        "incentive_detail": [
+          {
+            "scheme_name": "Goa Capital Subsidy Scheme -- 25% of FCI, capped Rs25 lakh (confirmed; an MSME-scale cap, effectively irrelevant at this project's size)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 0.25,
+            "present_value": 0.25
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Jammu & Kashmir",
+        "sector": "General Manufacturing / MSME",
+        "total_capex": 42.0,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Ladakh",
+        "sector": "General Manufacturing / MSME",
+        "total_capex": 42.8,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Puducherry (UT)",
+        "sector": "General Manufacturing / MSME",
+        "total_capex": 42.05,
+        "upfront_incentive_value": 0.35,
+        "incentive_detail": [
+          {
+            "scheme_name": "Puducherry New Industrial Policy 2016 (G.O. Ms. No. 2 & 4/Ind.&Com./A6/2017) -- Capital Investment Subsidy, Medium/Large tier: 35% of FCI, capped Rs35 lakh (confirmed directly from primary Gazette text)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 0.35,
+            "present_value": 0.35
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Dadra & Nagar Haveli and Daman & Diu (UT)",
+        "sector": "General Manufacturing / MSME",
+        "total_capex": 58.0,
+        "upfront_incentive_value": 9.5,
+        "incentive_detail": [
+          {
+            "scheme_name": "DNH&DD Investment Promotion Scheme (IPS) 2022 -- capital subsidy, 25% of investment for new MSMEs (one of two conflicting secondary-sourced rates -- a second source reports 15% of GFCI with tiered caps; NOT reconciled against the primary gazette, which resisted extraction)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 9.5,
+            "present_value": 9.5
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
       }
     ],
     "hurdle_rate": 0.14

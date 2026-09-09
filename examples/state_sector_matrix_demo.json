@@ -503,6 +503,196 @@
       "incentive_components": [],
       "discount_rate": 0.1,
       "note": "Land rate: a Collector/circle rate (UT's own minimum stamp-duty valuation floor, Industrial Area Phase III, eff. 01.04.2025), NOT a Housing Board/Estate Office allotment or auction premium -- the actual allotment portal could not be reached, so treat this as the weakest-confidence land figure in this matrix. NO state-tier incentive is modeled: Chandigarh (a UT administered directly by the Centre) has no finalized industrial investment-promotion policy of its own; a draft is in stakeholder consultation. Industrial investment is effectively governed by central MSME schemes only."
+    },
+    {
+      "state": "Himachal Pradesh",
+      "sector": "Pharmaceuticals",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 2.02
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "HP Industrial Investment Policy 2019 -- net SGST reimbursement, Category A/Large: 50% for 5yrs, capped 80% of FCI (both confirmed, primary source)",
+          "jurisdiction": "state",
+          "timing": "recurring",
+          "annual_amounts": [
+            3.0,
+            3.0,
+            3.0,
+            3.0,
+            3.0
+          ]
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: HP govt-confirmed, official (IA Baddi, premium circular eff. 01.04.2019 -- may be stale, no newer cycle located). Policy itself is in a repeatedly-extended 'pending replacement' limbo (now to 12.10.2026)."
+    },
+    {
+      "state": "Uttarakhand",
+      "sector": "Automobile & Auto Components",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 1.5
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Uttarakhand Mega Industrial & Investment Policy-2025 -- Large-tier capital subsidy (10% of FCI, cap Rs20cr; confirmed)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 3.8
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: SIIDCUL-confirmed, official live portal (Sitarganj Phase-II), no effective date stated."
+    },
+    {
+      "state": "Jharkhand",
+      "sector": "Automobile & Auto Components",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 0.9
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Jharkhand Industrial and Investment Promotion Policy (JIIPP) 2021 -- CPIS, non-MSME tier: 25% of FCI, cap Rs25cr (confirmed, primary gazette)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 9.5
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: third-party aggregator (EMC indicative rate doc, ~July 2022), NOT a primary JIADA notification -- treat with caution."
+    },
+    {
+      "state": "Chhattisgarh",
+      "sector": "General Manufacturing / MSME",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 0.0
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Chhattisgarh Industrial Development Policy (IDP) 2024-30 -- FCI capital subsidy, 35% midpoint of the 30-45% confirmed range by District Group/Thrust-Sector (one of two mutually-exclusive options; the other, net SGST 100%/10yrs capped 150% of FCI, is not modeled here)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 13.3
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: CONFIRMED, official -- IDP 2024-30 grants 100% land-premium exemption plus a nominal Rs1/acre/year lease in CSIDC/Directorate of Industries industrial areas, i.e. genuinely near-zero, not an illustrative placeholder."
+    },
+    {
+      "state": "Goa",
+      "sector": "General Manufacturing / MSME",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 0.745
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Goa Capital Subsidy Scheme -- 25% of FCI, capped Rs25 lakh (confirmed; an MSME-scale cap, effectively irrelevant at this project's size)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 0.25
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: Goa-IDC-confirmed, official, dated (eff. 01.04.2021) -- but this is the RANGE MIDPOINT across the portfolio (Rs1,020-2,680/sq.m), not a specific named estate's rate (Verna, the prime estate, has no confirmed rate of its own). A ~10% hike was under consideration as of Feb 2026, not yet approved."
+    },
+    {
+      "state": "Jammu & Kashmir",
+      "sector": "General Manufacturing / MSME",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 0.4
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [],
+      "discount_rate": 0.1,
+      "note": "Land rate: press-verified against the official J&K Industrial Land Allotment Policy 2021-30 (Zone A, Rs5 lakh/Kanal). NO incentive is modeled: J&K's rich central package (NCSS 2021, Rs28,400cr -- Capital Investment Incentive 30% of P&M cap Rs5cr, GST-linked incentive, interest subventions) closed its registration window to NEW applicants on 30.09.2024. A genuinely new investment today cannot access it -- a third distinct 'no incentive in practice' story alongside Delhi/Chandigarh (never existed) and West Bengal (revoked)."
+    },
+    {
+      "state": "Ladakh",
+      "sector": "General Manufacturing / MSME",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 0.48
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [],
+      "discount_rate": 0.1,
+      "note": "Land rate: CONFIRMED, official, primary PDF fully read (Ladakh Industrial Land Allotment Policy 2023, >20 Kanal urban tier) -- the best-sourced land figure of this entire research effort, and the lowest per-acre rate in the whole matrix. NO incentive is modeled: Ladakh's own UT policy (Sustainable Industrial Policy 2022-27) was keyword-searched directly and confirmed to have zero capital-subsidy, interest-subvention, or GST-linked mechanic; a separate central scheme (Rs3,500cr since FY2023-24) exists but its exact rates could not be confirmed, so none is assumed."
+    },
+    {
+      "state": "Puducherry (UT)",
+      "sector": "General Manufacturing / MSME",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 0.405
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Puducherry New Industrial Policy 2016 (G.O. Ms. No. 2 & 4/Ind.&Com./A6/2017) -- Capital Investment Subsidy, Medium/Large tier: 35% of FCI, capped Rs35 lakh (confirmed directly from primary Gazette text)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 0.35
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: PIPDIC-confirmed (Mettupalayam Industrial Estate), cross-validated by two independent research passes -- one of the highest-confidence entries in this matrix. The 35%/Rs35L cap is confirmed directly from the primary Gazette (highest-confidence incentive source in this whole catalog) despite looking low for a 'Large' tier."
+    },
+    {
+      "state": "Dadra & Nagar Haveli and Daman & Diu (UT)",
+      "sector": "General Manufacturing / MSME",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 2.0
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "DNH&DD Investment Promotion Scheme (IPS) 2022 -- capital subsidy, 25% of investment for new MSMEs (one of two conflicting secondary-sourced rates -- a second source reports 15% of GFCI with tiered caps; NOT reconciled against the primary gazette, which resisted extraction)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 9.5
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "LAND RATE IS AN ILLUSTRATIVE PLACEHOLDER (Rs2.0 cr/acre) -- no official per-acre rate could be confirmed despite an active industrial base and a located (but unreadable, scanned) vacant-plot-list PDF; do not treat as sourced. The incentive scheme itself IS confirmed real and active (IPS 2022, effective through 2027), just with two conflicting capital-subsidy rate reports."
     }
   ]
 }
