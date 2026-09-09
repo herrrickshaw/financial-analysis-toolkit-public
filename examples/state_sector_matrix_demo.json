@@ -1,0 +1,391 @@
+{
+  "sample_project_matrix": [
+    {
+      "state": "Gujarat",
+      "sector": "Automobile & Auto Components",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 2.1327
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Gujarat Aatmanirbhar Scheme -- net SGST reimbursement (75% of FCI cap, confirmed rate; illustrative net-tax-paid assumption)",
+          "jurisdiction": "state",
+          "timing": "recurring",
+          "annual_amounts": [
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            4.5,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "scheme_name": "Central PLI -- Automobile & Auto Components (18% of incremental sales, confirmed rate; illustrative sales assumption)",
+          "jurisdiction": "central",
+          "timing": "recurring",
+          "annual_amounts": [
+            5.4,
+            5.4,
+            5.4,
+            5.4,
+            5.4
+          ]
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: GIDC-confirmed (Sanand-II). Incentive RATES are the scheme's own confirmed parameters; the annual net-tax-paid and incremental-sales figures feeding them are illustrative assumptions, not this project's actual financials."
+    },
+    {
+      "state": "Uttar Pradesh",
+      "sector": "General Manufacturing / MSME",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 1.295
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "UP Industrial Investment & Employment Promotion Policy 2022 -- capital subsidy (25% of FCI, cap Rs40cr; one of 3 mutually-exclusive options, confirmed rate)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 9.5
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: UPSIDA-confirmed but from a 2023 auction list -- may be dated. UP's scheme is a one-time mutually-exclusive choice (capital subsidy shown here / net-SGST reimbursement / PLI top-up) -- do not stack with the other two."
+    },
+    {
+      "state": "Rajasthan",
+      "sector": "Automobile & Auto Components",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 8.9031
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "RIPS 2024 -- capital subsidy (13-28% of FCI, 20% midpoint used; cap ~Rs15cr per one source, reconcile against primary PDF)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 7.6
+        },
+        {
+          "scheme_name": "Central PLI -- Automobile & Auto Components (18% of incremental sales, confirmed rate; illustrative sales assumption)",
+          "jurisdiction": "central",
+          "timing": "recurring",
+          "annual_amounts": [
+            5.4,
+            5.4,
+            5.4,
+            5.4,
+            5.4
+          ]
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: RIICO-confirmed (Karoli Auto Zone). RIPS 2024's rate range and cap conflict across sources -- see docs/INDIA_STATE_INVESTMENT_INCENTIVES.md."
+    },
+    {
+      "state": "Telangana",
+      "sector": "Electronics / Hardware Manufacturing",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 4.8562
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "T-IDEA/T-PRIDE -- investment subsidy (15-25% of FCI, 20% midpoint used; cap not confirmed)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 7.6
+        },
+        {
+          "scheme_name": "Central PLI -- Large Scale Electronics Manufacturing (4-6% of incremental sales, 5% used; confirmed rate range, illustrative sales assumption)",
+          "jurisdiction": "central",
+          "timing": "recurring",
+          "annual_amounts": [
+            1.5,
+            1.5,
+            1.5,
+            1.5,
+            1.5
+          ]
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: TSIIC-confirmed (Hardware Park Ph-I/II)."
+    },
+    {
+      "state": "Odisha",
+      "sector": "General Manufacturing",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 0.75
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Odisha IPR 2022 -- net SGST reimbursement (100% rate, cap 200% of P&M cost -- both confirmed; illustrative net-tax-paid assumption; tenure years not confirmed, 7 years assumed)",
+          "jurisdiction": "state",
+          "timing": "recurring",
+          "annual_amounts": [
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0
+          ]
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: IDCO-confirmed (IE Cuttack), no effective date on the source document. Reimbursement rate and cap-basis (200% of P&M) are IPR-2022-confirmed; tenure (7 yrs) and annual net-tax-paid are illustrative assumptions."
+    },
+    {
+      "state": "Haryana",
+      "sector": "Automobile & Auto Components",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 6.5964
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Haryana HEEP 2020 -- net SGST reimbursement, Block B first-phase rate only (50% for first 5 years; the scheme's own second phase, 25% for a further 3 years, is not modeled here for simplicity)",
+          "jurisdiction": "state",
+          "timing": "recurring",
+          "annual_amounts": [
+            3.0,
+            3.0,
+            3.0,
+            3.0,
+            3.0
+          ]
+        },
+        {
+          "scheme_name": "Central PLI -- Automobile & Auto Components (18% of incremental sales, confirmed rate; illustrative sales assumption)",
+          "jurisdiction": "central",
+          "timing": "recurring",
+          "annual_amounts": [
+            5.4,
+            5.4,
+            5.4,
+            5.4,
+            5.4
+          ]
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: HSIIDC-confirmed (IMT Bawal). Only Block B's first-phase rate is modeled; the real scheme's second phase (years 6-8 at 25%) is omitted for simplicity, so this UNDERSTATES Haryana's real incentive value."
+    },
+    {
+      "state": "Tamil Nadu",
+      "sector": "Textiles & Apparel",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 0.153
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Tamil Nadu Industrial Policy 2021 -- 100% SGST reimbursement for 15 years (confirmed rate and tenure; no overall cap confirmed, so a very high non-binding cap is used here)",
+          "jurisdiction": "state",
+          "timing": "recurring",
+          "annual_amounts": [
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0
+          ]
+        },
+        {
+          "scheme_name": "Central PLI -- Textiles (MMF fabric/apparel) (tapering schedule not confirmed at primary-source level; a flat 12% mid-range placeholder used instead of the real 15%-to-11% taper)",
+          "jurisdiction": "central",
+          "timing": "recurring",
+          "annual_amounts": [
+            3.6,
+            3.6,
+            3.6,
+            3.6,
+            3.6
+          ]
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: SIPCOT live-portal-confirmed, BUT flagged as anomalously low vs every other state (0.15 cr/acre vs 0.75-62.5 cr/acre elsewhere) -- may be a lease-premium figure rather than full value; verify before use. See docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md."
+    },
+    {
+      "state": "Karnataka",
+      "sector": "Electronics / Auto Components",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 3.0
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Karnataka Industrial Policy 2025-30 -- Investment Promotion Subsidy (up to 25% of FCI in Zone 1, confirmed rate; cap not confirmed)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 9.5
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "LAND RATE IS AN ILLUSTRATIVE PLACEHOLDER (Rs 3.0 cr/acre) -- no current, trustworthy Karnataka land rate could be confirmed (KIADB's portal yielded no scrapable rate page); do not treat as sourced. See docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md."
+    },
+    {
+      "state": "Andhra Pradesh",
+      "sector": "General Manufacturing",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 3.0
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "AP Industrial Development Policy 4.0 -- capital subsidy (25% of FCI, capped Rs7cr for the medium tier; both confirmed)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 7.0
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "LAND RATE IS AN ILLUSTRATIVE PLACEHOLDER (Rs 3.0 cr/acre) -- APIIC's only located figures were 15-years-expired (valid upto 2011); do not treat as sourced. See docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md."
+    },
+    {
+      "state": "Madhya Pradesh",
+      "sector": "Food Processing",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 3.0
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "MP IPP 2025 -- interest subsidy (5-7% for 5 years, 6% midpoint used; annual cap not confirmed; illustrative interest-paid assumption)",
+          "jurisdiction": "state",
+          "timing": "recurring",
+          "annual_amounts": [
+            0.18,
+            0.18,
+            0.18,
+            0.18,
+            0.18
+          ]
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "LAND RATE IS AN ILLUSTRATIVE PLACEHOLDER (Rs 3.0 cr/acre) -- MPIDC's own portal surfaced no rupee figure for Pithampur/Mandideep/Dewas in this pass; do not treat as sourced. See docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md."
+    },
+    {
+      "state": "Maharashtra",
+      "sector": "Chemicals-adjacent / General Manufacturing",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 4.8967
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Maharashtra IPS -- 100% of gross SGST reimbursed (confirmed rate), overall cap taken from ONE cited zone example (40% of FCI for Group B, Rs5cr investment) -- may not generalize; illustrative net-tax-paid assumption",
+          "jurisdiction": "state",
+          "timing": "recurring",
+          "annual_amounts": [
+            6.0,
+            6.0,
+            3.2,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "LAND RATE IS UNVERIFIED -- sourced from a third-party aggregator (mahaindustry.com), not MIDC's own portal directly; treat with caution. Tenure (7 yrs) not confirmed either. See docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md."
+    },
+    {
+      "state": "Punjab",
+      "sector": "General Manufacturing / MSME",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 19.818
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Punjab IBDP 2022 -- net SGST reimbursement (100% rate, 7-year tenure, capped 100% of FCI -- all confirmed); illustrative net-tax-paid assumption",
+          "jurisdiction": "state",
+          "timing": "recurring",
+          "annual_amounts": [
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            6.0,
+            2.0
+          ]
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate is PRESS-SOURCED (The Tribune reporting a June 2025 PSIEC e-auction at Mohali), not an official PSIEC schedule -- midpoint of the reported Rs39,000-42,900/sq.yard range used. See docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md."
+    }
+  ]
+}

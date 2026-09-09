@@ -696,3 +696,31 @@ def test_cli_investment_incentives(tmp_path, capsys):
     assert saved["net_tax_reimbursement_schedule"]["total_reimbursement"] == pytest.approx(10.0)
     assert saved["net_tax_reimbursement_schedule"]["overall_cap_exhausted"] is True
     assert saved["combined_incentive_package"]["total_incentive_value"] == pytest.approx(13.5)
+
+
+def test_cli_sector_investment_model(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["sector-investment-model", str(EX / "sector_investment_model_demo.json"), "--json-out", str(tmp_path / "sim.json")])
+    out = capsys.readouterr().out
+    assert "Sample project: Pharmaceuticals in Telangana" in out and "Net effective investment:" in out
+    saved = json.loads((tmp_path / "sim.json").read_text())["sample_project_model"]
+    assert saved["capex"]["total_capex"] == pytest.approx(70.0)
+    expected_pv = 8.0 + sum(2.0 / (1.10 ** year) for year in range(1, 6))
+    assert saved["incentives"]["total_present_value"] == pytest.approx(expected_pv)
+
+
+def test_cli_state_sector_matrix_demo_covers_all_12_states(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["sector-investment-model", str(EX / "state_sector_matrix_demo.json"), "--json-out", str(tmp_path / "matrix.json")])
+    out = capsys.readouterr().out
+    assert "Total capex across projects:" in out
+    saved = json.loads((tmp_path / "matrix.json").read_text())["sample_project_matrix"]
+    assert len(saved["projects"]) == 12
+    assert {p["state"] for p in saved["projects"]} == {
+        "Gujarat", "Uttar Pradesh", "Rajasthan", "Telangana", "Odisha", "Haryana",
+        "Tamil Nadu", "Karnataka", "Andhra Pradesh", "Madhya Pradesh", "Maharashtra", "Punjab",
+    }
+    recomputed_capex = sum(p["capex"]["total_capex"] for p in saved["projects"])
+    assert saved["total_capex_across_projects"] == pytest.approx(recomputed_capex)
+    recomputed_pv = sum(p["incentives"]["total_present_value"] for p in saved["projects"])
+    assert saved["total_incentive_present_value_across_projects"] == pytest.approx(recomputed_pv)

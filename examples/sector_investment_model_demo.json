@@ -1,0 +1,13 @@
+{
+  "sample_project_model": {
+    "state": "Telangana",
+    "sector": "Pharmaceuticals",
+    "land": {"area_acres": 10.0, "rate_per_acre": 2.0},
+    "capex_components": {"plant_and_machinery": 40.0, "building_and_infrastructure": 10.0},
+    "incentive_components": [
+      {"scheme_name": "State Capital Investment Subsidy (illustrative)", "jurisdiction": "state", "timing": "upfront", "amount": 8.0},
+      {"scheme_name": "Central PLI - Pharmaceuticals (illustrative)", "jurisdiction": "central", "timing": "recurring", "annual_amounts": [2.0, 2.0, 2.0, 2.0, 2.0]}
+    ],
+    "discount_rate": 0.10
+  }
+}

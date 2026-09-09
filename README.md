@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 616 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 625 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -99,6 +99,7 @@ finmodel debt-covenants examples/debt_covenants_demo.json                # lever
 finmodel aro examples/aro_demo.json                                       # ASC 410 asset retirement obligation: PV recognition, accretion schedule, settlement gain/loss
 finmodel warranty-receivables examples/warranty_receivables_demo.json    # warranty reserve roll-forward and CECL aging-method receivables allowance
 finmodel investment-incentives examples/investment_incentives_demo.json  # capital/interest/net-tax/employment investment-incentive mechanics (India central + state schemes)
+finmodel sector-investment-model examples/state_sector_matrix_demo.json  # 12-state precursor model: land cost + capex netted against a discounted incentive package, per state/sector
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -451,6 +452,25 @@ tax incentives, and a dozen states' industrial policies) with citations — and,
 number that could NOT be confirmed from a primary source rather than guessing. See
 `docs/INVESTMENT_INCENTIVES.md` for the full detail.
 
+## Sample state/sector investment models (`docs/SECTOR_INVESTMENT_MODEL.md`)
+
+`finmodel.sector_investment_model` assembles a project's land cost and capex stack, then nets it against a
+combined central+state incentive package — but correctly, by *timing*: an upfront capital subsidy nets
+directly against day-zero capex, while a recurring incentive (interest subsidy, net-tax reimbursement, PLI
+payout) is discounted to a present value with `finmodel.fin.npv` first, since summing an undiscounted
+multi-year stream and subtracting it from day-zero capex is a real, common overstatement (verified directly:
+a discounted recurring stream's present value is always strictly less than its nominal sum).
+`sample_project_matrix` runs this across a whole list of state/sector projects and sums the results — the
+"matrix" query surface. Two research passes (land-cost benchmarks from the central India Industrial Land
+Bank — which turned out to expose no usable price field — and a dozen state industrial-development-corporation
+portals; land-cost confidence carried through per entry) feed a fully worked 12-state matrix in
+`docs/INDIA_STATE_SECTOR_INCENTIVE_MATRIX.md` and `examples/state_sector_matrix_demo.json`, cross-referencing
+each state's own confirmed scheme parameters against an illustrative project. One state's result comes out
+with incentive value exceeding its capex (Tamil Nadu's apparently FCI-uncapped 100%-for-15-years SGST
+reimbursement) — reported and explained rather than smoothed over, since it's a genuine finding about how
+much a scheme's *cap structure* matters relative to its headline rate. See `docs/SECTOR_INVESTMENT_MODEL.md`
+for the full detail.
+
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 
 Every survey doc in this session records what got deliberately left out and why — four times now, this
@@ -546,7 +566,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, pension_accounting, nwc_peg, eps_calculation, investment_securities, consolidation, debt_covenants, asset_retirement_obligations, warranty_and_receivables_allowance, investment_incentives, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, pension_accounting, nwc_peg, eps_calculation, investment_securities, consolidation, debt_covenants, asset_retirement_obligations, warranty_and_receivables_allowance, investment_incentives, sector_investment_model, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

@@ -1204,6 +1204,39 @@ def cmd_investment_incentives(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_sector_investment_model(a):
+    from . import sector_investment_model as SIM
+    res = SIM.from_dict(_load_json(a.inputs))
+    if "industrial_land_cost" in res:
+        r = res["industrial_land_cost"]
+        print(f"Land cost: {r['area_acres']:,.2f} acres @ {r['rate_per_acre']:,.2f}/acre = {r['land_cost']:,.2f}")
+    if "project_capex_stack" in res:
+        r = res["project_capex_stack"]
+        for name, amt in r["components"].items():
+            print(f"  {name:28} {amt:>12,.2f}")
+        print(f"Total capex: {r['total_capex']:,.2f}")
+    if "incentive_present_value" in res:
+        r = res["incentive_present_value"]
+        print(f"Incentives: nominal total {r['nominal_total']:,.2f}  present value {r['total_present_value']:,.2f}")
+    if "sample_project_model" in res:
+        r = res["sample_project_model"]
+        print(f"Sample project: {r['sector']} in {r['state']}")
+        print(f"  Total capex: {r['capex']['total_capex']:,.2f}")
+        print(f"  Incentives (nominal {r['incentives']['nominal_total']:,.2f}, "
+              f"present value {r['incentives']['total_present_value']:,.2f})")
+        print(f"  Net effective investment: {r['net_effective_investment']:,.2f}  "
+              f"(effective subsidy, PV basis: {r['effective_subsidy_pct_pv_basis']:.2%})")
+    if "sample_project_matrix" in res:
+        m = res["sample_project_matrix"]
+        for r in m["projects"]:
+            note = f"  [{r['note']}]" if r.get("note") else ""
+            print(f"  {r['state']:16} {r['sector']:28} capex {r['capex']['total_capex']:>10,.2f}  "
+                  f"net effective {r['net_effective_investment']:>10,.2f}{note}")
+        print(f"Total capex across projects: {m['total_capex_across_projects']:,.2f}  "
+              f"total incentive PV: {m['total_incentive_present_value_across_projects']:,.2f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -1344,6 +1377,7 @@ def main(argv=None):
     aro = sp.add_parser("aro", help="ASC 410 asset retirement obligation: initial PV recognition, accretion schedule, settlement gain/loss"); aro.add_argument("inputs"); aro.add_argument("--json-out"); aro.set_defaults(fn=cmd_asset_retirement_obligations)
     wra = sp.add_parser("warranty-receivables", help="warranty reserve roll-forward (expected-cost method) and CECL aging-method receivables allowance"); wra.add_argument("inputs"); wra.add_argument("--json-out"); wra.set_defaults(fn=cmd_warranty_and_receivables_allowance)
     ii = sp.add_parser("investment-incentives", help="capital/interest/net-tax/employment investment-incentive mechanics used by Indian central and state schemes (PLI, BIPA-style state schemes, etc.)"); ii.add_argument("inputs"); ii.add_argument("--json-out"); ii.set_defaults(fn=cmd_investment_incentives)
+    sim = sp.add_parser("sector-investment-model", help="sample state/sector investment model: land cost + capex stack netted against a discounted central+state incentive package"); sim.add_argument("inputs"); sim.add_argument("--json-out"); sim.set_defaults(fn=cmd_sector_investment_model)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)
