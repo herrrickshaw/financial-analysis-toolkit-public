@@ -75,6 +75,20 @@ Pradesh clears the conservative DSCR test on operating cash flow alone despite n
 incentive-inclusive IRR hurdle above — a project can be "bankable" in the narrow debt-service sense without
 yet being an attractive enough investment to actually pursue.
 
+## Beyond capital incentives: tax election and loan-access effects
+
+Two further mechanics change a project's real bankability beyond the capital incentives and generic DSCR
+covenant above, both in `finmodel.india_corporate_tax_regimes` (see
+`docs/INDIA_CORPORATE_TAX_AND_CGTMSE.md`): a new manufacturer's Section 115BAB vs 115BAA vs standard-regime
+tax election (a 3.88-percentage-point IRR swing on Gujarat's own project, purely from which regime is
+elected) and the CGTMSE guarantee fee's real, small effect on DSCR (a boundary case that clears 1.20x on
+debt service alone but breaches it once the fee is added — CGTMSE's actual value is loan access without
+adequate collateral, not a free DSCR improvement). And `examples/dscr_matrix_ireda_demo.json` (see
+`docs/INDIA_PROJECT_FINANCE_LENDING_TERMS.md`) finally exercises IREDA's own disclosed renewable-energy
+terms instead of the generic SBI/REC case — a Rajasthan solar and Gujarat wind project both clear a
+comfortable 2.195x against IREDA's own 1.25x floor, a direct illustration of how much sector-specific lender
+matching changes the answer.
+
 ## Test coverage
 
 `tests/test_project_bankability.py` (8 tests, new file) checks `annual_incentive_cashflow`'s year-by-year

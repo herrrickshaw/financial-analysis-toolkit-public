@@ -1,0 +1,24 @@
+{
+  "dscr_matrix": [
+    {
+      "state": "Rajasthan",
+      "sector": "Solar Power (Renewable Energy)",
+      "lender": "IREDA (Grade I, private Solar/Wind)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 28.5,
+      "interest_rate": 0.0865,
+      "tenure_years": 15,
+      "min_dscr": 1.25
+    },
+    {
+      "state": "Gujarat",
+      "sector": "Wind Power (Renewable Energy)",
+      "lender": "IREDA (Grade I, private Solar/Wind)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 28.5,
+      "interest_rate": 0.0865,
+      "tenure_years": 15,
+      "min_dscr": 1.25
+    }
+  ]
+}

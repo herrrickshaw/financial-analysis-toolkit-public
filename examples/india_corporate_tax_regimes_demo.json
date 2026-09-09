@@ -1,0 +1,20 @@
+{
+  "tax_regime_comparison": {
+    "pre_tax_annual_cash_flow": 7.6,
+    "total_capex": 59.327,
+    "project_life_years": 10,
+    "regimes": {
+      "115BAB (new manufacturing company)": {"base_rate": 0.15, "surcharge_rate": 0.10, "cess_rate": 0.04},
+      "115BAA (existing domestic company)": {"base_rate": 0.22, "surcharge_rate": 0.10, "cess_rate": 0.04},
+      "standard regime (surcharge 7% slab)": {"base_rate": 0.30, "surcharge_rate": 0.07, "cess_rate": 0.04}
+    }
+  },
+  "cgtmse_adjusted_dscr": {
+    "annual_cash_flow": 1.27,
+    "loan_amount": 5.0,
+    "interest_rate": 0.105,
+    "tenure_years": 7,
+    "annual_fee_rate": 0.0075,
+    "min_dscr": 1.2
+  }
+}

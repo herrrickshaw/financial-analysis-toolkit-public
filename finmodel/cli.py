@@ -1275,6 +1275,25 @@ def cmd_project_bankability(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_india_corporate_tax_regimes(a):
+    from . import india_corporate_tax_regimes as TAX
+    res = TAX.from_dict(_load_json(a.inputs))
+    if "tax_regime_comparison" in res:
+        r = res["tax_regime_comparison"]
+        for name, regime in r["regimes"].items():
+            marker = " *** BEST ***" if name == r["best_regime"] else ""
+            print(f"  {name:12} effective rate {regime['effective_rate']:.3%}  post-tax CF {regime['post_tax_annual_cash_flow']:,.2f}  "
+                  f"IRR {regime['irr_post_tax']:.2%}{marker}")
+        print(f"IRR uplift, best vs worst regime: {r['irr_uplift_of_best_vs_worst']:+.2%}")
+    if "cgtmse_adjusted_dscr" in res:
+        r = res["cgtmse_adjusted_dscr"]
+        status = "OK" if r["compliant"] else "*** BREACH ***"
+        print(f"DSCR without CGTMSE fee: {r['dscr_without_fee_for_comparison']:.3f}   "
+              f"with fee ({r['annual_guarantee_fee']:,.3f}/yr): {r['dscr_with_cgtmse_fee']:.3f} "
+              f"(min {r['min_dscr_required']:.2f})  {status}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_india_incentive_workbook(a):
     from . import india_incentive_workbook as WB
     path = WB.build_workbook(a.output)
@@ -1424,6 +1443,7 @@ def main(argv=None):
     sim = sp.add_parser("sector-investment-model", help="sample state/sector investment model: land cost + capex stack netted against a discounted central+state incentive package"); sim.add_argument("inputs"); sim.add_argument("--json-out"); sim.set_defaults(fn=cmd_sector_investment_model)
     pbk = sp.add_parser("project-bankability", help="IRR/ROI/payback with and without incentives, plus a state/sector ranking that flags projects incentives make bankable"); pbk.add_argument("inputs"); pbk.add_argument("--json-out"); pbk.set_defaults(fn=cmd_project_bankability)
     iiw = sp.add_parser("india-incentive-workbook", help="write the consolidated India state/central incentive + land-cost + 12-state matrix Excel workbook"); iiw.add_argument("output", help="output .xlsx path"); iiw.set_defaults(fn=cmd_india_incentive_workbook)
+    tax = sp.add_parser("india-tax-regimes", help="Section 115BAB vs 115BAA vs standard-regime post-tax IRR comparison, and the CGTMSE guarantee fee's effect on DSCR"); tax.add_argument("inputs"); tax.add_argument("--json-out"); tax.set_defaults(fn=cmd_india_corporate_tax_regimes)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)

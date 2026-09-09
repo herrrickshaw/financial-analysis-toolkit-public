@@ -30,6 +30,7 @@ from typing import Any, Dict, List
 from .excel import write_record_tables
 from . import sector_investment_model as SIM
 from . import project_bankability as PB
+from . import india_corporate_tax_regimes as TAX
 
 _EXAMPLES = Path(__file__).resolve().parent.parent / "examples"
 
@@ -237,6 +238,47 @@ def _matrix_and_bankability_rows() -> Dict[str, Any]:
     return {"headers": headers, "rows": rows}
 
 
+def _tax_regime_rows() -> Dict[str, Any]:
+    with open(_EXAMPLES / "india_corporate_tax_regimes_demo.json") as f:
+        payload = json.load(f)
+    result = TAX.from_dict(payload)["tax_regime_comparison"]
+    headers = ["Regime", "Base Rate", "Surcharge Rate", "Cess Rate", "Effective Rate", "Post-tax Cash Flow (Rs cr)",
+              "IRR (post-tax)", "Best Regime?"]
+    rows = []
+    for name, r in result["regimes"].items():
+        rows.append([name, r["base_rate"], r["surcharge_rate"], r["cess_rate"], round(r["effective_rate"], 4),
+                    round(r["post_tax_annual_cash_flow"], 3), round(r["irr_post_tax"], 4),
+                    "Yes" if name == result["best_regime"] else "No"])
+    return {"headers": headers, "rows": rows}
+
+
+def _financing_effects_rows() -> Dict[str, Any]:
+    with open(_EXAMPLES / "india_corporate_tax_regimes_demo.json") as f:
+        cgtmse_payload = json.load(f)
+    cgtmse = TAX.from_dict(cgtmse_payload)["cgtmse_adjusted_dscr"]
+
+    with open(_EXAMPLES / "dscr_matrix_ireda_demo.json") as f:
+        ireda_payload = json.load(f)
+    ireda = PB.from_dict(ireda_payload)["dscr_matrix"]
+
+    headers = ["Example", "Lender / Scheme", "Loan (Rs cr)", "Rate", "Tenure (yrs)", "Annual Cash Flow (Rs cr)",
+              "DSCR", "Min DSCR Required", "Compliant?", "Note"]
+    rows = [
+        ["MSME term loan (Rajasthan-style illustrative)", "CGTMSE-covered, no fee", "5.0", "10.5%", "7",
+         "1.27", round(cgtmse["dscr_without_fee_for_comparison"], 3), 1.2,
+         "Yes" if cgtmse["dscr_without_fee_for_comparison"] >= 1.2 else "No",
+         "Debt service alone, before the CGTMSE guarantee fee"],
+        ["MSME term loan (same loan, with CGTMSE fee)", "CGTMSE (0.75% p.a. guarantee fee)", "5.0", "10.5%", "7",
+         "1.27", round(cgtmse["dscr_with_cgtmse_fee"], 3), 1.2, "Yes" if cgtmse["compliant"] else "No",
+         "The fee's real, small cost tips this boundary case into breach"],
+    ]
+    for r in ireda:
+        rows.append([f"{r['sector']}, {r['state']}", r["lender"], round(0.75 * 38.0, 2), "8.65%", "15",
+                    round(0.20 * 38.0, 2), round(r["dscr"], 3), r["min_dscr_required"],
+                    "Yes" if r["compliant"] else "No", "IREDA's own disclosed Grade I rate/DSCR floor, not the generic SBI/REC case"])
+    return {"headers": headers, "rows": rows}
+
+
 WORKBOOK_TITLE = "Investment Promotion Agency (IPA) Support"
 
 README_LINES = [
@@ -255,6 +297,9 @@ README_LINES = [
     "  12-State Matrix     -- a worked sample project per state: land+capex netted against incentives (PV basis),",
     "                         IRR with/without incentives, and a DSCR covenant check -- computed LIVE from the",
     "                         toolkit's own modules and example files at the time this workbook was built, never re-typed",
+    "  Tax Regime Comparison-- Section 115BAB vs 115BAA vs the standard regime, post-tax IRR, computed LIVE",
+    "  Financing Effects   -- CGTMSE's guarantee-fee effect on DSCR, and a renewable-energy DSCR check using",
+    "                         IREDA's own disclosed rate/covenant instead of the generic SBI/REC case, computed LIVE",
     "",
     "EVERY row on the State/Central/Land sheets carries its own Confidence and Source column. A 'Not confirmed'",
     "or 'Low' confidence entry means the underlying research could not verify that number against a primary",
@@ -266,6 +311,7 @@ README_LINES = [
     "  docs/INDIA_STATE_SECTOR_INCENTIVE_MATRIX.md",
     "  docs/PROJECT_BANKABILITY.md",
     "  docs/INDIA_PROJECT_FINANCE_LENDING_TERMS.md",
+    "  docs/INDIA_CORPORATE_TAX_AND_CGTMSE.md",
     "",
     "This is a precursor/sample calculation tool, not investment advice -- every matrix figure depends on the",
     "illustrative assumptions documented alongside it (a held-constant capex stack, a flat assumed operating",
@@ -279,5 +325,7 @@ def build_workbook(path: str) -> str:
         "Central Incentives": {"headers": CENTRAL_INCENTIVES_HEADERS, "rows": CENTRAL_INCENTIVES_ROWS},
         "Land Cost Benchmarks": {"headers": LAND_COST_HEADERS, "rows": LAND_COST_ROWS},
         "12-State Matrix": _matrix_and_bankability_rows(),
+        "Tax Regime Comparison": _tax_regime_rows(),
+        "Financing Effects": _financing_effects_rows(),
     }
     return str(write_record_tables(path, sheets, readme_lines=README_LINES, workbook_title=WORKBOOK_TITLE))

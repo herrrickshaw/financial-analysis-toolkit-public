@@ -89,6 +89,17 @@ in before a lender in this generic mold would extend 70% leverage — a genuinel
 IRR-based "bankability" in `docs/PROJECT_BANKABILITY.md`, and one worth reading alongside it rather than
 instead of it.
 
-The day a renewable-energy sector entry is added to the matrix, it should use IREDA's own disclosed rate and
-DSCR figures above rather than this generic case, since IREDA's terms are lender-specific, dated, and
-directly on point for that sector.
+## A renewable-energy entry, using IREDA's own terms rather than the generic case
+
+`examples/dscr_matrix_ireda_demo.json` adds exactly the entry flagged above as a natural next step: a
+Rajasthan solar and a Gujarat wind project, financed at IREDA's own disclosed Grade I private Solar/Wind
+terms (8.65% interest, effective 01.06.2026; 75% loan per IREDA's own new-client norm; **1.25x minimum DSCR
+— IREDA's own disclosed figure**, not the 1.20x general industry norm used for the generic SBI/REC case
+above) rather than the generic case. Run via `finmodel project-bankability
+examples/dscr_matrix_ireda_demo.json`: both clear comfortably at 2.195x DSCR — a considerably healthier
+result than the generic 12-state matrix produced for the same illustrative capex and cash-flow assumptions,
+which makes sense: IREDA's rate (8.65%) is meaningfully lower than the generic case's derived 10.5%, because
+IREDA is a purpose-built renewable-energy lender pricing off its own administered grade system rather than a
+generic corporate spread. This is the direct, concrete illustration of why sector-specific lender matching
+matters: the same capex and cash flow can look unbankable under one lender's terms and comfortably bankable
+under another's, purely because the lender is the right (or wrong) one for that sector.

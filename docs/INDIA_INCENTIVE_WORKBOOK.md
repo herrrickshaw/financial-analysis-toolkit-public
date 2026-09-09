@@ -41,9 +41,13 @@ finmodel india-incentive-workbook reports/india_investment_incentives.xlsx
 | Central Incentives | 26 (14 PLI sectors + 4 MSME + 3 tax + 2 SEZ/EOU + 3 credit-guarantee) | Category, outlay/cap, mechanic/rate, tenure, confidence, source |
 | Land Cost Benchmarks | 30 (every sourced rate across all 12 states) | Industrial area/park, sector character, rate as quoted, converted Rs cr/acre, confidence tier, source |
 | 12-State Matrix | 12 states + 1 total | Land rate, total capex, incentive PV, net effective investment, effective subsidy %, IRR with/without incentives, DSCR, DSCR compliance |
+| Tax Regime Comparison | 3 (115BAB / 115BAA / standard) | Base/surcharge/cess rate, effective rate, post-tax cash flow, post-tax IRR, best-regime flag |
+| Financing Effects | 4 (2 CGTMSE + 2 IREDA) | Lender/scheme, loan, rate, tenure, cash flow, DSCR, minimum DSCR required, compliance, a note on what each row illustrates |
 
-A README sheet is written first, explaining the sheet layout and pointing back to the six source docs for
-full narrative detail and citations.
+A README sheet is written first, explaining the sheet layout and pointing back to the seven source docs for
+full narrative detail and citations. Like the Matrix sheet, Tax Regime Comparison and Financing Effects are
+both computed **live** at build time from `finmodel.india_corporate_tax_regimes` and
+`finmodel.project_bankability`, never re-typed.
 
 ## `finmodel.excel.write_record_tables`
 

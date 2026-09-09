@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 642 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 651 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -103,6 +103,8 @@ finmodel sector-investment-model examples/state_sector_matrix_demo.json  # 12-st
 finmodel project-bankability examples/project_bankability_demo.json      # IRR/ROI/payback with and without incentives, ranked by state/sector, flagging incentive-enabled projects
 finmodel project-bankability examples/dscr_matrix_demo.json              # DSCR covenant check (SBI/REC-style 70% leverage) across all 12 states, using real lender debt:equity + industry-norm covenant
 finmodel india-incentive-workbook reports/india_investment_incentives.xlsx  # consolidated state/central/land-cost/matrix Excel workbook (reports/ is gitignored; regenerate on demand)
+finmodel india-tax-regimes examples/india_corporate_tax_regimes_demo.json   # Section 115BAB/115BAA/standard post-tax IRR comparison + CGTMSE guarantee-fee DSCR effect
+finmodel project-bankability examples/dscr_matrix_ireda_demo.json          # DSCR check using IREDA's own disclosed renewable-energy rate/covenant (Rajasthan solar, Gujarat wind)
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -517,6 +519,22 @@ underlying writer, `finmodel.excel.write_record_tables`, is new and general-purp
 catalog — this one does, and any future dataset in this toolkit can reuse it. See
 `docs/INDIA_INCENTIVE_WORKBOOK.md` for the full detail.
 
+## Tax regime choice, CGTMSE, and a real IREDA renewable-energy entry (`docs/INDIA_CORPORATE_TAX_AND_CGTMSE.md`)
+
+Three follow-ups on the "IPA support" tooling: `finmodel.india_corporate_tax_regimes` compares a new
+manufacturer's Section 115BAB (15% base tax) against 115BAA (22%) and the standard regime (30% base, slab-
+dependent surcharge) — exact statutory arithmetic (`base_rate*(1+surcharge)*(1+cess)`), not an estimate —
+turning the choice into a post-tax IRR: a 3.88-percentage-point swing on Gujarat's own 12-state-matrix
+project, purely from the tax election (MAT explicitly out of scope — flagged, not silently ignored). The
+same module's `cgtmse_adjusted_dscr` shows CGTMSE's real effect: not a free DSCR improvement, but a small
+annual guarantee-fee cost layered onto the loan's own coverage test — tuned to a boundary case that clears
+1.20x on debt service alone but breaches it once the fee is added, the actual trade-off for loan access
+without adequate collateral. And `examples/dscr_matrix_ireda_demo.json` finally exercises IREDA's own
+disclosed renewable-energy terms (8.65% rate, 1.25x DSCR floor) instead of the generic SBI/REC case — a
+Rajasthan solar and Gujarat wind project both clear a comfortable 2.195x, a concrete illustration of why
+sector-specific lender matching changes the answer. See `docs/INDIA_CORPORATE_TAX_AND_CGTMSE.md` for the
+full detail.
+
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 
 Every survey doc in this session records what got deliberately left out and why — four times now, this
@@ -612,7 +630,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, pension_accounting, nwc_peg, eps_calculation, investment_securities, consolidation, debt_covenants, asset_retirement_obligations, warranty_and_receivables_allowance, investment_incentives, sector_investment_model, project_bankability, india_incentive_workbook, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, pension_accounting, nwc_peg, eps_calculation, investment_securities, consolidation, debt_covenants, asset_retirement_obligations, warranty_and_receivables_allowance, investment_incentives, sector_investment_model, project_bankability, india_incentive_workbook, india_corporate_tax_regimes, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

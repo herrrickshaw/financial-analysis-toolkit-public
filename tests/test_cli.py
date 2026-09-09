@@ -760,3 +760,25 @@ def test_cli_india_incentive_workbook(tmp_path, capsys):
     from openpyxl import load_workbook
     wb = load_workbook(out)
     assert "12-State Matrix" in wb.sheetnames
+
+
+def test_cli_india_tax_regimes(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["india-tax-regimes", str(EX / "india_corporate_tax_regimes_demo.json"), "--json-out", str(tmp_path / "tax.json")])
+    out = capsys.readouterr().out
+    assert "*** BEST ***" in out and "*** BREACH ***" in out
+    saved = json.loads((tmp_path / "tax.json").read_text())
+    assert saved["tax_regime_comparison"]["best_regime"] == "115BAB (new manufacturing company)"
+    assert saved["cgtmse_adjusted_dscr"]["compliant"] is False
+    assert saved["cgtmse_adjusted_dscr"]["dscr_without_fee_for_comparison"] >= 1.2
+
+
+def test_cli_dscr_matrix_ireda_demo_clears_its_own_disclosed_covenant(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["project-bankability", str(EX / "dscr_matrix_ireda_demo.json"), "--json-out", str(tmp_path / "ireda.json")])
+    out = capsys.readouterr().out
+    assert "IREDA (Grade I, private Solar/Wind)" in out
+    saved = json.loads((tmp_path / "ireda.json").read_text())["dscr_matrix"]
+    assert len(saved) == 2
+    assert all(r["compliant"] for r in saved)
+    assert all(r["min_dscr_required"] == pytest.approx(1.25) for r in saved)
