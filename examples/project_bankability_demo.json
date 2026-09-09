@@ -1,0 +1,351 @@
+{
+  "rank_projects": {
+    "entries": [
+      {
+        "state": "Gujarat",
+        "sector": "Automobile & Auto Components",
+        "total_capex": 59.327,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [
+          {
+            "scheme_name": "Gujarat Aatmanirbhar Scheme -- net SGST reimbursement (75% of FCI cap, confirmed rate; illustrative net-tax-paid assumption)",
+            "jurisdiction": "state",
+            "timing": "recurring",
+            "nominal_total": 28.5,
+            "present_value": 21.813338631861953,
+            "annual_amounts": [
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              4.5,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "scheme_name": "Central PLI -- Automobile & Auto Components (18% of incremental sales, confirmed rate; illustrative sales assumption)",
+            "jurisdiction": "central",
+            "timing": "recurring",
+            "nominal_total": 27.0,
+            "present_value": 20.470248554805618,
+            "annual_amounts": [
+              5.4,
+              5.4,
+              5.4,
+              5.4,
+              5.4
+            ]
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Uttar Pradesh",
+        "sector": "General Manufacturing / MSME",
+        "total_capex": 50.95,
+        "upfront_incentive_value": 9.5,
+        "incentive_detail": [
+          {
+            "scheme_name": "UP Industrial Investment & Employment Promotion Policy 2022 -- capital subsidy (25% of FCI, cap Rs40cr; one of 3 mutually-exclusive options, confirmed rate)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 9.5,
+            "present_value": 9.5
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Rajasthan",
+        "sector": "Automobile & Auto Components",
+        "total_capex": 127.031,
+        "upfront_incentive_value": 7.6,
+        "incentive_detail": [
+          {
+            "scheme_name": "RIPS 2024 -- capital subsidy (13-28% of FCI, 20% midpoint used; cap ~Rs15cr per one source, reconcile against primary PDF)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 7.6,
+            "present_value": 7.6
+          },
+          {
+            "scheme_name": "Central PLI -- Automobile & Auto Components (18% of incremental sales, confirmed rate; illustrative sales assumption)",
+            "jurisdiction": "central",
+            "timing": "recurring",
+            "nominal_total": 27.0,
+            "present_value": 20.470248554805618,
+            "annual_amounts": [
+              5.4,
+              5.4,
+              5.4,
+              5.4,
+              5.4
+            ]
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Telangana",
+        "sector": "Electronics / Hardware Manufacturing",
+        "total_capex": 86.56200000000001,
+        "upfront_incentive_value": 7.6,
+        "incentive_detail": [
+          {
+            "scheme_name": "T-IDEA/T-PRIDE -- investment subsidy (15-25% of FCI, 20% midpoint used; cap not confirmed)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 7.6,
+            "present_value": 7.6
+          },
+          {
+            "scheme_name": "Central PLI -- Large Scale Electronics Manufacturing (4-6% of incremental sales, 5% used; confirmed rate range, illustrative sales assumption)",
+            "jurisdiction": "central",
+            "timing": "recurring",
+            "nominal_total": 7.5,
+            "present_value": 5.686180154112671,
+            "annual_amounts": [
+              1.5,
+              1.5,
+              1.5,
+              1.5,
+              1.5
+            ]
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Odisha",
+        "sector": "General Manufacturing",
+        "total_capex": 45.5,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [
+          {
+            "scheme_name": "Odisha IPR 2022 -- net SGST reimbursement (100% rate, cap 200% of P&M cost -- both confirmed; illustrative net-tax-paid assumption; tenure years not confirmed, 7 years assumed)",
+            "jurisdiction": "state",
+            "timing": "recurring",
+            "nominal_total": 42.0,
+            "present_value": 29.210512906157586,
+            "annual_amounts": [
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0
+            ]
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Haryana",
+        "sector": "Automobile & Auto Components",
+        "total_capex": 103.964,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [
+          {
+            "scheme_name": "Haryana HEEP 2020 -- net SGST reimbursement, Block B first-phase rate only (50% for first 5 years; the scheme's own second phase, 25% for a further 3 years, is not modeled here for simplicity)",
+            "jurisdiction": "state",
+            "timing": "recurring",
+            "nominal_total": 15.0,
+            "present_value": 11.372360308225343,
+            "annual_amounts": [
+              3.0,
+              3.0,
+              3.0,
+              3.0,
+              3.0
+            ]
+          },
+          {
+            "scheme_name": "Central PLI -- Automobile & Auto Components (18% of incremental sales, confirmed rate; illustrative sales assumption)",
+            "jurisdiction": "central",
+            "timing": "recurring",
+            "nominal_total": 27.0,
+            "present_value": 20.470248554805618,
+            "annual_amounts": [
+              5.4,
+              5.4,
+              5.4,
+              5.4,
+              5.4
+            ]
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Tamil Nadu",
+        "sector": "Textiles & Apparel",
+        "total_capex": 39.53,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [
+          {
+            "scheme_name": "Tamil Nadu Industrial Policy 2021 -- 100% SGST reimbursement for 15 years (confirmed rate and tenure; no overall cap confirmed, so a very high non-binding cap is used here)",
+            "jurisdiction": "state",
+            "timing": "recurring",
+            "nominal_total": 90.0,
+            "present_value": 45.636477037850156,
+            "annual_amounts": [
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0
+            ]
+          },
+          {
+            "scheme_name": "Central PLI -- Textiles (MMF fabric/apparel) (tapering schedule not confirmed at primary-source level; a flat 12% mid-range placeholder used instead of the real 15%-to-11% taper)",
+            "jurisdiction": "central",
+            "timing": "recurring",
+            "nominal_total": 18.0,
+            "present_value": 13.64683236987041,
+            "annual_amounts": [
+              3.6,
+              3.6,
+              3.6,
+              3.6,
+              3.6
+            ]
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Karnataka",
+        "sector": "Electronics / Auto Components",
+        "total_capex": 68.0,
+        "upfront_incentive_value": 9.5,
+        "incentive_detail": [
+          {
+            "scheme_name": "Karnataka Industrial Policy 2025-30 -- Investment Promotion Subsidy (up to 25% of FCI in Zone 1, confirmed rate; cap not confirmed)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 9.5,
+            "present_value": 9.5
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Andhra Pradesh",
+        "sector": "General Manufacturing",
+        "total_capex": 68.0,
+        "upfront_incentive_value": 7.0,
+        "incentive_detail": [
+          {
+            "scheme_name": "AP Industrial Development Policy 4.0 -- capital subsidy (25% of FCI, capped Rs7cr for the medium tier; both confirmed)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 7.0,
+            "present_value": 7.0
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Madhya Pradesh",
+        "sector": "Food Processing",
+        "total_capex": 68.0,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [
+          {
+            "scheme_name": "MP IPP 2025 -- interest subsidy (5-7% for 5 years, 6% midpoint used; annual cap not confirmed; illustrative interest-paid assumption)",
+            "jurisdiction": "state",
+            "timing": "recurring",
+            "nominal_total": 0.8999999999999999,
+            "present_value": 0.6823416184935205,
+            "annual_amounts": [
+              0.18,
+              0.18,
+              0.18,
+              0.18,
+              0.18
+            ]
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Maharashtra",
+        "sector": "Chemicals-adjacent / General Manufacturing",
+        "total_capex": 86.967,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [
+          {
+            "scheme_name": "Maharashtra IPS -- 100% of gross SGST reimbursed (confirmed rate), overall cap taken from ONE cited zone example (40% of FCI for Group B, Rs5cr investment) -- may not generalize; illustrative net-tax-paid assumption",
+            "jurisdiction": "state",
+            "timing": "recurring",
+            "nominal_total": 15.2,
+            "present_value": 12.817430503380915,
+            "annual_amounts": [
+              6.0,
+              6.0,
+              3.2,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Punjab",
+        "sector": "General Manufacturing / MSME",
+        "total_capex": 236.18,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [
+          {
+            "scheme_name": "Punjab IBDP 2022 -- net SGST reimbursement (100% rate, 7-year tenure, capped 100% of FCI -- all confirmed); illustrative net-tax-paid assumption",
+            "jurisdiction": "state",
+            "timing": "recurring",
+            "nominal_total": 38.0,
+            "present_value": 27.157880433234762,
+            "annual_amounts": [
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              6.0,
+              2.0
+            ]
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      }
+    ],
+    "hurdle_rate": 0.14
+  }
+}

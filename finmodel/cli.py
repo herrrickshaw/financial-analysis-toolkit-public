@@ -1237,6 +1237,34 @@ def cmd_sector_investment_model(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_project_bankability(a):
+    from . import project_bankability as PB
+    res = PB.from_dict(_load_json(a.inputs))
+    if "project_returns" in res:
+        r = res["project_returns"]
+        print(f"IRR without incentives: {r['irr_without_incentives']:.2%}   with: {r['irr_with_incentives']:.2%}   "
+              f"(uplift {r['irr_uplift']:+.2%})")
+        print(f"Simple ROI without: {r['simple_roi_without_incentives']:.2%}   with: {r['simple_roi_with_incentives']:.2%}")
+        print(f"Payback (years) without: {r['payback_years_without_incentives']:.2f}   "
+              f"with: {r['payback_years_with_incentives']:.2f}")
+    if "rank_projects" in res:
+        r = res["rank_projects"]
+        print(f"Hurdle rate: {r['hurdle_rate']:.2%}")
+        print("Ranked by IRR without incentives (highest ROI on its own merits):")
+        for p in r["ranked_by_irr_without_incentives"]:
+            print(f"  {p['state']:16} {p['sector']:38} {p['irr_without_incentives']:>8.2%}")
+        print("Ranked by IRR with incentives:")
+        for p in r["ranked_by_irr_with_incentives"]:
+            print(f"  {p['state']:16} {p['sector']:38} {p['irr_with_incentives']:>8.2%}")
+        if r["incentive_enabled_projects"]:
+            print("Incentive-enabled projects (below hurdle without, at/above hurdle with incentives):")
+            for p in r["incentive_enabled_projects"]:
+                print(f"  {p['state']:16} {p['sector']:38} {p['irr_without_incentives']:>8.2%} -> {p['irr_with_incentives']:>8.2%}")
+        else:
+            print("No project crosses the hurdle rate solely because of incentives.")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -1378,6 +1406,7 @@ def main(argv=None):
     wra = sp.add_parser("warranty-receivables", help="warranty reserve roll-forward (expected-cost method) and CECL aging-method receivables allowance"); wra.add_argument("inputs"); wra.add_argument("--json-out"); wra.set_defaults(fn=cmd_warranty_and_receivables_allowance)
     ii = sp.add_parser("investment-incentives", help="capital/interest/net-tax/employment investment-incentive mechanics used by Indian central and state schemes (PLI, BIPA-style state schemes, etc.)"); ii.add_argument("inputs"); ii.add_argument("--json-out"); ii.set_defaults(fn=cmd_investment_incentives)
     sim = sp.add_parser("sector-investment-model", help="sample state/sector investment model: land cost + capex stack netted against a discounted central+state incentive package"); sim.add_argument("inputs"); sim.add_argument("--json-out"); sim.set_defaults(fn=cmd_sector_investment_model)
+    pbk = sp.add_parser("project-bankability", help="IRR/ROI/payback with and without incentives, plus a state/sector ranking that flags projects incentives make bankable"); pbk.add_argument("inputs"); pbk.add_argument("--json-out"); pbk.set_defaults(fn=cmd_project_bankability)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)

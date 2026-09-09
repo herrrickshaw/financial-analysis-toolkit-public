@@ -55,7 +55,7 @@ def incentive_present_value(components: Sequence[Dict[str, Any]], discount_rate:
             pv = npv(discount_rate, c["annual_amounts"])
             pv_of_recurring += pv
             detail.append({"scheme_name": c["scheme_name"], "jurisdiction": c["jurisdiction"], "timing": timing,
-                           "nominal_total": nominal, "present_value": pv})
+                           "nominal_total": nominal, "present_value": pv, "annual_amounts": list(c["annual_amounts"])})
             normalized_for_nominal_total.append({"scheme_name": c["scheme_name"], "jurisdiction": c["jurisdiction"],
                                                  "amount": nominal})
         else:
