@@ -1170,6 +1170,40 @@ def cmd_warranty_and_receivables_allowance(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_investment_incentives(a):
+    from . import investment_incentives as INC
+    res = INC.from_dict(_load_json(a.inputs))
+    if "capital_investment_subsidy" in res:
+        r = res["capital_investment_subsidy"]
+        print(f"Capital subsidy: {r['subsidy_amount']:,.2f}" + ("  (capped)" if r["capped"] else ""))
+    if "interest_subsidy_schedule" in res:
+        r = res["interest_subsidy_schedule"]
+        print(f"Interest subsidy: {len(r['schedule'])} years, total {r['total_subsidy']:,.2f}")
+    if "net_tax_reimbursement_schedule" in res:
+        r = res["net_tax_reimbursement_schedule"]
+        print(f"Net-tax reimbursement: total {r['total_reimbursement']:,.2f} of overall cap {r['overall_cap']:,.2f}"
+              f"  (exhausted: {r['overall_cap_exhausted']})")
+    if "employment_generation_subsidy" in res:
+        r = res["employment_generation_subsidy"]
+        print(f"Employment generation subsidy: {r['subsidy_amount']:,.2f}" + ("  (capped)" if r["capped"] else ""))
+    if "ad_valorem_duty_exemptions" in res:
+        for r in res["ad_valorem_duty_exemptions"]:
+            print(f"  Duty exemption: {r['exempted_amount']:,.2f} exempted, net payable {r['net_payable']:,.2f}")
+    if "incremental_metric_linked_incentive" in res:
+        r = res["incremental_metric_linked_incentive"]
+        print(f"Incremental-metric incentive: {r['incentive_amount']:,.2f}" + ("  (capped)" if r["capped"] else ""))
+    if "combined_incentive_package" in res:
+        r = res["combined_incentive_package"]
+        print(f"Total incentive package: {r['total_incentive_value']:,.2f}")
+        for jur, amt in r["by_jurisdiction"].items():
+            print(f"  {jur:10} {amt:,.2f}")
+    if "effective_capex_after_incentives" in res:
+        r = res["effective_capex_after_incentives"]
+        print(f"Effective capex: {r['gross_capex']:,.2f} -> {r['net_capex']:,.2f}  "
+              f"(effective subsidy {r['effective_subsidy_pct']:.2%})")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -1309,6 +1343,7 @@ def main(argv=None):
     dcv = sp.add_parser("debt-covenants", help="borrower-side leverage/interest-coverage/fixed-charge-coverage covenant compliance testing"); dcv.add_argument("inputs"); dcv.add_argument("--json-out"); dcv.set_defaults(fn=cmd_debt_covenants)
     aro = sp.add_parser("aro", help="ASC 410 asset retirement obligation: initial PV recognition, accretion schedule, settlement gain/loss"); aro.add_argument("inputs"); aro.add_argument("--json-out"); aro.set_defaults(fn=cmd_asset_retirement_obligations)
     wra = sp.add_parser("warranty-receivables", help="warranty reserve roll-forward (expected-cost method) and CECL aging-method receivables allowance"); wra.add_argument("inputs"); wra.add_argument("--json-out"); wra.set_defaults(fn=cmd_warranty_and_receivables_allowance)
+    ii = sp.add_parser("investment-incentives", help="capital/interest/net-tax/employment investment-incentive mechanics used by Indian central and state schemes (PLI, BIPA-style state schemes, etc.)"); ii.add_argument("inputs"); ii.add_argument("--json-out"); ii.set_defaults(fn=cmd_investment_incentives)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)

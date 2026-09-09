@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 602 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 616 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -98,6 +98,7 @@ finmodel consolidation examples/consolidation_demo.json                  # ASC 8
 finmodel debt-covenants examples/debt_covenants_demo.json                # leverage/interest-coverage/fixed-charge-coverage covenant compliance testing
 finmodel aro examples/aro_demo.json                                       # ASC 410 asset retirement obligation: PV recognition, accretion schedule, settlement gain/loss
 finmodel warranty-receivables examples/warranty_receivables_demo.json    # warranty reserve roll-forward and CECL aging-method receivables allowance
+finmodel investment-incentives examples/investment_incentives_demo.json  # capital/interest/net-tax/employment investment-incentive mechanics (India central + state schemes)
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -432,6 +433,24 @@ distinct from `finmodel.bank_model`'s loan CECL, a different asset class typical
 statistical PD/LGD approach instead — verified with a small, high-risk bucket that carries more allowance
 than a much larger, low-risk one). See `docs/ARO_AND_LOSS_ACCRUALS.md` for the full detail.
 
+## Investment incentives (`docs/INVESTMENT_INCENTIVES.md`)
+
+A new domain for the toolkit: `finmodel.investment_incentives` models the small set of mechanics that
+Indian central and state government investment-promotion schemes are actually built from — a capital
+subsidy (% of eligible fixed capital investment, capped), an interest subsidy (% of interest paid,
+reimbursed yearly up to a cap, for a fixed tenure), a net-tax (SGST/VAT) reimbursement schedule (structurally
+the same shape as Madhya Pradesh's "Investment Promotion Assistance"/BIPA — bounded by BOTH a per-year cap
+AND a cumulative overall cap, verified directly: cumulative reimbursement never exceeds the overall cap even
+when no single year's own cap bound), an employment generation subsidy, an ad valorem duty exemption (stamp
+duty, electricity duty), and the central PLI mechanic (a percentage of the *increase* in sales over a base
+year, capped — verified to earn exactly nothing below the base year). `combined_incentive_package` stacks any
+mix of these, tagged by scheme and by state/central jurisdiction, into one total. The module itself contains
+no hardcoded scheme rates; `docs/INDIA_STATE_INVESTMENT_INCENTIVES.md` and
+`docs/INDIA_CENTRAL_INVESTMENT_INCENTIVES.md` separately catalog real schemes (PLI sectors, MSME schemes,
+tax incentives, and a dozen states' industrial policies) with citations — and, just as carefully, flag every
+number that could NOT be confirmed from a primary source rather than guessing. See
+`docs/INVESTMENT_INCENTIVES.md` for the full detail.
+
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 
 Every survey doc in this session records what got deliberately left out and why — four times now, this
@@ -527,7 +546,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, pension_accounting, nwc_peg, eps_calculation, investment_securities, consolidation, debt_covenants, asset_retirement_obligations, warranty_and_receivables_allowance, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, pension_accounting, nwc_peg, eps_calculation, investment_securities, consolidation, debt_covenants, asset_retirement_obligations, warranty_and_receivables_allowance, investment_incentives, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

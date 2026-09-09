@@ -1,0 +1,32 @@
+{
+  "capital_investment_subsidy": {"eligible_investment": 25.0, "subsidy_rate": 0.15, "subsidy_cap": 3.0},
+  "net_tax_reimbursement_schedule": {
+    "annual_net_tax_paid": [2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0],
+    "reimbursement_rate": 1.0,
+    "annual_cap": 2.5,
+    "tenure_years": 7,
+    "overall_cap": 10.0
+  },
+  "employment_generation_subsidy": {
+    "eligible_employees": 150,
+    "per_employee_monthly_amount": 0.0002,
+    "months": 12,
+    "scheme_cap": 0.5
+  },
+  "ad_valorem_duty_exemptions": [
+    {"payable_amount": 0.4, "exemption_pct": 1.0},
+    {"payable_amount": 0.12, "exemption_pct": 0.5}
+  ],
+  "incremental_metric_linked_incentive": {
+    "base_year_value": 50.0,
+    "current_year_value": 65.0,
+    "incentive_rate": 0.05,
+    "cap": 0.5
+  },
+  "combined_incentive_package": [
+    {"scheme_name": "MP Investment Promotion Assistance (BIPA-style)", "jurisdiction": "state", "amount": 10.0},
+    {"scheme_name": "MP Capital Investment Subsidy", "jurisdiction": "state", "amount": 3.0},
+    {"scheme_name": "Central PLI (illustrative)", "jurisdiction": "central", "amount": 0.5}
+  ],
+  "effective_capex_after_incentives": {"gross_capex": 25.0, "upfront_capital_subsidies": 3.0}
+}

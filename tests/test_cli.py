@@ -685,3 +685,14 @@ def test_cli_warranty_receivables(tmp_path, capsys):
     assert "Warranty reserve:" in out and "Total allowance:" in out
     saved = json.loads((tmp_path / "wra.json").read_text())
     assert saved["receivables_allowance_aging_method"]["total_allowance"] == pytest.approx(43_000.0)
+
+
+def test_cli_investment_incentives(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["investment-incentives", str(EX / "investment_incentives_demo.json"), "--json-out", str(tmp_path / "inc.json")])
+    out = capsys.readouterr().out
+    assert "Capital subsidy:" in out and "Total incentive package:" in out
+    saved = json.loads((tmp_path / "inc.json").read_text())
+    assert saved["net_tax_reimbursement_schedule"]["total_reimbursement"] == pytest.approx(10.0)
+    assert saved["net_tax_reimbursement_schedule"]["overall_cap_exhausted"] is True
+    assert saved["combined_incentive_package"]["total_incentive_value"] == pytest.approx(13.5)
