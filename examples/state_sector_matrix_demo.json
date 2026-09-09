@@ -386,6 +386,123 @@
       ],
       "discount_rate": 0.1,
       "note": "Land rate is PRESS-SOURCED (The Tribune reporting a June 2025 PSIEC e-auction at Mohali), not an official PSIEC schedule -- midpoint of the reported Rs39,000-42,900/sq.yard range used. See docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md."
+    },
+    {
+      "state": "Kerala",
+      "sector": "Food Processing",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 1.4885
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Kerala Industrial Policy 2023 -- Investment Subsidy, Large/Mega tier (10% of FCI, cap Rs10cr; confirmed rate, but two overlapping capital-subsidy schemes were reported -- ESS's MSME-scale 15%/cap-Rs30L was NOT used here since it is not meaningful at this project's Large-tier size)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 3.8
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: KINFRA Land Bank-confirmed (Food Processing Industrial Park, Adoor). Kerala's own incentive catalog has an unreconciled overlap between two capital-subsidy schemes -- see docs/INDIA_STATE_INVESTMENT_INCENTIVES.md."
+    },
+    {
+      "state": "West Bengal",
+      "sector": "Engineering & General Manufacturing",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 0.7502
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [],
+      "discount_rate": 0.1,
+      "note": "Land rate: WBIDC-confirmed, official, dated 2026 tentative base price (Vidyasagar Industrial Park, freehold). NO state incentive is modeled: West Bengal's entire investment-linked incentive framework (Banglashree/WBIPA) was legislatively REVOKED in 2025 (Act 4 of 2025), and its replacement (a proposed employment-linked policy) was not yet finalized as of this research -- using the revoked scheme's old rates would be actively misleading. See docs/INDIA_STATE_INVESTMENT_INCENTIVES.md."
+    },
+    {
+      "state": "Bihar",
+      "sector": "General Manufacturing / Export-Oriented (EPIP)",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 2.3396
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Bihar Industrial Investment Promotion Package (BIPPP) 2025 -- capital subsidy, up to 30% of approved project cost (confirmed rate; no cap explicitly stated for this component)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 11.4
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: BIADA-confirmed, official live portal (EPIP, Hajipur). Bihar's net-SGST reimbursement rate conflicts across sources (80% per a 2025 dept. post vs 100%-of-project-cost-cap per the 2016 policy) -- not modeled here to avoid picking an unreconciled figure; only the confirmed capital-subsidy % is used."
+    },
+    {
+      "state": "Assam",
+      "sector": "General Manufacturing / Export-Oriented (EPIP)",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 2.1853
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [
+        {
+          "scheme_name": "Assam IIPA 2019 (amended 2023) -- capital subsidy, up to 30% of P&M value (confirmed rate; reported as Micro-focused, applied here at full project scale for illustration)",
+          "jurisdiction": "state",
+          "timing": "upfront",
+          "amount": 11.4
+        },
+        {
+          "scheme_name": "Central UNNATI 2024 (successor to the expired NEIDS 2017) -- Capital Investment Incentive, 30% of P&M investment, Zone A cap Rs5cr (confirmed rate and cap; disbursement track record under this new scheme is unverified per this research)",
+          "jurisdiction": "central",
+          "timing": "upfront",
+          "amount": 5.0
+        }
+      ],
+      "discount_rate": 0.1,
+      "note": "Land rate: AIDC-confirmed, official, dated EOI (EPIP Amingaon; a minimum base auction rate, actual allotment may be higher). This is the one entry in this matrix with a CONFIRMED STACKABLE central+state combination: Assam's own state scheme plus the central North-East-specific UNNATI package on top -- a genuine finding, not an assumption. UNNATI's real-world disbursement reliability is separately flagged as unverified in docs/INDIA_CENTRAL_INVESTMENT_INCENTIVES.md-style research."
+    },
+    {
+      "state": "Delhi (NCT)",
+      "sector": "General Manufacturing",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 42.5406
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [],
+      "discount_rate": 0.1,
+      "note": "Land rate: DDA-confirmed (Mangolpuri Industrial Area e-auction reserve price) -- but from a 2022 auction cycle (DSIIDC's own portal was unreachable in this research pass), so treat as dated. NO state-tier incentive is modeled: Delhi has NO notified, state-style industrial investment-promotion policy with capital/interest/SGST mechanics as of this research -- a Draft Industrial Policy 2025-2035 remains unnotified, and industrial investment there is governed almost entirely by central schemes. This project's extreme land cost (the highest of all states in this matrix, reflecting genuine urban land scarcity) combined with zero state incentive makes it the least favorable entry here on both dimensions."
+    },
+    {
+      "state": "Chandigarh (UT)",
+      "sector": "General Manufacturing",
+      "land": {
+        "area_acres": 10.0,
+        "rate_per_acre": 30.2984
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [],
+      "discount_rate": 0.1,
+      "note": "Land rate: a Collector/circle rate (UT's own minimum stamp-duty valuation floor, Industrial Area Phase III, eff. 01.04.2025), NOT a Housing Board/Estate Office allotment or auction premium -- the actual allotment portal could not be reached, so treat this as the weakest-confidence land figure in this matrix. NO state-tier incentive is modeled: Chandigarh (a UT administered directly by the Centre) has no finalized industrial investment-promotion policy of its own; a draft is in stakeholder consultation. Industrial investment is effectively governed by central MSME schemes only."
     }
   ]
 }

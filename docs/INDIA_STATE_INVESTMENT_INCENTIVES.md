@@ -1,9 +1,13 @@
 # State-wise industrial/MSME investment incentive catalog (India)
 
-A reconnaissance catalog of 12 major states' current industrial/MSME investment-promotion policies,
+A reconnaissance catalog of 18 states'/UTs' current industrial/MSME investment-promotion policies,
 mapped onto the mechanics implemented in `finmodel.investment_incentives`
 (see `docs/INVESTMENT_INCENTIVES.md`). This is a **starting point for populating that module's inputs, not
-a locked reference** — read the methodology note before using any number here.
+a locked reference** — read the methodology note before using any number here. The original 12 states are
+below; a second research pass added Kerala, West Bengal, Bihar, Assam, Delhi (NCT), and Chandigarh (UT) —
+see that section for two genuinely important findings: **Delhi and Chandigarh have no state-tier incentive
+scheme at all**, and **West Bengal's entire framework was legislatively revoked in 2025** with no finalized
+replacement yet.
 
 ## Methodology note — read this before using any number below
 
@@ -195,6 +199,125 @@ of land and building. A capital subsidy exists per clause 16.19 of IBDP-2022, bu
 Food Processing, Textiles, Pharma, IT, Electronics, Renewable Energy) — the base rate this extra builds on
 is also **not confirmed**. Interest subsidy, electricity duty exemption %, per-employee employment subsidy,
 women/SC-ST top-up: **not confirmed in source**.
+
+## Second research pass — 6 more states/UTs
+
+Same methodology and caveats as above (secondary compilations cross-checked across 2+ sources where
+possible; every unconfirmed rate flagged rather than guessed).
+
+### Kerala
+
+*Kerala Industrial Policy 2023*, effective for investments from 01.04.2023, 22 priority sectors.
+Source: https://industry.kerala.gov.in/images/pdf/2023/IND_POLICY_ENG.pdf (primary, scanned/unreadable) +
+KSIDC/K-RIIS scheme PDFs (as accessed 2026-09).
+
+Two overlapping capital-subsidy schemes are reported, **not clearly reconciled against each other**: (1) the
+Entrepreneur Support Scheme — 15% of FCI (cap ₹30L) general, 25% (cap ₹40L) for young/women/SC-ST/NRK
+entrepreneurs, +10% (cap ₹10L) priority-sector top-up; (2) the policy's own investment subsidy — Micro/
+Small/Medium up to 45% (caps ₹40L/₹100L/₹200L), Large/Mega 10% (cap ₹10cr). Interest subvention: MSME term/
+working-capital loans effectively at ~4% (subvention 3–6%) for up to 5 years. Net SGST reimbursement: 100%
+for Large/Mega for 5 years (Priority Sectors only). K-RIIS: 100% land/building lease-purchase assistance for
+women/SC-ST/PH/transgender entrepreneurs. Stamp duty %, electricity duty %, per-employee employment subsidy,
+formal Large/Mega/Ultra-Mega thresholds: **not confirmed in source**.
+
+### West Bengal
+
+**Status is genuinely unsettled as of this research (Sept 2026) — this is the important finding, not a gap.**
+Source: PRS India (Act text) https://prsindia.org/files/bills_acts/acts_states/west-bengal/2025/Act4of2025WB.pdf;
+Silpasathi https://silpasathi.wb.gov.in/msme_Incentives (as accessed 2026-09).
+
+*The Revocation of West Bengal Incentive Schemes and Obligations in the Nature of Grants and Incentives Act,
+2025* nullified the state's **entire 1993-onward investment-linked incentive framework**. Secondary reporting
+is contradictory on what survives: some sources claim Banglashree (MSME: capital subsidy 7.5–25% of FCI by
+zone, cap ₹1–1.75cr; net SGST refund 30% for 8 years in Zone B/C) and WBIPA "remain operative"; government
+statements (Aug 2026) describe a **new, not-yet-finalized** ₹5,000cr employment-linked incentive policy
+replacing the investment-linked model entirely. **Do not hardcode Banglashree/WBIPA numbers as current
+without re-checking whether the new policy has since been notified.** Interest subsidy, stamp duty,
+electricity duty, employment subsidy, and which framework actually governs a new investment today: **not
+confirmed in source**.
+
+### Bihar
+
+*Bihar Industrial Investment Promotion Policy 2016* (High Priority Sectors), continued/extended as the
+*Bihar Industrial Investment Promotion Package 2025 (BIPPP-2025)*, approved Aug 2025, applications open to
+31.03.2026. Source: nsws.gov.in policy PDF (primary, unreadable) + Dept. of Industries Bihar + Drishti IAS
+(as accessed 2026-09).
+
+Capital investment subsidy: up to 30% of approved project cost. Interest subvention: 10–12%, cap conflicts
+across sources (up to ₹10cr per one source, up to ₹40cr for BIPPP-2025 per another — reconcile against
+primary). Net SGST reimbursement: 80% (2025 dept. post) vs. 100%-of-project-cost cap (2016-policy secondary
+summary) — **sources disagree**; one source separately cites an overall cap up to 300% of project cost over
+14 years. Stamp duty/land-conversion fee: 100% reimbursement. Electricity duty: 100% reimbursement.
+Employment subsidy: ₹1,000/employee/month for SC/ST and women employees, ₹500/month general. BIPPP-2025 adds
+free land (10–25 acres) for ≥₹100cr/≥₹1,000cr investments. Exact tenure years for each component: **not
+confirmed in source**.
+
+### Assam
+
+*Industrial and Investment Policy of Assam (IIPA) 2019* (amended 2023). Source: industries.assam.gov.in
+policy/operational-guidelines PDF (primary, unreadable) + Cretum Advisory/SGM Consultancy summaries (as
+accessed 2026-09).
+
+Capital investment subsidy: up to 30% of P&M value (reported as Micro-focused). Interest subsidy: 3–5% on
+term loans; separately 2% on working-capital loans for 5 years, capped at ₹50 lakh and 100% of P&M
+investment. Net SGST reimbursement reported inconsistently ("7 years" in one source vs. "up to 15 years at
+150% of FCI" in an implementation document — reconcile against primary). Stamp duty: 100% reimbursement,
+subject to an FCI-linked limit not confirmed. Electricity duty exemption and employment subsidy exist only
+as part of a separately-negotiated "customized incentives" package for mega projects (≥₹100cr investment,
+≥200 permanent jobs) — not a standard published rate.
+
+**North-East central overlay — a confirmed, important finding:** NEIDS 2017 (the prior central North-East
+package) **expired 31.03.2022**. It was replaced, not merely lapsed: Cabinet approved the **Uttar Poorva
+Transformative Industrialization Scheme (UNNATI), 2024** in March 2024 — ₹10,037cr outlay over 10 years,
+covering all 8 NE states including Assam. Per unnati.dpiit.gov.in: Capital Investment Incentive 30% of P&M
+(cap ₹5cr, Zone A) or 50% (cap ₹7.5cr, Zone B); Central Interest Subvention up to 5% for 7 years; GST
+reimbursement 100% of net GST up to 150% of investment for 15 years; Manufacturing & Services Linked
+Incentive 75% (Zone A) / 100% (Zone B) of P&M value; per-unit cap ₹250cr. **This stacks on top of Assam's own
+IIPA 2019, not instead of it.** One caveat found: at least one contemporaneous report claims zero funds had
+actually been disbursed under UNNATI as of that reporting — confirm current disbursement status before
+assuming this overlay is functioning in practice, not just on paper.
+
+### Delhi (NCT)
+
+**Finding: Delhi does NOT currently have a notified, state-style industrial investment-promotion policy with
+capital/interest/SGST-reimbursement mechanics.** Source: industries.delhi.gov.in draft-policy page + news
+coverage (as accessed 2026-09).
+
+A *Draft Delhi Industrial Policy 2025–2035* was released for public comment 16–30.07.2025 and, per multiple
+2026 sources, **remains unnotified as of Sept 2026** — government reporting now references a further-out
+"Delhi Industrial Policy 2026–2036" still in preparation. The draft's few disclosed figures are aggregate
+scheme sizes (a ₹400cr venture-capital fund, a ₹50cr capital-investment reimbursement pool), not per-unit
+percentages. DSIIDC's role is industrial-infrastructure development (land/estates), not subsidy disbursement
+comparable to Gujarat's iNDEXTb or Kerala's KSIDC. MSME support currently visible is central-scheme-mediated
+(RAMP, GeM/ONDC) rather than a Delhi-specific incentive schedule. **No confirmed state-style mechanic exists
+to report — this is the honest finding, not a gap in research.**
+
+### Chandigarh (UT)
+
+**Finding: Chandigarh has no current industrial investment-promotion policy of its own** (no capital
+subsidy, interest subsidy, or SGST-reimbursement schedule found). Source: Chandigarh Administration
+Industries Dept. page + The Tribune coverage of the policy-drafting process (as accessed 2026-09).
+
+The UT Administration began drafting a new Industrial Policy (reportedly modeled on Gujarat's), focused on
+modernization/technology-upgrade of *existing* units (land is scarce, so it is not a greenfield-attraction
+policy) and MSME certification/compliance support. As of the most recent reporting located (mid-2026), the
+draft remains in stakeholder consultation, and — because Chandigarh is a UT administered directly by the
+Centre — any finalized policy would need Central Government approval before notification, unlike a state's
+own legislative process. Industrial investment in Chandigarh today is effectively governed by central MSME
+schemes (e.g. PMEGP) rather than a territory-level incentive schedule. **All incentive mechanics requested:
+not confirmed in source — none currently exists to confirm.**
+
+### Cross-cutting notes from this second pass
+
+- **West Bengal is mid-transition**: do not hardcode old-scheme numbers as current without re-checking
+  whether a new policy has since been notified.
+- **Assam is the one state with two additive policy layers** (state IIPA 2019 + central UNNATI 2024) — model
+  these as stackable line items, not alternatives, and carry UNNATI's disbursement-reliability caveat.
+- **Delhi and Chandigarh should be modeled as "no state-tier incentive" (zero/null), not populated with
+  placeholder rates** — that is the accurate finding, not a data gap.
+- Bihar's 2016-vs-2025(BIPPP) SGST-reimbursement figures (80% vs 100%-of-project-cost-cap) directly conflict
+  between the two most authoritative-looking secondary sources found — needs primary-PDF reconciliation, same
+  as the flagged MP/Karnataka conflicts from the first research pass.
 
 ## What needs primary-source follow-up before this feeds a real calculation
 

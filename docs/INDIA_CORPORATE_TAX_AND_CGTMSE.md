@@ -21,7 +21,7 @@ effective_rate = base_rate * (1 + surcharge_rate) * (1 + cess_rate)
 
 `tax_regime_comparison` computes this for each regime, then the resulting post-tax annual cash flow and IRR,
 so the real choice shows up as an IRR number rather than a rate table. Run against a real project from this
-toolkit's own 12-state matrix — Gujarat's automobile & auto-components project (₹59.33cr capex, the same
+toolkit's own 18-state matrix — Gujarat's automobile & auto-components project (₹59.33cr capex, the same
 flat ₹7.6cr/year illustrative operating cash flow used throughout this toolkit) —
 `examples/india_corporate_tax_regimes_demo.json` shows 115BAB clearing a positive IRR (1.10%) while 115BAA
 (-0.76%) and the standard regime (-2.78%) both remain negative at this illustrative cash-flow level — a

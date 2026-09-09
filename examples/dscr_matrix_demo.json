@@ -119,6 +119,66 @@
       "interest_rate": 0.105,
       "tenure_years": 10,
       "min_dscr": 1.2
+    },
+    {
+      "state": "Kerala",
+      "sector": "Food Processing",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 37.019499999999994,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
+    },
+    {
+      "state": "West Bengal",
+      "sector": "Engineering & General Manufacturing",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 31.851399999999998,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
+    },
+    {
+      "state": "Bihar",
+      "sector": "General Manufacturing / Export-Oriented (EPIP)",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 42.977199999999996,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
+    },
+    {
+      "state": "Assam",
+      "sector": "General Manufacturing / Export-Oriented (EPIP)",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 41.897099999999995,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
+    },
+    {
+      "state": "Delhi (NCT)",
+      "sector": "General Manufacturing",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 324.38419999999996,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
+    },
+    {
+      "state": "Chandigarh (UT)",
+      "sector": "General Manufacturing",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 238.68880000000001,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
     }
   ]
 }

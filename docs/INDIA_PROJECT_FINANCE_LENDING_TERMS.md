@@ -1,7 +1,7 @@
 # Indian project-finance lending terms (SBI, IREDA, REC)
 
 Real published lending terms from three major Indian project-finance lenders, feeding
-`finmodel.project_bankability.debt_service_coverage_ratio` and its worked 12-state application
+`finmodel.project_bankability.debt_service_coverage_ratio` and its worked 18-state application
 (`examples/dscr_matrix_demo.json`). As with every other catalog in this toolkit: every number is sourced and
 dated, and every gap is flagged explicitly rather than filled with a guess.
 
@@ -46,7 +46,7 @@ transmission/hydro repayment is cash-flow/PPA/DSCR-based, amortized within 80% o
 call option after 15 years); other sectors ≤15 years. Moratorium: 6 months–1.5 years from COD.
 
 **This is the only one of the three lenders with a fully sourced, dated, lender-disclosed DSCR schedule** —
-safe to cite with confidence for renewable-energy projects specifically (none of the 12 states in this
+safe to cite with confidence for renewable-energy projects specifically (none of the 18 states/UTs in this
 toolkit's current matrix are RE projects, so IREDA's rates don't directly apply there yet; they would be the
 right source the day a solar/wind entry is added).
 
@@ -77,17 +77,19 @@ pricing; they're reported for completeness with this flag attached.
 | DSCR — lender's own disclosed figure | None | **1.2x–1.4x, explicit and dated** | None |
 | DSCR — general industry norm (not lender-specific) | 1.20x–1.25x | (has its own, doesn't need the norm) | 1.20x–1.25x |
 
-`examples/dscr_matrix_demo.json` models all 12 states' projects against the **generic SBI/REC-style case**
-(70% debt:equity, an illustrative 10.5% derived interest rate, 1.20x minimum DSCR — the conservative end of
-the general industry norm, since neither SBI nor REC discloses its own floor), computed using only each
-project's *operating* cash flow (not incentive income) as the conservative, bank-side cash flow available
-for debt service — lenders typically don't credit uncertain subsidy income toward a DSCR test the way they
-credit contracted revenue. **Tamil Nadu, Karnataka, Odisha, Uttar Pradesh, and Madhya Pradesh** clear this
-conservative 1.20x covenant on operating cash flow alone; the other 7 states' illustrative projects would
-need either a smaller loan (more promoter equity), a longer tenure, or bankable incentive cash flow layered
-in before a lender in this generic mold would extend 70% leverage — a genuinely different question from the
-IRR-based "bankability" in `docs/PROJECT_BANKABILITY.md`, and one worth reading alongside it rather than
-instead of it.
+`examples/dscr_matrix_demo.json` models all 18 states'/UTs' projects against the **generic SBI/REC-style
+case** (70% debt:equity, an illustrative 10.5% derived interest rate, 1.20x minimum DSCR — the conservative
+end of the general industry norm, since neither SBI nor REC discloses its own floor), computed using only
+each project's *operating* cash flow (not incentive income) as the conservative, bank-side cash flow
+available for debt service — lenders typically don't credit uncertain subsidy income toward a DSCR test the
+way they credit contracted revenue. **Tamil Nadu, Karnataka, Odisha, West Bengal, Uttar Pradesh, Madhya
+Pradesh, and Kerala** clear this conservative 1.20x covenant on operating cash flow alone; the other 11
+states'/UTs' illustrative projects would need either a smaller loan (more promoter equity), a longer tenure,
+or bankable incentive cash flow layered in before a lender in this generic mold would extend 70% leverage —
+Delhi and Chandigarh are the two most extreme cases (0.141x and 0.192x DSCR), where their land cost alone
+makes 70% leverage essentially unworkable at this illustrative cash-flow level — a genuinely different
+question from the IRR-based "bankability" in `docs/PROJECT_BANKABILITY.md`, and one worth reading alongside
+it rather than instead of it.
 
 ## A renewable-energy entry, using IREDA's own terms rather than the generic case
 
@@ -97,7 +99,7 @@ terms (8.65% interest, effective 01.06.2026; 75% loan per IREDA's own new-client
 — IREDA's own disclosed figure**, not the 1.20x general industry norm used for the generic SBI/REC case
 above) rather than the generic case. Run via `finmodel project-bankability
 examples/dscr_matrix_ireda_demo.json`: both clear comfortably at 2.195x DSCR — a considerably healthier
-result than the generic 12-state matrix produced for the same illustrative capex and cash-flow assumptions,
+result than the generic 18-state matrix produced for the same illustrative capex and cash-flow assumptions,
 which makes sense: IREDA's rate (8.65%) is meaningfully lower than the generic case's derived 10.5%, because
 IREDA is a purpose-built renewable-energy lender pricing off its own administered grade system rather than a
 generic corporate spread. This is the direct, concrete illustration of why sector-specific lender matching

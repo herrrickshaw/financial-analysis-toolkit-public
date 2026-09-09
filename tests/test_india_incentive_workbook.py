@@ -22,10 +22,11 @@ def test_every_catalog_row_matches_its_headers_length():
             assert len(row) == len(headers)
 
 
-def test_state_incentives_covers_all_12_states():
+def test_state_incentives_covers_all_18_states():
     states = {row[0] for row in WB.STATE_INCENTIVES_ROWS}
     assert states == {"Madhya Pradesh", "Gujarat", "Maharashtra", "Tamil Nadu", "Uttar Pradesh", "Rajasthan",
-                      "Karnataka", "Telangana", "Andhra Pradesh", "Odisha", "Haryana", "Punjab"}
+                      "Karnataka", "Telangana", "Andhra Pradesh", "Odisha", "Haryana", "Punjab",
+                      "Kerala", "West Bengal", "Bihar", "Assam", "Delhi (NCT)", "Chandigarh (UT)"}
 
 
 def test_matrix_rows_match_the_underlying_modules_directly():
@@ -36,15 +37,15 @@ def test_matrix_rows_match_the_underlying_modules_directly():
         bankability = PB.from_dict(json.load(f))["rank_projects"]
     irr_by_state = {p["state"]: p for p in bankability["projects"]}
 
-    # 12 state rows + 1 TOTAL row
-    assert len(matrix_rows["rows"]) == 13
+    # 18 state rows + 1 TOTAL row
+    assert len(matrix_rows["rows"]) == 19
     by_state = {row[0]: row for row in matrix_rows["rows"][:-1]}
     for p in matrix["projects"]:
         row = by_state[p["state"]]
         assert row[3] == round(p["capex"]["total_capex"], 2)
         assert row[7] == round(irr_by_state[p["state"]]["irr_without_incentives"], 4)
     total_row = matrix_rows["rows"][-1]
-    assert total_row[0] == "TOTAL (12 states)"
+    assert total_row[0] == "TOTAL (18 states)"
     assert total_row[3] == round(matrix["total_capex_across_projects"], 2)
 
 
@@ -52,16 +53,16 @@ def test_build_workbook_writes_all_sheets(tmp_path):
     path = WB.build_workbook(str(tmp_path / "india_incentives.xlsx"))
     wb = load_workbook(path)
     assert wb.sheetnames == ["README", "State Incentives", "Central Incentives", "Land Cost Benchmarks",
-                             "12-State Matrix", "Tax Regime Comparison", "Financing Effects"]
+                             "18-State Matrix", "Tax Regime Comparison", "Financing Effects"]
     assert wb.properties.title == WB.WORKBOOK_TITLE == "Investment Promotion Agency (IPA) Support"
     tax_sheet = wb["Tax Regime Comparison"]
     assert tax_sheet.max_row == 4  # header + 3 regimes
     financing_sheet = wb["Financing Effects"]
     assert financing_sheet.max_row == 5  # header + 2 CGTMSE rows + 2 IREDA rows
-    ws = wb["12-State Matrix"]
+    ws = wb["18-State Matrix"]
     assert ws.cell(row=1, column=1).value == "State"
-    assert ws.cell(row=14, column=1).value == "TOTAL (12 states)"
+    assert ws.cell(row=20, column=1).value == "TOTAL (18 states)"
     states_sheet = wb["State Incentives"]
-    assert states_sheet.max_row == 13  # header + 12 states
+    assert states_sheet.max_row == 19  # header + 18 states
     central_sheet = wb["Central Incentives"]
     assert central_sheet.max_row == 1 + len(WB.CENTRAL_INCENTIVES_ROWS)

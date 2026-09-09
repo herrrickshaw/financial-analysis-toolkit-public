@@ -1,5 +1,5 @@
 """Investment Promotion Agency (IPA) Support workbook: consolidates this toolkit's India investment-incentive
-research -- state schemes, central schemes, land-cost benchmarks, and the worked 12-state matrix -- into a
+research -- state schemes, central schemes, land-cost benchmarks, and the worked 18-state matrix -- into a
 single, multi-sheet Excel workbook, playing the same role for an investor that a state or central IPA
 (Invest India, Invest MP, Invest Karnataka, APIIC, and their counterparts) already plays one state/scheme at
 a time: the same facts as `docs/INDIA_STATE_INVESTMENT_INCENTIVES.md`,
@@ -84,6 +84,34 @@ STATE_INCENTIVES_ROWS = [
      "Net SGST reimbursement", "100% of net SGST", "100% of FCI", 7,
      "Stamp duty 100% exemption; capital subsidy exists (base % not confirmed); extra incentive up to 125% of FCI for thrust sectors",
      "Medium", "punjabinfotech.in PDF"],
+    ["Kerala", "Kerala Industrial Policy 2023 (eff. 01.04.2023)",
+     "Two overlapping capital-subsidy schemes, not reconciled: Entrepreneur Support Scheme (MSME-scale) and the policy's own Investment Subsidy (Large/Mega)",
+     "ESS 15-25% of FCI (MSME); Investment Subsidy 10% of FCI (Large/Mega)", "ESS cap Rs30-40L; Investment Subsidy cap Rs10cr (Large/Mega)",
+     "Not confirmed", "Interest subvention (effective ~4% for MSME loans, 5yrs); net SGST 100%/5yrs (Large/Mega, Priority Sectors only); K-RIIS 100% land/building lease-purchase assistance for women/SC-ST/PH/transgender",
+     "Medium", "industry.kerala.gov.in policy PDF (unreadable); KSIDC/K-RIIS scheme PDFs"],
+    ["West Bengal", "REVOKED 2025 -- no confirmed current state-linked capital/interest/SGST scheme",
+     "None currently confirmed", "N/A", "N/A", "N/A",
+     "The entire investment-linked incentive framework (Banglashree/WBIPA) was legislatively REVOKED by Act 4 of 2025; a proposed employment-linked replacement (~Rs5,000cr) was not yet finalized as of this research (Aug 2026) -- an active policy transition, not a stable baseline",
+     "Low (transition in progress)", "PRS India (Act 4 of 2025 text); silpasathi.wb.gov.in"],
+    ["Bihar", "Bihar Industrial Investment Promotion Package (BIPPP) 2025 (approved Aug 2025, applications to 31.03.2026)",
+     "Capital investment subsidy", "Up to 30% of approved project cost", "Not explicitly capped for this component", "Not confirmed",
+     "Interest subvention 10-12% (cap conflicts: Rs10cr vs Rs40cr across sources); net SGST reimbursement 80% vs 100%-of-cost-cap (sources disagree); stamp duty/electricity duty 100% reimbursement; employment subsidy Rs1,000/mo (SC/ST/women) or Rs500/mo (general); free land (10-25 acres) for >=Rs100cr/>=Rs1,000cr investments",
+     "Medium (SGST rate conflicts across sources)", "Dept. of Industries Bihar; Drishti IAS; nsws.gov.in policy PDF (unreadable)"],
+    ["Assam", "Industrial and Investment Policy of Assam (IIPA) 2019 (amended 2023) + central UNNATI 2024 overlay",
+     "State: capital subsidy on P&M. Central: UNNATI Capital Investment Incentive (stacks on top of the state scheme)",
+     "State 30% of P&M (Micro-focused); Central (UNNATI) 30% (Zone A) / 50% (Zone B) of P&M",
+     "State: not confirmed; Central (UNNATI): Rs5cr (Zone A) / Rs7.5cr (Zone B), per-unit cap Rs250cr",
+     "Central (UNNATI): 10 years (scheme outlay period)",
+     "State interest subsidy 3-5% on term loans; UNNATI GST reimbursement 100% up to 150% of investment for 15yrs; UNNATI Manufacturing & Services Linked Incentive 75-100% of P&M value. NEIDS 2017 (UNNATI's predecessor) expired 31.03.2022. UNNATI's real-world disbursement track record is separately reported as unverified/possibly nil as of this research",
+     "Medium (UNNATI rates confirmed via DPIIT portal; disbursement reliability unverified)", "industries.assam.gov.in; unnati.dpiit.gov.in"],
+    ["Delhi (NCT)", "NO notified state-style industrial investment-promotion policy",
+     "None currently exists", "N/A", "N/A", "N/A",
+     "A Draft Delhi Industrial Policy 2025-2035 remains UNNOTIFIED as of Sept 2026 (a further-out 2026-2036 draft is now referenced instead); DSIIDC's role is industrial-infrastructure development, not subsidy disbursement; MSME support visible is central-scheme-mediated (RAMP, GeM/ONDC) rather than a Delhi-specific mechanic -- this is the honest finding, not a research gap",
+     "High confidence that NO scheme currently exists", "industries.delhi.gov.in draft policy page; news coverage"],
+    ["Chandigarh (UT)", "NO current industrial investment-promotion policy",
+     "None currently exists", "N/A", "N/A", "N/A",
+     "UT Administration is drafting a new Industrial Policy (reportedly modeled on Gujarat's, focused on modernization of EXISTING units, not greenfield attraction -- land is scarce); still in stakeholder consultation as of mid-2026; any finalized policy needs Central Government approval since Chandigarh is Centrally administered; industrial investment today is effectively governed by central MSME schemes (e.g. PMEGP) only",
+     "High confidence that NO scheme currently exists", "Chandigarh Administration Industries Dept.; The Tribune coverage"],
 ]
 
 CENTRAL_INCENTIVES_HEADERS = ["Scheme", "Category", "Outlay / Cap", "Mechanic / Rate", "Tenure", "Confidence", "Source"]
@@ -198,6 +226,21 @@ LAND_COST_ROWS = [
     ["Karnataka", "Sira Industrial Area, Tumakuru, Plot 108", "General (2-acre plot, historical allotment)",
      "Rs91,00,000 total (derived: Rs45.5L/acre)", 0.455, "Confirmed via official API, but a historical allotted-plot price",
      "KIADB GIS portal, \"Search Data -> By Land Bank\""],
+    ["Kerala", "KINFRA Food Processing Industrial Park, Adoor, Pathanamthitta", "Food processing", "Rs148.85 lakh/acre (developed)",
+     1.489, "Confirmed, official, live portal (no single effective date; page flags lease premium under revision)", "kinfra.org/investor-zone Land Bank table"],
+    ["West Bengal", "Vidyasagar Industrial Park, Kharagpur, Paschim Medinipur", "Engineering / multi-product", "Rs75.02 lakh/acre (freehold)",
+     0.750, "Confirmed, official, dated (\"Tentative Base Price for the Year 2026\")", "wbidc.com/wbidc-land/availability-of-land-modules"],
+    ["Bihar", "EPIP, Hajipur, Vaishali", "Export-oriented (EPIP)", "Rs537.10/sq.ft", 2.340,
+     "Confirmed, official, live portal", "biada1.bihar.gov.in Vacant Plot Details"],
+    ["Assam", "EPIP Amingaon, Kamrup", "Export-oriented (EPIP)", "Rs5,400/sq.m", 2.185,
+     "Confirmed, official, dated (EOI ECF No.353649/114, 05.09.2024) -- a minimum bid-floor rate, actual allotment may be higher",
+     "aidcltd.assam.gov.in EOI PDF"],
+    ["Delhi (NCT)", "Mangolpuri Industrial Area, Ph-I & II", "General (extreme high-cost urban location)", "Rs1,05,120/sq.m", 42.541,
+     "Confirmed, official, but dated (2022 e-auction cycle) -- DSIIDC's own portal was unreachable in this research pass",
+     "dda.gov.in e-auction reserve-price schedule (Annexure-I)"],
+    ["Chandigarh (UT)", "Industrial Area, Phase III", "General", "Rs62,600/sq.yard", 30.298,
+     "Weakest confidence in this catalog: a Collector/circle rate (stamp-duty valuation floor, eff. 01.04.2025), NOT a Housing Board/Estate Office allotment or auction premium -- the actual allotment portal could not be reached",
+     "The Tribune, reporting UT collector-rate notification"],
 ]
 
 
@@ -231,7 +274,7 @@ def _matrix_and_bankability_rows() -> Dict[str, Any]:
             round(irr_row.get("irr_without_incentives", 0.0), 4), round(irr_row.get("irr_with_incentives", 0.0), 4),
             round(dscr_row.get("dscr", 0.0), 3), "Yes" if dscr_row.get("compliant") else "No",
         ])
-    rows.append(["TOTAL (12 states)", "", "", round(matrix["total_capex_across_projects"], 2),
+    rows.append(["TOTAL (18 states)", "", "", round(matrix["total_capex_across_projects"], 2),
                 round(matrix["total_incentive_present_value_across_projects"], 2),
                 round(matrix["total_capex_across_projects"] - matrix["total_incentive_present_value_across_projects"], 2),
                 "", "", "", "", ""])
@@ -291,10 +334,10 @@ README_LINES = [
     "project's actual bankability -- across states and the centre in one place, filterable and sortable.",
     "",
     "Sheets:",
-    "  State Incentives    -- 12 states' industrial/MSME investment-promotion schemes",
+    "  State Incentives    -- 18 states/UTs' industrial/MSME investment-promotion schemes",
     "  Central Incentives  -- PLI (14 sectors), MSME, tax, SEZ/EOU, and credit-guarantee schemes",
-    "  Land Cost Benchmarks-- sourced industrial land allotment rates across the same 12 states",
-    "  12-State Matrix     -- a worked sample project per state: land+capex netted against incentives (PV basis),",
+    "  Land Cost Benchmarks-- sourced industrial land allotment rates across the same 18 states/UTs",
+    "  18-State Matrix     -- a worked sample project per state/UT: land+capex netted against incentives (PV basis),",
     "                         IRR with/without incentives, and a DSCR covenant check -- computed LIVE from the",
     "                         toolkit's own modules and example files at the time this workbook was built, never re-typed",
     "  Tax Regime Comparison-- Section 115BAB vs 115BAA vs the standard regime, post-tax IRR, computed LIVE",
@@ -324,7 +367,7 @@ def build_workbook(path: str) -> str:
         "State Incentives": {"headers": STATE_INCENTIVES_HEADERS, "rows": STATE_INCENTIVES_ROWS},
         "Central Incentives": {"headers": CENTRAL_INCENTIVES_HEADERS, "rows": CENTRAL_INCENTIVES_ROWS},
         "Land Cost Benchmarks": {"headers": LAND_COST_HEADERS, "rows": LAND_COST_ROWS},
-        "12-State Matrix": _matrix_and_bankability_rows(),
+        "18-State Matrix": _matrix_and_bankability_rows(),
         "Tax Regime Comparison": _tax_regime_rows(),
         "Financing Effects": _financing_effects_rows(),
     }

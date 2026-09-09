@@ -1,8 +1,9 @@
 # Industrial land cost benchmarks (India)
 
-Representative industrial-plot allotment rates across the same 12 states covered in
+Representative industrial-plot allotment rates across the same 18 states/UTs covered in
 `docs/INDIA_STATE_INVESTMENT_INCENTIVES.md`, feeding the `rate_per_acre` input of
-`finmodel.sector_investment_model.industrial_land_cost`.
+`finmodel.sector_investment_model.industrial_land_cost`. The original 12 states are below; a second research
+pass added Kerala, West Bengal, Bihar, Assam, Delhi (NCT), and Chandigarh (UT) — see that section.
 
 ## Methodology note — read this before using any number below
 
@@ -114,10 +115,44 @@ elsewhere in this catalog. Only 4 Karnataka districts (Ballari, Mysuru, Tumakuru
 Bank" in this tool; Bengaluru-area parks (e.g. Electronic City Phase 2) show an aggregate panel whose
 "Outright Land Sale Price" field read 0 for the one park checked, likely because it's fully allotted.
 
+## Second research pass — 6 more states/UTs
+
+All 6 came back with at least one real, sourced rupee figure — none needed to be left unconfirmed, though
+Delhi and Chandigarh are meaningfully weaker than the other four (see their notes). Conversions use the same
+exact arithmetic as above (1 acre = 4,046.8564 sq.m = 4,840 sq.yard = 43,560 sq.ft).
+
+| State/UT | Industrial area / park | Sector character | Rate as quoted | Converted | Confidence | Source |
+|---|---|---|---|---|---|---|
+| Kerala | KINFRA Industrial Park, Piravanthoor, Kollam | general | ₹93.77 lakh/acre | ₹0.94 cr/acre | Confirmed, official, live portal (no single effective date; page flags lease premium under revision) | kinfra.org/investor-zone Land Bank table |
+| Kerala | KINFRA Food Processing Industrial Park, Adoor, Pathanamthitta | food processing | ₹148.85 lakh/acre (developed) | ₹1.49 cr/acre | Confirmed, official, live portal | same |
+| Kerala | Petrochemical Park, Ambalamughal | petrochemicals (highest in the KINFRA table) | ₹475.41 lakh/acre | ₹4.75 cr/acre | Confirmed, official, live portal | same |
+| Kerala | KINFRA Integrated Industrial & Textile Park, Palakkad Ph.2 | textile | ₹175.53 lakh/acre | ₹1.76 cr/acre | Confirmed, official, live portal | same |
+| West Bengal | Vidyasagar Industrial Park, Kharagpur | engineering / multi-product | ₹75.02 lakh/acre (freehold) | ₹0.75 cr/acre | Confirmed, official, dated ("Tentative Base Price for the Year 2026") | wbidc.com/wbidc-land/availability-of-land-modules |
+| West Bengal | Howrah Industrial Park (NISCO), Belur | multi-product | ₹2,60,24,355/acre | ₹2.60 cr/acre | Confirmed, official, dated; cross-checked against a second wbidc.com page | wbidc.com |
+| West Bengal | Haldia Industrial Park, Purba Medinipur | medium/large-scale | ₹157.80 lakh/acre | ₹1.58 cr/acre | Confirmed, official, dated | wbidc.com |
+| Bihar | EPIP, Hajipur, Vaishali | export-oriented (EPIP) | ₹537.10/sq.ft | ₹2.34 cr/acre | Confirmed, official, live portal | biada1.bihar.gov.in Vacant Plot Details |
+| Bihar | Industrial Area, Hajipur | general | ₹601.47/sq.ft | ₹2.62 cr/acre | Confirmed, official, live portal | same |
+| Bihar | LIE Barari, Bhagalpur | general | ₹757.58/sq.ft | ₹3.30 cr/acre | Confirmed, official, live portal | same |
+| Bihar | IA Sakri, Madhubani | general (low end) | ₹78.05/sq.ft | ₹0.34 cr/acre | Confirmed, official, live portal | same |
+| Assam | EPIP Amingaon, Kamrup | export-oriented (EPIP) | ₹5,400/sq.m | ₹2.19 cr/acre | Confirmed, official, dated (EOI, 05.09.2024) — a minimum bid-floor rate | aidcltd.assam.gov.in EOI PDF |
+| Assam | IE Bonda, Kamrup Metro | general, metro-adjacent | ₹4,957/sq.m | ₹2.01 cr/acre | Confirmed, official, dated | same |
+| Assam | IE Matia, Goalpara | general (low end) | ₹750/sq.m | ₹0.30 cr/acre | Confirmed, official, dated | same |
+| Delhi (NCT) | Mangolpuri Industrial Area, Ph-I & II | general (extreme high-cost urban location) | ₹1,05,120/sq.m | ₹42.54 cr/acre | Confirmed, official, but from a **2022** e-auction cycle — DSIIDC's own portal was unreachable in this research pass | dda.gov.in e-auction reserve-price schedule |
+| Chandigarh (UT) | Industrial Area, Phase III | general | ₹62,600/sq.yard | ₹30.30 cr/acre | **Weakest in this catalog**: a Collector/circle rate (stamp-duty valuation floor, eff. 01.04.2025), NOT an actual allotment/auction premium — the real Estate Office portal could not be reached | The Tribune, reporting the UT's own collector-rate notification |
+
+Notes worth carrying forward: Delhi's Mangolpuri rate (₹42.54cr/acre) is the highest of all 18 states/UTs in
+this entire catalog, consistent with genuine extreme urban land scarcity — combined with Delhi having no
+state-tier incentive at all (see `docs/INDIA_STATE_INVESTMENT_INCENTIVES.md`), this makes Delhi the least
+favorable entry in the whole 18-state matrix on both dimensions. A memory-worthy correction: `wbidc.com`
+resolved fully and served a live official rate table in this research pass, contradicting an earlier,
+unrelated finding (from a different project's research) that it was a parked/hijacked domain — domain status
+can change, so don't assume a stale "hijacked" flag still holds without re-checking.
+
 ## How this feeds the calculator
 
-`docs/INDIA_STATE_SECTOR_INCENTIVE_MATRIX.md` now uses a real, sourced land rate for **all 12** states —
-the "Confirmed, official" and "official live portal" rows for 9 of them, and the press-sourced
-(Punjab)/aggregator-sourced (Maharashtra)/historical-allotted-plot (Karnataka) rows for the remaining 3,
-each with its own confidence caveat carried through into that state's entry rather than smoothed over. No
-state in the current matrix uses an unsourced illustrative placeholder for land cost any longer.
+`docs/INDIA_STATE_SECTOR_INCENTIVE_MATRIX.md` now uses a real, sourced land rate for **all 18** states/UTs —
+the "Confirmed, official" and "official live portal" rows for the great majority of them, and the
+press-sourced (Punjab, Chandigarh)/aggregator-sourced (Maharashtra)/historical-allotted-plot (Karnataka)/
+dated-but-stale (Delhi) rows for the rest, each with its own confidence caveat carried through into that
+state's entry rather than smoothed over. No state in the current matrix uses an unsourced illustrative
+placeholder for land cost any longer.

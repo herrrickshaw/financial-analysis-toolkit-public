@@ -344,6 +344,91 @@
         ],
         "annual_operating_cash_flow": 7.6000000000000005,
         "project_life_years": 10
+      },
+      {
+        "state": "Kerala",
+        "sector": "Food Processing",
+        "total_capex": 52.885,
+        "upfront_incentive_value": 3.8,
+        "incentive_detail": [
+          {
+            "scheme_name": "Kerala Industrial Policy 2023 -- Investment Subsidy, Large/Mega tier (10% of FCI, cap Rs10cr; confirmed rate, but two overlapping capital-subsidy schemes were reported -- ESS's MSME-scale 15%/cap-Rs30L was NOT used here since it is not meaningful at this project's Large-tier size)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 3.8,
+            "present_value": 3.8
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "West Bengal",
+        "sector": "Engineering & General Manufacturing",
+        "total_capex": 45.502,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Bihar",
+        "sector": "General Manufacturing / Export-Oriented (EPIP)",
+        "total_capex": 61.396,
+        "upfront_incentive_value": 11.4,
+        "incentive_detail": [
+          {
+            "scheme_name": "Bihar Industrial Investment Promotion Package (BIPPP) 2025 -- capital subsidy, up to 30% of approved project cost (confirmed rate; no cap explicitly stated for this component)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 11.4,
+            "present_value": 11.4
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Assam",
+        "sector": "General Manufacturing / Export-Oriented (EPIP)",
+        "total_capex": 59.852999999999994,
+        "upfront_incentive_value": 16.4,
+        "incentive_detail": [
+          {
+            "scheme_name": "Assam IIPA 2019 (amended 2023) -- capital subsidy, up to 30% of P&M value (confirmed rate; reported as Micro-focused, applied here at full project scale for illustration)",
+            "jurisdiction": "state",
+            "timing": "upfront",
+            "nominal_total": 11.4,
+            "present_value": 11.4
+          },
+          {
+            "scheme_name": "Central UNNATI 2024 (successor to the expired NEIDS 2017) -- Capital Investment Incentive, 30% of P&M investment, Zone A cap Rs5cr (confirmed rate and cap; disbursement track record under this new scheme is unverified per this research)",
+            "jurisdiction": "central",
+            "timing": "upfront",
+            "nominal_total": 5.0,
+            "present_value": 5.0
+          }
+        ],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Delhi (NCT)",
+        "sector": "General Manufacturing",
+        "total_capex": 463.40599999999995,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
+      },
+      {
+        "state": "Chandigarh (UT)",
+        "sector": "General Manufacturing",
+        "total_capex": 340.98400000000004,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
       }
     ],
     "hurdle_rate": 0.14

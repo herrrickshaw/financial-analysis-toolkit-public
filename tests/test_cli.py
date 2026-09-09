@@ -715,7 +715,7 @@ def test_cli_project_bankability_flags_incentive_enabled_states(tmp_path, capsys
     out = capsys.readouterr().out
     assert "Ranked by IRR without incentives" in out and "Incentive-enabled projects" in out
     saved = json.loads((tmp_path / "bank.json").read_text())["rank_projects"]
-    assert len(saved["projects"]) == 12
+    assert len(saved["projects"]) == 18
     enabled_states = {p["state"] for p in saved["incentive_enabled_projects"]}
     assert enabled_states == {"Gujarat", "Odisha", "Karnataka"}
     # every project's IRR-with-incentives must be >= its IRR-without (incentives never hurt bankability)
@@ -729,22 +729,27 @@ def test_cli_dscr_matrix_demo_flags_conservative_bank_case_breaches(tmp_path, ca
     out = capsys.readouterr().out
     assert "BREACH" in out and "OK" in out
     saved = json.loads((tmp_path / "dscr.json").read_text())["dscr_matrix"]
-    assert len(saved) == 12
+    assert len(saved) == 18
     compliant_states = {r["state"] for r in saved if r["compliant"]}
-    assert compliant_states == {"Tamil Nadu", "Odisha", "Uttar Pradesh", "Karnataka", "Madhya Pradesh"}
+    assert compliant_states == {"Tamil Nadu", "Odisha", "Uttar Pradesh", "Karnataka", "Madhya Pradesh",
+                                "Kerala", "West Bengal"}
 
 
-def test_cli_state_sector_matrix_demo_covers_all_12_states(tmp_path, capsys):
+def test_cli_state_sector_matrix_demo_covers_all_18_states(tmp_path, capsys):
     from finmodel.cli import main
     main(["sector-investment-model", str(EX / "state_sector_matrix_demo.json"), "--json-out", str(tmp_path / "matrix.json")])
     out = capsys.readouterr().out
     assert "Total capex across projects:" in out
     saved = json.loads((tmp_path / "matrix.json").read_text())["sample_project_matrix"]
-    assert len(saved["projects"]) == 12
+    assert len(saved["projects"]) == 18
     assert {p["state"] for p in saved["projects"]} == {
         "Gujarat", "Uttar Pradesh", "Rajasthan", "Telangana", "Odisha", "Haryana",
         "Tamil Nadu", "Karnataka", "Andhra Pradesh", "Madhya Pradesh", "Maharashtra", "Punjab",
+        "Kerala", "West Bengal", "Bihar", "Assam", "Delhi (NCT)", "Chandigarh (UT)",
     }
+    # Delhi and Chandigarh have zero state-tier incentives (a confirmed finding, not a gap)
+    zero_incentive_states = {p["state"] for p in saved["projects"] if p["incentives"]["nominal_total"] == 0.0}
+    assert {"Delhi (NCT)", "Chandigarh (UT)", "West Bengal"} <= zero_incentive_states
     recomputed_capex = sum(p["capex"]["total_capex"] for p in saved["projects"])
     assert saved["total_capex_across_projects"] == pytest.approx(recomputed_capex)
     recomputed_pv = sum(p["incentives"]["total_present_value"] for p in saved["projects"])
@@ -759,7 +764,7 @@ def test_cli_india_incentive_workbook(tmp_path, capsys):
     assert "Wrote" in captured and str(out) in captured
     from openpyxl import load_workbook
     wb = load_workbook(out)
-    assert "12-State Matrix" in wb.sheetnames
+    assert "18-State Matrix" in wb.sheetnames
 
 
 def test_cli_india_tax_regimes(tmp_path, capsys):
