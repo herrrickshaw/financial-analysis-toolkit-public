@@ -352,14 +352,19 @@ def write_generic(path: str | Path, sheets: Dict[str, Any]) -> Path:
     _legend(wb); path = Path(path); wb.save(path); return path
 
 
-def write_record_tables(path: str | Path, sheets: Dict[str, Dict[str, Any]], readme_lines: Sequence[str] = ()) -> Path:
+def write_record_tables(path: str | Path, sheets: Dict[str, Dict[str, Any]], readme_lines: Sequence[str] = (),
+                        workbook_title: str = "") -> Path:
     """Write one or more flat record tables (a header row plus one row per record) -- the shape a policy
     catalog, land-rate benchmark list, or any other row-per-item dataset actually has, distinct from
     `write_generic`'s year-series financial-statement layout. `sheets`: name -> {"headers": [...], "rows":
     [[...], ...]}. Every sheet gets a bold white-on-blue header row, frozen at row 2, and autosized columns
     (capped so one long cell doesn't blow out the whole sheet); an optional README sheet is prepended when
-    `readme_lines` is given."""
+    `readme_lines` is given. `workbook_title`, when given, is written to the file's own document-properties
+    Title (visible in Excel's File > Info, Finder/Explorer Get Info, and most file pickers) -- distinct from
+    the sheet names and the filename itself."""
     wb = Workbook()
+    if workbook_title:
+        wb.properties.title = workbook_title
     first_sheet_used = False
     if readme_lines:
         ws = wb.active

@@ -52,6 +52,7 @@ def test_build_workbook_writes_all_sheets(tmp_path):
     path = WB.build_workbook(str(tmp_path / "india_incentives.xlsx"))
     wb = load_workbook(path)
     assert wb.sheetnames == ["README", "State Incentives", "Central Incentives", "Land Cost Benchmarks", "12-State Matrix"]
+    assert wb.properties.title == WB.WORKBOOK_TITLE == "Investment Promotion Agency (IPA) Support"
     ws = wb["12-State Matrix"]
     assert ws.cell(row=1, column=1).value == "State"
     assert ws.cell(row=14, column=1).value == "TOTAL (12 states)"

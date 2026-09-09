@@ -1,9 +1,13 @@
-# India investment-incentive Excel workbook
+# Investment Promotion Agency (IPA) Support workbook
 
 `finmodel.india_incentive_workbook` consolidates every piece of this toolkit's India investment-incentive
 research — state schemes, central schemes, land-cost benchmarks, and the worked 12-state matrix — into a
-single, multi-sheet `.xlsx` a non-technical reader can filter and sort directly, rather than reading six
-separate markdown docs. Generate it with:
+single, multi-sheet `.xlsx` titled **"Investment Promotion Agency (IPA) Support"** (set as the file's own
+document-properties Title, not just its filename). The role it fills is the one a state or central IPA
+itself plays for an investor — Invest India, Invest MP, Invest Karnataka, APIIC, and their counterparts each
+publish and explain their own state's/sector's incentives one at a time; this workbook consolidates that
+same kind of information across states and the centre in one place, filterable and sortable directly, rather
+than reading six separate markdown docs or visiting a dozen separate IPA portals. Generate it with:
 
 ```
 finmodel india-incentive-workbook reports/india_investment_incentives.xlsx

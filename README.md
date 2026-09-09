@@ -500,10 +500,13 @@ to the IRR-based ranking above, since a lender won't necessarily credit incentiv
 debt-service capacity the way an investor credits it toward IRR. See `docs/PROJECT_BANKABILITY.md` for the
 full detail.
 
-## India incentive Excel workbook (`docs/INDIA_INCENTIVE_WORKBOOK.md`)
+## Investment Promotion Agency (IPA) Support workbook (`docs/INDIA_INCENTIVE_WORKBOOK.md`)
 
 `finmodel india-incentive-workbook reports/india_investment_incentives.xlsx` consolidates all six India
-docs above into one filterable/sortable spreadsheet: State Incentives (12 rows), Central Incentives (26
+docs above into one filterable/sortable spreadsheet titled **"Investment Promotion Agency (IPA) Support"**
+(the file's own document-properties Title) — playing the same role for an investor that a state or central
+IPA (Invest India, Invest MP, Invest Karnataka, APIIC, ...) already plays one state/scheme at a time: State
+Incentives (12 rows), Central Incentives (26
 rows across PLI/MSME/tax/SEZ/credit-guarantee schemes), Land Cost Benchmarks (30 sourced rates), and a
 12-State Matrix sheet. The three catalog sheets are a structured transcription of their source markdown
 docs, each row carrying its own Confidence and Source column; the Matrix sheet is computed **live** from the

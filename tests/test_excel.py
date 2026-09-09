@@ -80,3 +80,11 @@ def test_write_record_tables_without_readme_uses_first_sheet_as_active(tmp_path)
     wb = load_workbook(p)
     assert wb.sheetnames == ["Only"]
     assert wb["Only"].cell(row=3, column=1).value == 2
+
+
+def test_write_record_tables_sets_workbook_title_document_property(tmp_path):
+    sheets = {"Only": {"headers": ["A"], "rows": [[1]]}}
+    p = excel.write_record_tables(tmp_path / "titled.xlsx", sheets, workbook_title="Investment Promotion Agency (IPA) Support")
+    from openpyxl import load_workbook
+    wb = load_workbook(p)
+    assert wb.properties.title == "Investment Promotion Agency (IPA) Support"
