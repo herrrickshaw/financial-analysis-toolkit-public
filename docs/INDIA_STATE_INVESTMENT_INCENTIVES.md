@@ -490,7 +490,7 @@ independently by two separate research passes.
   one-time-cost field without misrepresenting an annual obligation as a capital cost. Lakshadweep has no
   industrial land market to benchmark at all (a genuine finding tied to its unusually restrictive
   land-ownership regime, not a research gap). Both are catalogued here and in the land-cost doc but excluded
-  from the quantitative 12→27-state matrix for this reason.
+  from the quantitative 12→28-state matrix for this reason.
 - **Chhattisgarh's near-zero land cost and Kerala's/Goa's/Puducherry's MSME-scale subsidy caps** (all far too
   small to matter at the ₹38cr FCI scale used throughout this matrix) are recurring, genuine findings, not
   isolated flukes — several state schemes are simply not designed with large-scale investment in mind.

@@ -5,20 +5,26 @@ A worked "state × sector" matrix tying together `docs/INDIA_STATE_INVESTMENT_IN
 `docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md` (land rates) into one queryable sample calculation per
 state, computed by `finmodel.sector_investment_model.sample_project_matrix`
 (`examples/state_sector_matrix_demo.json`, runnable via `finmodel sector-investment-model
-examples/state_sector_matrix_demo.json`). This now covers 27 states/UTs (the original 12, then Kerala, West
-Bengal, Bihar, Assam, Delhi (NCT), and Chandigarh (UT), and now Himachal Pradesh, Uttarakhand, Jharkhand,
-Chhattisgarh, Goa, Jammu & Kashmir, Ladakh, Puducherry, and Dadra & Nagar Haveli and Daman & Diu) — **still
-not the full set (7 North-East states are in an active research pass; Andaman & Nicobar Islands and
-Lakshadweep are catalogued in the two source docs but structurally excluded here, see below); the goal
-remains full coverage over time.**
+examples/state_sector_matrix_demo.json`). This now covers 28 states/UTs (the original 12, then Kerala, West
+Bengal, Bihar, Assam, Delhi (NCT), and Chandigarh (UT), then Himachal Pradesh, Uttarakhand, Jharkhand,
+Chhattisgarh, Goa, Jammu & Kashmir, Ladakh, Puducherry, and Dadra & Nagar Haveli and Daman & Diu, and now
+Andaman & Nicobar Islands) — **still not the full set (7 North-East states are in an active research pass;
+Lakshadweep has no industrial land market to benchmark at all and remains structurally excluded here, see
+below); the goal remains full coverage over time.**
 
 ## How to read these numbers — read this before quoting any figure
 
-Every project in this matrix holds two things constant across all 27 states, purely so the states are
+Every project in this matrix holds two things constant across all 28 states, purely so the states are
 comparable to each other: plant & machinery ₹30 crore, building & infrastructure ₹8 crore (so "FCI" —
 fixed capital investment excluding land — is ₹38 crore in every entry), 10 acres of land, and a 10% discount
 rate. Only three things vary state to state: the land rate, which sector/scheme is modeled, and each
 scheme's own confirmed (or unconfirmed) parameters.
+
+One entry — Andaman & Nicobar Islands — varies a fourth thing: **land is leased, not purchased**, so its
+"land rate" is a *capitalized annual rent* (via `finmodel.sector_investment_model.leasehold_land_cost`, see
+below), not a per-acre purchase premium. Its capex figure is directly comparable to every other entry's
+(both are present-value costs feeding the same `project_capex_stack`), but its "land rate" column can't be
+read as a per-acre purchase price the way every other row's can.
 
 Within each entry, there are two different kinds of number, and conflating them would defeat the purpose of
 this catalog:
@@ -56,7 +62,7 @@ separately (see `docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md` for which).
   scheme) and West Bengal (scheme revoked): J&K's scheme is real and generous, just currently inaccessible
   to a hypothetical new investor.
 
-## The 27-state matrix
+## The 28-state matrix
 
 | State/UT | Sector modeled | Land rate used | State scheme (confirmed parameter used) | Central scheme | Total capex (₹cr) | Incentive PV (₹cr) | Net effective investment (₹cr) | Effective subsidy % (PV basis) |
 |---|---|---|---|---|---|---|---|---|
@@ -87,12 +93,11 @@ separately (see `docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md` for which).
 | Ladakh | General Manufacturing / MSME | 0.48 cr/acre (confirmed, primary PDF — best-sourced land rate in this matrix) | **None** — own UT policy confirmed to have zero capital/interest/GST mechanic | — | 42.80 | 0.00 | 42.80 | 0.0% |
 | Puducherry (UT) | General Manufacturing / MSME | 0.405 cr/acre (PIPDIC-confirmed, cross-validated twice) | New Industrial Policy 2016 — 35% of FCI, capped ₹35L (confirmed, primary Gazette) | — | 42.05 | 0.35 | 41.70 | 0.8% |
 | Dadra & Nagar Haveli and Daman & Diu (UT) | General Manufacturing / MSME | 2.0 cr/acre (**illustrative placeholder — no confirmed source**) | IPS 2022 — 25% of FCI (one of two conflicting secondary-sourced rates) | — | 58.00 | 9.50 | 48.50 | 16.4% |
-| **Total (27 states/UTs)** | | | | | **2,447.53** | **350.31** | **2,097.22** | **14.3%** |
+| Andaman & Nicobar Islands (UT) | General Manufacturing / MSME | 8.27 cr **capitalized** (leasehold: ₹0.157cr/acre/yr base rent, Garacharama estate, 30yr lease, 50%/25% promotional discount yrs 1-15/16-25, confirmed primary) | **None** — shared central LANIDS 2018 scheme's current registration status could not be confirmed by two independent research passes; treated the same conservatively as J&K's confirmed-closed NCSS 2021 | — | 46.27 | 0.00 | 46.27 | 0.0% |
+| **Total (28 states/UTs)** | | | | | **2,493.79** | **350.31** | **2,143.48** | **14.0%** |
 
-Andaman & Nicobar Islands and Lakshadweep are catalogued in full in the two source docs but **not** included
-above: A&N's land rate is confirmed as annual lease rent (not a one-time cost this matrix's shape can use),
-and Lakshadweep has no industrial land market to benchmark at all — both genuine structural exclusions, not
-data gaps.
+Lakshadweep is catalogued in full in the source docs but **not** included above: it has no industrial land
+market to benchmark at all — a genuine structural exclusion, not a data gap.
 
 ## Beyond this matrix's original scope — now addressed elsewhere
 
@@ -105,9 +110,6 @@ What's still open:
 
 - **7 North-East states** (Arunachal Pradesh, Manipur, Meghalaya, Mizoram, Nagaland, Sikkim, Tripura) are in
   an active research pass as of this writing — expected to share the confirmed central UNNATI 2024 overlay.
-- **A leasehold/annual-rent land-cost mode** for `finmodel.sector_investment_model` would let Andaman &
-  Nicobar Islands (and similar future territories) be modeled without misrepresenting a recurring obligation
-  as a one-time capital cost.
 - **Only one sector per state is modeled**, chosen from whatever the land-cost data pointed to.
 
 Extend this matrix by adding more entries to `examples/state_sector_matrix_demo.json`'s

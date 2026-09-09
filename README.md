@@ -99,9 +99,9 @@ finmodel debt-covenants examples/debt_covenants_demo.json                # lever
 finmodel aro examples/aro_demo.json                                       # ASC 410 asset retirement obligation: PV recognition, accretion schedule, settlement gain/loss
 finmodel warranty-receivables examples/warranty_receivables_demo.json    # warranty reserve roll-forward and CECL aging-method receivables allowance
 finmodel investment-incentives examples/investment_incentives_demo.json  # capital/interest/net-tax/employment investment-incentive mechanics (India central + state schemes)
-finmodel sector-investment-model examples/state_sector_matrix_demo.json  # 27-state precursor model: land cost + capex netted against a discounted incentive package, per state/sector
+finmodel sector-investment-model examples/state_sector_matrix_demo.json  # 28-state precursor model: land cost (purchase or capitalized leasehold rent) + capex netted against a discounted incentive package, per state/sector
 finmodel project-bankability examples/project_bankability_demo.json      # IRR/ROI/payback with and without incentives, ranked by state/sector, flagging incentive-enabled projects
-finmodel project-bankability examples/dscr_matrix_demo.json              # DSCR covenant check (SBI/REC-style 70% leverage) across all 27 states/UTs, using real lender debt:equity + industry-norm covenant
+finmodel project-bankability examples/dscr_matrix_demo.json              # DSCR covenant check (SBI/REC-style 70% leverage) across all 28 states/UTs, using real lender debt:equity + industry-norm covenant
 finmodel india-incentive-workbook reports/india_investment_incentives.xlsx  # consolidated state/central/land-cost/matrix Excel workbook (reports/ is gitignored; regenerate on demand)
 finmodel india-tax-regimes examples/india_corporate_tax_regimes_demo.json   # Section 115BAB/115BAA/standard post-tax IRR comparison + CGTMSE guarantee-fee DSCR effect
 finmodel project-bankability examples/dscr_matrix_ireda_demo.json          # DSCR check using IREDA's own disclosed renewable-energy rate/covenant (Rajasthan solar, Gujarat wind)
@@ -468,7 +468,7 @@ a discounted recurring stream's present value is always strictly less than its n
 `sample_project_matrix` runs this across a whole list of state/sector projects and sums the results — the
 "matrix" query surface. Two research passes (land-cost benchmarks from the central India Industrial Land
 Bank — which turned out to expose no usable price field — and a dozen state industrial-development-corporation
-portals; land-cost confidence carried through per entry) feed a fully worked 27-state matrix in
+portals; land-cost confidence carried through per entry) feed a fully worked 28-state matrix in
 `docs/INDIA_STATE_SECTOR_INCENTIVE_MATRIX.md` and `examples/state_sector_matrix_demo.json`, cross-referencing
 each state's own confirmed scheme parameters against an illustrative project. One state's result comes out
 with incentive value exceeding its capex (Tamil Nadu's apparently FCI-uncapped 100%-for-15-years SGST
@@ -483,7 +483,7 @@ clear our hurdle rate? — twice: once on a project's own capex and cash flow, o
 added (correctly timed, via `sector_investment_model`'s own per-year detail, never re-assumed).
 `rank_projects` ranks a list of state/sector projects by IRR both ways and flags
 `incentive_enabled_projects` — every project below the hurdle on its own merits that clears it once
-incentives are added. Run over the same 27-state matrix (`examples/project_bankability_demo.json`) at an
+incentives are added. Run over the same 28-state matrix (`examples/project_bankability_demo.json`) at an
 illustrative 14% hurdle: Chhattisgarh (15.1% IRR) now tops the ranking purely on its confirmed
 near-zero land cost — a pure capex-efficiency story, not an incentive one. Gujarat (4.8% → 23.6% IRR), Odisha
 (10.6% → 25.5%), Karnataka (12.2% → 18.9%), and Jharkhand (9.9% → 15.5%) are the four projects incentives
@@ -497,7 +497,7 @@ The same module also answers the narrower, more concrete question a lender tests
 with sourcing and staleness flags in `docs/INDIA_PROJECT_FINANCE_LENDING_TERMS.md`) feed this: IREDA
 publishes an explicit, dated 1.2x–1.4x DSCR schedule for renewable-energy projects; SBI and REC disclose no
 DSCR floor at all for general project finance, so the 1.20x industry-norm figure used for this toolkit's
-(non-RE) 27-state matrix is a general convention, not a lender-specific number. Run at a conservative
+(non-RE) 28-state matrix is a general convention, not a lender-specific number. Run at a conservative
 70%-debt, 1.20x-covenant, operating-cash-flow-only basis (`examples/dscr_matrix_demo.json`): 14 of 27
 states/UTs clear it (Chhattisgarh, Tamil Nadu, Jammu & Kashmir, Puducherry, Karnataka, Ladakh, Goa, Odisha,
 West Bengal, Jharkhand, Uttar Pradesh, Madhya Pradesh, Kerala, Uttarakhand) — a genuinely different,
@@ -536,7 +536,7 @@ than an unverified one. See `docs/INDIA_STATE_GOVERNMENT_WEBSITES.md`.
 Three follow-ups on the "IPA support" tooling: `finmodel.india_corporate_tax_regimes` compares a new
 manufacturer's Section 115BAB (15% base tax) against 115BAA (22%) and the standard regime (30% base, slab-
 dependent surcharge) — exact statutory arithmetic (`base_rate*(1+surcharge)*(1+cess)`), not an estimate —
-turning the choice into a post-tax IRR: a 3.88-percentage-point swing on Gujarat's own 27-state-matrix
+turning the choice into a post-tax IRR: a 3.88-percentage-point swing on Gujarat's own 28-state-matrix
 project, purely from the tax election (MAT explicitly out of scope — flagged, not silently ignored). The
 same module's `cgtmse_adjusted_dscr` shows CGTMSE's real effect: not a free DSCR improvement, but a small
 annual guarantee-fee cost layered onto the loan's own coverage test — tuned to a boundary case that clears

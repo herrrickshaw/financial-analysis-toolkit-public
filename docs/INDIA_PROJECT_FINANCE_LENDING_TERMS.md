@@ -77,7 +77,7 @@ pricing; they're reported for completeness with this flag attached.
 | DSCR — lender's own disclosed figure | None | **1.2x–1.4x, explicit and dated** | None |
 | DSCR — general industry norm (not lender-specific) | 1.20x–1.25x | (has its own, doesn't need the norm) | 1.20x–1.25x |
 
-`examples/dscr_matrix_demo.json` models all 27 states'/UTs' projects against the **generic SBI/REC-style
+`examples/dscr_matrix_demo.json` models all 28 states'/UTs' projects against the **generic SBI/REC-style
 case** (70% debt:equity, an illustrative 10.5% derived interest rate, 1.20x minimum DSCR — the conservative
 end of the general industry norm, since neither SBI nor REC discloses its own floor), computed using only
 each project's *operating* cash flow (not incentive income) as the conservative, bank-side cash flow

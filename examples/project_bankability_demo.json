@@ -573,6 +573,15 @@
         ],
         "annual_operating_cash_flow": 7.6000000000000005,
         "project_life_years": 10
+      },
+      {
+        "state": "Andaman & Nicobar Islands (UT)",
+        "sector": "General Manufacturing / MSME",
+        "total_capex": 46.26542932029281,
+        "upfront_incentive_value": 0.0,
+        "incentive_detail": [],
+        "annual_operating_cash_flow": 7.6000000000000005,
+        "project_life_years": 10
       }
     ],
     "hurdle_rate": 0.14

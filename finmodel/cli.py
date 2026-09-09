@@ -1210,6 +1210,11 @@ def cmd_sector_investment_model(a):
     if "industrial_land_cost" in res:
         r = res["industrial_land_cost"]
         print(f"Land cost: {r['area_acres']:,.2f} acres @ {r['rate_per_acre']:,.2f}/acre = {r['land_cost']:,.2f}")
+    if "leasehold_land_cost" in res:
+        r = res["leasehold_land_cost"]
+        print(f"Leasehold land: {r['area_acres']:,.2f} acres @ {r['base_annual_rent_per_acre']:,.2f}/acre/yr, "
+              f"{r['lease_term_years']} yrs -- nominal total rent {r['nominal_total_rent']:,.2f}, "
+              f"capitalized cost {r['capitalized_cost']:,.2f}")
     if "project_capex_stack" in res:
         r = res["project_capex_stack"]
         for name, amt in r["components"].items():

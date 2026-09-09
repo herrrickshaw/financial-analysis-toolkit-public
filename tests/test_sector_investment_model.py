@@ -18,6 +18,34 @@ def test_project_capex_stack_sums_all_components():
     assert out["total_capex"] == pytest.approx(70.0)
 
 
+def test_leasehold_land_cost_applies_the_discount_schedule_by_year():
+    schedule = [{"through_year": 3, "rent_discount_pct": 0.50}, {"through_year": 5, "rent_discount_pct": 0.25}]
+    out = SIM.leasehold_land_cost(area_acres=10.0, base_annual_rent_per_acre=1.0, lease_term_years=7,
+                                  discount_rate=0.10, discount_schedule=schedule)
+    # years 1-3 at 50% off, years 4-5 at 25% off, years 6-7 at full rate -- each year's rent = base * area * (1-discount)
+    expected_rents = [5.0, 5.0, 5.0, 7.5, 7.5, 10.0, 10.0]
+    assert out["annual_rent_schedule"] == pytest.approx(expected_rents)
+    assert out["nominal_total_rent"] == pytest.approx(sum(expected_rents))
+    assert out["land_cost"] == out["capitalized_cost"]  # aliased for drop-in use in project_capex_stack
+
+
+def test_leasehold_land_cost_capitalized_value_matches_independent_npv_expression():
+    schedule = [{"through_year": 3, "rent_discount_pct": 0.50}, {"through_year": 5, "rent_discount_pct": 0.25}]
+    out = SIM.leasehold_land_cost(area_acres=10.0, base_annual_rent_per_acre=1.0, lease_term_years=7,
+                                  discount_rate=0.10, discount_schedule=schedule)
+    expected_rents = [5.0, 5.0, 5.0, 7.5, 7.5, 10.0, 10.0]
+    expected_pv = sum(cf / (1.10 ** year) for year, cf in enumerate(expected_rents, start=1))
+    assert out["capitalized_cost"] == pytest.approx(expected_pv)
+
+
+def test_leasehold_land_cost_with_no_discount_schedule_pays_full_rent_every_year():
+    out = SIM.leasehold_land_cost(area_acres=5.0, base_annual_rent_per_acre=2.0, lease_term_years=4,
+                                  discount_rate=0.10, discount_schedule=())
+    assert out["annual_rent_schedule"] == pytest.approx([10.0, 10.0, 10.0, 10.0])
+    # a capitalized rent stream must always be worth less than its own nominal (undiscounted) sum
+    assert out["capitalized_cost"] < out["nominal_total_rent"]
+
+
 def test_incentive_present_value_matches_independent_npv_expression():
     components = [
         {"scheme_name": "State Capital Subsidy", "jurisdiction": "state", "timing": "upfront", "amount": 8.0},
@@ -79,6 +107,27 @@ def test_sample_project_matrix_sums_across_entries_and_carries_notes_through():
     assert out["total_incentive_present_value_across_projects"] == pytest.approx(expected_incentive_pv)
     assert "note" not in out["projects"][0]
     assert out["projects"][1]["note"] == "illustrative placeholder land rate"
+
+
+def test_sample_project_matrix_dispatches_leasehold_land_alongside_purchase_land():
+    entries = [
+        {"state": "Andaman & Nicobar Islands", "sector": "General Manufacturing",
+         "land": {"land_type": "leasehold", "area_acres": 10.0, "base_annual_rent_per_acre": 1.0,
+                  "lease_term_years": 4, "discount_rate": 0.10, "discount_schedule": []},
+         "capex_components": {"plant_and_machinery": 20.0},
+         "incentive_components": [], "discount_rate": 0.10},
+        {"state": "Telangana", "sector": "Pharmaceuticals", "land": {"area_acres": 10.0, "rate_per_acre": 2.0},
+         "capex_components": {"plant_and_machinery": 40.0, "building_and_infrastructure": 10.0},
+         "incentive_components": [], "discount_rate": 0.10},
+    ]
+    out = SIM.sample_project_matrix(entries)
+    # leasehold entry: capitalized cost of Rs10/yr for 4yrs @10% + 20 capex
+    expected_leasehold_land = sum(10.0 / (1.10 ** year) for year in range(1, 5))
+    an_project = out["projects"][0]
+    assert an_project["land"]["land_cost"] == pytest.approx(expected_leasehold_land)
+    assert an_project["capex"]["total_capex"] == pytest.approx(expected_leasehold_land + 20.0)
+    # purchase entry unaffected, still a plain one-time cost
+    assert out["projects"][1]["land"]["land_cost"] == pytest.approx(20.0)
 
 
 def test_from_dict_bundles_everything():

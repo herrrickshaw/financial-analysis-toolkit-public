@@ -1,0 +1,12 @@
+{
+  "leasehold_land_cost": {
+    "area_acres": 10.0,
+    "base_annual_rent_per_acre": 0.157253,
+    "lease_term_years": 30,
+    "discount_rate": 0.10,
+    "discount_schedule": [
+      {"through_year": 15, "rent_discount_pct": 0.50},
+      {"through_year": 25, "rent_discount_pct": 0.25}
+    ]
+  }
+}

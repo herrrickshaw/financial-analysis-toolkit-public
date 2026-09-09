@@ -1,5 +1,5 @@
 """Investment Promotion Agency (IPA) Support workbook: consolidates this toolkit's India investment-incentive
-research -- state schemes, central schemes, land-cost benchmarks, and the worked 27-state matrix -- into a
+research -- state schemes, central schemes, land-cost benchmarks, and the worked 28-state matrix -- into a
 single, multi-sheet Excel workbook, playing the same role for an investor that a state or central IPA
 (Invest India, Invest MP, Invest Karnataka, APIIC, and their counterparts) already plays one state/scheme at
 a time: the same facts as `docs/INDIA_STATE_INVESTMENT_INCENTIVES.md`,
@@ -28,6 +28,7 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 from .excel import write_record_tables
+from .fin import safe_div
 from . import sector_investment_model as SIM
 from . import project_bankability as PB
 from . import india_corporate_tax_regimes as TAX
@@ -333,22 +334,26 @@ def _matrix_and_bankability_rows() -> Dict[str, Any]:
     dscr = PB.from_dict(dscr_payload)["dscr_matrix"]
     dscr_by_state = {r["state"]: r for r in dscr}
 
-    headers = ["State", "Sector", "Land Rate (Rs cr/acre)", "Total Capex (Rs cr)", "Incentive PV (Rs cr)",
-              "Net Effective Investment (Rs cr)", "Effective Subsidy % (PV basis)", "IRR without Incentives",
-              "IRR with Incentives", "DSCR (SBI/REC-style, 70% leverage)", "DSCR Compliant (>=1.20x)"]
+    headers = ["State", "Sector", "Land Rate (Rs cr/acre, or capitalized cr/acre if leasehold)", "Total Capex (Rs cr)",
+              "Incentive PV (Rs cr)", "Net Effective Investment (Rs cr)", "Effective Subsidy % (PV basis)",
+              "IRR without Incentives", "IRR with Incentives", "DSCR (SBI/REC-style, 70% leverage)",
+              "DSCR Compliant (>=1.20x)"]
     rows: List[List[Any]] = []
     for p in matrix["projects"]:
         state = p["state"]
         irr_row = irr_by_state.get(state, {})
         dscr_row = dscr_by_state.get(state, {})
+        # leasehold entries (an annual rent, capitalized) carry no rate_per_acre -- derive an equivalent
+        # per-acre figure from the capitalized cost for display, rather than assuming every entry is a purchase
+        land_rate = p["land"].get("rate_per_acre", safe_div(p["land"]["land_cost"], p["land"]["area_acres"]))
         rows.append([
-            state, p["sector"], round(p["land"]["rate_per_acre"], 4), round(p["capex"]["total_capex"], 2),
+            state, p["sector"], round(land_rate, 4), round(p["capex"]["total_capex"], 2),
             round(p["incentives"]["total_present_value"], 2), round(p["net_effective_investment"], 2),
             round(p["effective_subsidy_pct_pv_basis"], 4),
             round(irr_row.get("irr_without_incentives", 0.0), 4), round(irr_row.get("irr_with_incentives", 0.0), 4),
             round(dscr_row.get("dscr", 0.0), 3), "Yes" if dscr_row.get("compliant") else "No",
         ])
-    rows.append(["TOTAL (27 states)", "", "", round(matrix["total_capex_across_projects"], 2),
+    rows.append(["TOTAL (28 states)", "", "", round(matrix["total_capex_across_projects"], 2),
                 round(matrix["total_incentive_present_value_across_projects"], 2),
                 round(matrix["total_capex_across_projects"] - matrix["total_incentive_present_value_across_projects"], 2),
                 "", "", "", "", ""])
@@ -411,7 +416,7 @@ README_LINES = [
     "  State Incentives    -- 27 states/UTs' industrial/MSME investment-promotion schemes",
     "  Central Incentives  -- PLI (14 sectors), MSME, tax, SEZ/EOU, and credit-guarantee schemes",
     "  Land Cost Benchmarks-- sourced industrial land allotment rates across the same 27 states/UTs (plus 2 catalogued but excluded, see below)",
-    "  27-State Matrix     -- a worked sample project per state/UT: land+capex netted against incentives (PV basis),",
+    "  28-State Matrix     -- a worked sample project per state/UT: land+capex netted against incentives (PV basis),",
     "                         IRR with/without incentives, and a DSCR covenant check -- computed LIVE from the",
     "                         toolkit's own modules and example files at the time this workbook was built, never re-typed",
     "  Tax Regime Comparison-- Section 115BAB vs 115BAA vs the standard regime, post-tax IRR, computed LIVE",
@@ -441,7 +446,7 @@ def build_workbook(path: str) -> str:
         "State Incentives": {"headers": STATE_INCENTIVES_HEADERS, "rows": STATE_INCENTIVES_ROWS},
         "Central Incentives": {"headers": CENTRAL_INCENTIVES_HEADERS, "rows": CENTRAL_INCENTIVES_ROWS},
         "Land Cost Benchmarks": {"headers": LAND_COST_HEADERS, "rows": LAND_COST_ROWS},
-        "27-State Matrix": _matrix_and_bankability_rows(),
+        "28-State Matrix": _matrix_and_bankability_rows(),
         "Tax Regime Comparison": _tax_regime_rows(),
         "Financing Effects": _financing_effects_rows(),
     }

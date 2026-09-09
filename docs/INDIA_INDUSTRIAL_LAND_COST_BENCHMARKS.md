@@ -183,7 +183,9 @@ obligation as a capital cost.
 press-sourced (Punjab, Chandigarh)/aggregator-sourced (Maharashtra, Jharkhand)/historical-allotted-plot
 (Karnataka)/dated-but-stale (Delhi, Himachal Pradesh's premium cycle)/policy-subsidized-to-near-zero
 (Chhattisgarh) rows for the rest, each with its own confidence caveat carried through into that state's
-entry rather than smoothed over. Andaman & Nicobar Islands (annual-rent basis) and Lakshadweep (no land
-market at all) are catalogued above but deliberately excluded from that quantitative matrix, since neither
-fits the one-time-purchase shape every other row uses — a candidate for a future leasehold-cost extension to
-`finmodel.sector_investment_model`, not a data gap.
+entry rather than smoothed over. Andaman & Nicobar Islands' annual-rent basis is now handled directly:
+`finmodel.sector_investment_model.leasehold_land_cost` capitalizes its confirmed Garacharama rent (with the
+same 50%/25% promotional discount for lease years 1-15/16-25 quoted above) into a present-value figure via
+`finmodel.fin.npv`, so it appears in the matrix as a real entry rather than being excluded for shape
+reasons. Lakshadweep remains excluded — it has no industrial land market at all to model, a genuine
+structural gap rather than a shape mismatch.

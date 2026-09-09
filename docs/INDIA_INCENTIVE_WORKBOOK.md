@@ -1,7 +1,7 @@
 # Investment Promotion Agency (IPA) Support workbook
 
 `finmodel.india_incentive_workbook` consolidates every piece of this toolkit's India investment-incentive
-research — state schemes, central schemes, land-cost benchmarks, and the worked 27-state matrix — into a
+research — state schemes, central schemes, land-cost benchmarks, and the worked 28-state matrix — into a
 single, multi-sheet `.xlsx` titled **"Investment Promotion Agency (IPA) Support"** (set as the file's own
 document-properties Title, not just its filename). The role it fills is the one a state or central IPA
 itself plays for an investor — Invest India, Invest MP, Invest Karnataka, APIIC, and their counterparts each
@@ -24,7 +24,7 @@ finmodel india-incentive-workbook reports/india_investment_incentives.xlsx
   the same facts for filtering/sorting, not a new, independently-sourced dataset. Every row carries its own
   `Confidence` and `Source` column, so no row asserts a number more confidently than its source document
   does — a "Low" confidence row is exactly as uncertain in the spreadsheet as it is in the prose.
-- **The 27-State Matrix sheet is computed LIVE** at build time, from the same example JSON files
+- **The 28-State Matrix sheet is computed LIVE** at build time, from the same example JSON files
   (`examples/state_sector_matrix_demo.json`, `examples/project_bankability_demo.json`,
   `examples/dscr_matrix_demo.json`) and the same `finmodel.sector_investment_model` /
   `finmodel.project_bankability` modules used everywhere else in this toolkit — never re-typed into this
@@ -40,7 +40,7 @@ finmodel india-incentive-workbook reports/india_investment_incentives.xlsx
 | State Incentives | 27 (one per state/UT) | Policy name/year, primary mechanic, rate, cap, tenure, other incentives, confidence, source |
 | Central Incentives | 26 (14 PLI sectors + 4 MSME + 3 tax + 2 SEZ/EOU + 3 credit-guarantee) | Category, outlay/cap, mechanic/rate, tenure, confidence, source |
 | Land Cost Benchmarks | 51 (every sourced rate across 27 matrix states/UTs, plus 2 catalogued-but-excluded) | Industrial area/park, sector character, rate as quoted, converted Rs cr/acre, confidence tier, source |
-| 27-State Matrix | 27 states/UTs + 1 total | Land rate, total capex, incentive PV, net effective investment, effective subsidy %, IRR with/without incentives, DSCR, DSCR compliance |
+| 28-State Matrix | 28 states/UTs + 1 total | Land rate, total capex, incentive PV, net effective investment, effective subsidy %, IRR with/without incentives, DSCR, DSCR compliance |
 | Tax Regime Comparison | 3 (115BAB / 115BAA / standard) | Base/surcharge/cess rate, effective rate, post-tax cash flow, post-tax IRR, best-regime flag |
 | Financing Effects | 4 (2 CGTMSE + 2 IREDA) | Lender/scheme, loan, rate, tenure, cash flow, DSCR, minimum DSCR required, compliance, a note on what each row illustrates |
 
@@ -63,7 +63,7 @@ forcing it into the financial-statement writer.
 
 `tests/test_excel.py` adds two tests for `write_record_tables` itself (headers/rows/README sheet ordering,
 and the no-README single-sheet-active case). `tests/test_india_incentive_workbook.py` (4 tests, new file)
-checks every transcribed row's column count matches its sheet's header, checks all 27 states/UTs are covered,
-and — the most important check — verifies the 27-State Matrix sheet's numbers against the underlying
+checks every transcribed row's column count matches its sheet's header, checks all 28 states/UTs are covered,
+and — the most important check — verifies the 28-State Matrix sheet's numbers against the underlying
 modules computed independently in the test, not against a hand-typed expectation. `tests/test_cli.py` adds a
 CLI round-trip test.

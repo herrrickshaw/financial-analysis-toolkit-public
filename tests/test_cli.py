@@ -709,13 +709,24 @@ def test_cli_sector_investment_model(tmp_path, capsys):
     assert saved["incentives"]["total_present_value"] == pytest.approx(expected_pv)
 
 
+def test_cli_leasehold_land_cost_capitalizes_an_annual_rent_using_real_an_islands_terms(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["sector-investment-model", str(EX / "leasehold_land_cost_demo.json"), "--json-out", str(tmp_path / "lease.json")])
+    out = capsys.readouterr().out
+    assert "Leasehold land:" in out and "capitalized cost" in out
+    saved = json.loads((tmp_path / "lease.json").read_text())["leasehold_land_cost"]
+    assert saved["nominal_total_rent"] == pytest.approx(sum(saved["annual_rent_schedule"]))
+    assert saved["capitalized_cost"] < saved["nominal_total_rent"]
+    assert saved["land_cost"] == pytest.approx(saved["capitalized_cost"])
+
+
 def test_cli_project_bankability_flags_incentive_enabled_states(tmp_path, capsys):
     from finmodel.cli import main
     main(["project-bankability", str(EX / "project_bankability_demo.json"), "--json-out", str(tmp_path / "bank.json")])
     out = capsys.readouterr().out
     assert "Ranked by IRR without incentives" in out and "Incentive-enabled projects" in out
     saved = json.loads((tmp_path / "bank.json").read_text())["rank_projects"]
-    assert len(saved["projects"]) == 27
+    assert len(saved["projects"]) == 28
     enabled_states = {p["state"] for p in saved["incentive_enabled_projects"]}
     assert enabled_states == {"Gujarat", "Odisha", "Karnataka", "Jharkhand"}
     # every project's IRR-with-incentives must be >= its IRR-without (incentives never hurt bankability)
@@ -729,30 +740,35 @@ def test_cli_dscr_matrix_demo_flags_conservative_bank_case_breaches(tmp_path, ca
     out = capsys.readouterr().out
     assert "BREACH" in out and "OK" in out
     saved = json.loads((tmp_path / "dscr.json").read_text())["dscr_matrix"]
-    assert len(saved) == 27
+    assert len(saved) == 28
     compliant_states = {r["state"] for r in saved if r["compliant"]}
     assert compliant_states == {"Tamil Nadu", "Odisha", "Uttar Pradesh", "Karnataka", "Madhya Pradesh",
                                 "Kerala", "West Bengal", "Chhattisgarh", "Jammu & Kashmir",
-                                "Puducherry (UT)", "Ladakh", "Goa", "Jharkhand", "Uttarakhand"}
+                                "Puducherry (UT)", "Ladakh", "Goa", "Jharkhand", "Uttarakhand",
+                                "Andaman & Nicobar Islands (UT)"}
 
 
-def test_cli_state_sector_matrix_demo_covers_all_27_states(tmp_path, capsys):
+def test_cli_state_sector_matrix_demo_covers_all_28_states(tmp_path, capsys):
     from finmodel.cli import main
     main(["sector-investment-model", str(EX / "state_sector_matrix_demo.json"), "--json-out", str(tmp_path / "matrix.json")])
     out = capsys.readouterr().out
     assert "Total capex across projects:" in out
     saved = json.loads((tmp_path / "matrix.json").read_text())["sample_project_matrix"]
-    assert len(saved["projects"]) == 27
+    assert len(saved["projects"]) == 28
     assert {p["state"] for p in saved["projects"]} == {
         "Gujarat", "Uttar Pradesh", "Rajasthan", "Telangana", "Odisha", "Haryana",
         "Tamil Nadu", "Karnataka", "Andhra Pradesh", "Madhya Pradesh", "Maharashtra", "Punjab",
         "Kerala", "West Bengal", "Bihar", "Assam", "Delhi (NCT)", "Chandigarh (UT)",
         "Himachal Pradesh", "Uttarakhand", "Jharkhand", "Chhattisgarh", "Goa",
         "Jammu & Kashmir", "Ladakh", "Puducherry (UT)", "Dadra & Nagar Haveli and Daman & Diu (UT)",
+        "Andaman & Nicobar Islands (UT)",
     }
     # Delhi, Chandigarh, J&K, and Ladakh have zero state-tier incentives (confirmed findings, not gaps)
     zero_incentive_states = {p["state"] for p in saved["projects"] if p["incentives"]["nominal_total"] == 0.0}
     assert {"Delhi (NCT)", "Chandigarh (UT)", "West Bengal", "Jammu & Kashmir", "Ladakh"} <= zero_incentive_states
+    # Andaman & Nicobar Islands is the one entry using capitalized leasehold land, not a one-time purchase
+    an_project = next(p for p in saved["projects"] if "Andaman" in p["state"])
+    assert "annual_rent_schedule" in an_project["land"]
     recomputed_capex = sum(p["capex"]["total_capex"] for p in saved["projects"])
     assert saved["total_capex_across_projects"] == pytest.approx(recomputed_capex)
     recomputed_pv = sum(p["incentives"]["total_present_value"] for p in saved["projects"])
@@ -767,7 +783,7 @@ def test_cli_india_incentive_workbook(tmp_path, capsys):
     assert "Wrote" in captured and str(out) in captured
     from openpyxl import load_workbook
     wb = load_workbook(out)
-    assert "27-State Matrix" in wb.sheetnames
+    assert "28-State Matrix" in wb.sheetnames
 
 
 def test_cli_india_tax_regimes(tmp_path, capsys):

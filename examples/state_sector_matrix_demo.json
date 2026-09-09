@@ -693,6 +693,34 @@
       ],
       "discount_rate": 0.1,
       "note": "LAND RATE IS AN ILLUSTRATIVE PLACEHOLDER (Rs2.0 cr/acre) -- no official per-acre rate could be confirmed despite an active industrial base and a located (but unreadable, scanned) vacant-plot-list PDF; do not treat as sourced. The incentive scheme itself IS confirmed real and active (IPS 2022, effective through 2027), just with two conflicting capital-subsidy rate reports."
+    },
+    {
+      "state": "Andaman & Nicobar Islands (UT)",
+      "sector": "General Manufacturing / MSME",
+      "land": {
+        "land_type": "leasehold",
+        "area_acres": 10.0,
+        "base_annual_rent_per_acre": 0.157253,
+        "lease_term_years": 30,
+        "discount_rate": 0.1,
+        "discount_schedule": [
+          {
+            "through_year": 15,
+            "rent_discount_pct": 0.5
+          },
+          {
+            "through_year": 25,
+            "rent_discount_pct": 0.25
+          }
+        ]
+      },
+      "capex_components": {
+        "plant_and_machinery": 30.0,
+        "building_and_infrastructure": 8.0
+      },
+      "incentive_components": [],
+      "discount_rate": 0.1,
+      "note": "Land cost: CAPITALIZED from a real, confirmed ANNUAL LEASE RENT (Garacharama estate, Rs388.58/sq.m/year base, 50%/25% discount for years 1-15/16-25 of a 30-year lease -- via finmodel.sector_investment_model.leasehold_land_cost), not a one-time purchase price like every other entry in this matrix; see docs/INDIA_INDUSTRIAL_LAND_COST_BENCHMARKS.md. NO incentive is modeled: the shared central LANIDS 2018 scheme's current registration status (open/extended/closed) could not be confirmed by two independent research passes -- treated the same conservative way as J&K's confirmed-closed NCSS 2021, rather than guessing it is still available."
     }
   ]
 }

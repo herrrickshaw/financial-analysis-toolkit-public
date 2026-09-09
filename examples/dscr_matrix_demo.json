@@ -269,6 +269,16 @@
       "interest_rate": 0.105,
       "tenure_years": 10,
       "min_dscr": 1.2
+    },
+    {
+      "state": "Andaman & Nicobar Islands (UT)",
+      "sector": "General Manufacturing / MSME",
+      "lender": "SBI/REC-style (generic, non-RE)",
+      "annual_cash_flow": 7.6000000000000005,
+      "loan_amount": 32.38580052420497,
+      "interest_rate": 0.105,
+      "tenure_years": 10,
+      "min_dscr": 1.2
     }
   ]
 }
