@@ -520,6 +520,13 @@ underlying writer, `finmodel.excel.write_record_tables`, is new and general-purp
 catalog — this one does, and any future dataset in this toolkit can reuse it. See
 `docs/INDIA_INCENTIVE_WORKBOOK.md` for the full detail.
 
+## State/UT government website index (`docs/INDIA_STATE_GOVERNMENT_WEBSITES.md`)
+
+The "where did these numbers come from" map, one row per state/UT: each state's official industries
+department/investment-promotion agency and its industrial land portal, for the 18 states/UTs already
+researched — plus the 18 still in progress toward full coverage, listed by name without a guessed URL rather
+than an unverified one. See `docs/INDIA_STATE_GOVERNMENT_WEBSITES.md`.
+
 ## Tax regime choice, CGTMSE, and a real IREDA renewable-energy entry (`docs/INDIA_CORPORATE_TAX_AND_CGTMSE.md`)
 
 Three follow-ups on the "IPA support" tooling: `finmodel.india_corporate_tax_regimes` compares a new
