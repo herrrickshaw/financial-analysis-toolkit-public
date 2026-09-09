@@ -24,7 +24,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 ```bash
 git clone https://github.com/herrrickshaw/financial-analysis-toolkit && cd financial-analysis-toolkit
 pip install -e ".[test]"          # only openpyxl is required at runtime
-pytest -q                         # 635 tests; the LibreOffice recalc test auto-skips if soffice is absent
+pytest -q                         # 642 tests; the LibreOffice recalc test auto-skips if soffice is absent
 ```
 
 ## Quick start
@@ -102,6 +102,7 @@ finmodel investment-incentives examples/investment_incentives_demo.json  # capit
 finmodel sector-investment-model examples/state_sector_matrix_demo.json  # 12-state precursor model: land cost + capex netted against a discounted incentive package, per state/sector
 finmodel project-bankability examples/project_bankability_demo.json      # IRR/ROI/payback with and without incentives, ranked by state/sector, flagging incentive-enabled projects
 finmodel project-bankability examples/dscr_matrix_demo.json              # DSCR covenant check (SBI/REC-style 70% leverage) across all 12 states, using real lender debt:equity + industry-norm covenant
+finmodel india-incentive-workbook reports/india_investment_incentives.xlsx  # consolidated state/central/land-cost/matrix Excel workbook (reports/ is gitignored; regenerate on demand)
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
 finmodel charts lbo examples/lbo_asm.json -o out/charts_lbo.html         # chart template -> HTML report
@@ -499,6 +500,20 @@ to the IRR-based ranking above, since a lender won't necessarily credit incentiv
 debt-service capacity the way an investor credits it toward IRR. See `docs/PROJECT_BANKABILITY.md` for the
 full detail.
 
+## India incentive Excel workbook (`docs/INDIA_INCENTIVE_WORKBOOK.md`)
+
+`finmodel india-incentive-workbook reports/india_investment_incentives.xlsx` consolidates all six India
+docs above into one filterable/sortable spreadsheet: State Incentives (12 rows), Central Incentives (26
+rows across PLI/MSME/tax/SEZ/credit-guarantee schemes), Land Cost Benchmarks (30 sourced rates), and a
+12-State Matrix sheet. The three catalog sheets are a structured transcription of their source markdown
+docs, each row carrying its own Confidence and Source column; the Matrix sheet is computed **live** from the
+same example JSON files and modules used everywhere else in this toolkit, never re-typed — enforced directly
+in the test suite by reloading those files independently and checking the workbook's numbers match. The
+underlying writer, `finmodel.excel.write_record_tables`, is new and general-purpose: every existing writer in
+`finmodel.excel` targets a year-series financial-statement layout, which doesn't fit a flat, row-per-record
+catalog — this one does, and any future dataset in this toolkit can reuse it. See
+`docs/INDIA_INCENTIVE_WORKBOOK.md` for the full detail.
+
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 
 Every survey doc in this session records what got deliberately left out and why — four times now, this
@@ -594,7 +609,7 @@ educational templates.
 ## Layout
 
 ```
-finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, pension_accounting, nwc_peg, eps_calculation, investment_securities, consolidation, debt_covenants, asset_retirement_obligations, warranty_and_receivables_allowance, investment_incentives, sector_investment_model, project_bankability, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
+finmodel/          engines + tools (fin, three_statement, dcf, projection, ratios, lbo, merger, comps, scores, costing, edgar, wacc, residual_income, sotp, startup_model, cap_table, vc_fund_metrics, cash_flow_forecast, impact_scoring, strategy_frameworks, rd_capitalization, project_finance, variance_analysis, fpa_planning, breakeven, loss_reserving, tax_provision, real_estate_development, working_capital_financing, retail_loans, retail_deposits, carry_trade, revolving_credit, npa_classification, pipeline, credit_risk, interest_rate_risk, fixed_income_risk, earnout_valuation, percentage_of_completion, credit_card_abs, sales_capacity_planning, lease_accounting, fx_hedging, stock_based_compensation, bond_amortization, foreign_currency_translation, inventory_costing, pension_accounting, nwc_peg, eps_calculation, investment_securities, consolidation, debt_covenants, asset_retirement_obligations, warranty_and_receivables_allowance, investment_incentives, sector_investment_model, project_bankability, india_incentive_workbook, audit, sectors, xlcalc, charts, excel, extract, catalog, paid_templates, cli)
 examples/          JSON inputs (CFI 3-statement, CFI DCF, projection demo, ratios demo, ASM LBO, BIWS merger, STLD comps, STLD scores, university costing, STLD WACC, STLD residual income, conglomerate SOTP, SaaS startup model)
 data/              glossary.json, edgar/ (compact SEC company-facts extracts for the case studies)
 scripts/           comps_validation.py, football_field_stld.py, football_field_cvx.py, football_field_csco.py, football_field_usb.py, football_field_o.py, football_field_alk.py, football_field_trv.py, football_field_txn.py, ma_case_study.py (regenerate the real-data docs)

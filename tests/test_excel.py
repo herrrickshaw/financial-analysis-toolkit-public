@@ -50,3 +50,33 @@ def test_write_projection(tmp_path, projection_inputs):
     from openpyxl import load_workbook
     wb = load_workbook(p)
     assert {"Income Statement", "Balance Sheet", "Cash Flow", "Sales", "Payroll", "Opex", "Schedules", "Ratios"} <= set(wb.sheetnames)
+
+
+def test_write_record_tables_writes_headers_rows_and_readme(tmp_path):
+    sheets = {
+        "States": {"headers": ["State", "Rate"], "rows": [["Gujarat", 0.75], ["Odisha", 1.0]]},
+        "Central": {"headers": ["Scheme", "Outlay"], "rows": [["PLI Auto", 25938]]},
+    }
+    p = excel.write_record_tables(tmp_path / "catalog.xlsx", sheets, readme_lines=["Generated for testing", "Line 2"])
+    from openpyxl import load_workbook
+    wb = load_workbook(p)
+    assert wb.sheetnames == ["README", "States", "Central"]
+    assert wb["README"]["A1"].value == "Generated for testing"
+    assert wb["README"]["A2"].value == "Line 2"
+    ws = wb["States"]
+    assert [ws.cell(row=1, column=c).value for c in (1, 2)] == ["State", "Rate"]
+    assert [ws.cell(row=2, column=c).value for c in (1, 2)] == ["Gujarat", 0.75]
+    assert [ws.cell(row=3, column=c).value for c in (1, 2)] == ["Odisha", 1.0]
+    assert ws.freeze_panes == "A2"
+    ws2 = wb["Central"]
+    assert ws2.cell(row=2, column=1).value == "PLI Auto"
+    assert ws2.cell(row=2, column=2).value == 25938
+
+
+def test_write_record_tables_without_readme_uses_first_sheet_as_active(tmp_path):
+    sheets = {"Only": {"headers": ["A"], "rows": [[1], [2]]}}
+    p = excel.write_record_tables(tmp_path / "no_readme.xlsx", sheets)
+    from openpyxl import load_workbook
+    wb = load_workbook(p)
+    assert wb.sheetnames == ["Only"]
+    assert wb["Only"].cell(row=3, column=1).value == 2

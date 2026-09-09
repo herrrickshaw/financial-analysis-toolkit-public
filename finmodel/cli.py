@@ -1275,6 +1275,12 @@ def cmd_project_bankability(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_india_incentive_workbook(a):
+    from . import india_incentive_workbook as WB
+    path = WB.build_workbook(a.output)
+    print(f"Wrote {path}")
+
+
 def cmd_audit(a):
     from . import audit as A
     res = A.audit(a.file, recompute=a.recompute)
@@ -1417,6 +1423,7 @@ def main(argv=None):
     ii = sp.add_parser("investment-incentives", help="capital/interest/net-tax/employment investment-incentive mechanics used by Indian central and state schemes (PLI, BIPA-style state schemes, etc.)"); ii.add_argument("inputs"); ii.add_argument("--json-out"); ii.set_defaults(fn=cmd_investment_incentives)
     sim = sp.add_parser("sector-investment-model", help="sample state/sector investment model: land cost + capex stack netted against a discounted central+state incentive package"); sim.add_argument("inputs"); sim.add_argument("--json-out"); sim.set_defaults(fn=cmd_sector_investment_model)
     pbk = sp.add_parser("project-bankability", help="IRR/ROI/payback with and without incentives, plus a state/sector ranking that flags projects incentives make bankable"); pbk.add_argument("inputs"); pbk.add_argument("--json-out"); pbk.set_defaults(fn=cmd_project_bankability)
+    iiw = sp.add_parser("india-incentive-workbook", help="write the consolidated India state/central incentive + land-cost + 12-state matrix Excel workbook"); iiw.add_argument("output", help="output .xlsx path"); iiw.set_defaults(fn=cmd_india_incentive_workbook)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)

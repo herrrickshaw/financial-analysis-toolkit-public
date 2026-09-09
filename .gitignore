@@ -18,3 +18,5 @@ scripts/_gates/
 .unlazy-hook-state.json
 # background knowledge-graph indexer output, not a deliverable
 graphify-out/
+# generated workbooks (regenerate via `finmodel india-incentive-workbook <path>`), not committed as binaries
+reports/

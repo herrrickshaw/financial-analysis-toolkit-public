@@ -749,3 +749,14 @@ def test_cli_state_sector_matrix_demo_covers_all_12_states(tmp_path, capsys):
     assert saved["total_capex_across_projects"] == pytest.approx(recomputed_capex)
     recomputed_pv = sum(p["incentives"]["total_present_value"] for p in saved["projects"])
     assert saved["total_incentive_present_value_across_projects"] == pytest.approx(recomputed_pv)
+
+
+def test_cli_india_incentive_workbook(tmp_path, capsys):
+    from finmodel.cli import main
+    out = tmp_path / "india_incentives.xlsx"
+    main(["india-incentive-workbook", str(out)])
+    captured = capsys.readouterr().out
+    assert "Wrote" in captured and str(out) in captured
+    from openpyxl import load_workbook
+    wb = load_workbook(out)
+    assert "12-State Matrix" in wb.sheetnames
