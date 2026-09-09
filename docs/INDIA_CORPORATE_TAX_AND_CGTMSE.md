@@ -34,6 +34,16 @@ book-vs-tax income differences this toolkit has no visibility into, the standard
 computed here should be read as a **floor**, not a ceiling, for a company that would otherwise be MAT-bound
 (i.e. the real standard-regime tax burden could be higher than what this module reports).
 
+**"Forgoing additional depreciation" is now a modeled mechanic, not just a caveat.** A 115BAB/115BAA elector
+gives up the section 32(1)(iia) additional-depreciation deduction on new plant & machinery; the standard
+regime keeps it. `finmodel.india_depreciation_schedule.additional_depreciation_sec32_1_iia` computes exactly
+what that deduction is worth (20% of new P&M cost, halved with a next-year carry-forward if used less than
+180 days) — see `docs/INDIA_DEPRECIATION_SCHEDULE.md`. This module still doesn't fold that deduction's tax
+shield into `tax_regime_comparison`'s post-tax cash flow directly (that would require a fuller taxable-income
+build than the flat pre-tax-cash-flow input this module takes), so the standard regime's effective rate here
+likewise reads as a **floor** on its post-tax IRR for the same reason MAT does below — the real standard-
+regime result would improve once the additional-depreciation tax shield is layered on top.
+
 ## CGTMSE: loan access, not a DSCR improvement
 
 CGTMSE (Credit Guarantee Fund Trust for Micro and Small Enterprises) doesn't lower a project's cost of debt

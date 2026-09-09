@@ -104,6 +104,7 @@ finmodel project-bankability examples/project_bankability_demo.json      # IRR/R
 finmodel project-bankability examples/dscr_matrix_demo.json              # DSCR covenant check (SBI/REC-style 70% leverage) across all 28 states/UTs, using real lender debt:equity + industry-norm covenant
 finmodel india-incentive-workbook reports/india_investment_incentives.xlsx  # consolidated state/central/land-cost/matrix Excel workbook (reports/ is gitignored; regenerate on demand)
 finmodel india-tax-regimes examples/india_corporate_tax_regimes_demo.json   # Section 115BAB/115BAA/standard post-tax IRR comparison + CGTMSE guarantee-fee DSCR effect
+finmodel india-depreciation-schedule examples/india_depreciation_schedule_demo.json  # Income Tax Act WDV block-of-assets depreciation, section 50 STCG on block extinguishment, section 32(1)(iia) additional depreciation
 finmodel project-bankability examples/dscr_matrix_ireda_demo.json          # DSCR check using IREDA's own disclosed renewable-energy rate/covenant (Rajasthan solar, Gujarat wind)
 finmodel audit downloads/macabacus/merger-model.xlsx --recompute         # error values, hard-coded plugs, inconsistent formulas, recompute check
 finmodel transpile downloads/macabacus/merger-model.xlsx -o out/py       # 15,323 formulas -> Python, 100% match to cached values
@@ -546,6 +547,19 @@ disclosed renewable-energy terms (8.65% rate, 1.25x DSCR floor) instead of the g
 Rajasthan solar and Gujarat wind project both clear a comfortable 2.195x, a concrete illustration of why
 sector-specific lender matching changes the answer. See `docs/INDIA_CORPORATE_TAX_AND_CGTMSE.md` for the
 full detail.
+
+## Income Tax Act depreciation: block of assets, section 50, additional depreciation (`docs/INDIA_DEPRECIATION_SCHEDULE.md`)
+
+`finmodel.india_depreciation_schedule` fills a gap `docs/INDIA_CORPORATE_TAX_AND_CGTMSE.md` had only ever
+flagged, not modeled: that a 115BAB/115BAA elector forgoes additional depreciation. `block_depreciation`
+computes WDV depreciation the way the Income Tax Act actually computes it — by **block of assets**, not
+asset-by-asset — including the half-rate rule for additions used less than 180 days, and section 50's real
+consequence when a block's deletions exceed its WDV: depreciation goes to nil and the excess becomes a
+short-term capital gain, computed directly rather than special-cased. `additional_depreciation_sec32_1_iia`
+computes the 20%-of-new-P&M-cost deduction available to manufacturers under the standard regime (halved to
+10% with a next-year carry-forward if used less than 180 days) — the exact mechanic the tax-regime module's
+115BAB/115BAA comparison had only described in prose until now. See `docs/INDIA_DEPRECIATION_SCHEDULE.md`
+for the full detail.
 
 ## Revisiting deferred gaps (`docs/DEFERRED_GAPS_REVISITED.md`)
 

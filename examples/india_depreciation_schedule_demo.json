@@ -1,0 +1,23 @@
+{
+  "block_depreciation": {
+    "opening_wdv": 100.0,
+    "rate": 0.15,
+    "full_rate_additions": 20.0,
+    "half_rate_additions": 10.0,
+    "deletions": 5.0
+  },
+  "multi_year_block_schedule": {
+    "opening_wdv": 100.0,
+    "rate": 0.15,
+    "yearly_additions": [
+      [{"amount": 40.0, "used_180_days_or_more": true}],
+      [{"amount": 20.0, "used_180_days_or_more": false}],
+      []
+    ],
+    "yearly_deletions": [0.0, 0.0, 15.0]
+  },
+  "additional_depreciation_sec32_1_iia": {
+    "new_plant_and_machinery_cost": 40.0,
+    "used_180_days_or_more": true
+  }
+}

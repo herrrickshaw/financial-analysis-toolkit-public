@@ -1299,6 +1299,27 @@ def cmd_india_corporate_tax_regimes(a):
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 
+def cmd_india_depreciation_schedule(a):
+    from . import india_depreciation_schedule as DEP
+    res = DEP.from_dict(_load_json(a.inputs))
+    if "block_depreciation" in res:
+        r = res["block_depreciation"]
+        note = " *** BLOCK EXTINGUISHED, STCG " + f"{r['short_term_capital_gain']:,.2f} ***" if r["block_extinguished"] else ""
+        print(f"Depreciation: {r['depreciation']:,.2f}   closing WDV: {r['closing_wdv']:,.2f}{note}")
+    if "multi_year_block_schedule" in res:
+        r = res["multi_year_block_schedule"]
+        for row in r["rows"]:
+            flag = " *** EXTINGUISHED ***" if row["block_extinguished"] else ""
+            print(f"  Year {row['year']}: opening {row['opening_wdv']:,.2f} -> depreciation {row['depreciation']:,.2f} "
+                  f"-> closing {row['closing_wdv']:,.2f}{flag}")
+        print(f"Total depreciation: {r['total_depreciation']:,.2f}   Total STCG: {r['total_short_term_capital_gain']:,.2f}")
+    if "additional_depreciation_sec32_1_iia" in res:
+        r = res["additional_depreciation_sec32_1_iia"]
+        print(f"Additional depreciation (sec 32(1)(iia)): current year {r['current_year']:,.2f}, "
+              f"carried forward {r['carried_forward_to_next_year']:,.2f}")
+    if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
+
+
 def cmd_india_incentive_workbook(a):
     from . import india_incentive_workbook as WB
     path = WB.build_workbook(a.output)
@@ -1447,8 +1468,9 @@ def main(argv=None):
     ii = sp.add_parser("investment-incentives", help="capital/interest/net-tax/employment investment-incentive mechanics used by Indian central and state schemes (PLI, BIPA-style state schemes, etc.)"); ii.add_argument("inputs"); ii.add_argument("--json-out"); ii.set_defaults(fn=cmd_investment_incentives)
     sim = sp.add_parser("sector-investment-model", help="sample state/sector investment model: land cost + capex stack netted against a discounted central+state incentive package"); sim.add_argument("inputs"); sim.add_argument("--json-out"); sim.set_defaults(fn=cmd_sector_investment_model)
     pbk = sp.add_parser("project-bankability", help="IRR/ROI/payback with and without incentives, plus a state/sector ranking that flags projects incentives make bankable"); pbk.add_argument("inputs"); pbk.add_argument("--json-out"); pbk.set_defaults(fn=cmd_project_bankability)
-    iiw = sp.add_parser("india-incentive-workbook", help="write the consolidated India state/central incentive + land-cost + 27-state matrix Excel workbook"); iiw.add_argument("output", help="output .xlsx path"); iiw.set_defaults(fn=cmd_india_incentive_workbook)
+    iiw = sp.add_parser("india-incentive-workbook", help="write the consolidated India state/central incentive + land-cost + 28-state matrix Excel workbook"); iiw.add_argument("output", help="output .xlsx path"); iiw.set_defaults(fn=cmd_india_incentive_workbook)
     tax = sp.add_parser("india-tax-regimes", help="Section 115BAB vs 115BAA vs standard-regime post-tax IRR comparison, and the CGTMSE guarantee fee's effect on DSCR"); tax.add_argument("inputs"); tax.add_argument("--json-out"); tax.set_defaults(fn=cmd_india_corporate_tax_regimes)
+    dep = sp.add_parser("india-depreciation-schedule", help="Income Tax Act WDV block-of-assets depreciation, section 50 short-term capital gain on block extinguishment, section 32(1)(iia) additional depreciation"); dep.add_argument("inputs"); dep.add_argument("--json-out"); dep.set_defaults(fn=cmd_india_depreciation_schedule)
     txp = sp.add_parser("tax-provision", help="deferred tax position, valuation allowance, NOL carryforward (pre-2018/post-2017 baskets), effective-rate reconciliation"); txp.add_argument("inputs"); txp.add_argument("--json-out"); txp.set_defaults(fn=cmd_tax_provision)
     red = sp.add_parser("real-estate-development", help="ground-up development pro forma: TDC, construction-loan draw schedule, yield on cost, development spread, unlevered IRR"); red.add_argument("inputs"); red.add_argument("--json-out"); red.set_defaults(fn=cmd_real_estate_development)
     wcf = sp.add_parser("working-capital-financing", help="invoice factoring cost, early-payment-discount APR, asset-based-lending borrowing-base availability"); wcf.add_argument("inputs"); wcf.add_argument("--json-out"); wcf.set_defaults(fn=cmd_working_capital_financing)

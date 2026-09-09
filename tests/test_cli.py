@@ -797,6 +797,19 @@ def test_cli_india_tax_regimes(tmp_path, capsys):
     assert saved["cgtmse_adjusted_dscr"]["dscr_without_fee_for_comparison"] >= 1.2
 
 
+def test_cli_india_depreciation_schedule(tmp_path, capsys):
+    from finmodel.cli import main
+    main(["india-depreciation-schedule", str(EX / "india_depreciation_schedule_demo.json"),
+          "--json-out", str(tmp_path / "dep.json")])
+    out = capsys.readouterr().out
+    assert "Depreciation: 18.00" in out
+    assert "Total STCG: 0.00" in out
+    saved = json.loads((tmp_path / "dep.json").read_text())
+    assert saved["block_depreciation"]["closing_wdv"] == pytest.approx(107.0)
+    assert len(saved["multi_year_block_schedule"]["rows"]) == 3
+    assert saved["additional_depreciation_sec32_1_iia"]["current_year"] == pytest.approx(8.0)
+
+
 def test_cli_dscr_matrix_ireda_demo_clears_its_own_disclosed_covenant(tmp_path, capsys):
     from finmodel.cli import main
     main(["project-bankability", str(EX / "dscr_matrix_ireda_demo.json"), "--json-out", str(tmp_path / "ireda.json")])
