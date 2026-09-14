@@ -1,10 +1,10 @@
-"""Catalog, verify and fetch financial-model template sources.
+"""Catalog and fetch financial-model template sources.
 
 Sources
 -------
-- cfi           : CFI member dashboard (api.corporatefinanceinstitute.com/api/files/<uuid>) -- the SPA sends a
-                  Bearer token (not a cookie); pass it via --auth / env FINMODEL_CFI_AUTH as
-                  "Authorization: Bearer <token>" copied from a logged-in request in DevTools.  Items marked cfi-paid need a paid plan and are never fetched.
+- cfi           : CFI member-dashboard titles are catalogued (name, category, free-tier vs paid-only) for the
+                  toolkit-coverage / public-analogue mapping in paid_templates.py and alternatives.py. This
+                  module never authenticates to CFI or downloads anything gated behind its login/paid plan.
 - damodaran     : NYU Stern spreadsheets (public, no login)
 - asimplemodel  : A Simple Model free downloads (public direct links)
 - exinfm        : exinfm.com free spreadsheets (public)
@@ -15,7 +15,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import os
 import re
 import time
 import urllib.error
@@ -116,15 +115,13 @@ def _head(url: str, headers: Dict[str, str], timeout: int = 25):
         return None, {"error": str(e)}
 
 
-def verify(cat: Dict[str, Any], sources: Optional[List[str]] = None, auth_header: Optional[str] = None,
-           timeout: int = 25) -> Dict[str, Any]:
-    hdrs = _auth_headers(auth_header)
+def verify(cat: Dict[str, Any], sources: Optional[List[str]] = None, timeout: int = 25) -> Dict[str, Any]:
+    """HEAD-check each public entry's URL. CFI entries (access != "public") are never authenticated or
+    fetched by this module, so they are skipped here too."""
     for e in cat["entries"]:
-        if not e["url"] or (sources and e["source"] not in sources):
+        if not e["url"] or e["access"] != "public" or (sources and e["source"] not in sources):
             continue
-        if e["access"] == "cfi-login" and not hdrs:
-            continue
-        status, h = _head(e["url"], hdrs if e["source"] == "cfi" else {}, timeout)
+        status, h = _head(e["url"], {}, timeout)
         e["verified_status"] = str(status) if status else "error"
         try:
             cl = h.get("Content-Length") if hasattr(h, "get") else None
@@ -134,16 +131,6 @@ def verify(cat: Dict[str, Any], sources: Optional[List[str]] = None, auth_header
             pass
     cat["counts"] = _counts(cat["entries"])
     return cat
-
-
-def _auth_headers(auth_header: Optional[str]) -> Dict[str, str]:
-    auth_header = auth_header or os.environ.get("FINMODEL_CFI_AUTH")
-    if not auth_header:
-        return {}
-    if ":" not in auth_header:
-        raise ValueError('auth header must look like "Cookie: ..." or "Authorization: Bearer ..."')
-    k, v = auth_header.split(":", 1)
-    return {k.strip(): v.strip()}
 
 
 def _filename_from_response(url: str, headers, fallback: str) -> str:
@@ -160,19 +147,19 @@ def _filename_from_response(url: str, headers, fallback: str) -> str:
     return fallback + ext
 
 
-def fetch(cat: Dict[str, Any], dest: Path, sources: Optional[List[str]] = None, auth_header: Optional[str] = None,
+def fetch(cat: Dict[str, Any], dest: Path, sources: Optional[List[str]] = None,
           overwrite: bool = False, sleep: float = 0.5, limit: Optional[int] = None) -> List[Dict[str, Any]]:
-    """Download entries into dest/<source>/.  Returns the manifest (one row per attempted entry)."""
+    """Download public entries into dest/<source>/.  Returns the manifest (one row per attempted entry).
+
+    Entries with access != "public" (e.g. CFI's free-tier "cfi-login" and paid "cfi-paid" titles) are always
+    skipped: this function does not authenticate to any source."""
     dest = Path(dest)
-    hdrs = _auth_headers(auth_header)
     manifest_path = dest / "manifest.json"
     manifest: List[Dict[str, Any]] = json.loads(manifest_path.read_text()) if manifest_path.exists() else []
     done = {m["id"] for m in manifest if m.get("ok")}
     n = 0
     for e in cat["entries"]:
-        if not e["url"] or (sources and e["source"] not in sources) or e["access"] == "cfi-paid":
-            continue
-        if e["access"] == "cfi-login" and not hdrs:
+        if not e["url"] or e["access"] != "public" or (sources and e["source"] not in sources):
             continue
         if e["id"] in done and not overwrite:
             continue
@@ -180,7 +167,7 @@ def fetch(cat: Dict[str, Any], dest: Path, sources: Optional[List[str]] = None, 
             break
         n += 1
         row = {"id": e["id"], "source": e["source"], "title": e["title"], "url": e["url"], "ok": False}
-        req = urllib.request.Request(e["url"], headers={"User-Agent": UA, **(hdrs if e["source"] == "cfi" else {})})
+        req = urllib.request.Request(e["url"], headers={"User-Agent": UA})
         try:
             with urllib.request.urlopen(req, timeout=120) as r:
                 data = r.read()
@@ -205,38 +192,3 @@ def fetch(cat: Dict[str, Any], dest: Path, sources: Optional[List[str]] = None, 
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(json.dumps(manifest, indent=1))
     return manifest
-
-
-def fetch_signed(url_file: Path, dest: Path, source: str = "cfi") -> List[Dict[str, Any]]:
-    """Download pre-signed URLs (one per line) into dest/<source>/, naming files from Content-Disposition.
-
-    This is the second half of the CFI dashboard workflow: the learn.corporatefinanceinstitute.com SPA
-    authenticates with a Bearer token, but a *top-level navigation* to api/files/<uuid> in a logged-in
-    browser returns a 302 to a pre-signed S3 URL (resources.corporatefinanceinstitute.com, 60-second
-    expiry).  Capture those URLs from the browser's network log (Claude-in-Chrome, DevTools, HAR export)
-    and feed them here; no credentials are needed for the S3 leg.
-    """
-    dest = Path(dest); out_dir = dest / source; out_dir.mkdir(parents=True, exist_ok=True)
-    manifest_path = dest / "manifest.json"
-    manifest: List[Dict[str, Any]] = json.loads(manifest_path.read_text()) if manifest_path.exists() else []
-    rows = []
-    for line in Path(url_file).read_text().splitlines():
-        url = line.strip()
-        if not url or url.startswith("#"):
-            continue
-        key = Path(urllib.parse.urlparse(url).path).name
-        row = {"id": f"{source}/{key.rsplit('.', 1)[0]}", "source": source, "title": key, "url": url.split("?")[0], "ok": False}
-        req = urllib.request.Request(url, headers={"User-Agent": UA})
-        try:
-            with urllib.request.urlopen(req, timeout=180) as r:
-                data = r.read(); fname = _filename_from_response(url, r.headers, key)
-        except urllib.error.HTTPError as ex:
-            row["error"] = f"HTTP {ex.code}"; rows.append(row); continue
-        except Exception as ex:  # noqa: BLE001
-            row["error"] = str(ex); rows.append(row); continue
-        out = out_dir / fname; out.write_bytes(data)
-        row.update({"ok": True, "path": str(out), "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()})
-        rows.append(row)
-        manifest = [m for m in manifest if m["id"] != row["id"]] + [row]
-    manifest_path.write_text(json.dumps(manifest, indent=1))
-    return rows

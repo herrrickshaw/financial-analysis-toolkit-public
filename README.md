@@ -12,7 +12,7 @@ re-implemented in dependency-free Python and reconciled to the spreadsheets cell
 | `finmodel.merger` | BIWS *Equity value / EV in M&A deals* + BIWS/Macabacus merger models | Deal-level accretion/dilution (premium, cash/debt/stock mix, foregone interest, new shares), premium × %stock sensitivity; multi-year pro forma with purchase price allocation (write-ups, DTL, goodwill), synergies, integration costs, acquisition debt, adjusted EPS |
 | `finmodel.xlcalc` | any workbook | **Excel-formula transpiler and evaluator**: parses A1 formulas, compiles them to Python, evaluates with Excel semantics (~90 functions, lazy IF/IFERROR, ranges, names, circular refs by iteration), verifies against cached values, emits standalone Python modules |
 | `finmodel.charts` | — | Chart templates per engine (KPI tiles, stacked/grouped columns, lines, waterfalls, heatmaps, football field) rendered as dependency-free SVG into a themed HTML report with legends, tooltips and table views |
-| `finmodel.paid_templates` | CFI dashboard | Knowledge base of the 127 paid-only CFI titles: category, what each does (scraped CFI description), public analogues, literature, toolkit coverage |
+| `finmodel.paid_templates` | CFI dashboard | Knowledge base of the 127 paid-only CFI titles: category, what each does (authored summary), public analogues, literature, toolkit coverage |
 | `finmodel.ratios` | CFI Financial Ratio Analysis | Profitability, efficiency (turnover + days + funding gap), liquidity, leverage, coverage |
 | `finmodel.fin` | — | Excel-exact `YEARFRAC` (basis 0–4), `XNPV`, `XIRR`, `NPV`, `IRR`, `NETWORKDAYS`, `EOMONTH`, `PMT` |
 | `finmodel.excel` | — | Writes the 3-statement and DCF models as **live-formula** workbooks in the CFI layout (blue inputs / black formulas); LibreOffice headless recalc for verification |
@@ -115,7 +115,6 @@ finmodel ratios examples/ratios_demo.json
 finmodel extract path/to/AnyTemplate.xlsx -o extracted/         # JSON + Markdown spec of the workbook
 finmodel catalog list --source damodaran                        # 59 verified public spreadsheets
 finmodel catalog fetch --source damodaran asimplemodel exinfm   # downloads/<source>/ (git-ignored)
-finmodel catalog fetch-signed --urls signed.txt              # CFI dashboard: pre-signed S3 links captured from a logged-in browser
 ```
 
 Python:
@@ -633,19 +632,15 @@ sector peers from `docs/FOOTBALL_FIELD_CSCO.md`.
 
 ## Template sources
 
-`catalog/catalog.md` lists 636 entries: 323 CFI dashboard items (196 free-tier downloads, 127 paid) and 313
-verified public files from Damodaran (NYU Stern, 59), Breaking Into Wall Street (225), exinfm.com (15),
-A Simple Model (8) and Macabacus (6), each with size and HTTP status. `catalog/alternatives.md` maps every CFI
-title to the closest public equivalents (87 of the 127 paid-only titles have at least one).
-`docs/LEARNING_GUIDE.md` summarises each modelling tool with its formulas and the books and open university
-courses that teach it.
+`finmodel catalog list` catalogues 313 verified public files from Damodaran (NYU Stern, 59), Breaking Into
+Wall Street (225), exinfm.com (15), A Simple Model (8) and Macabacus (6), each with size and HTTP status, plus
+the names of the 323 CFI dashboard template titles (196 free-tier, 127 paid) used for the coverage mapping
+below. `catalog/alternatives.md` maps every CFI title to the closest public equivalents (87 of the 127
+paid-only titles have at least one). `docs/LEARNING_GUIDE.md` summarises each modelling tool with its formulas
+and the books and open university courses that teach it.
 
-**Fetching the CFI dashboard files.** The learn.corporatefinanceinstitute.com app authenticates with a Bearer
-token, so `api/files/<uuid>` returns 401 to scripts, but a top-level navigation in a logged-in browser answers
-with a 302 to a 60-second pre-signed S3 link. Capture those links from the browser's network log (the Chrome
-extension, DevTools or a HAR export) into a text file and run `finmodel catalog fetch-signed --urls links.txt`;
-the S3 leg needs no credentials. All 196 free-tier files were fetched this way on 2026-09-06 (169 xlsx,
-15 pdf, 11 docx, 2 pptx) and checksummed in `downloads/manifest.json`.
+This toolkit does not authenticate to CFI's dashboard and does not fetch, mirror or redistribute anything from
+behind its login or paid plan — `finmodel catalog fetch` only ever downloads the public, no-login sources above.
 `docs/OPEN_SOURCE_MODULES.md` surveys the Python packages that overlap with this toolkit (FinanceToolkit,
 pyxirr, numpy-financial, OpenBB, …) and `finmodel/integrations.py` has lazy bridges to them.
 

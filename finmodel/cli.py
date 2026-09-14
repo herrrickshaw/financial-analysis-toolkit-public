@@ -37,7 +37,7 @@ def cmd_catalog(a):
     from . import catalog as C
     cat = C.build() if a.action in ("build", "verify", "fetch") else C.load()
     if a.action == "verify":
-        cat = C.verify(cat, a.source, a.auth)
+        cat = C.verify(cat, a.source)
         (C.CATALOG_DIR / "catalog.json").write_text(json.dumps(cat, indent=1))
         (C.CATALOG_DIR / "catalog.md").write_text(C.to_markdown(cat))
     if a.action == "paid":
@@ -49,17 +49,13 @@ def cmd_catalog(a):
                 if a.title.lower() in i["title"].lower():
                     print(f"\n{i['title']}  [{i['category']}]  coverage={i['coverage']}\n  CFI: {i['cfi_description'] or '(no public page found)'}\n  Does: {i['what_it_does']}\n  Analogues: " + "; ".join(f"{x['source']}: {x['title']}" for x in i["analogues"]) + f"\n  Literature: {i['literature']}\n  Toolkit: {i['toolkit']}")
         return
-    if a.action == "fetch-signed":
-        rows = C.fetch_signed(Path(a.urls), Path(a.dest), (a.source or ["cfi"])[0])
-        print(f"fetched {sum(1 for r in rows if r['ok'])}/{len(rows)} signed URLs -> {a.dest}/")
-        return
     if a.action == "alternatives":
         from . import alternatives
         r = alternatives.build()
         print(f"alternatives: {r['summary']} -> catalog/alternatives.md")
         return
     if a.action == "fetch":
-        man = C.fetch(cat, Path(a.dest), a.source, a.auth, a.overwrite, limit=a.limit)
+        man = C.fetch(cat, Path(a.dest), a.source, a.overwrite, limit=a.limit)
         ok = sum(1 for m in man if m.get("ok"))
         print(f"fetched {ok}/{len(man)} -> {a.dest}/ (manifest.json)")
         for m in man:
@@ -1405,9 +1401,9 @@ def main(argv=None):
     sp = p.add_subparsers(dest="cmd", required=True)
 
     x = sp.add_parser("extract", help="extract an Excel template into JSON+Markdown spec"); x.add_argument("files", nargs="+"); x.add_argument("-o", "--out", default="extracted"); x.set_defaults(fn=cmd_extract)
-    c = sp.add_parser("catalog", help="build / list / verify / fetch template sources / alternatives"); c.add_argument("action", choices=["build", "list", "verify", "fetch", "alternatives", "fetch-signed", "paid"]); c.add_argument("--title", help="paid: filter titles containing this text")
-    c.add_argument("--source", nargs="*", help="damodaran asimplemodel exinfm cfi"); c.add_argument("--auth", help='CFI header, e.g. "Cookie: ..." (or env FINMODEL_CFI_AUTH)')
-    c.add_argument("--dest", default="downloads"); c.add_argument("--urls", help="fetch-signed: text file with one pre-signed URL per line"); c.add_argument("--overwrite", action="store_true"); c.add_argument("--limit", type=int); c.set_defaults(fn=cmd_catalog)
+    c = sp.add_parser("catalog", help="build / list / verify / fetch public template sources / alternatives"); c.add_argument("action", choices=["build", "list", "verify", "fetch", "alternatives", "paid"]); c.add_argument("--title", help="paid: filter titles containing this text")
+    c.add_argument("--source", nargs="*", help="damodaran asimplemodel exinfm cfi (cfi entries are catalogued only, never fetched)")
+    c.add_argument("--dest", default="downloads"); c.add_argument("--overwrite", action="store_true"); c.add_argument("--limit", type=int); c.set_defaults(fn=cmd_catalog)
     t = sp.add_parser("three-statement", help="run the linked 3-statement model"); t.add_argument("inputs"); t.add_argument("--xlsx"); t.add_argument("--json-out"); t.add_argument("--table", help="income_statement|balance_sheet|cash_flow|schedules|all"); t.set_defaults(fn=cmd_three)
     d = sp.add_parser("dcf", help="run the unlevered DCF"); d.add_argument("inputs"); d.add_argument("--xlsx"); d.add_argument("--json-out"); d.add_argument("--sensitivity", action="store_true"); d.set_defaults(fn=cmd_dcf)
     j = sp.add_parser("projection", help="run the bottom-up projection"); j.add_argument("inputs"); j.add_argument("--xlsx"); j.add_argument("--json-out"); j.set_defaults(fn=cmd_projection)

@@ -2,7 +2,7 @@
  "generated": "2026-09-07",
  "summary": {
   "paid_titles": 127,
-  "with_cfi_page": 98,
+  "with_cfi_page": 0,
   "with_analogues": 87,
   "coverage": {
    "full": 59,
@@ -104,14 +104,9 @@
   {
    "title": "3-Statement Compact (Complete)",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/3-statement-model/",
-   "cfi_description": "Curious about the three-statement model? Discover valuable insights with CFI's resources to enhance your financial skills. ✓ Explore now and elevate your expertise!",
-   "cfi_sections": [
-    "What is a Three-Statement Model?",
-    "How Do You Build a Three-Statement Model in Excel?",
-    "Layout and Structure of a Three-Statement Model",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [
     {
@@ -147,14 +142,9 @@
   {
    "title": "3-Statement Model (Complete)",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/3-statement-model/",
-   "cfi_description": "Curious about the three-statement model? Discover valuable insights with CFI's resources to enhance your financial skills. ✓ Explore now and elevate your expertise!",
-   "cfi_sections": [
-    "What is a Three-Statement Model?",
-    "How Do You Build a Three-Statement Model in Excel?",
-    "Layout and Structure of a Three-Statement Model",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [
     {
@@ -240,18 +230,9 @@
   {
    "title": "Accounting for Inventory",
    "category": "Accounting topics",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/inventory-accounting/",
-   "cfi_description": "Learn how inventory accounting methods like FIFO, LIFO, and weighted average impact financial statements, profitability, taxes, and inventory management.",
-   "cfi_sections": [
-    "Introduction",
-    "What is Inventory Accounting?",
-    "The Importance of Inventory in Business Operations",
-    "The Concept of Inventory Valuation",
-    "The Main Inventory Valuation Methods",
-    "Impact of Inventory on the Balance Sheet and Income Statement",
-    "Inventory Accounting and Financial Analysis",
-    "Inventory Accounting and Taxes"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Worked accounting examples: lease capitalisation, inventory methods, depreciation methods, diluted EPS, equity-method investments.",
    "analogues": [],
    "literature": "CFI Accounting e-book (downloaded); Penman; docs/GLOSSARY.md GAAP-vs-IFRS table",
@@ -261,8 +242,8 @@
   {
    "title": "Accounting for Leases",
    "category": "Accounting topics",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/finpod/accounting-for-leases/",
-   "cfi_description": "In this episode of What's New at CFI on FinPod, we discuss accounting for leases, focusing on the key differences between operating and finance leases under US GAAP and IFRS.",
+   "cfi_page": null,
+   "cfi_description": "",
    "cfi_sections": [],
    "what_it_does": "Worked accounting examples: lease capitalisation, inventory methods, depreciation methods, diluted EPS, equity-method investments.",
    "analogues": [],
@@ -273,18 +254,9 @@
   {
    "title": "Accounts Payable Turnover Ratio Template",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/accounts-payable-turnover-ratio/",
-   "cfi_description": "Learn the accounts payable turnover ratio formula, how to calculate it, and what it reveals about cash flow, liquidity, and supplier payment efficiency.",
-   "cfi_sections": [
-    "What is the Accounts Payable Turnover Ratio?",
-    "Accounts Payable Turnover Ratio Formula",
-    "Example of Accounts Payable Turnover Ratio",
-    "Accounts Payable Turnover in Days",
-    "Download CFI’s Free Accounts Payable Turnover Ratio Template",
-    "How to Interpret the Accounts Payable Turnover Ratio",
-    "How to Use the Accounts Payable Turnover Ratio in Financial Modeling",
-    "Key Takeaways"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -358,11 +330,9 @@
   {
    "title": "Active Listening Diagnostic",
    "category": "Soft skills & career",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/management/improve-your-listening-skills/",
-   "cfi_description": "Having effective listening skills means being able to display interest in the topic discussed and understand the information provided.",
-   "cfi_sections": [
-    "How to Improve Your Listening Skills"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Non-modelling material: assessments, checklists and document templates.",
    "analogues": [],
    "literature": "—",
@@ -448,16 +418,9 @@
   {
    "title": "Appraisal Checklist",
    "category": "Soft skills & career",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/commercial-real-estate/appraisal/",
-   "cfi_description": "Learn what an appraisal is, why it's commissioned, what an appraisal report includes, and the different types across asset classes.",
-   "cfi_sections": [
-    "What is an Appraisal?",
-    "Purpose of an Appraisal",
-    "Understanding Appraisals",
-    "What is Included in an Appraisal Report?",
-    "Types of Appraisals",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Non-modelling material: assessments, checklists and document templates.",
    "analogues": [],
    "literature": "—",
@@ -467,11 +430,9 @@
   {
    "title": "Asset Turnover Template",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/fixed-asset-turnover-template/",
-   "cfi_description": "Download CFI's free Fixed Asset Turnover template to assess how efficiently a company uses fixed assets to generate sales—key for investors and analysts.",
-   "cfi_sections": [
-    "Fixed Asset Turnover Template"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -507,14 +468,9 @@
   {
    "title": "Audit and Balance a 3-Statement Model",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/3-statement-model/",
-   "cfi_description": "Curious about the three-statement model? Discover valuable insights with CFI's resources to enhance your financial skills. ✓ Explore now and elevate your expertise!",
-   "cfi_sections": [
-    "What is a Three-Statement Model?",
-    "How Do You Build a Three-Statement Model in Excel?",
-    "Layout and Structure of a Three-Statement Model",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [
     {
@@ -550,11 +506,9 @@
   {
    "title": "Bank and FIG Financial Model Template",
    "category": "Other",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/career/financial-institutions-group-fig/",
-   "cfi_description": "Financial Institutions Group (FIG) is a group of professionals that provide advisory services to financial institutions.",
-   "cfi_sections": [
-    "What is the Financial Institutions Group (FIG)?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "",
    "analogues": [
     {
@@ -590,11 +544,9 @@
   {
    "title": "Bank Financial Analysis",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/commercial-lending/bank-credit-analysis/",
-   "cfi_description": "In bank credit analysis, banks consider and evaluate every loan application based on merits. They check the creditworthiness of every individual or entity",
-   "cfi_sections": [
-    "What is Bank Credit Analysis?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -630,14 +582,9 @@
   {
    "title": "Bank of America and Barclays Ratios",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/financial-ratios-definitive-guide/",
-   "cfi_description": "CFI’s Financial Ratios Guide is a PDF ebook, free and available to download. The guide lists the essential financial ratios that a financial analyst uses.",
-   "cfi_sections": [
-    "Download CFI’s Free Financial Ratios Definitive Guide",
-    "Your Go-To Resource for Financial Ratios",
-    "Everything You’ll Learn in the Financial Ratios Definitive Guide",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -673,11 +620,9 @@
   {
    "title": "Bank Ratio Calculator",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/bank-balance-sheet-ratio-calculator/",
-   "cfi_description": "he Bank Balance Sheet Ratio Calculator is a tool that you can use to determine a bank's financial stability and liquidity using items found on",
-   "cfi_sections": [
-    "Bank Balance Sheet Ratio Calculator"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -713,11 +658,9 @@
   {
    "title": "Benchmarking Analysis",
    "category": "Comparable companies / precedent transactions",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/uncategorized/stock-performance-benchmarking/",
-   "cfi_description": "Stock performance benchmarking is a strategy employed by investors to help determine the different performance aspects of an investment portfolio. Investors",
-   "cfi_sections": [
-    "What is Stock Performance Benchmarking?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Spreads peer multiples (EV/EBITDA, EV/revenue, P/E) and precedent deal multiples, computes quartile ranges and applies them to the target; sector versions add industry KPIs.",
    "analogues": [
     {
@@ -753,11 +696,9 @@
   {
    "title": "Business Valuation Exercises (Complete)",
    "category": "DCF / intrinsic valuation",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/valuation/business-valuation-glossary/",
-   "cfi_description": "CFI's business valuation glossary covers the most important concepts to know in valuing a company. This guide is part of CFI's Business Valuation Modeling course/",
-   "cfi_sections": [
-    "Business Valuation Glossary"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Projects unlevered (FCFF) or levered (FCFE / dividend) cash flows, discounts them at WACC or cost of equity, adds a terminal value and bridges enterprise value to a per-share value with sensitivity tables.",
    "analogues": [
     {
@@ -793,11 +734,9 @@
   {
    "title": "Business Valuation Model (Complete)",
    "category": "DCF / intrinsic valuation",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/valuation/business-valuation-glossary/",
-   "cfi_description": "CFI's business valuation glossary covers the most important concepts to know in valuing a company. This guide is part of CFI's Business Valuation Modeling course/",
-   "cfi_sections": [
-    "Business Valuation Glossary"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Projects unlevered (FCFF) or levered (FCFE / dividend) cash flows, discounts them at WACC or cost of equity, adds a terminal value and bridges enterprise value to a per-share value with sensitivity tables.",
    "analogues": [
     {
@@ -833,17 +772,9 @@
   {
    "title": "Calculating Net Interest Income",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/net-interest-income/",
-   "cfi_description": "Net interest income (NII) is the difference between interest revenue and interest expense. Learn how banks calculate NII, net interest margin, and key drivers.",
-   "cfi_sections": [
-    "What is Net Interest Income?",
-    "What Type of Assets Generate Interest Income for Investors?",
-    "What Type of Assets Generate Interest Income for a Bank?",
-    "Interest Revenue",
-    "Interest Expenses",
-    "Interest Rates in the Economy and Net Interest Income",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -879,11 +810,9 @@
   {
    "title": "Calculating Risk Weighted Assets",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/career-map/sell-side/risk-management/risk-weighted-assets/",
-   "cfi_description": "Risk-weighted assets refer to an asset classification system used to determine the minimum capital that banks should keep as a reserve to reduce the risk of insolvency.",
-   "cfi_sections": [
-    "What are Risk-Weighted Assets?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -919,17 +848,9 @@
   {
    "title": "Cap Rate and NOI",
    "category": "Real estate & project models",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/valuation/cap-rate-reit/",
-   "cfi_description": "Learn the capitalization rate (cap rate)—its formula, calculation, and role in valuing real estate investments, risk assessment, and return potential.",
-   "cfi_sections": [
-    "What is Capitalization Rate (Cap Rate)?",
-    "Cap Rate Formula",
-    "Why is the Capitalization Rate Important?",
-    "How Investors Use the Cap Rate",
-    "Practical Example: Cap Rate in Real Estate",
-    "Real Estate Modeling Course",
-    "Cap Rate Summary"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Cash-flow models for property or infrastructure assets: NOI, cap rates, debt service coverage, construction and ramp-up, levered IRR.",
    "analogues": [
     {
@@ -965,13 +886,9 @@
   {
    "title": "CFI Advanced Excel Formulas & Functions",
    "category": "Excel / charting / dashboards",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/excel/advanced-excel-formulas-must-know/",
-   "cfi_description": "Master advanced Excel formulas and functions for data analysis and modeling. Learn powerful tools for accuracy, efficiency, and better decisions. ✓",
-   "cfi_sections": [
-    "10 Advanced Excel Formulas You Must Know",
-    "More Excel Formulas Training",
-    "Additional Questions & Answers"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Spreadsheet technique: advanced formulas, scenario and sensitivity tables, dashboards and presentation output.",
    "analogues": [],
    "literature": "Benninga; Rees, Principles of Financial Modelling; CFI Excel e-book (paid) — free CFI Excel Fundamentals files downloaded",
@@ -981,13 +898,9 @@
   {
    "title": "CFI Excel eBook",
    "category": "Excel / charting / dashboards",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/fpa/essential-guide-breaking-into-fpa-free-ebook/",
-   "cfi_description": "Break into FP&A with CFI’s free guide—master core finance skills, AI tools, and business partnering to excel in this dynamic career path. Download now!",
-   "cfi_sections": [
-    "Your Complete Introduction to FP&A Skill Building",
-    "Download the Essential Guide to Breaking Into FP&A",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Spreadsheet technique: advanced formulas, scenario and sensitivity tables, dashboards and presentation output.",
    "analogues": [],
    "literature": "Benninga; Rees, Principles of Financial Modelling; CFI Excel e-book (paid) — free CFI Excel Fundamentals files downloaded",
@@ -997,15 +910,9 @@
   {
    "title": "CFI Investment Banking Pitch Book",
    "category": "Soft skills & career",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/valuation/investment-banking-pitch-book/",
-   "cfi_description": "How to make an investment banking pitch book. This guide will teach you what's included, how to make an IB pitch book, and provides examples of slides.",
-   "cfi_sections": [
-    "What is an Investment Banking Pitch Book?",
-    "What’s Included in an Investment Banking Pitch Book?",
-    "How is the Pitch Book Actually Made?",
-    "How is the Pitch Delivered?",
-    "More Investment Banking Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Non-modelling material: assessments, checklists and document templates.",
    "analogues": [
     {
@@ -1053,17 +960,9 @@
   {
    "title": "Cohort Analysis",
    "category": "Other",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/business-intelligence/cohort-analysis/",
-   "cfi_description": "Learn what cohort analysis is, the three types, how to read a retention table, and how SaaS and e-commerce businesses use it.",
-   "cfi_sections": [
-    "What is Cohort Analysis?",
-    "",
-    "Types of Cohorts to Analyze",
-    "Example of Cohort Analysis",
-    "Combining Cohorts",
-    "Download the Free Template",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "",
    "analogues": [],
    "literature": "",
@@ -1085,16 +984,9 @@
   {
    "title": "Communication Styles Diagnostic",
    "category": "Soft skills & career",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/career/types-of-communication-styles/",
-   "cfi_description": "Discover the main types of communication styles—passive, aggressive, passive-aggressive, and assertive—and learn how to communicate effectively at work.",
-   "cfi_sections": [
-    "What Are the Main Types of Communication Styles?",
-    "Strategies For Your Communication Style",
-    "Comparing Types of Communication Styles",
-    "Final Word on Types of Communication Styles",
-    "Frequently Asked Questions",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Non-modelling material: assessments, checklists and document templates.",
    "analogues": [],
    "literature": "—",
@@ -1104,11 +996,9 @@
   {
    "title": "Compact Comps (Complete)",
    "category": "Comparable companies / precedent transactions",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/pharmaceutical-industry-comps-template/",
-   "cfi_description": "This free pharmaceutical industry comps template allows the user to perform a simple comparable company analysis within the pharmaceutical industry.",
-   "cfi_sections": [
-    "Pharmaceutical Industry Comps Template"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Spreads peer multiples (EV/EBITDA, EV/revenue, P/E) and precedent deal multiples, computes quartile ranges and applies them to the target; sector versions add industry KPIs.",
    "analogues": [
     {
@@ -1144,14 +1034,9 @@
   {
    "title": "Compact LBO Model (Complete)",
    "category": "LBO",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/lbo-model/",
-   "cfi_description": "Learn what an LBO model is, how it's structured in Excel, the capital stack (bank debt, HY debt, mezzanine, equity), key credit metrics, and how sponsor IRR is calculated.",
-   "cfi_sections": [
-    "What is an LBO Model?",
-    "Structure of an LBO Model",
-    "Credit Metrics",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Funds an acquisition with tranches of debt sized off EBITDA, projects cash flow to service and sweep debt, exits at a multiple and solves for sponsor IRR / MOIC with scenario and exit-multiple tables.",
    "analogues": [
     {
@@ -1187,8 +1072,8 @@
   {
    "title": "Comparable Valuation Fundamentals",
    "category": "Comparable companies / precedent transactions",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/finpod/introduction-to-comprable-valuation/",
-   "cfi_description": "In this episode, we discuss our new course, designed to make valuation concepts more accessible for learners without extensive finance backgrounds.",
+   "cfi_page": null,
+   "cfi_description": "",
    "cfi_sections": [],
    "what_it_does": "Spreads peer multiples (EV/EBITDA, EV/revenue, P/E) and precedent deal multiples, computes quartile ranges and applies them to the target; sector versions add industry KPIs.",
    "analogues": [
@@ -1237,16 +1122,9 @@
   {
    "title": "Conflict Styles Questionnaire",
    "category": "Soft skills & career",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/management/leadership-styles/",
-   "cfi_description": "Leadership styles refer to the behavioral approach employed by leaders to influence, motivate, and direct their followers.",
-   "cfi_sections": [
-    "What are Leadership Styles?",
-    "Why Do Leadership Styles Matter?",
-    "Common Leadership Styles",
-    "Other Leadership Styles",
-    "Which Leadership Style is the Best?",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Non-modelling material: assessments, checklists and document templates.",
    "analogues": [],
    "literature": "—",
@@ -1256,11 +1134,9 @@
   {
    "title": "Consolidation model",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/consolidation-model/",
-   "cfi_description": "A Consolidation Model is constructed by combining the financial results of multiple business units into one single model. Typically, the first worksheet of",
-   "cfi_sections": [
-    "What is a Consolidation Model?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [
     {
@@ -1358,11 +1234,9 @@
   {
    "title": "Current Ratio Template",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/current-ratio-calculator/",
-   "cfi_description": "This Current Ratio Calculator will help to calculate the current ratio given the sum of all current assets and current liabilities.",
-   "cfi_sections": [
-    "Current Ratio Calculator"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -1474,17 +1348,9 @@
   {
    "title": "Days Inventory Outstanding Template",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/days-inventory-outstanding-dio/",
-   "cfi_description": "Learn how to calculate Days Inventory Outstanding (DIO), interpret inventory efficiency, and assess a company’s operational performance.",
-   "cfi_sections": [
-    "What is Days Inventory Outstanding (DIO)?",
-    "Days Inventory Outstanding Formula",
-    "Example of Days Inventory Outstanding",
-    "Download the Free Template",
-    "Interpretation of Days Inventory Outstanding",
-    "Importance of Days Inventory Outstanding",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -1520,11 +1386,9 @@
   {
    "title": "Days Sales Outstanding",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/days-sales-outstanding-template/",
-   "cfi_description": "This days sales outstanding template demonstrates the calculation of the number of days it takes to collect all accounts receivable. Days Sales Outstanding (DSO)",
-   "cfi_sections": [
-    "Days Sales Outstanding Template"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -1560,12 +1424,9 @@
   {
    "title": "DCF Model",
    "category": "DCF / intrinsic valuation",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/dcf-model-template/",
-   "cfi_description": "This DCF model template provides you with a foundation to build your own discounted cash flow model with different assumptions",
-   "cfi_sections": [
-    "Download the Free DCF Model Template",
-    "More Free Templates"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Projects unlevered (FCFF) or levered (FCFE / dividend) cash flows, discounts them at WACC or cost of equity, adds a terminal value and bridges enterprise value to a per-share value with sensitivity tables.",
    "analogues": [
     {
@@ -1639,12 +1500,9 @@
   {
    "title": "DCF Valuation Model (Complete)",
    "category": "DCF / intrinsic valuation",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/dcf-model-template/",
-   "cfi_description": "This DCF model template provides you with a foundation to build your own discounted cash flow model with different assumptions",
-   "cfi_sections": [
-    "Download the Free DCF Model Template",
-    "More Free Templates"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Projects unlevered (FCFF) or levered (FCFE / dividend) cash flows, discounts them at WACC or cost of equity, adds a terminal value and bridges enterprise value to a per-share value with sensitivity tables.",
    "analogues": [
     {
@@ -1680,11 +1538,9 @@
   {
    "title": "Debt Capacity Model",
    "category": "LBO",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/debt-capacity-model-template/",
-   "cfi_description": "This Debt Capacity Model Template will help you assess the debt capacity based on various credit metrics and current earnings.",
-   "cfi_sections": [
-    "Debt Capacity Model Template"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Funds an acquisition with tranches of debt sized off EBITDA, projects cash flow to service and sweep debt, exits at a multiple and solves for sponsor IRR / MOIC with scenario and exit-multiple tables.",
    "analogues": [
     {
@@ -1720,18 +1576,9 @@
   {
    "title": "Debt Equity Ratio",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/commercial-lending/debt-to-equity-ratio-formula/",
-   "cfi_description": "Learn the debt-to-equity ratio formula, how to calculate it, and examples. Understand how it measures financial leverage and a company’s risk profile.",
-   "cfi_sections": [
-    "What is the Debt to Equity Ratio?",
-    "Debt to Equity Ratio Formula",
-    "Debt to Equity Ratio in Practice",
-    "Benefits of a High D/E Ratio",
-    "Drawbacks of a High D/E Ratio",
-    "Debt to Equity Ratio Calculator",
-    "Download the Free Template",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -1767,11 +1614,9 @@
   {
    "title": "Degree of Leverage Analysis",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/degree-of-total-leverage/",
-   "cfi_description": "The degree of total leverage is a ratio that compares the rate of change a company experiences in earnings per share (EPS) to the rate of change it experiences in revenue from sales.",
-   "cfi_sections": [
-    "What is the Degree of Total Leverage?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -1807,15 +1652,9 @@
   {
    "title": "Depreciation-Methods",
    "category": "Accounting topics",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/types-depreciation-methods/",
-   "cfi_description": "Learn the 4 main depreciation methods — straight-line, double declining balance, units of production, and sum-of-years-digits — with formulas and examples.",
-   "cfi_sections": [
-    "What are the Main Types of Depreciation Methods?",
-    "Summary of Depreciation Methods",
-    "Download the Free Template",
-    "Video Explanation of Depreciation Methods",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Worked accounting examples: lease capitalisation, inventory methods, depreciation methods, diluted EPS, equity-method investments.",
    "analogues": [
     {
@@ -1917,11 +1756,9 @@
   {
    "title": "Directional Trading Strategies",
    "category": "Options, trading & derivatives",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/derivatives/directional-trading-strategies/",
-   "cfi_description": "Directional options strategies are trades that bet on the up or down movement of the market. For example, if an investor believes the market is rising,",
-   "cfi_sections": [
-    "What are Directional Trading Strategies?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Payoff diagrams, option strategies, put-call parity, algorithmic signals and structured-product cash-flow models.",
    "analogues": [],
    "literature": "Damodaran `option.pdf` and real-option spreadsheets (downloaded); Hull, Options, Futures and Other Derivatives",
@@ -1931,16 +1768,9 @@
   {
    "title": "Dividend Discount Model",
    "category": "DCF / intrinsic valuation",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/valuation/dividend-discount-model/",
-   "cfi_description": "Learn the Dividend Discount Model (DDM)—its formula, calculation, and use in valuing stocks based on expected dividends, growth rates, and cost of equity.",
-   "cfi_sections": [
-    "What is the Dividend Discount Model?",
-    "Breaking Down the Dividend Discount Model",
-    "Formula for the Dividend Discount Model",
-    "Notable Shortcomings of the DDM",
-    "Summary",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Projects unlevered (FCFF) or levered (FCFE / dividend) cash flows, discounts them at WACC or cost of equity, adds a terminal value and bridges enterprise value to a per-share value with sensitivity tables.",
    "analogues": [
     {
@@ -1976,16 +1806,9 @@
   {
    "title": "EBT Example",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/earnings-before-tax-ebt/",
-   "cfi_description": "Learn what Earnings Before Tax (EBT) is, how it’s calculated, and how it helps evaluate a company’s profitability before income taxes.",
-   "cfi_sections": [
-    "What is Earnings Before Tax (EBT)?",
-    "Earnings Before Tax Formula",
-    "Download the Free Template",
-    "EBT’s Relation to Taxes",
-    "EBT vs EBIT vs EBITDA",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [],
    "literature": "Penman ch. 9–12; CFA Level I FSA; CFI Financial Ratios Definitive Guide (downloaded PDF); MIT OCW 15.535; Altman (1968/2000), Beneish (1999), Piotroski (2000)",
@@ -2033,11 +1856,9 @@
   {
    "title": "Efficient Frontier and CAL Template",
    "category": "Cost of capital & capital structure",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/efficient-frontier-and-cal-template/",
-   "cfi_description": "Download CFI's free Efficient Frontier & CAL template to visualize optimal portfolios, Sharpe ratios, and risk-return tradeoffs with customizable charts.",
-   "cfi_sections": [
-    "Efficient Frontier and CAL Template"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Estimates cost of equity (CAPM), cost of debt and WACC, tests capital-structure choices and financing decisions.",
    "analogues": [],
    "literature": "Damodaran Applied Corporate Finance ch. 4; corporate-finance packet 1 (`cfpacket1.pdf`); Koller ch. 15; MIT 15.401 CAPM lectures; Damodaran synthetic-rating methodology",
@@ -2047,11 +1868,9 @@
   {
    "title": "Energy Industry Comps Template",
    "category": "Comparable companies / precedent transactions",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/energy-industry-comps-template/",
-   "cfi_description": "The energy industry comps template allows investors to compare an energy company to others in the same industry. This helps to determine the relative value.",
-   "cfi_sections": [
-    "What is the Energy Industry Comps Template?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Spreads peer multiples (EV/EBITDA, EV/revenue, P/E) and precedent deal multiples, computes quartile ranges and applies them to the target; sector versions add industry KPIs.",
    "analogues": [
     {
@@ -2087,17 +1906,9 @@
   {
    "title": "ETF Allocator Model",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/capital_markets/japan-etf/",
-   "cfi_description": "Learn what a Japan ETF is, popular funds that track Japanese equities, and key factors to weigh before investing in one.",
-   "cfi_sections": [
-    "What is a Japan ETF?",
-    "Japan’s Economy",
-    "Understanding Japan ETFs",
-    "What is the Tokyo Stock Exchange?",
-    "Top Three Japanese ETFs",
-    "Historical Performance",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [],
    "literature": "Pignataro ch. 1–8; Tjia ch. 4–11; Benninga part I; CFI Financial Modeling Guidelines PDF (downloaded); MIT OCW 15.535; Saylor BUS202 pro-forma units",
@@ -2107,13 +1918,9 @@
   {
    "title": "Excel for Finance Functions",
    "category": "Excel / charting / dashboards",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/excel-for-finance-functions/",
-   "cfi_description": "This Excel for finance functions template demonstrates sample calculations using the top 10 most important functions and formulas for finance professionals.",
-   "cfi_sections": [
-    "Excel for Finance Functions",
-    "Download the Free Template",
-    "More Free Templates"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Spreadsheet technique: advanced formulas, scenario and sensitivity tables, dashboards and presentation output.",
    "analogues": [],
    "literature": "Benninga; Rees, Principles of Financial Modelling; CFI Excel e-book (paid) — free CFI Excel Fundamentals files downloaded",
@@ -2123,11 +1930,9 @@
   {
    "title": "FCFF vs FCFE Reconciliation Template",
    "category": "DCF / intrinsic valuation",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/fcff-vs-fcfe-reconciliation-template/",
-   "cfi_description": "Free Cash Flow to Firm (FCFF) is cash flow available to the firm’s suppliers of capital once operating and investing expenditures are paid.",
-   "cfi_sections": [
-    "FCFF vs. FCFE Reconciliation Template"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Projects unlevered (FCFF) or levered (FCFE / dividend) cash flows, discounts them at WACC or cost of equity, adds a terminal value and bridges enterprise value to a per-share value with sensitivity tables.",
    "analogues": [
     {
@@ -2213,14 +2018,9 @@
   {
    "title": "Financial Projection Template",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/financial-projection-template/",
-   "cfi_description": "This financial projection template will forecast future revenue and expenses by building up from payroll, operating expenses schedules, etc.",
-   "cfi_sections": [
-    "Financial Projection Template",
-    "Download the Free Financial Projection Template",
-    "Components of a Financial Projection Template",
-    "More Free Templates"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [
     {
@@ -2256,17 +2056,9 @@
   {
    "title": "Forecasting Template",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/valuation/forecasting/",
-   "cfi_description": "Learn what forecasting is in finance, how qualitative and quantitative methods work, the step-by-step process, and how it differs from budgeting.",
-   "cfi_sections": [
-    "What is Forecasting?",
-    "Budgeting vs. Forecasting",
-    "Forecasting Methods",
-    "Features of Forecasting",
-    "The Process of Forecasting",
-    "Sources of Data for Forecasting",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [
     {
@@ -2302,14 +2094,9 @@
   {
    "title": "FP&A 3-Statement Model",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/3-statement-model/",
-   "cfi_description": "Curious about the three-statement model? Discover valuable insights with CFI's resources to enhance your financial skills. ✓ Explore now and elevate your expertise!",
-   "cfi_sections": [
-    "What is a Three-Statement Model?",
-    "How Do You Build a Three-Statement Model in Excel?",
-    "Layout and Structure of a Three-Statement Model",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [
     {
@@ -2345,18 +2132,9 @@
   {
    "title": "FP&A Budgeting and Forecasting Model",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/fpa/budgeting-vs-forecasting-fpa/",
-   "cfi_description": "Learn the differences between budgeting and forecasting in FP&A. Discover practical use cases and tips to improve your financial planning and analysis skills.",
-   "cfi_sections": [
-    "Understanding Budgeting vs Forecasting in FP&A",
-    "Budgeting in FP&A: Laying the Foundation",
-    "The Role of Forecasting in FP&A",
-    "Budgeting vs Forecasting FP&A: A Practical Comparison",
-    "Use Cases for Budgeting and Forecasting in FP&A",
-    "Tips to Elevate Your FP&A Career with Budgeting and Forecasting",
-    "Master Budgeting vs. Forecasting in FP&A: Take Your Next Career Step",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [
     {
@@ -2404,14 +2182,9 @@
   {
    "title": "Giving Feedback",
    "category": "Soft skills & career",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/management/constructive-feedback/",
-   "cfi_description": "Learn how to give constructive feedback effectively, improve communication, support employee growth, and build stronger workplace relationships.",
-   "cfi_sections": [
-    "What is Feedback?",
-    "Benefits of Delivering Feedback",
-    "Making Feedback Effective",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Non-modelling material: assessments, checklists and document templates.",
    "analogues": [],
    "literature": "—",
@@ -2421,11 +2194,9 @@
   {
    "title": "Goal Seek and Solver",
    "category": "Excel / charting / dashboards",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/excel/goal-seek-excel-guide/",
-   "cfi_description": "The Goal Seek Excel function (What-if-Analysis) is a method of solving for a desired output by changing an assumption that drives it. It uses a trial and error approach.",
-   "cfi_sections": [
-    "What is the Goal Seek Excel Function?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Spreadsheet technique: advanced formulas, scenario and sensitivity tables, dashboards and presentation output.",
    "analogues": [
     {
@@ -2451,11 +2222,9 @@
   {
    "title": "Hybrid Team Self-Reflection",
    "category": "Soft skills & career",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/fixed-income/hybrid-securities/",
-   "cfi_description": "Hybrid securities are investment instruments that combine the features of pure equities and pure bonds.",
-   "cfi_sections": [
-    "What are Hybrid Securities?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Non-modelling material: assessments, checklists and document templates.",
    "analogues": [],
    "literature": "—",
@@ -2465,8 +2234,8 @@
   {
    "title": "Individual Equity Allocation Model",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/finpod/purchase-price-allocation-and-m-and-a-accounting/",
-   "cfi_description": "In this episode, we discuss how our new course on purchase price allocations and M&A accounting addresses common challenges around acquisition accounting.",
+   "cfi_page": null,
+   "cfi_description": "",
    "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [],
@@ -2553,18 +2322,9 @@
   {
    "title": "InsurTech Pricer Model",
    "category": "Other",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/career/what-is-insurtech/",
-   "cfi_description": "Learn what InsurTech is, how technology is transforming insurance through automation and data, and its impact on efficiency and customer experience.",
-   "cfi_sections": [
-    "The Importance of InsurTech",
-    "InsurTech Applications",
-    "Challenges of InsurTech",
-    "InsurTech Companies",
-    "InsurTech Jobs",
-    "Summary",
-    "Additional Resources",
-    "Course"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "",
    "analogues": [],
    "literature": "",
@@ -2574,17 +2334,9 @@
   {
    "title": "Interest Coverage Ratio Template",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/commercial-lending/interest-coverage-ratio/",
-   "cfi_description": "Learn what the Interest Coverage Ratio (ICR) is, how to calculate it using EBIT or EBITDA, how to interpret the result, and what a good ICR looks like.",
-   "cfi_sections": [
-    "What is the Interest Coverage Ratio (ICR)?",
-    "Interest Coverage Ratio Formula",
-    "Interest Coverage Ratio Example",
-    "Download the Free Template",
-    "How to Interpret Interest Coverage Ratio",
-    "Primary Uses of the Interest Coverage Ratio",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -2620,13 +2372,9 @@
   {
    "title": "Interest Rate Parity (IRP) Calculator",
    "category": "Cost of capital & capital structure",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/interest-rate-parity-irp-calculator/",
-   "cfi_description": "Download CFI's free Interest Rate Parity (IRP) Excel calculator to solve for any component of the IRP equation — spot rate, forward rate, or interest rates.",
-   "cfi_sections": [
-    "Interest Rate Parity (IRP) Excel Calculator",
-    "Download the Free Calculator",
-    "About the Interest Rate Parity (IRP)"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Estimates cost of equity (CAPM), cost of debt and WACC, tests capital-structure choices and financing decisions.",
    "analogues": [],
    "literature": "Damodaran Applied Corporate Finance ch. 4; corporate-finance packet 1 (`cfpacket1.pdf`); Koller ch. 15; MIT 15.401 CAPM lectures; Damodaran synthetic-rating methodology",
@@ -2636,11 +2384,9 @@
   {
    "title": "Intro to 3-Statement Modeling Model",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/finpod/fpa-3-statement-modeling/",
-   "cfi_description": "In this episode, we break down CFI’s latest course: FP&A 3-Statement Modeling—designed to help finance professionals build structured, scalable models with confidence.",
-   "cfi_sections": [
-    "Mastering FP&A 3-Statement Modeling"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [
     {
@@ -2676,17 +2422,9 @@
   {
    "title": "Intro to Leveraged Buyouts",
    "category": "LBO",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/valuation/leveraged-buyout-returns-financial-leverage/",
-   "cfi_description": "Discover how leveraged buyouts amplify equity returns through financial leverage. Explore the strategies, risks, and Excel tools behind LBO investment success.",
-   "cfi_sections": [
-    "Driving Investment Performance Through Leveraged Buyout Returns",
-    "What is a Leveraged Buyout?",
-    "How Debt Can Amplify Leveraged Buyout Returns",
-    "Understanding the Risks of Leverage in LBOs",
-    "Practical Applications of Leveraged Buyout Returns",
-    "Leveraged Buyout Returns: Critical Expertise for Finance Careers",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Funds an acquisition with tranches of debt sized off EBITDA, projects cash flow to service and sweep debt, exits at a multiple and solves for sponsor IRR / MOIC with scenario and exit-multiple tables.",
    "analogues": [
     {
@@ -2722,17 +2460,9 @@
   {
    "title": "Intro to Mergers & Acquisitions",
    "category": "M&A / merger",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/valuation/mergers-acquisitions-ma/",
-   "cfi_description": "Learn what mergers and acquisitions (M&A) are, the main deal types, and how companies use M&A to achieve growth, synergies, and market expansion.",
-   "cfi_sections": [
-    "What are Mergers & Acquisitions (M&A)?",
-    "Mergers and Acquisitions (M&A) Transactions – Types",
-    "Mergers and Acquisitions (M&A) – Forms of Integration",
-    "Reasons for Mergers and Acquisitions (M&A) Activity",
-    "Forms of Acquisition",
-    "Mergers and Acquisitions (M&A) – Valuation",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Combines acquirer and target, funds the deal with cash / debt / stock, allocates the purchase price (write-ups, goodwill, deferred taxes), layers synergies and integration costs and tests EPS accretion / dilution and pro-forma leverage.",
    "analogues": [
     {
@@ -2768,8 +2498,8 @@
   {
    "title": "Introduction to Bank Valuation Examples",
    "category": "DCF / intrinsic valuation",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/finpod/introduction-to-bank-valuation/",
-   "cfi_description": "In this episode, we introduce our Intro to Bank Valuations course, designed to simplify bank valuation models by focusing on practical methodologies.",
+   "cfi_page": null,
+   "cfi_description": "",
    "cfi_sections": [],
    "what_it_does": "Projects unlevered (FCFF) or levered (FCFE / dividend) cash flows, discounts them at WACC or cost of equity, adds a terminal value and bridges enterprise value to a per-share value with sensitivity tables.",
    "analogues": [
@@ -2806,11 +2536,9 @@
   {
    "title": "Inventory Turnover Calculator",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/inventory-turnover-calculator/",
-   "cfi_description": "This inventory turnover calculator will help you calculate the number of times a business sells and replaces its stock of products within a set period.",
-   "cfi_sections": [
-    "Inventory Turnover Calculator"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -2846,13 +2574,9 @@
   {
    "title": "Investment Banking Manual CFI 2019",
    "category": "Soft skills & career",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/valuation/investment-banking-book-pdf/",
-   "cfi_description": "CFI's Investment Banking book is free, available for anyone to download as a PDF. Read about accounting, valuation, financial modeling, Excel, and all skills required.",
-   "cfi_sections": [
-    "Investment Banking Manual",
-    "Book Review",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Non-modelling material: assessments, checklists and document templates.",
    "analogues": [
     {
@@ -2888,16 +2612,9 @@
   {
    "title": "Investor Pitch Deck Template",
    "category": "Excel / charting / dashboards",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/valuation/how-to-build-a-pitch-deck-free-template/",
-   "cfi_description": "This free pitch deck template is based on hundreds of investor presentations I've seen. Download the free template to build your investor pitch deck.",
-   "cfi_sections": [
-    "Investment Pitch Deck Template",
-    "Download the Pitch Deck Template",
-    "How To Structure Your Pitch Deck",
-    "How To Connect With Your Audience",
-    "How to Generate the Financial Information",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Spreadsheet technique: advanced formulas, scenario and sensitivity tables, dashboards and presentation output.",
    "analogues": [
     {
@@ -2933,14 +2650,9 @@
   {
    "title": "LBO Model",
    "category": "LBO",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/lbo-model/",
-   "cfi_description": "Learn what an LBO model is, how it's structured in Excel, the capital stack (bank debt, HY debt, mezzanine, equity), key credit metrics, and how sponsor IRR is calculated.",
-   "cfi_sections": [
-    "What is an LBO Model?",
-    "Structure of an LBO Model",
-    "Credit Metrics",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Funds an acquisition with tranches of debt sized off EBITDA, projects cash flow to service and sweep debt, exits at a multiple and solves for sponsor IRR / MOIC with scenario and exit-multiple tables.",
    "analogues": [
     {
@@ -2976,18 +2688,9 @@
   {
    "title": "Leverage and Liquidity Ratios",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/leverage-ratios/",
-   "cfi_description": "Learn leverage ratios—key formulas, examples, and uses in evaluating debt levels, financial risk, and a company’s ability to meet obligations.",
-   "cfi_sections": [
-    "What are Leverage Ratios?",
-    "What is Leverage?",
-    "How to Create Leverage",
-    "List of Common Leverage Ratios",
-    "What are the Various Types of Leverage Ratios?",
-    "Why are Leverage Ratios Important?",
-    "Coverage Ratios",
-    "Summary"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -3023,18 +2726,9 @@
   {
    "title": "Leverage Ratios",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/leverage-ratios/",
-   "cfi_description": "Learn leverage ratios—key formulas, examples, and uses in evaluating debt levels, financial risk, and a company’s ability to meet obligations.",
-   "cfi_sections": [
-    "What are Leverage Ratios?",
-    "What is Leverage?",
-    "How to Create Leverage",
-    "List of Common Leverage Ratios",
-    "What are the Various Types of Leverage Ratios?",
-    "Why are Leverage Ratios Important?",
-    "Coverage Ratios",
-    "Summary"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -3070,16 +2764,9 @@
   {
    "title": "LTV CAC Ratio",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/valuation/cac-ltv-ratio/",
-   "cfi_description": "Learn what the CAC LTV ratio is, how to calculate customer acquisition cost vs lifetime value, and why it’s key for profitability and growth.",
-   "cfi_sections": [
-    "What is the LTV/CAC Ratio?",
-    "LTV/CAC Ratio Formula",
-    "Sample Calculation",
-    "Download the Free Template",
-    "Challenges With the LTV/CAC Ratio",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -3165,15 +2852,9 @@
   {
    "title": "Managing Relationships at Work",
    "category": "Soft skills & career",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/career/what-does-a-managing-director-do/",
-   "cfi_description": "Learn what a managing director does in investment banking, the core responsibilities, skills required, how long it takes to become one, and the salary range.",
-   "cfi_sections": [
-    "What is a Managing Director in Investment Banking?",
-    "The Core Responsibilities of Managing Directors",
-    "How to Become an MD of an Investment Bank",
-    "The Challenges and Rewards of Becoming a Managing Director",
-    "Is the Managing Director Path Right for You?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Non-modelling material: assessments, checklists and document templates.",
    "analogues": [],
    "literature": "—",
@@ -3183,18 +2864,9 @@
   {
    "title": "Market Risk Fundamentals",
    "category": "Cost of capital & capital structure",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/career-map/sell-side/risk-management/market-risk-fundamentals-2/",
-   "cfi_description": "Discover what market risk is, how it impacts financial performance, and explore key strategies to identify, measure, and manage risk effectively.",
-   "cfi_sections": [
-    "Understanding Market Risk",
-    "What is Market Risk?",
-    "How Market Risk Can Impact Financial Institutions’ Performance",
-    "Types of Market Risk",
-    "Identifying and Measuring Market Risk",
-    "Managing Market Risk",
-    "The Role of Risk Management Professionals",
-    "Conclusion"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Estimates cost of equity (CAPM), cost of debt and WACC, tests capital-structure choices and financing decisions.",
    "analogues": [],
    "literature": "Damodaran Applied Corporate Finance ch. 4; corporate-finance packet 1 (`cfpacket1.pdf`); Koller ch. 15; MIT 15.401 CAPM lectures; Damodaran synthetic-rating methodology",
@@ -3204,11 +2876,9 @@
   {
    "title": "Mining Model",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/data-science/data-mining/",
-   "cfi_description": "Data mining is a process of uncovering patterns and finding anomalies and relationships in large datasets that can be used to make predictions about future trends.",
-   "cfi_sections": [
-    "What is a Data Mining?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [
     {
@@ -3244,13 +2914,9 @@
   {
    "title": "Monthly Cash Flow Model",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/monthly-cash-flow-forecast-model/",
-   "cfi_description": "Learn how a monthly cash flow forecast model works in Excel to track inflows, outflows, liquidity, and future business cash positions.",
-   "cfi_sections": [
-    "Monthly Cash Flow Forecast Model",
-    "Categories of Cash Flow Forecast",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [],
    "literature": "Pignataro ch. 1–8; Tjia ch. 4–11; Benninga part I; CFI Financial Modeling Guidelines PDF (downloaded); MIT OCW 15.535; Saylor BUS202 pro-forma units",
@@ -3260,11 +2926,9 @@
   {
    "title": "NDA Confidentiality Agreement Sample",
    "category": "Soft skills & career",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/management/non-disclosure-agreement-nda/",
-   "cfi_description": "A Non Disclosure Agreement (NDA) is a document that is exchanged between a prospective buyer and a seller in the initial stages of an M&A transaction.",
-   "cfi_sections": [
-    "What is a Non-Disclosure Agreement (NDA)?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Non-modelling material: assessments, checklists and document templates.",
    "analogues": [],
    "literature": "—",
@@ -3274,11 +2938,9 @@
   {
    "title": "Net Debt EBITDA Ratio Template",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/net-debt-ebitda-ratio-template/",
-   "cfi_description": "This Net Debt/EBITDA Ratio template will show how to calculate the interest coverage ratio using the formula: (Short Term Debt + Long Term Debt - Cash",
-   "cfi_sections": [
-    "Net Debt/EBITDA Ratio Template"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -3314,11 +2976,9 @@
   {
    "title": "Non-directional Trading Strategies",
    "category": "Options, trading & derivatives",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/non-directional-trading-strategies-template/",
-   "cfi_description": "The non-directional trading strategies template allow users to determine the profit when buying options. This template focuses on non-directional strategies",
-   "cfi_sections": [
-    "What is the Non-Directional Trading Strategies Template?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Payoff diagrams, option strategies, put-call parity, algorithmic signals and structured-product cash-flow models.",
    "analogues": [],
    "literature": "Damodaran `option.pdf` and real-option spreadsheets (downloaded); Hull, Options, Futures and Other Derivatives",
@@ -3328,11 +2988,9 @@
   {
    "title": "NOPAT Template",
    "category": "Other",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/nopat-template/",
-   "cfi_description": "Download CFI's free NOPAT template to calculate Net Operating Profit After Tax—an essential metric for comparing companies and building financial models.",
-   "cfi_sections": [
-    "NOPAT Template"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "",
    "analogues": [],
    "literature": "",
@@ -3342,8 +3000,8 @@
   {
    "title": "Normalizing Income Statements",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/finpod/normalizing-income-statements/",
-   "cfi_description": "In this episode, we talk about our new course, where we highlight the importance of making income statements reflect their true underlying profitability.",
+   "cfi_page": null,
+   "cfi_description": "",
    "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [],
@@ -3366,16 +3024,9 @@
   {
    "title": "Operating Budget Template",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/fpa/operating-budget/",
-   "cfi_description": "Learn what an operating budget is, its six components, with a free template.",
-   "cfi_sections": [
-    "What is an Operating Budget?",
-    "Download the Operating Budget Template",
-    "Components of an Operating Budget",
-    "Capital Costs in an Operating Budget",
-    "Video Explanation of Types of Budgets",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [
     {
@@ -3411,14 +3062,9 @@
   {
    "title": "Operational Modeling",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/free-financial-modeling-guide/",
-   "cfi_description": "Download free financial modeling guidelines with clear rules, structure tips, and best practices to build consistent, professional Excel financial models.",
-   "cfi_sections": [
-    "Download the Financial Modeling Guidelines",
-    "What’s Included in the Financial Modeling Guidelines?",
-    "Everything You’ll Learn in the Financial Modeling Guidelines",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [
     {
@@ -3454,11 +3100,9 @@
   {
    "title": "Option Profit Loss Graph Maker",
    "category": "Options, trading & derivatives",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/derivatives/option-profit-loss-graph-maker/",
-   "cfi_description": "This option profit/loss graph maker allows the user to combine up to ten different types of options and the underlying stock to create a profit/loss graph.",
-   "cfi_sections": [
-    "Option Profit/Loss Graph Maker"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Payoff diagrams, option strategies, put-call parity, algorithmic signals and structured-product cash-flow models.",
    "analogues": [
     {
@@ -3494,17 +3138,9 @@
   {
    "title": "Options Strategy Modeler",
    "category": "Options, trading & derivatives",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/derivatives/collar-option-strategy/",
-   "cfi_description": "Learn what a collar option strategy is, how combining a long stock, protective put, and covered call limits both upside and downside, and a zero-cost collar example.",
-   "cfi_sections": [
-    "What is a Collar Option Strategy?",
-    "Creating a Collar Position",
-    "Interpreting the Collar Option Strategy",
-    "Collar Option Payoff Diagram",
-    "Uses of the Collar Option Strategy",
-    "Collar Option Strategy – Worked Example",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Payoff diagrams, option strategies, put-call parity, algorithmic signals and structured-product cash-flow models.",
    "analogues": [
     {
@@ -3525,16 +3161,9 @@
   {
    "title": "Pitchbook Template",
    "category": "Excel / charting / dashboards",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/valuation/investment-banking-pitchbook-template/",
-   "cfi_description": "The CFI Investment Banking Pitchbook template is free and available for anyone to download. The presentation is based on potential acquisition targets.",
-   "cfi_sections": [
-    "Investment Banking Pitchbook Template",
-    "Download the Template",
-    "Investment Banking Pitchbook Template Table of Contents",
-    "How to Use the Investment Banking Pitchbook Template",
-    "Sample Pitchbooks from Investment Banks",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Spreadsheet technique: advanced formulas, scenario and sensitivity tables, dashboards and presentation output.",
    "analogues": [
     {
@@ -3608,11 +3237,9 @@
   {
    "title": "Put Call Parity Calculator",
    "category": "Options, trading & derivatives",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/derivatives/put-call-parity-calculator/",
-   "cfi_description": "This put-call parity calculator demonstrates the relationship between put options, call options, and their underlying asset.",
-   "cfi_sections": [
-    "Put-Call Parity Excel Calculator"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Payoff diagrams, option strategies, put-call parity, algorithmic signals and structured-product cash-flow models.",
    "analogues": [
     {
@@ -3633,17 +3260,9 @@
   {
    "title": "Quick Ratio Example",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/quick-ratio-definition/",
-   "cfi_description": "Learn the quick ratio formula and how to measure liquidity. Understand acid-test ratio, key components, and examples for financial analysis.",
-   "cfi_sections": [
-    "What is the Quick Ratio?",
-    "The Quick Ratio Formula",
-    "Download the Free Template",
-    "What’s Included and Excluded?",
-    "The Quick Ratio in Practice",
-    "Quick Ratio vs Current Ratio",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -3679,17 +3298,9 @@
   {
    "title": "Real Estate Financial Modeling Course",
    "category": "Real estate & project models",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/foundations-real-estate-financial-modeling/",
-   "cfi_description": "Learn the foundations of real estate financial modeling in this introductory guide to building a financial model for a real estate development project.",
-   "cfi_sections": [
-    "The Foundations of Real Estate Financial Modeling",
-    "Real Estate Terms and Definitions",
-    "Assumptions Section of the Financial Model",
-    "Example of a Real Estate Financial Model",
-    "Cap Rate and Net Operating Income (NOI) Example",
-    "Financial Modeling Course",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Cash-flow models for property or infrastructure assets: NOI, cap rates, debt service coverage, construction and ramp-up, levered IRR.",
    "analogues": [
     {
@@ -3763,11 +3374,9 @@
   {
    "title": "Renewable Energy Solar Financial Model",
    "category": "Real estate & project models",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/uncategorized/solar-energy-etfs/",
-   "cfi_description": "Solar energy ETFs are exchange-traded funds that provide investors access to investments in the solar power industry. As of May 2020, there is only one ETF",
-   "cfi_sections": [
-    "What are Solar Energy ETFs?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Cash-flow models for property or infrastructure assets: NOI, cap rates, debt service coverage, construction and ramp-up, levered IRR.",
    "analogues": [
     {
@@ -3803,11 +3412,9 @@
   {
    "title": "Restructuring Model Template",
    "category": "M&A / merger",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/commercial-lending/debt-restructuring/",
-   "cfi_description": "Debt restructuring is a process wherein a company or other entity experiencing financial distress and liquidity problems refinances its existing debt obligations",
-   "cfi_sections": [
-    "What is Debt Restructuring?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Combines acquirer and target, funds the deal with cash / debt / stock, allocates the purchase price (write-ups, goodwill, deferred taxes), layers synergies and integration costs and tests EPS accretion / dilution and pro-forma leverage.",
    "analogues": [
     {
@@ -3828,18 +3435,9 @@
   {
    "title": "Return on Assets Formula",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/return-on-assets-roa-formula/",
-   "cfi_description": "Learn what return on assets (ROA) is, how to calculate it using the ROA formula, what makes a good ROA by industry, and who uses it in financial analysis.",
-   "cfi_sections": [
-    "What Is Return on Assets?",
-    "What Is the ROA Formula?",
-    "How to Calculate Return on Assets",
-    "Download the Free Template",
-    "What Is a Good ROA?",
-    "Video Example of Return on Assets in Financial Analysis",
-    "Who Uses the Return on Assets Ratio?",
-    "Why Return on Assets Matters"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -3875,11 +3473,9 @@
   {
    "title": "Return on Equity",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/return-on-common-equity/",
-   "cfi_description": "The Return on Common Equity (ROCE) ratio refers to the return that common equity investors receive on their investment. It is different from Return on Equity (ROE)",
-   "cfi_sections": [
-    "What is Return on Common Equity?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -3915,11 +3511,9 @@
   {
    "title": "Robo-Advisor Model",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/wealth-management/robo-advisors/",
-   "cfi_description": "Robo-advisors are online investment management services that employ mathematical algorithms to provide financial advice with minimal human intervention.",
-   "cfi_sections": [
-    "What are Robo-Advisors?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [],
    "literature": "Pignataro ch. 1–8; Tjia ch. 4–11; Benninga part I; CFI Financial Modeling Guidelines PDF (downloaded); MIT OCW 15.535; Saylor BUS202 pro-forma units",
@@ -3929,18 +3523,9 @@
   {
    "title": "SaaS Model",
    "category": "3-statement / operating model",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/bookings-vs-billings-saas/",
-   "cfi_description": "SaaS bookings are the total contract value signed and billings are the invoices issued. This guide explains the key differences with practical examples.",
-   "cfi_sections": [
-    "Bookings vs. Billings: What’s the Difference?",
-    "What Are Bookings?",
-    "How to Calculate Bookings",
-    "What Are Billings?",
-    "Bookings vs. Billings: Key Differences Explained",
-    "Why Do Bookings Matter to SaaS Investors?",
-    "Bookings vs. Deferred Revenue",
-    "Example Calculation for Bookings and Billings"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Links income statement, balance sheet and cash flow with supporting schedules (working capital, PP&E, debt) so any assumption flows through all three; sector versions (SaaS, e-commerce, TMT, mining, consolidation) swap in industry revenue drivers.",
    "analogues": [
     {
@@ -3976,17 +3561,9 @@
   {
    "title": "Scenario & Sensitivity Analysis Model",
    "category": "Excel / charting / dashboards",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/financial-modeling/scenario-analysis-vs-sensitivity-analysis/",
-   "cfi_description": "Learn how scenario analysis and sensitivity analysis differ (one changes all variables at once, the other changes just one), with examples.",
-   "cfi_sections": [
-    "What is Scenario Analysis vs Sensitivity Analysis?",
-    "Understanding Scenario Analysis vs Sensitivity Analysis",
-    "Example of Scenario Analysis vs Sensitivity Analysis",
-    "Advantages of Sensitivity Analysis",
-    "Advantages of Scenario Analysis",
-    "Summary",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Spreadsheet technique: advanced formulas, scenario and sensitivity tables, dashboards and presentation output.",
    "analogues": [
     {
@@ -4024,16 +3601,9 @@
   {
    "title": "Startup Investor Pitch Deck Template",
    "category": "Excel / charting / dashboards",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/valuation/how-to-build-a-pitch-deck-free-template/",
-   "cfi_description": "This free pitch deck template is based on hundreds of investor presentations I've seen. Download the free template to build your investor pitch deck.",
-   "cfi_sections": [
-    "Investment Pitch Deck Template",
-    "Download the Pitch Deck Template",
-    "How To Structure Your Pitch Deck",
-    "How To Connect With Your Audience",
-    "How to Generate the Financial Information",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Spreadsheet technique: advanced formulas, scenario and sensitivity tables, dashboards and presentation output.",
    "analogues": [
     {
@@ -4069,11 +3639,9 @@
   {
    "title": "Team Development Diagnostic",
    "category": "Soft skills & career",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/team-development/",
-   "cfi_description": "Explore CFI's online learning and team development resources. Find tips, videos, and expert guidance to successfully upskill your finance and banking employees.",
-   "cfi_sections": [
-    "Discover Free Team Development Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Non-modelling material: assessments, checklists and document templates.",
    "analogues": [],
    "literature": "—",
@@ -4121,11 +3689,9 @@
   {
    "title": "Trading Comps",
    "category": "Comparable companies / precedent transactions",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/equities/extended-trading/",
-   "cfi_description": "Extended trading (or electronic trading hours) is trading conducted by electronic networks either before or after the trading day of a stock",
-   "cfi_sections": [
-    "What is Extended Trading?"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Spreads peer multiples (EV/EBITDA, EV/revenue, P/E) and precedent deal multiples, computes quartile ranges and applies them to the target; sector versions add industry KPIs.",
    "analogues": [
     {
@@ -4161,15 +3727,9 @@
   {
    "title": "Transaction Comps",
    "category": "Comparable companies / precedent transactions",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/derivatives/hedging-transaction/",
-   "cfi_description": "Learn what a fiscal deficit is, the key causes of government overspending, and its impact on debt, inflation, and economic growth",
-   "cfi_sections": [
-    "What is a Hedging Transaction?",
-    "What is a Hedge?",
-    "Goals of Hedging Transactions",
-    "Diversification and Hedging",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Spreads peer multiples (EV/EBITDA, EV/revenue, P/E) and precedent deal multiples, computes quartile ranges and applies them to the target; sector versions add industry KPIs.",
    "analogues": [
     {
@@ -4205,15 +3765,9 @@
   {
    "title": "Trend Analysis",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/excel/forecast-trend-extrapolate-excel/",
-   "cfi_description": "Learn how to use the TREND function in Excel to extrapolate future values using linear regression, with syntax and a revenue forecast example.",
-   "cfi_sections": [
-    "TREND Function – Forecast & Extrapolate in Excel",
-    "Formula",
-    "How to Use the TREND Function in Excel",
-    "Things to Remember About the TREND Function",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [
     {
@@ -4249,18 +3803,9 @@
   {
    "title": "Working Capital Cycle",
    "category": "Ratios & financial analysis",
-   "cfi_page": "https://corporatefinanceinstitute.com/resources/accounting/working-capital-cycle/",
-   "cfi_description": "Learn the working capital cycle formula and steps. Understand how inventory, receivables, and payables impact cash flow and business efficiency.",
-   "cfi_sections": [
-    "What is a Working Capital Cycle?",
-    "Steps in the Working Capital Cycle",
-    "Working Capital Cycle Formula",
-    "Download Free Working Capital Cycle Template",
-    "Positive vs. Negative Working Capital Cycle",
-    "Financing Growth and Working Capital",
-    "Working Capital Cycle in Financial Modeling",
-    "Additional Resources"
-   ],
+   "cfi_page": null,
+   "cfi_description": "",
+   "cfi_sections": [],
    "what_it_does": "Computes and interprets liquidity, efficiency, leverage, coverage and return ratios, common-size and trend analysis; bank / insurance versions use regulatory metrics (net interest income, risk-weighted assets, combined ratio).",
    "analogues": [],
    "literature": "Penman ch. 9–12; CFA Level I FSA; CFI Financial Ratios Definitive Guide (downloaded PDF); MIT OCW 15.535; Altman (1968/2000), Beneish (1999), Piotroski (2000)",

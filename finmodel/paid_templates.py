@@ -1,9 +1,9 @@
 """Knowledge base for the paid-only CFI template titles: what each does, public analogues, literature, and
 how much of it this toolkit already implements.
 
-Inputs: catalog/catalog.json (titles), catalog/paid_templates_raw.json (scraped CFI resource-page description and
-section headings), catalog/alternatives.json (tag-matched public files), plus authored category descriptions,
-literature pointers and toolkit coverage.  Output: catalog/paid_templates.json + docs/PAID_TEMPLATES.md and the
+Inputs: catalog/catalog.json (titles), catalog/alternatives.json (tag-matched public files), plus authored
+category descriptions, literature pointers and toolkit coverage -- this module does not read or reproduce any
+scraped CFI page content. Output: catalog/paid_templates.json + docs/PAID_TEMPLATES.md and the
 `finmodel catalog paid [--title ...]` command.
 """
 from __future__ import annotations
@@ -93,14 +93,6 @@ CATEGORIES: Dict[str, Dict[str, Any]] = {
 _STOP = {"template", "model", "the", "and", "of", "a", "for", "to", "complete", "example", "analysis", "excel", "financial"}
 
 
-def _relevant(title: str, url: str) -> bool:
-    """Keep a scraped page only when its slug shares a meaningful word with the title."""
-    words = set(re.findall(r"[a-z0-9]+", title.lower())) - _STOP
-    slug = set(url.rstrip("/").rsplit("/", 1)[-1].split("-"))
-    hits = words & slug
-    return bool(hits) and (len(hits) >= 2 or len(words) <= 2 or any(len(w) > 4 for w in hits))
-
-
 def categorise(title: str) -> str:
     t = title.lower()
     for name, spec in CATEGORIES.items():
@@ -110,20 +102,19 @@ def categorise(title: str) -> str:
 
 
 def build(catalog_dir: Path = CATALOG_DIR) -> Dict[str, Any]:
+    """Build the paid-titles knowledge base from this toolkit's own authored category notes and its
+    alternatives mapping. No CFI page content (paid or free) is scraped or reproduced -- cfi_page /
+    cfi_description / cfi_sections are always empty; they remain in the schema only so downstream
+    tooling (CLI, to_markdown) doesn't need a schema change."""
     cat = json.loads((catalog_dir / "catalog.json").read_text())
-    raw = json.loads((catalog_dir / "paid_templates_raw.json").read_text()) if (catalog_dir / "paid_templates_raw.json").exists() else {}
     alts = {i["cfi_title"]: i for i in json.loads((catalog_dir / "alternatives.json").read_text())["items"]} if (catalog_dir / "alternatives.json").exists() else {}
     items = []
     for e in cat["entries"]:
         if e["source"] != "cfi" or e["access"] != "cfi-paid":
             continue
         c = categorise(e["title"]); spec = CATEGORIES.get(c, {})
-        r = dict(raw.get(e["title"], {}))
-        if r.get("url") and not _relevant(e["title"], r["url"]):
-            r = {}                                   # generic search fallback, not this template's page
-        desc = (r.get("description") or "").strip()
-        items.append({"title": e["title"], "category": c, "cfi_page": r.get("url"), "cfi_description": desc,
-                      "cfi_sections": r.get("headings", [])[:8], "what_it_does": spec.get("does", ""),
+        items.append({"title": e["title"], "category": c, "cfi_page": None, "cfi_description": "",
+                      "cfi_sections": [], "what_it_does": spec.get("does", ""),
                       "analogues": [{"source": a["source"], "title": a["title"], "url": a["url"]} for a in alts.get(e["title"], {}).get("alternatives", [])[:5]],
                       "literature": spec.get("literature", ""), "toolkit": spec.get("toolkit", ""), "coverage": spec.get("coverage", "none")})
     summary = {"paid_titles": len(items), "with_cfi_page": sum(1 for i in items if i["cfi_page"]), "with_analogues": sum(1 for i in items if i["analogues"]),
