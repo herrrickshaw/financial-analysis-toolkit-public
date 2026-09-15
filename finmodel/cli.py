@@ -501,6 +501,9 @@ def cmd_options(a):
     if "geometric_asian_option" in res:
         r = res["geometric_asian_option"]
         print(f"Geometric Asian {r['option_type']}: {r['price']:.4f}  (adjusted vol {r['adjusted_volatility']:.4f}, cost of carry {r['effective_cost_of_carry']:.4f})")
+    if "barrier_option" in res:
+        r = res["barrier_option"]
+        print(f"{r['barrier_type']} {r['option_type']}: {r['price']:.4f}  (vanilla {r['vanilla_price']:.4f})")
     if a.json_out: Path(a.json_out).write_text(json.dumps(res, indent=1))
 
 

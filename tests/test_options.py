@@ -125,3 +125,100 @@ def test_geometric_asian_option_is_cheaper_than_the_vanilla_european_option():
 def test_geometric_asian_from_dict():
     out = O.from_dict({"geometric_asian_option": {"spot": 100.0, "strike": 100.0, "rate": 0.05, "vol": 0.3, "time": 1.0}})
     assert out["geometric_asian_option"]["price"] > 0
+
+
+def test_barrier_option_matches_a_real_published_reiner_rubinstein_worked_example():
+    # An independent, real published worked example (not this module's own internal consistency):
+    # a down-and-out call, S=100, K=95, H=90, vol=30%, r=5%, q=2%, T=1yr, priced at 9.7111 under the
+    # Reiner-Rubinstein formulas, vs. a vanilla Black-Scholes value of 15.4642 (Metricgate's own
+    # published Reiner-Rubinstein analytic-pricer documentation).
+    out = O.barrier_option(spot=100, strike=95, barrier=90, rate=0.05, vol=0.30, time=1.0,
+                           dividend_yield=0.02, option_type="call", barrier_type="down-and-out")
+    assert out["price"] == pytest.approx(9.7111, abs=0.001)
+    assert out["vanilla_price"] == pytest.approx(15.4642, abs=0.001)
+
+
+def test_barrier_option_down_in_plus_down_out_equals_vanilla():
+    # No-rebate in/out parity is an exact identity: a knock-in and its complementary knock-out
+    # together replicate the vanilla option exactly, regardless of where X sits relative to H.
+    kwargs = dict(spot=100, strike=95, barrier=90, rate=0.05, vol=0.30, time=1.0, dividend_yield=0.02)
+    down_in = O.barrier_option(**kwargs, option_type="call", barrier_type="down-and-in")
+    down_out = O.barrier_option(**kwargs, option_type="call", barrier_type="down-and-out")
+    assert down_in["price"] + down_out["price"] == pytest.approx(down_in["vanilla_price"], abs=1e-6)
+
+
+def test_barrier_option_up_in_plus_up_out_equals_vanilla_for_a_put():
+    # Same identity, exercised for the up-barrier/put branch of the 8-case table, and with X < H
+    # (strike below the barrier) to hit the OTHER half of Reiner-Rubinstein's case split from the
+    # down-and-out test above (which had X >= H).
+    kwargs = dict(spot=100, strike=95, barrier=110, rate=0.05, vol=0.30, time=1.0, dividend_yield=0.02)
+    up_in = O.barrier_option(**kwargs, option_type="put", barrier_type="up-and-in")
+    up_out = O.barrier_option(**kwargs, option_type="put", barrier_type="up-and-out")
+    assert up_in["price"] + up_out["price"] == pytest.approx(up_in["vanilla_price"], abs=1e-6)
+
+
+def test_barrier_option_matches_independent_monte_carlo_simulation():
+    # An independent numerical check (not the closed form agreeing with its own in/out-parity
+    # identity): simulate a discretely-monitored GBM path, apply the knock-out rule directly, and
+    # confirm the closed form (continuous monitoring) lands close to the discretely-monitored
+    # simulation once the monitoring is fine enough.
+    import random
+
+    spot, strike, barrier, rate, vol, time, q = 100.0, 95.0, 90.0, 0.05, 0.30, 1.0, 0.02
+    random.seed(7)
+    n_paths, n_steps = 20_000, 250
+    dt = time / n_steps
+    drift = (rate - q - 0.5 * vol * vol) * dt
+    vol_dt = vol * dt ** 0.5
+    total_payoff = 0.0
+    for _ in range(n_paths):
+        log_s = math.log(spot)
+        knocked_out = False
+        for _step in range(n_steps):
+            log_s += drift + vol_dt * random.gauss(0, 1)
+            if math.exp(log_s) <= barrier:
+                knocked_out = True
+                break
+        if not knocked_out:
+            total_payoff += max(math.exp(log_s) - strike, 0.0)
+    mc_price = math.exp(-rate * time) * total_payoff / n_paths
+
+    closed_form = O.barrier_option(spot, strike, barrier, rate, vol, time, q, "call", "down-and-out")["price"]
+    assert closed_form == pytest.approx(mc_price, rel=0.10)
+
+
+def test_barrier_option_is_never_worth_more_than_the_vanilla():
+    # A real, structural property: a barrier option's payoff is a subset (knock-out) or a
+    # complement (knock-in, which pays only in the states a vanilla pays in a strict subset of
+    # time) of the vanilla payoff, so neither can exceed the vanilla price.
+    base = dict(spot=100, strike=95, rate=0.05, vol=0.30, time=1.0, dividend_yield=0.02, option_type="call")
+    barriers_by_type = {"down-and-out": 90, "down-and-in": 90, "up-and-out": 110, "up-and-in": 110}
+    for barrier_type, barrier in barriers_by_type.items():
+        out = O.barrier_option(**base, barrier=barrier, barrier_type=barrier_type)
+        assert out["price"] <= out["vanilla_price"] + 1e-9
+
+
+def test_barrier_option_rejects_a_down_barrier_at_or_above_spot():
+    with pytest.raises(ValueError):
+        O.barrier_option(spot=100, strike=95, barrier=100, rate=0.05, vol=0.30, time=1.0, barrier_type="down-and-out")
+    with pytest.raises(ValueError):
+        O.barrier_option(spot=100, strike=95, barrier=110, rate=0.05, vol=0.30, time=1.0, barrier_type="down-and-out")
+
+
+def test_barrier_option_rejects_an_up_barrier_at_or_below_spot():
+    with pytest.raises(ValueError):
+        O.barrier_option(spot=100, strike=95, barrier=100, rate=0.05, vol=0.30, time=1.0, barrier_type="up-and-out")
+    with pytest.raises(ValueError):
+        O.barrier_option(spot=100, strike=95, barrier=90, rate=0.05, vol=0.30, time=1.0, barrier_type="up-and-out")
+
+
+def test_barrier_option_rejects_unknown_barrier_type():
+    with pytest.raises(ValueError):
+        O.barrier_option(spot=100, strike=95, barrier=90, rate=0.05, vol=0.30, time=1.0, barrier_type="sideways")
+
+
+def test_barrier_option_from_dict():
+    out = O.from_dict({"barrier_option": {"spot": 100, "strike": 95, "barrier": 90, "rate": 0.05, "vol": 0.30,
+                                          "time": 1.0, "dividend_yield": 0.02, "option_type": "call",
+                                          "barrier_type": "down-and-out"}})
+    assert out["barrier_option"]["price"] == pytest.approx(9.7111, abs=0.001)

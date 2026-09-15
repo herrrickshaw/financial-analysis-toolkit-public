@@ -53,7 +53,7 @@ finmodel strategy examples/strategy_frameworks_demo.json                 # TAM/S
 finmodel ppa examples/ppa_demo.json                                      # purchase price allocation: relief-from-royalty, MPEEM, ASC 805 goodwill residual
 finmodel impairment examples/impairment_demo.json                        # ASC 350 goodwill / ASC 350-30 indefinite-lived / ASC 360 long-lived-asset impairment tests
 finmodel audit-analytics examples/audit_analytics_demo.json              # Benford's Law digit-conformity test, rule-based journal-entry testing
-finmodel options examples/options_demo.json                              # Black-Scholes, the Greeks, put-call parity, implied volatility, geometric Asian option
+finmodel options examples/options_demo.json                              # Black-Scholes, the Greeks, put-call parity, implied volatility, geometric Asian option, barrier options (Reiner-Rubinstein)
 finmodel project-finance examples/project_finance_demo.json              # DSCR-based debt sizing/sculpting, LLCR, cap rate/NOI real-estate valuation
 finmodel portfolio examples/portfolio_demo.json                          # Markowitz efficient frontier, tangency portfolio, Capital Allocation Line
 finmodel restructuring examples/restructuring_demo.json                  # absolute-priority recovery waterfall, fulcrum security, DIP financing sizing

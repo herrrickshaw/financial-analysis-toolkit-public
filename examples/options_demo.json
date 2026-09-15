@@ -32,5 +32,17 @@
     "vol": 0.30,
     "time": 1.0,
     "option_type": "call"
+  },
+  "_barrier_option_comment": "matches a published Reiner-Rubinstein worked example (down-and-out call, S=100/K=95/H=90/vol=30%/r=5%/q=2%/T=1yr -> 9.7111, vanilla 15.4642), see docs/METHODOLOGY.md",
+  "barrier_option": {
+    "spot": 100,
+    "strike": 95,
+    "barrier": 90,
+    "rate": 0.05,
+    "vol": 0.30,
+    "time": 1.0,
+    "dividend_yield": 0.02,
+    "option_type": "call",
+    "barrier_type": "down-and-out"
   }
 }

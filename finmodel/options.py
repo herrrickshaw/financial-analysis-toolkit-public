@@ -126,6 +126,92 @@ def geometric_asian_option(spot: float, strike: float, rate: float, vol: float, 
             "inputs": {"spot": spot, "strike": strike, "rate": rate, "vol": vol, "time": time, "dividend_yield": dividend_yield}}
 
 
+_BARRIER_TYPES = ("down-and-out", "down-and-in", "up-and-out", "up-and-in")
+
+
+def barrier_option(spot: float, strike: float, barrier: float, rate: float, vol: float, time: float,
+                   dividend_yield: float = 0.0, option_type: str = "call",
+                   barrier_type: str = "down-and-out", rebate: float = 0.0) -> Dict[str, Any]:
+    """Closed-form price of a single continuously-monitored barrier option (Reiner & Rubinstein, 1991, as
+    tabulated in Haug's 'The Complete Guide to Option Pricing Formulas', ch. 4.17) -- the other real,
+    named exotic-derivative gap `docs/DEFERRED_GAPS_REVISITED.md` flagged and left deferred after
+    `geometric_asian_option` ("their real closed forms have many more terms and a materially higher risk of
+    transcription error without an equally solid verification method at hand"). Resolved the same way: the
+    six component terms A/B/C/D/E/F below are combined into the 8 standard barrier payoffs exactly per
+    Haug's table, then independently verified two ways in this module's own test suite -- against a real
+    published worked example (not a self-referential check) and against a Monte Carlo simulation of a
+    discretely-monitored path, plus the model-internal in/out parity identity (knock-in + knock-out price
+    == the vanilla Black-Scholes price) that must hold exactly with no rebate.
+
+    barrier_type: 'down-and-out' | 'down-and-in' | 'up-and-out' | 'up-and-in'. A down barrier must sit below
+    the current spot and an up barrier above it -- an option already past its barrier is not a pricing
+    question this formula answers. `rebate` (paid at expiry if a knock-out option is never knocked out, or a
+    knock-in option is knocked out and never knocked in) defaults to 0, the common case."""
+    if time <= 0 or vol <= 0:
+        raise ValueError("time and vol must both be positive")
+    if option_type not in ("call", "put"):
+        raise ValueError("option_type must be 'call' or 'put'")
+    if barrier_type not in _BARRIER_TYPES:
+        raise ValueError(f"barrier_type must be one of {_BARRIER_TYPES}")
+    is_down = barrier_type.startswith("down")
+    if is_down and barrier >= spot:
+        raise ValueError("a down barrier must be strictly below the current spot price")
+    if not is_down and barrier <= spot:
+        raise ValueError("an up barrier must be strictly above the current spot price")
+
+    S, X, H, T, r, sigma, q, K = spot, strike, barrier, time, rate, vol, dividend_yield, rebate
+    b = r - q
+    sqrt_t = sigma * math.sqrt(T)
+    mu = (b - sigma ** 2 / 2) / sigma ** 2
+    lam = math.sqrt(mu ** 2 + 2 * r / sigma ** 2)
+    x1 = math.log(S / X) / sqrt_t + (1 + mu) * sqrt_t
+    x2 = math.log(S / H) / sqrt_t + (1 + mu) * sqrt_t
+    y1 = math.log(H ** 2 / (S * X)) / sqrt_t + (1 + mu) * sqrt_t
+    y2 = math.log(H / S) / sqrt_t + (1 + mu) * sqrt_t
+    z = math.log(H / S) / sqrt_t + lam * sqrt_t
+
+    phi = 1.0 if option_type == "call" else -1.0
+    eta = 1.0 if is_down else -1.0
+    disc_carry = math.exp((b - r) * T)   # = e^(-qT)
+    disc_r = math.exp(-r * T)
+    hs_ratio = H / S
+
+    def term(x):
+        return phi * S * disc_carry * norm_cdf(phi * x) - phi * X * disc_r * norm_cdf(phi * x - phi * sqrt_t)
+
+    def term_reflected(y):
+        return (phi * S * disc_carry * hs_ratio ** (2 * (mu + 1)) * norm_cdf(eta * y)
+                - phi * X * disc_r * hs_ratio ** (2 * mu) * norm_cdf(eta * y - eta * sqrt_t))
+
+    A = term(x1)
+    B = term(x2)
+    C = term_reflected(y1)
+    D = term_reflected(y2)
+    E = K * disc_r * (norm_cdf(eta * x2 - eta * sqrt_t) - hs_ratio ** (2 * mu) * norm_cdf(eta * y2 - eta * sqrt_t))
+    F = K * (hs_ratio ** (mu + lam) * norm_cdf(eta * z) + hs_ratio ** (mu - lam) * norm_cdf(eta * z - 2 * eta * lam * sqrt_t))
+
+    x_ge_h = X >= H
+    if option_type == "call":
+        price = {
+            ("down-and-in", True): C + E, ("down-and-in", False): A - B + D + E,
+            ("down-and-out", True): A - C + F, ("down-and-out", False): B - D + F,
+            ("up-and-in", True): A + E, ("up-and-in", False): B - C + D + E,
+            ("up-and-out", True): F, ("up-and-out", False): A - B + C - D + F,
+        }[(barrier_type, x_ge_h)]
+    else:
+        price = {
+            ("down-and-in", True): B - C + D + E, ("down-and-in", False): A + E,
+            ("down-and-out", True): A - B + C - D + F, ("down-and-out", False): F,
+            ("up-and-in", True): A - B + D + E, ("up-and-in", False): C + E,
+            ("up-and-out", True): B - D + F, ("up-and-out", False): A - C + F,
+        }[(barrier_type, x_ge_h)]
+
+    vanilla = black_scholes(S, X, r, sigma, T, q, option_type)["price"]
+    return {"price": price, "vanilla_price": vanilla, "option_type": option_type, "barrier_type": barrier_type,
+            "inputs": {"spot": spot, "strike": strike, "barrier": barrier, "rate": rate, "vol": vol, "time": time,
+                       "dividend_yield": dividend_yield, "rebate": rebate}}
+
+
 def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:
     d = {k: v for k, v in d.items() if not str(k).startswith("_")}
     out: Dict[str, Any] = {}
@@ -139,4 +225,6 @@ def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:
         out["implied_volatility"] = implied_volatility(**d["implied_volatility"])
     if "geometric_asian_option" in d:
         out["geometric_asian_option"] = geometric_asian_option(**d["geometric_asian_option"])
+    if "barrier_option" in d:
+        out["barrier_option"] = barrier_option(**d["barrier_option"])
     return out
