@@ -161,7 +161,7 @@ def unlevered_tax_schedule(ebit: Sequence[float], tax_rate: float) -> List[float
     for e in ebit:
         taxable = max(0.0, e - loss_cf)
         taxes.append(taxable * tax_rate)
-        loss_cf = max(0.0, loss_cf - e) if e >= 0 else -e
+        loss_cf = max(0.0, loss_cf - e) if e >= 0 else loss_cf - e   # losses accumulate across years
     return taxes
 
 

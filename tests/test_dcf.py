@@ -80,6 +80,13 @@ def test_unlevered_tax_schedule_matches_hand_calc_with_a_loss_carryforward():
     assert out[2] == pytest.approx(50.0)        # no losses left; full 200 * 0.25
 
 
+def test_unlevered_tax_schedule_accumulates_consecutive_losses():
+    ebit = [-10.0, -10.0, 15.0, 10.0]
+    out = dcf.unlevered_tax_schedule(ebit, tax_rate=0.25)
+    assert out[:3] == [0.0, 0.0, 0.0]           # 20 of carried losses fully shelter the 15
+    assert out[3] == pytest.approx(1.25)         # (10 - 5 loss c/f left) * 0.25
+
+
 def test_check_unlevered_tax_consistency_flags_a_real_double_counted_shield():
     # real, verified reference case from this toolkit's own due-diligence pass on a project-finance model:
     # EBIT and the ACTUAL (levered, after-interest) cash tax the model deducted from an otherwise-unlevered FCF.
