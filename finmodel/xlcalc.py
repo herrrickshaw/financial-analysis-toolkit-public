@@ -229,6 +229,7 @@ def _numbers_all(args) -> List[float]:
     out = []
     for a in args:
         vals = a.flat_raw() if isinstance(a, Range) else (a if isinstance(a, list) else [a])
+        vals = [x for v in vals for x in (v if isinstance(v, list) else [v])]   # {..} array constants nest rows
         for v in vals:
             if v is None: continue
             if isinstance(v, XlError): raise v
