@@ -107,6 +107,7 @@ def to_markdown(res: Dict[str, Any], limit: int = 200) -> str:
     if res["counts"]: md += ["| kind | count |", "|---|---|"] + [f"| {k} | {v} |" for k, v in sorted(res["counts"].items(), key=lambda kv: -kv[1])] + [""]
     md += ["| severity | sheet | cell | kind | message |", "|---|---|---|---|---|"]
     for f in sorted(res["findings"], key=lambda f: {"error": 0, "warning": 1, "info": 2}[f["severity"]])[:limit]:
-        md.append(f"| {f['severity']} | {f['sheet']} | {f['cell']} | {f['kind']} | {f['message'].replace('|', '\\|')} |")
+        msg = f["message"].replace("|", "\\|")   # outside the f-string: backslashes in a replacement field are a SyntaxError before 3.12
+        md.append(f"| {f['severity']} | {f['sheet']} | {f['cell']} | {f['kind']} | {msg} |")
     if len(res["findings"]) > limit: md.append(f"| … | | | | {len(res['findings']) - limit} more |")
     return "\n".join(md)
