@@ -329,6 +329,13 @@ def _rounddown(x, n=0):
     return math.floor(abs(x) * q + 1e-12) / q * (1 if x >= 0 else -1)
 
 
+def _mod(a, b):
+    """Excel MOD = a - b*INT(a/b): the result takes the sign of the divisor (math.fmod uses the dividend's)."""
+    a, b = num(a), num(b)
+    if b == 0: raise XlError("#DIV/0!")
+    return a - b * math.floor(a / b)
+
+
 def _choose(i, *opts):
     i = int(num(i))
     if not 1 <= i <= len(opts): raise XlError("#VALUE!")
@@ -582,7 +589,7 @@ FUNCS: Dict[str, Callable] = {
     "SUM": lambda *a: sum(_numbers(a)), "AVERAGE": _average, "MIN": _min, "MAX": _max, "COUNT": _count, "COUNTA": _counta,
     "PRODUCT": lambda *a: math.prod(_numbers(a)) if _numbers(a) else 0.0, "SUMPRODUCT": _sumproduct, "SUMIF": _sumif,
     "COUNTIF": _countif, "ABS": lambda x: abs(num(x)), "ROUND": _round, "ROUNDUP": _roundup, "ROUNDDOWN": _rounddown,
-    "INT": lambda x: float(math.floor(num(x))), "MOD": lambda a, b: math.fmod(num(a), num(b)) if num(b) else XlError("#DIV/0!"),
+    "INT": lambda x: float(math.floor(num(x))), "MOD": _mod,
     "SQRT": lambda x: math.sqrt(num(x)), "LN": lambda x: math.log(num(x)), "LOG": lambda x, b=10: math.log(num(x), num(b)),
     "EXP": lambda x: math.exp(num(x)), "POWER": pow_, "SIGN": lambda x: float((num(x) > 0) - (num(x) < 0)),
     "NORMSDIST": lambda x: 0.5 * (1 + math.erf(num(x) / math.sqrt(2))), "NORM.S.DIST": lambda x, c=True: 0.5 * (1 + math.erf(num(x) / math.sqrt(2))) if truthy(c) else math.exp(-num(x) ** 2 / 2) / math.sqrt(2 * math.pi),
