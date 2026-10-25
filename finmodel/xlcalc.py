@@ -21,6 +21,7 @@ import math
 import re
 import statistics
 from dataclasses import dataclass
+from decimal import ROUND_HALF_UP, Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
 
@@ -315,8 +316,12 @@ def _date(y, m, d):
 
 def _round(x, n=0):
     x, n = num(x), int(num(n))
-    q = 10 ** n
-    return math.floor(abs(x) * q + 0.5) / q * (1 if x >= 0 else -1)
+    # Excel rounds the 15-significant-digit decimal it shows (ROUND(1.005,2)=1.01), not the binary double
+    try:
+        d = Decimal(f"{abs(x):.15g}").quantize(Decimal(1).scaleb(-n), rounding=ROUND_HALF_UP)
+    except InvalidOperation:                     # inf/nan, or more digits than Decimal's precision
+        return x
+    return float(d) * (1 if x >= 0 else -1)
 
 
 def _roundup(x, n=0):
