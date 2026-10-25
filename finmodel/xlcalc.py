@@ -920,7 +920,8 @@ class XlModel:
             return self.inputs.get(key)
         if key in self._stack:                  # circular reference: use last known value
             self._circular.add(key)
-            return self._iter_value.get(key, self.cached.get(key, 0.0))
+            seed = self._iter_value.get(key, self.cached.get(key))
+            return 0.0 if seed is None else seed                 # no cached value: start from 0 like Excel
         self._stack.append(key)
         try:
             v = fn()
@@ -953,7 +954,8 @@ class XlModel:
                 return
             delta = 0.0
             for key in self._circular:
-                new, old = self._values.get(key), self._iter_value.get(key, self.cached.get(key, 0.0))
+                new, old = self._values.get(key), self._iter_value.get(key, self.cached.get(key))
+                old = 0.0 if old is None else old
                 if isinstance(new, (int, float)) and isinstance(old, (int, float)):
                     delta = max(delta, abs(new - old))
                 self._iter_value[key] = new
