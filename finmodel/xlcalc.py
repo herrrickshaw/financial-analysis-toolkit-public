@@ -247,6 +247,19 @@ def _grid(a) -> List[List[Any]]:
 _CRIT = re.compile(r"^(<=|>=|<>|=|<|>)?(.*)$", re.S)
 
 
+def _wildcard(pat: str):
+    """Excel criteria wildcards: * = any run, ? = one char, ~ escapes; None when the text has none."""
+    if not re.search(r"(?<!~)[*?]", pat):
+        return None if "~" not in pat else re.compile(re.escape(re.sub(r"~([*?~])", r"\1", pat)) + r"\Z", re.I | re.S)
+    out, i = [], 0
+    while i < len(pat):
+        ch = pat[i]
+        if ch == "~" and i + 1 < len(pat) and pat[i + 1] in "*?~":
+            out.append(re.escape(pat[i + 1])); i += 2; continue
+        out.append(".*" if ch == "*" else "." if ch == "?" else re.escape(ch)); i += 1
+    return re.compile("".join(out) + r"\Z", re.I | re.S)
+
+
 def _criterion(c) -> Callable[[Any], bool]:
     c = _scalar(c)
     if not isinstance(c, str):
@@ -258,6 +271,7 @@ def _criterion(c) -> Callable[[Any], bool]:
         is_num = True
     except ValueError:
         target = rest; is_num = False
+    wild = _wildcard(target) if not is_num else None
     def test(v):
         if isinstance(v, XlError): return False
         if is_num:
@@ -266,6 +280,8 @@ def _criterion(c) -> Callable[[Any], bool]:
             x = num(v)
             return {"=": x == target, "<>": x != target, "<": x < target, "<=": x <= target, ">": x > target, ">=": x >= target}[op]
         s = "" if v is None else _text(v)
+        if wild is not None and op in ("=", "<>"):
+            return bool(wild.match(s)) == (op == "=")
         if op == "=": return s.upper() == target.upper()
         if op == "<>": return s.upper() != target.upper()
         return {"<": s < target, "<=": s <= target, ">": s > target, ">=": s >= target}[op]
