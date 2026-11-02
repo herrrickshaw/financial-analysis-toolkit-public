@@ -20,3 +20,6 @@ scripts/_gates/
 graphify-out/
 # generated workbooks (regenerate via `finmodel india-incentive-workbook <path>`), not committed as binaries
 reports/
+.venv/
+catalog/catalog.json
+catalog/catalog.md
