@@ -1,0 +1,1220 @@
+{
+ "comps": {
+  "multiples": {
+   "EV / EBIT": {
+    "metric": "ebit",
+    "numerator": "ev"
+   },
+   "EV / EBITDA": {
+    "metric": "ebitda",
+    "numerator": "ev"
+   },
+   "EV / Revenue": {
+    "metric": "revenue",
+    "numerator": "ev"
+   },
+   "P / E": {
+    "metric": "net_income",
+    "numerator": "equity"
+   }
+  },
+  "operating_stats": {
+   "ebitda_fy1": {
+    "max": 2291.4,
+    "mean": 822.5544500000001,
+    "median": 572.115,
+    "min": 281.5267,
+    "n": 6,
+    "p25": 392.88,
+    "p75": 806.8050000000001
+   },
+   "ebitda_fy2": {
+    "max": 2539.62,
+    "mean": 952.9638833333333,
+    "median": 751.14,
+    "min": 324.07,
+    "n": 6,
+    "p25": 462.559975,
+    "p75": 926.87
+   },
+   "ebitda_ltm": {
+    "max": 1972.9,
+    "mean": 641.4166666666666,
+    "median": 489.55,
+    "min": -128.0,
+    "n": 6,
+    "p25": 287.9,
+    "p75": 725.25
+   },
+   "net_income_fy1": {
+    "max": 818.31,
+    "mean": 249.2832,
+    "median": 152.37959999999998,
+    "min": -74.89,
+    "n": 6,
+    "p25": 74.819175,
+    "p75": 337.010625
+   },
+   "net_income_fy2": {
+    "max": 1000.96,
+    "mean": 382.82125,
+    "median": 277.0404,
+    "min": 128.85,
+    "n": 6,
+    "p25": 183.69772500000002,
+    "p75": 414.6
+   },
+   "net_income_ltm": {
+    "max": 469.6,
+    "mean": -128.53333333333333,
+    "median": 136.55,
+    "min": -1692.0,
+    "n": 6,
+    "p25": -68.9,
+    "p75": 270.75
+   },
+   "revenue_fy1": {
+    "max": 16684.82,
+    "mean": 8281.237083333333,
+    "median": 7441.095,
+    "min": 2891.3158,
+    "n": 6,
+    "p25": 5010.917525000001,
+    "p75": 10131.4525
+   },
+   "revenue_fy2": {
+    "max": 16937.09,
+    "mean": 8555.27055,
+    "median": 7705.889999999999,
+    "min": 2971.38,
+    "n": 6,
+    "p25": 5112.132475,
+    "p75": 10749.3425
+   },
+   "revenue_ltm": {
+    "max": 15643.6,
+    "mean": 8091.05,
+    "median": 7471.3,
+    "min": 2819.7,
+    "n": 6,
+    "p25": 5175.95,
+    "p75": 9915.0
+   }
+  },
+  "peers": [
+   {
+    "diluted_shares": 165.6142,
+    "enterprise_value": 5451.10838,
+    "equity_value": 3130.10838,
+    "metrics": {
+     "ebitda_fy1": 675,
+     "ebitda_fy2": 921.38,
+     "ebitda_ltm": -128,
+     "net_income_fy1": -74.89,
+     "net_income_fy2": 333.75,
+     "net_income_ltm": -1692,
+     "revenue_fy1": 10545.15,
+     "revenue_fy2": 11231.27,
+     "revenue_ltm": 10327
+    },
+    "multiples": {
+     "EV / EBIT FY1": "N/A",
+     "EV / EBIT FY2": "N/A",
+     "EV / EBIT LTM": "N/A",
+     "EV / EBITDA FY1": 8.075716118518518,
+     "EV / EBITDA FY2": 5.916243439189042,
+     "EV / EBITDA LTM": "NM",
+     "EV / Revenue FY1": 0.5169303784204112,
+     "EV / Revenue FY2": 0.48535102263590846,
+     "EV / Revenue LTM": 0.5278501384719667,
+     "P / E FY1": "NM",
+     "P / E FY2": 9.37860188764045,
+     "P / E LTM": "NM"
+    },
+    "name": "United States Steel Corp.",
+    "price": 18.9,
+    "ticker": "X"
+   },
+   {
+    "diluted_shares": 318.3557,
+    "enterprise_value": 17982.287971,
+    "equity_value": 15608.979971,
+    "metrics": {
+     "ebitda_fy1": 2291.4,
+     "ebitda_fy2": 2539.62,
+     "ebitda_ltm": 1972.9,
+     "net_income_fy1": 818.31,
+     "net_income_fy2": 1000.96,
+     "net_income_ltm": 469.6,
+     "revenue_fy1": 16684.82,
+     "revenue_fy2": 16937.09,
+     "revenue_ltm": 15643.6
+    },
+    "multiples": {
+     "EV / EBIT FY1": "N/A",
+     "EV / EBIT FY2": "N/A",
+     "EV / EBIT LTM": "N/A",
+     "EV / EBITDA FY1": 7.847729759535655,
+     "EV / EBITDA FY2": 7.080700250824927,
+     "EV / EBITDA LTM": 9.114647458563537,
+     "EV / Revenue FY1": 1.0777633783882596,
+     "EV / Revenue FY2": 1.0617105991052773,
+     "EV / Revenue LTM": 1.1494980676442763,
+     "P / E FY1": 19.074653824345297,
+     "P / E FY2": 15.5940097216672,
+     "P / E LTM": 33.238884094974445
+    },
+    "name": "Nucor Corporation",
+    "price": 49.03,
+    "ticker": "NUE"
+   },
+   {
+    "diluted_shares": 114.6286,
+    "enterprise_value": 2372.9983,
+    "equity_value": 1776.7433,
+    "metrics": {
+     "ebitda_fy1": 367.43,
+     "ebitda_fy2": 423.1133,
+     "ebitda_ltm": 431.9,
+     "net_income_fy1": 127.4067,
+     "net_income_fy2": 171.4867,
+     "net_income_ltm": 129.4,
+     "revenue_fy1": 4683.9467,
+     "revenue_fy2": 4780.1033,
+     "revenue_ltm": 4813.4
+    },
+    "multiples": {
+     "EV / EBIT FY1": "N/A",
+     "EV / EBIT FY2": "N/A",
+     "EV / EBIT LTM": "N/A",
+     "EV / EBITDA FY1": 6.458368396701413,
+     "EV / EBITDA FY2": 5.608422850333469,
+     "EV / EBITDA LTM": 5.494323454503358,
+     "EV / Revenue FY1": 0.5066236769944458,
+     "EV / Revenue FY2": 0.49643243065479364,
+     "EV / Revenue LTM": 0.49299835874849385,
+     "P / E FY1": 13.945446354077141,
+     "P / E FY2": 10.360822734357825,
+     "P / E LTM": 13.730628284389491
+    },
+    "name": "Commercial Metals Company",
+    "price": 15.5,
+    "ticker": "CMC"
+   },
+   {
+    "diluted_shares": 238.1962,
+    "enterprise_value": 3437.6534699999997,
+    "equity_value": 1036.15347,
+    "metrics": {
+     "ebitda_fy1": 469.23,
+     "ebitda_fy2": 580.9,
+     "ebitda_ltm": 547.2,
+     "net_income_fy1": 57.29,
+     "net_income_fy2": 128.85,
+     "net_income_ltm": -135,
+     "revenue_fy1": 5991.83,
+     "revenue_fy2": 6108.22,
+     "revenue_ltm": 6263.6
+    },
+    "multiples": {
+     "EV / EBIT FY1": "N/A",
+     "EV / EBIT FY2": "N/A",
+     "EV / EBIT LTM": "N/A",
+     "EV / EBITDA FY1": 7.326158749440572,
+     "EV / EBITDA FY2": 5.917805939060079,
+     "EV / EBITDA LTM": 6.282261458333332,
+     "EV / Revenue FY1": 0.573723465118336,
+     "EV / Revenue FY2": 0.5627913647511058,
+     "EV / Revenue LTM": 0.5488303004661855,
+     "P / E FY1": 18.086113981497643,
+     "P / E FY2": 8.041548079161815,
+     "P / E LTM": "NM"
+    },
+    "name": "AK Steel Holding Corporation",
+    "price": 4.35,
+    "ticker": "AKS"
+   },
+   {
+    "diluted_shares": 63.1153,
+    "enterprise_value": 3358.513337,
+    "equity_value": 2732.261337,
+    "metrics": {
+     "ebitda_fy1": 281.5267,
+     "ebitda_fy2": 324.07,
+     "ebitda_ltm": 239.9,
+     "net_income_fy1": 177.3525,
+     "net_income_fy2": 220.3308,
+     "net_income_ltm": 143.7,
+     "revenue_fy1": 2891.3158,
+     "revenue_fy2": 2971.38,
+     "revenue_ltm": 2819.7
+    },
+    "multiples": {
+     "EV / EBIT FY1": "N/A",
+     "EV / EBIT FY2": "N/A",
+     "EV / EBIT LTM": "N/A",
+     "EV / EBITDA FY1": 11.929644104804268,
+     "EV / EBITDA FY2": 10.36354286728176,
+     "EV / EBITDA LTM": 13.999638753647352,
+     "EV / Revenue FY1": 1.1615864780319052,
+     "EV / Revenue FY2": 1.1302873873419084,
+     "EV / Revenue LTM": 1.191088887824946,
+     "P / E FY1": 15.405823639362287,
+     "P / E FY2": 12.400723534794045,
+     "P / E LTM": 19.013648830897704
+    },
+    "name": "Worthington Industries, Inc.",
+    "price": 43.29,
+    "ticker": "WOR"
+   },
+   {
+    "diluted_shares": 72.5298,
+    "enterprise_value": 7340.635798000001,
+    "equity_value": 5259.135798,
+    "metrics": {
+     "ebitda_fy1": 850.74,
+     "ebitda_fy2": 928.7,
+     "ebitda_ltm": 784.6,
+     "net_income_fy1": 390.23,
+     "net_income_fy2": 441.55,
+     "net_income_ltm": 313.1,
+     "revenue_fy1": 8890.36,
+     "revenue_fy2": 9303.56,
+     "revenue_ltm": 8679
+    },
+    "multiples": {
+     "EV / EBIT FY1": "N/A",
+     "EV / EBIT FY2": "N/A",
+     "EV / EBIT LTM": "N/A",
+     "EV / EBITDA FY1": 8.628530218398101,
+     "EV / EBITDA FY2": 7.904205661677615,
+     "EV / EBITDA LTM": 9.355895740504717,
+     "EV / Revenue FY1": 0.8256848764279513,
+     "EV / Revenue FY2": 0.7890136461741528,
+     "EV / Revenue LTM": 0.8457928100011524,
+     "P / E FY1": 13.477015601055788,
+     "P / E FY2": 11.910623480919488,
+     "P / E LTM": 16.79698434366017
+    },
+    "name": "Reliance Steel & Aluminum Co.",
+    "price": 72.51,
+    "ticker": "RS"
+   }
+  ],
+  "summary": {
+   "EV / EBIT FY1": {
+    "max": NaN,
+    "mean": NaN,
+    "median": NaN,
+    "min": NaN,
+    "n": 0,
+    "p25": NaN,
+    "p75": NaN
+   },
+   "EV / EBIT FY2": {
+    "max": NaN,
+    "mean": NaN,
+    "median": NaN,
+    "min": NaN,
+    "n": 0,
+    "p25": NaN,
+    "p75": NaN
+   },
+   "EV / EBIT LTM": {
+    "max": NaN,
+    "mean": NaN,
+    "median": NaN,
+    "min": NaN,
+    "n": 0,
+    "p25": NaN,
+    "p75": NaN
+   },
+   "EV / EBITDA FY1": {
+    "max": 11.929644104804268,
+    "mean": 8.377691224566421,
+    "median": 7.961722939027086,
+    "min": 6.458368396701413,
+    "n": 6,
+    "p25": 7.456551501964343,
+    "p75": 8.490326693428205
+   },
+   "EV / EBITDA FY2": {
+    "max": 10.36354286728176,
+    "mean": 7.131820168061149,
+    "median": 6.499253094942503,
+    "min": 5.608422850333469,
+    "n": 6,
+    "p25": 5.916634064156801,
+    "p75": 7.698329308964443
+   },
+   "EV / EBITDA LTM": {
+    "max": 13.999638753647352,
+    "mean": 8.849353373110459,
+    "median": 9.114647458563537,
+    "min": 5.494323454503358,
+    "n": 5,
+    "p25": 6.282261458333332,
+    "p75": 9.355895740504717
+   },
+   "EV / Revenue FY1": {
+    "max": 1.1615864780319052,
+    "mean": 0.7770520422302182,
+    "median": 0.6997041707731437,
+    "min": 0.5066236769944458,
+    "n": 6,
+    "p25": 0.5311286500948924,
+    "p75": 1.0147437528981826
+   },
+   "EV / Revenue FY2": {
+    "max": 1.1302873873419084,
+    "mean": 0.7542644084438578,
+    "median": 0.6759025054626293,
+    "min": 0.48535102263590846,
+    "n": 6,
+    "p25": 0.5130221641788717,
+    "p75": 0.9935363608724962
+   },
+   "EV / Revenue LTM": {
+    "max": 1.191088887824946,
+    "mean": 0.7926764271928368,
+    "median": 0.697311555233669,
+    "min": 0.49299835874849385,
+    "n": 6,
+    "p25": 0.5330951789705214,
+    "p75": 1.0735717532334954
+   },
+   "P / E FY1": {
+    "max": 19.074653824345297,
+    "mean": 15.99781068006763,
+    "median": 15.405823639362287,
+    "min": 13.477015601055788,
+    "n": 5,
+    "p25": 13.945446354077141,
+    "p75": 18.086113981497643
+   },
+   "P / E FY2": {
+    "max": 15.5940097216672,
+    "mean": 11.28105490642347,
+    "median": 11.135723107638658,
+    "min": 8.041548079161815,
+    "n": 6,
+    "p25": 9.624157099319794,
+    "p75": 12.278198521325406
+   },
+   "P / E LTM": {
+    "max": 33.238884094974445,
+    "mean": 20.695036388480453,
+    "median": 17.90531658727894,
+    "min": 13.730628284389491,
+    "n": 4,
+    "p25": 16.030395328842502,
+    "p75": 22.56995764691689
+   }
+  }
+ },
+ "football_field": {
+  "current_price": 24.97,
+  "items": [
+   {
+    "high": 28.082394510269804,
+    "low": 0.8014634652896048,
+    "median": 14.178519189354803,
+    "method": "Trading comps"
+   },
+   {
+    "high": 61.288874241046926,
+    "low": 25.000835347481786,
+    "median": 30.868792696890157,
+    "method": "Precedent transactions"
+   },
+   {
+    "high": 22,
+    "low": 14,
+    "median": 18.0,
+    "method": "DCF - base case"
+   },
+   {
+    "high": 30,
+    "low": 22,
+    "median": 26.0,
+    "method": "DCF - blue sky"
+   },
+   {
+    "high": 38,
+    "low": 17,
+    "median": 27.5,
+    "method": "52 wk hi/lo"
+   }
+  ],
+  "target": "Steel Dynamics Inc."
+ },
+ "implied_from_comps": {
+  "bridge": {
+   "capital_leases": 0,
+   "cash": 1072.221,
+   "equity_investments": 0,
+   "net_operating_losses": 61.148,
+   "noncontrolling_interests": 11.231,
+   "other_non_core_assets": 0,
+   "preferred_stock": 0,
+   "restructuring_liabilities": 0,
+   "total_debt": -2700,
+   "unfunded_pensions": 0
+  },
+  "bridge_total": -1555.4,
+  "current_price": 24.97,
+  "diluted_shares": 242.017,
+  "range": {
+   "high": 43.482434360590105,
+   "low": 0.6864831901937172
+  },
+  "rows": [
+   {
+    "implied": {
+     "max": {
+      "enterprise_value": 8703.524721114445,
+      "equity_value": 7148.1247211144455,
+      "multiple": 1.191088887824946,
+      "premium_to_current": 0.18284463925198335,
+      "share_price": 29.535630642122022
+     },
+     "median": {
+      "enterprise_value": 5095.3949964034655,
+      "equity_value": 3539.9949964034654,
+      "multiple": 0.697311555233669,
+      "premium_to_current": -0.414215018925711,
+      "share_price": 14.627050977424997
+     },
+     "min": {
+      "enterprise_value": 3602.4376070469943,
+      "equity_value": 2047.0376070469943,
+      "multiple": 0.49299835874849385,
+      "premium_to_current": -0.6612639602257468,
+      "share_price": 8.458238913163102
+     },
+     "p25": {
+      "enterprise_value": 3895.4330917733937,
+      "equity_value": 2340.0330917733936,
+      "multiple": 0.5330951789705214,
+      "premium_to_current": -0.6127801757430908,
+      "share_price": 9.66887901169502
+     },
+     "p75": {
+      "enterprise_value": 7844.803515227797,
+      "equity_value": 6289.4035152277975,
+      "multiple": 1.0735717532334954,
+      "premium_to_current": 0.040746702433015924,
+      "share_price": 25.987445159752404
+     }
+    },
+    "multiple": "EV / Revenue LTM",
+    "numerator": "ev",
+    "target_metric": 7307.2
+   },
+   {
+    "implied": {
+     "max": {
+      "enterprise_value": 8962.82031451242,
+      "equity_value": 7407.420314512421,
+      "multiple": 1.1615864780319052,
+      "premium_to_current": 0.2257518931960134,
+      "share_price": 30.607024773104456
+     },
+     "median": {
+      "enterprise_value": 5398.928856833978,
+      "equity_value": 3843.528856833978,
+      "multiple": 0.6997041707731437,
+      "premium_to_current": -0.36398738389562213,
+      "share_price": 15.881235024126314
+     },
+     "min": {
+      "enterprise_value": 3909.1166003174467,
+      "equity_value": 2353.7166003174466,
+      "multiple": 0.5066236769944458,
+      "premium_to_current": -0.6105158805105689,
+      "share_price": 9.725418463651094
+     },
+     "p25": {
+      "enterprise_value": 4098.197374642052,
+      "equity_value": 2542.7973746420516,
+      "multiple": 0.5311286500948924,
+      "premium_to_current": -0.579227509221406,
+      "share_price": 10.506689094741493
+     },
+     "p75": {
+      "enterprise_value": 7829.7794391599255,
+      "equity_value": 6274.379439159926,
+      "multiple": 1.0147437528981826,
+      "premium_to_current": 0.03826057515768966,
+      "share_price": 25.925366561687508
+     }
+    },
+    "multiple": "EV / Revenue FY1",
+    "numerator": "ev",
+    "target_metric": 7716.0164
+   },
+   {
+    "implied": {
+     "max": {
+      "enterprise_value": 9501.366677449048,
+      "equity_value": 7945.966677449049,
+      "multiple": 1.1302873873419084,
+      "premium_to_current": 0.31486850814630896,
+      "share_price": 32.83226664841333
+     },
+     "median": {
+      "enterprise_value": 5681.7386573776885,
+      "equity_value": 4126.338657377688,
+      "multiple": 0.6759025054626293,
+      "premium_to_current": -0.3171890879015792,
+      "share_price": 17.049788475097568
+     },
+     "min": {
+      "enterprise_value": 4079.9340813520694,
+      "equity_value": 2524.5340813520693,
+      "multiple": 0.48535102263590846,
+      "premium_to_current": -0.5822496499094849,
+      "share_price": 10.431226241760163
+     },
+     "p25": {
+      "enterprise_value": 4312.541881038819,
+      "equity_value": 2757.141881038819,
+      "multiple": 0.5130221641788717,
+      "premium_to_current": -0.5437585911154275,
+      "share_price": 11.392347979847775
+     },
+     "p75": {
+      "enterprise_value": 8351.816872191966,
+      "equity_value": 6796.416872191967,
+      "multiple": 0.9935363608724962,
+      "premium_to_current": 0.12464535483659622,
+      "share_price": 28.082394510269804
+     }
+    },
+    "multiple": "EV / Revenue FY2",
+    "numerator": "ev",
+    "target_metric": 8406.1512
+   },
+   {
+    "implied": {
+     "max": {
+      "enterprise_value": 12078.888316646935,
+      "equity_value": 10523.488316646935,
+      "multiple": 13.999638753647352,
+      "premium_to_current": 0.7413870388702486,
+      "share_price": 43.482434360590105
+     },
+     "median": {
+      "enterprise_value": 7864.1178272486195,
+      "equity_value": 6308.71782724862,
+      "multiple": 9.114647458563537,
+      "premium_to_current": 0.043942761724928614,
+      "share_price": 26.067250760271467
+     },
+     "min": {
+      "enterprise_value": 4740.502276545497,
+      "equity_value": 3185.102276545497,
+      "multiple": 5.494323454503358,
+      "premium_to_current": -0.47294132373591957,
+      "share_price": 13.160655146314088
+     },
+     "p25": {
+      "enterprise_value": 5420.3351862499985,
+      "equity_value": 3864.9351862499984,
+      "multiple": 6.282261458333332,
+      "premium_to_current": -0.3604451454787393,
+      "share_price": 15.969684717395879
+     },
+     "p75": {
+      "enterprise_value": 8072.26684490747,
+      "equity_value": 6516.86684490747,
+      "multiple": 9.355895740504717,
+      "premium_to_current": 0.07838647379056707,
+      "share_price": 26.92731025055046
+     }
+    },
+    "multiple": "EV / EBITDA LTM",
+    "numerator": "ev",
+    "target_metric": 862.8
+   },
+   {
+    "implied": {
+     "max": {
+      "enterprise_value": 7472.158830261184,
+      "equity_value": 5916.758830261184,
+      "multiple": 11.929644104804268,
+      "premium_to_current": -0.020917130412052565,
+      "share_price": 24.447699253611045
+     },
+     "median": {
+      "enterprise_value": 4986.842678650081,
+      "equity_value": 3431.4426786500812,
+      "multiple": 7.961722939027086,
+      "premium_to_current": -0.43217784584081687,
+      "share_price": 14.178519189354803
+     },
+     "min": {
+      "enterprise_value": 4045.2132536844033,
+      "equity_value": 2489.813253684403,
+      "multiple": 6.458368396701413,
+      "premium_to_current": -0.5879951211315773,
+      "share_price": 10.287761825344514
+     },
+     "p25": {
+      "enterprise_value": 4670.427437668671,
+      "equity_value": 3115.0274376686707,
+      "multiple": 7.456551501964343,
+      "premium_to_current": -0.4845370429973732,
+      "share_price": 12.87111003635559
+     },
+     "p75": {
+      "enterprise_value": 5317.934803147482,
+      "equity_value": 3762.534803147482,
+      "multiple": 8.490326693428205,
+      "premium_to_current": -0.37738997351907555,
+      "share_price": 15.546572361228682
+     }
+    },
+    "multiple": "EV / EBITDA FY1",
+    "numerator": "ev",
+    "target_metric": 626.3522
+   },
+   {
+    "implied": {
+     "max": {
+      "enterprise_value": 7567.844525483804,
+      "equity_value": 6012.444525483805,
+      "multiple": 10.36354286728176,
+      "premium_to_current": -0.005083423522068475,
+      "share_price": 24.84306691465395
+     },
+     "median": {
+      "enterprise_value": 4745.996382142148,
+      "equity_value": 3190.596382142148,
+      "multiple": 6.499253094942503,
+      "premium_to_current": -0.4720321799246362,
+      "share_price": 13.183356467281834
+     },
+     "min": {
+      "enterprise_value": 4095.478998643532,
+      "equity_value": 2540.078998643532,
+      "multiple": 5.608422850333469,
+      "premium_to_current": -0.5796773357986931,
+      "share_price": 10.495456925106634
+     },
+     "p25": {
+      "enterprise_value": 4320.546292434483,
+      "equity_value": 2765.146292434483,
+      "multiple": 5.916634064156801,
+      "premium_to_current": -0.542434051396393,
+      "share_price": 11.425421736632067
+     },
+     "p75": {
+      "enterprise_value": 5621.606439256129,
+      "equity_value": 4066.206439256129,
+      "multiple": 7.698329308964443,
+      "premium_to_current": -0.3271395398909406,
+      "share_price": 16.801325688923214
+     }
+    },
+    "multiple": "EV / EBITDA FY2",
+    "numerator": "ev",
+    "target_metric": 730.2372
+   },
+   {
+    "implied": {},
+    "multiple": "EV / EBIT LTM",
+    "numerator": "ev",
+    "target_metric": 700.0
+   },
+   {
+    "implied": {},
+    "multiple": "EV / EBIT FY1",
+    "numerator": "ev",
+    "target_metric": 700.0
+   },
+   {
+    "implied": {},
+    "multiple": "EV / EBIT FY2",
+    "numerator": "ev",
+    "target_metric": 700.0
+   },
+   {
+    "implied": {
+     "max": {
+      "enterprise_value": 1957.5904975491908,
+      "equity_value": 402.19049754919075,
+      "multiple": 33.238884094974445,
+      "premium_to_current": -0.9334470378533101,
+      "share_price": 1.6618274648028475
+     },
+     "median": {
+      "enterprise_value": 1772.0543307060752,
+      "equity_value": 216.65433070607517,
+      "multiple": 17.90531658727894,
+      "premium_to_current": -0.9641488609048146,
+      "share_price": 0.8952029432067796
+     },
+     "min": {
+      "enterprise_value": 1721.540602241113,
+      "equity_value": 166.14060224111284,
+      "multiple": 13.730628284389491,
+      "premium_to_current": -0.9725076816101835,
+      "share_price": 0.6864831901937172
+     },
+     "p25": {
+      "enterprise_value": 1749.3677834789944,
+      "equity_value": 193.96778347899428,
+      "multiple": 16.030395328842502,
+      "premium_to_current": -0.9679029449223227,
+      "share_price": 0.8014634652896048
+     },
+     "p75": {
+      "enterprise_value": 1828.4964875276944,
+      "equity_value": 273.09648752769436,
+      "multiple": 22.56995764691689,
+      "premium_to_current": -0.9548090263007727,
+      "share_price": 1.1284186132697058
+     }
+    },
+    "multiple": "P / E LTM",
+    "numerator": "equity",
+    "target_metric": 12.1
+   },
+   {
+    "implied": {
+     "max": {
+      "enterprise_value": 4812.357083733928,
+      "equity_value": 3256.9570837339284,
+      "multiple": 19.074653824345297,
+      "premium_to_current": -0.46105106205144375,
+      "share_price": 13.457554980575448
+     },
+     "median": {
+      "enterprise_value": 4185.912034191468,
+      "equity_value": 2630.5120341914676,
+      "multiple": 15.405823639362287,
+      "premium_to_current": -0.564712819162156,
+      "share_price": 10.869120905520965
+     },
+     "min": {
+      "enterprise_value": 3856.5721121475135,
+      "equity_value": 2301.1721121475134,
+      "multiple": 13.477015601055788,
+      "premium_to_current": -0.6192107436500518,
+      "share_price": 9.508307731058204
+     },
+     "p25": {
+      "enterprise_value": 3936.5556795213283,
+      "equity_value": 2381.1556795213282,
+      "multiple": 13.945446354077141,
+      "premium_to_current": -0.6059753654791997,
+      "share_price": 9.838795123984383
+     },
+     "p75": {
+      "enterprise_value": 4643.565981501361,
+      "equity_value": 3088.1659815013613,
+      "multiple": 18.086113981497643,
+      "premium_to_current": -0.4889819751536564,
+      "share_price": 12.7601200804132
+     }
+    },
+    "multiple": "P / E FY1",
+    "numerator": "equity",
+    "target_metric": 170.7479
+   },
+   {
+    "implied": {
+     "max": {
+      "enterprise_value": 4764.221484253709,
+      "equity_value": 3208.821484253708,
+      "multiple": 15.5940097216672,
+      "premium_to_current": -0.46901635896829474,
+      "share_price": 13.25866151656168
+     },
+     "median": {
+      "enterprise_value": 3846.827810311197,
+      "equity_value": 2291.427810311197,
+      "multiple": 11.135723107638658,
+      "premium_to_current": -0.6208231938576279,
+      "share_price": 9.468044849375032
+     },
+     "min": {
+      "enterprise_value": 3210.13106042894,
+      "equity_value": 1654.7310604289403,
+      "multiple": 8.041548079161815,
+      "premium_to_current": -0.726181363560908,
+      "share_price": 6.837251351884125
+     },
+     "p25": {
+      "enterprise_value": 3535.788791551202,
+      "equity_value": 1980.3887915512018,
+      "multiple": 9.624157099319794,
+      "premium_to_current": -0.6722927540979111,
+      "share_price": 8.182849930175161
+     },
+     "p75": {
+      "enterprise_value": 4081.9180608691363,
+      "equity_value": 2526.518060869136,
+      "multiple": 12.278198521325406,
+      "premium_to_current": -0.5819213484839073,
+      "share_price": 10.439423928356835
+     }
+    },
+    "multiple": "P / E FY2",
+    "numerator": "equity",
+    "target_metric": 205.7727
+   }
+  ],
+  "target": "Steel Dynamics Inc."
+ },
+ "implied_from_precedents": {
+  "bridge": {
+   "capital_leases": 0,
+   "cash": 1072.221,
+   "equity_investments": 0,
+   "net_operating_losses": 61.148,
+   "noncontrolling_interests": 11.231,
+   "other_non_core_assets": 0,
+   "preferred_stock": 0,
+   "restructuring_liabilities": 0,
+   "total_debt": -2700,
+   "unfunded_pensions": 0
+  },
+  "bridge_total": -1555.4,
+  "current_price": 24.97,
+  "diluted_shares": 242.017,
+  "range": {
+   "high": 147.13654506467338,
+   "low": 22.234591640754964
+  },
+  "rows": [
+   {
+    "implied": {
+     "max": {
+      "enterprise_value": 37164.94522691706,
+      "equity_value": 35609.54522691706,
+      "multiple": 5.086071987480438,
+      "premium_to_current": 4.892532841997332,
+      "share_price": 147.13654506467338
+     },
+     "median": {
+      "enterprise_value": 14617.706578103427,
+      "equity_value": 13062.306578103427,
+      "multiple": 2.000452509593747,
+      "premium_to_current": 1.1615010810509028,
+      "share_price": 53.97268199384104
+     },
+     "min": {
+      "enterprise_value": 9280.21737846299,
+      "equity_value": 7724.817378462991,
+      "multiple": 1.2700100419398663,
+      "premium_to_current": 0.27827355870351145,
+      "share_price": 31.918490760826682
+     },
+     "p25": {
+      "enterprise_value": 11143.527340024277,
+      "equity_value": 9588.127340024277,
+      "multiple": 1.5250064785450346,
+      "premium_to_current": 0.5866070426992924,
+      "share_price": 39.61757785620133
+     },
+     "p75": {
+      "enterprise_value": 16388.349477195454,
+      "equity_value": 14832.949477195454,
+      "multiple": 2.24276733594201,
+      "premium_to_current": 1.4545003700859804,
+      "share_price": 61.288874241046926
+     }
+    },
+    "multiple": "EV / Revenue LTM",
+    "numerator": "ev",
+    "target_metric": 7307.2
+   },
+   {
+    "implied": {
+     "max": {
+      "enterprise_value": 16208.670520231211,
+      "equity_value": 14653.270520231212,
+      "multiple": 18.786127167630056,
+      "premium_to_current": 1.424767775968847,
+      "share_price": 60.54645136594211
+     },
+     "median": {
+      "enterprise_value": 8074.4146583850925,
+      "equity_value": 6519.014658385093,
+      "multiple": 9.358385093167701,
+      "premium_to_current": 0.07874188584019381,
+      "share_price": 26.93618488942964
+     },
+     "min": {
+      "enterprise_value": 6936.549165120594,
+      "equity_value": 5381.149165120594,
+      "multiple": 8.039579468150897,
+      "premium_to_current": -0.10954779171986528,
+      "share_price": 22.234591640754964
+     },
+     "p25": {
+      "enterprise_value": 7606.0271682915,
+      "equity_value": 6050.627168291499,
+      "multiple": 8.815515957686022,
+      "premium_to_current": 0.0012348957742005506,
+      "share_price": 25.000835347481786
+     },
+     "p75": {
+      "enterprise_value": 9182.248304668303,
+      "equity_value": 7626.848304668303,
+      "multiple": 10.642383292383292,
+      "premium_to_current": 0.26206200696488136,
+      "share_price": 31.513688313913086
+     }
+    },
+    "multiple": "EV / EBITDA LTM",
+    "numerator": "ev",
+    "target_metric": 862.8
+   },
+   {
+    "implied": {
+     "max": {
+      "enterprise_value": 15066.225165562913,
+      "equity_value": 13510.825165562914,
+      "multiple": 21.52317880794702,
+      "premium_to_current": 1.235720240268177,
+      "share_price": 55.825934399496376
+     },
+     "median": {
+      "enterprise_value": 9026.172602123264,
+      "equity_value": 7470.772602123265,
+      "multiple": 12.89453228874752,
+      "premium_to_current": 0.23623519010373073,
+      "share_price": 30.868792696890157
+     },
+     "min": {
+      "enterprise_value": 7848.282442748092,
+      "equity_value": 6292.882442748092,
+      "multiple": 11.211832061068703,
+      "premium_to_current": 0.041322382199146857,
+      "share_price": 26.001819883512695
+     },
+     "p25": {
+      "enterprise_value": 8551.746856945725,
+      "equity_value": 6996.346856945725,
+      "multiple": 12.216781224208178,
+      "premium_to_current": 0.15772901242768023,
+      "share_price": 28.908493440319173
+     },
+     "p75": {
+      "enterprise_value": 9440.093814596916,
+      "equity_value": 7884.693814596916,
+      "multiple": 13.485848306567021,
+      "premium_to_current": 0.3047293065817107,
+      "share_price": 32.579090785345315
+     }
+    },
+    "multiple": "EV / EBIT LTM",
+    "numerator": "ev",
+    "target_metric": 700.0
+   }
+  ],
+  "target": "Steel Dynamics Inc."
+ },
+ "precedents": {
+  "deals": [
+   {
+    "acquirer": "Average Limited",
+    "date": "2017-01-24",
+    "enterprise_value": 2350,
+    "ltm_ebit": 209.6,
+    "ltm_ebitda": 250.0,
+    "ltm_revenue": 1236.8,
+    "multiples": {
+     "EV / EBIT LTM": 11.211832061068703,
+     "EV / EBITDA LTM": 9.4,
+     "EV / Revenue LTM": 1.90006468305304
+    },
+    "premiums": {
+     "1-day": 0.298342541436464,
+     "1-month": 0.39053254437869844,
+     "1-week": 0.3390313390313391
+    },
+    "target": "Current Ltd"
+   },
+   {
+    "acquirer": "Bohemeth Industires",
+    "date": "2016-04-19",
+    "enterprise_value": 6500,
+    "ltm_ebit": 514.6,
+    "ltm_ebitda": 808.5,
+    "ltm_revenue": 4642.9,
+    "multiples": {
+     "EV / EBIT LTM": 12.631169840652934,
+     "EV / EBITDA LTM": 8.039579468150897,
+     "EV / Revenue LTM": 1.399987077042366
+    },
+    "premiums": {
+     "1-day": 0.30000000000000004,
+     "1-month": 0.3771186440677965,
+     "1-week": 0.3347022587268993
+    },
+    "target": "Recent Inc"
+   },
+   {
+    "acquirer": "Other Group",
+    "date": "2014-04-19",
+    "enterprise_value": 2150,
+    "ltm_ebit": 178.0,
+    "ltm_ebitda": 248.6,
+    "ltm_revenue": 1692.9,
+    "multiples": {
+     "EV / EBIT LTM": 12.07865168539326,
+     "EV / EBITDA LTM": 8.648431214802896,
+     "EV / Revenue LTM": 1.2700100419398663
+    },
+    "premiums": {
+     "1-day": 0.2721893491124261,
+     "1-month": 0.39610389610389607,
+     "1-week": 0.3354037267080745
+    },
+    "target": "Past Co"
+   },
+   {
+    "acquirer": "Junior Enterprises",
+    "date": "2014-11-07",
+    "enterprise_value": 450,
+    "ltm_ebit": 33.1,
+    "ltm_ebitda": 40.7,
+    "ltm_revenue": 196.5,
+    "multiples": {
+     "EV / EBIT LTM": 13.595166163141993,
+     "EV / EBITDA LTM": 11.056511056511056,
+     "EV / Revenue LTM": 2.2900763358778624
+    },
+    "premiums": {
+     "1-day": 0.40625,
+     "1-month": 0.5254237288135593,
+     "1-week": 0.4285714285714286
+    },
+    "target": "Historical LLP"
+   },
+   {
+    "acquirer": "Minature Company",
+    "date": "2012-11-01",
+    "enterprise_value": 325,
+    "ltm_ebit": 15.1,
+    "ltm_ebitda": 17.3,
+    "ltm_revenue": 63.9,
+    "multiples": {
+     "EV / EBIT LTM": 21.52317880794702,
+     "EV / EBITDA LTM": 18.786127167630056,
+     "EV / Revenue LTM": 5.086071987480438
+    },
+    "premiums": {
+     "1-day": 0.30000000000000004,
+     "1-month": 0.35416666666666674,
+     "1-week": 0.27450980392156876
+    },
+    "target": "Old Group"
+   },
+   {
+    "acquirer": "Micro Partners",
+    "date": "2011-10-07",
+    "enterprise_value": 150,
+    "ltm_ebit": 11.4,
+    "ltm_ebitda": 16.1,
+    "ltm_revenue": 71.4,
+    "multiples": {
+     "EV / EBIT LTM": 13.157894736842104,
+     "EV / EBITDA LTM": 9.316770186335402,
+     "EV / Revenue LTM": 2.1008403361344534
+    },
+    "premiums": {
+     "1-day": 0.30434782608695654,
+     "1-month": 0.36363636363636354,
+     "1-week": 0.33333333333333326
+    },
+    "target": "Dated Enterprises"
+   }
+  ],
+  "enterprise_value_stats": {
+   "max": 6500.0,
+   "mean": 1987.5,
+   "median": 1300.0,
+   "min": 150.0,
+   "n": 6,
+   "p25": 356.25,
+   "p75": 2300.0
+  },
+  "multiples": {
+   "EV / EBIT": {
+    "metric": "ebit",
+    "numerator": "ev"
+   },
+   "EV / EBITDA": {
+    "metric": "ebitda",
+    "numerator": "ev"
+   },
+   "EV / Revenue": {
+    "metric": "revenue",
+    "numerator": "ev"
+   }
+  },
+  "premium_summary": {
+   "1-day": {
+    "max": 0.40625,
+    "mean": 0.3135216194393078,
+    "median": 0.30000000000000004,
+    "min": 0.2721893491124261,
+    "n": 6,
+    "p25": 0.298756906077348,
+    "p75": 0.3032608695652174
+   },
+   "1-month": {
+    "max": 0.5254237288135593,
+    "mean": 0.40116364061116344,
+    "median": 0.38382559422324747,
+    "min": 0.35416666666666674,
+    "n": 6,
+    "p25": 0.3670069337442218,
+    "p75": 0.39471105817259666
+   },
+   "1-week": {
+    "max": 0.4285714285714286,
+    "mean": 0.34092531504877394,
+    "median": 0.3350529927174869,
+    "min": 0.27450980392156876,
+    "n": 6,
+    "p25": 0.33367556468172477,
+    "p75": 0.33812443595052294
+   }
+  },
+  "summary": {
+   "EV / EBIT LTM": {
+    "max": 21.52317880794702,
+    "mean": 14.032982215841002,
+    "median": 12.89453228874752,
+    "min": 11.211832061068703,
+    "n": 6,
+    "p25": 12.216781224208178,
+    "p75": 13.485848306567021
+   },
+   "EV / EBITDA LTM": {
+    "max": 18.786127167630056,
+    "mean": 10.874569848905052,
+    "median": 9.358385093167701,
+    "min": 8.039579468150897,
+    "n": 6,
+    "p25": 8.815515957686022,
+    "p75": 10.642383292383292
+   },
+   "EV / Revenue LTM": {
+    "max": 5.086071987480438,
+    "mean": 2.341175076921338,
+    "median": 2.000452509593747,
+    "min": 1.2700100419398663,
+    "n": 6,
+    "p25": 1.5250064785450346,
+    "p75": 2.24276733594201
+   }
+  }
+ }
+}
