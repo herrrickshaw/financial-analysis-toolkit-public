@@ -24,7 +24,6 @@ Run: python scripts/football_field_stld.py → docs/FOOTBALL_FIELD_STLD.md, out/
 out/charts_football_field_stld.html"""
 from __future__ import annotations
 
-import copy
 import json
 import subprocess
 import sys
@@ -278,7 +277,7 @@ def write_doc(out):
                   f"warehouse, and Yahoo Finance and Stooq both refuse historical data for a fully delisted ticker, so there "
                   f"is no independently verifiable price series to compute a premium against.\n")
     md += ["## 3. DCF (illustrative scenarios built from STLD's own historical range, not analyst consensus)", "",
-           f"Discount rate 10.28% for both scenarios (`finmodel wacc examples/wacc_stld.json`); terminal growth 2.5%, perpetuity method. "
+           "Discount rate 10.28% for both scenarios (`finmodel wacc examples/wacc_stld.json`); terminal growth 2.5%, perpetuity method. "
            "The low–high range is a small discount-rate (±0.5pt) × terminal-growth (2.0%/2.5%/3.0%) sensitivity grid around each "
            "scenario's central case, standing in for a banker's data table.", ""]
     for key in ("dcf_base", "dcf_blue_sky"):

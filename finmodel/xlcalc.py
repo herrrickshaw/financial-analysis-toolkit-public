@@ -15,7 +15,6 @@ references (Excel-style, capped), Excel serial dates.  Unsupported functions rai
 """
 from __future__ import annotations
 
-import calendar
 import datetime as _dt
 import math
 import re

@@ -16,7 +16,7 @@ specifically for a subscription business's real, standard unit economics.
                                ~12-18 months are common real investor rules of thumb, not hard thresholds)."""
 from __future__ import annotations
 
-from typing import Any, Dict, List, Sequence
+from typing import Any, Dict, Sequence
 
 from .fin import safe_div
 

@@ -13,7 +13,7 @@ Everything is plain dicts so it can be fed from CSV/JSON and rendered with finmo
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Dict, Optional, Sequence
 
 from .fin import safe_div
 

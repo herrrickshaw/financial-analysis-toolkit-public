@@ -225,7 +225,7 @@ def write_doc(out):
           "| Filer | FY | `da` tag picked | Value | Problem |", "|---|---|---|---|---|"]
     cb = json.loads((ROOT / "data" / "edgar" / "CB.json").read_text())["years"]["2025-12-31"]
     wrb = json.loads((ROOT / "data" / "edgar" / "WRB.json").read_text())["years"]["2025-12-31"]
-    md.append(f"| Chubb Limited | 2025 | *(none populated)* | — | no `da`/`ebitda` tag at all |")
+    md.append("| Chubb Limited | 2025 | *(none populated)* | — | no `da`/`ebitda` tag at all |")
     md.append(f"| W. R. Berkley | 2025 | `DepreciationAmortizationAndAccretionNet` | -${abs(wrb['da'])/1e6:,.1f}M | NEGATIVE — this tag bundles bond-portfolio premium/discount accretion for a filer with a large investment book, not real operating depreciation |")
     md += ["", "A bank's problem was a revenue-tag mismatch; an insurer's is different — `finmodel.edgar`'s D&A "
            "tag preference picks up investment-accounting noise instead of (or in addition to) real depreciation "

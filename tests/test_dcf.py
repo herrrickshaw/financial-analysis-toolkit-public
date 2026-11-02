@@ -1,5 +1,4 @@
 """Reconcile to cached values of the CFI 'DCF Model Template (Updated)'."""
-import math
 import pytest
 from finmodel import dcf
 

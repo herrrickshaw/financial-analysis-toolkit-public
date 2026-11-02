@@ -8,10 +8,10 @@ import shutil
 import subprocess
 import tempfile
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Dict, Optional, Sequence
 
 from openpyxl import Workbook, load_workbook
-from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.styles import Font, PatternFill, Alignment, Side
 from openpyxl.utils import get_column_letter
 
 from .three_statement import ThreeStatementResult, HistoricalYear, ForecastAssumptions

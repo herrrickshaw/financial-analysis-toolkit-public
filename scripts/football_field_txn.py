@@ -310,7 +310,7 @@ def write_doc(out):
                f"**EV/EBIT (raw) {f_mult(comps.multiple(d['ev'], d['ebit']))}, "
                f"EV/AdjEBIT (R&D-capitalized) {f_mult(comps.multiple(d['ev_adj'], d['adj_ebit']))}**.", ""]
     md += ["## 3. DCF — a real, disclosed capex supercycle needs the same fix as the airline check's fleet renewal", "",
-           f"Cost of capital 9.33% (`finmodel wacc examples/wacc_txn.json`; TXN's real ~11x interest coverage "
+           "Cost of capital 9.33% (`finmodel wacc examples/wacc_txn.json`; TXN's real ~11x interest coverage "
            "maps to a AAA synthetic rating — a real, strong balance sheet, not a stress-tested assumption). "
            "Growth/margin scenarios use `finmodel.sectors.dcf_scenarios_from_history()`'s real trailing "
            "median/peak — no periods override needed here, unlike the airline check's COVID contamination.", "",

@@ -1,7 +1,6 @@
 """Reconciliation of finmodel.comps against the cached values of the BIWS 107-21 public comps workbook (Steel Dynamics),
 the BIWS 107-27 Jazz precedent-transactions workbook and the CFI 'Comps, Precedents, Football Field' template.
 The workbooks themselves are copyrighted and git-ignored; the reference numbers below were read from their cached values."""
-import math
 import pytest
 from finmodel import comps
 from finmodel.comps import Peer, Target, Deal, spread, implied_valuation, precedents, football_field, quartile_inc, stats, multiple, NM

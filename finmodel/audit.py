@@ -14,10 +14,9 @@ from __future__ import annotations
 import re
 from collections import Counter
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Dict, List
 
 from openpyxl import load_workbook
-from openpyxl.utils import get_column_letter
 
 ERRORS = {"#REF!", "#DIV/0!", "#VALUE!", "#N/A", "#NAME?", "#NUM!", "#NULL!"}
 ALLOWED_CONSTANTS = {0.0, 1.0, -1.0, 100.0, 12.0, 365.0, 360.0, 1000.0, 2.0, 4.0, 52.0}

@@ -25,7 +25,6 @@ from __future__ import annotations
 
 from typing import Any, Dict, Sequence
 
-from .fin import safe_div
 
 
 def goodwill_impairment_test(reporting_unit_fair_value: float, reporting_unit_carrying_value: float, goodwill_balance: float) -> Dict[str, Any]:

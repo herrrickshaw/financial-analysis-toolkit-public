@@ -40,7 +40,6 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from finmodel import comps, charts, sectors  # noqa: E402
 from finmodel.residual_income import residual_income  # noqa: E402
-from finmodel.comps import Deal  # noqa: E402
 
 CORE = ["PNC", "TFC", "MTB", "CFG", "RF", "FITB"]
 TARGET = "USB"
