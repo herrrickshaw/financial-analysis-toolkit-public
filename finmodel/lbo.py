@@ -84,6 +84,49 @@ class LBOInputs:
         return len(self.revenue_growth)
 
 
+def _depreciation_and_amortisation(inp: LBOInputs, A: Dict[str, List[float]], fee_asset0: float, fee_years: float):
+    """Pure schedule (independent of cash): total depreciation per year, per-wave detail, financing-fee amortisation."""
+    n, cb = inp.years, inp.closing
+    dep = [0.0] * n; dep_detail = []
+    base = [cb.ppe / inp.existing_ppe_life if (t + 1) <= inp.existing_ppe_life else 0.0 for t in range(n)]
+    dep_detail.append(("existing PP&E", base))
+    for k in range(n):                       # wave k starts depreciating in year k
+        life = A["life"][k]
+        wave = [A["capex"][k] / life if 0 <= t - k < life else 0.0 for t in range(n)]
+        dep_detail.append((f"capex year {k+1}", wave))
+    for _, w in dep_detail:
+        for t in range(n): dep[t] += w[t]
+    amort = [fee_asset0 / fee_years if t < fee_years else 0.0 for t in range(n)]
+    return dep, dep_detail, amort
+
+
+def _exit_returns(inp: LBOInputs, tranche_rows: Dict[str, Dict[str, List[float]]], tr_amounts: List[float], equity: float,
+                  exit_ebitda: float, exit_debt: float, exit_cash: float) -> Dict[str, Any]:
+    """Exit enterprise/equity value plus sponsor and per-tranche IRR / MOIC (annual flows, XIRR on closing-date anniversaries)."""
+    n = inp.years
+    d0 = to_date(inp.closing_date)
+    dates = [d0] + [date(d0.year + t + 1, d0.month, d0.day) for t in range(n)]
+    ev_exit = inp.exit_multiple * exit_ebitda
+    equity_exit = ev_exit - exit_debt + exit_cash
+    warrant_pct = sum(tr.warrant_equity_pct for tr in inp.tranches)
+    sponsor_pct = 1 - warrant_pct
+    sponsor_flows = [-equity] + [0.0] * (n - 1) + [sponsor_pct * equity_exit]
+    try: sponsor_irr = xirr(sponsor_flows, dates)
+    except ValueError: sponsor_irr = float("nan")
+    returns = {"exit_ebitda": exit_ebitda, "exit_multiple": inp.exit_multiple, "exit_enterprise_value": ev_exit, "less_debt": -exit_debt,
+               "plus_cash": exit_cash, "exit_equity_value": equity_exit, "sponsor_equity_pct": sponsor_pct,
+               "sponsor": {"flows": sponsor_flows, "dates": [d.isoformat() for d in dates], "irr": sponsor_irr,
+                           "moic": safe_div(sum(sponsor_flows[1:]), equity)}}
+    for tr, amt in zip(inp.tranches, tr_amounts):
+        row = tranche_rows[tr.name]
+        flows = [-amt] + [row["cash_interest"][t] + row["sched"][t] + row["sweep"][t] for t in range(n)]
+        flows[-1] += row["end"][-1] + tr.warrant_equity_pct * equity_exit
+        try: irr_ = xirr(flows, dates)
+        except ValueError: irr_ = float("nan")
+        returns[tr.name] = {"flows": flows, "irr": irr_, "moic": safe_div(sum(flows[1:]), amt)}
+    return returns
+
+
 def run(inp: LBOInputs) -> Dict[str, Any]:
     n = inp.years
     cb = inp.closing
@@ -127,16 +170,7 @@ def run(inp: LBOInputs) -> Dict[str, Any]:
         fee_years = next((t.amort_years for t in inp.tranches if t.amort_years), n)
 
     # ---------------- depreciation waves & fee amortisation (independent of cash)
-    dep = [0.0] * n; dep_detail = []
-    base = [cb.ppe / inp.existing_ppe_life if (t + 1) <= inp.existing_ppe_life else 0.0 for t in range(n)]
-    dep_detail.append(("existing PP&E", base))
-    for k in range(n):                       # wave k starts depreciating in year k
-        life = A["life"][k]
-        wave = [A["capex"][k] / life if 0 <= t - k < life else 0.0 for t in range(n)]
-        dep_detail.append((f"capex year {k+1}", wave))
-    for _, w in dep_detail:
-        for t in range(n): dep[t] += w[t]
-    amort = [fee_asset0 / fee_years if t < fee_years else 0.0 for t in range(n)]
+    dep, dep_detail, amort = _depreciation_and_amortisation(inp, A, fee_asset0, fee_years)
 
     # ---------------- year loop (iterate for revolver-interest / sweep circularity)
     revolver_int = [0.0] * n
@@ -231,26 +265,7 @@ def run(inp: LBOInputs) -> Dict[str, Any]:
     debt["Revolver"] = {"Ending": revolver, "Interest": revolver_int if inp.revolver_interest else [0.0] * n}
 
     # ---------------- exit & returns
-    d0 = to_date(inp.closing_date)
-    dates = [d0] + [date(d0.year + t + 1, d0.month, d0.day) for t in range(n)]
-    ev_exit = inp.exit_multiple * ebitda[-1]
-    equity_exit = ev_exit - debt_total[-1] + cash[-1]
-    warrant_pct = sum(tr.warrant_equity_pct for tr in inp.tranches)
-    sponsor_pct = 1 - warrant_pct
-    sponsor_flows = [-equity] + [0.0] * (n - 1) + [sponsor_pct * equity_exit]
-    try: sponsor_irr = xirr(sponsor_flows, dates)
-    except ValueError: sponsor_irr = float("nan")
-    returns = {"exit_ebitda": ebitda[-1], "exit_multiple": inp.exit_multiple, "exit_enterprise_value": ev_exit, "less_debt": -debt_total[-1],
-               "plus_cash": cash[-1], "exit_equity_value": equity_exit, "sponsor_equity_pct": sponsor_pct,
-               "sponsor": {"flows": sponsor_flows, "dates": [d.isoformat() for d in dates], "irr": sponsor_irr,
-                           "moic": safe_div(sum(sponsor_flows[1:]), equity)}}
-    for tr, amt in zip(inp.tranches, tr_amounts):
-        row = tranche_rows[tr.name]
-        flows = [-amt] + [row["cash_interest"][t] + row["sched"][t] + row["sweep"][t] for t in range(n)]
-        flows[-1] += row["end"][-1] + tr.warrant_equity_pct * equity_exit
-        try: irr_ = xirr(flows, dates)
-        except ValueError: irr_ = float("nan")
-        returns[tr.name] = {"flows": flows, "irr": irr_, "moic": safe_div(sum(flows[1:]), amt)}
+    returns = _exit_returns(inp, tranche_rows, tr_amounts, equity, ebitda[-1], debt_total[-1], cash[-1])
     entry = {"ebitda": ebitda0, "purchase_price": inp.purchase_price, "ev_ebitda": safe_div(inp.purchase_price, ebitda0),
              "debt": sum(tr_amounts), "debt_ebitda": safe_div(sum(tr_amounts), ebitda0), "equity_pct": safe_div(equity, total_uses)}
     return {**result, "years": list(range(1, n + 1)), "entry": entry, "sources": sources, "uses": uses, "closing_balance_sheet": close,

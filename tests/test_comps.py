@@ -171,3 +171,18 @@ def test_from_dict_roundtrip():
     assert set(out) == {"comps", "implied_from_comps", "precedents", "implied_from_precedents", "football_field"}
     assert len(out["football_field"]["items"]) == 3
     assert out["precedents"]["deals"][0]["premiums"]["1-day"] == pytest.approx(0.2)
+
+
+def test_method_registry_drives_from_dict():
+    from finmodel import comps
+    assert [m.label for m in comps.METHODS.values()] == ["Trading comps", "Precedent transactions"]
+    out = comps.from_dict({"target": {"name": "T", "price": 10, "diluted_shares": 1, "metrics": {"ebitda": 5}},
+                           "deals": [{"acquirer": "A", "target": "B", "date": "2020", "enterprise_value": 100, "ltm_ebitda": 10}]})
+    assert "precedents" in out and "comps" not in out
+    assert [i["method"] for i in out["football_field"]["items"]] == ["Precedent transactions"]
+
+
+def test_dcf_terminal_value_strategies():
+    from finmodel import dcf
+    assert dcf.TERMINAL_VALUE_METHODS["average"](10.0, 20.0) == 15.0
+    assert set(dcf.TERMINAL_VALUE_METHODS) == {"average", "perpetuity", "multiple"}
