@@ -348,7 +348,7 @@ def write_doc(out):
                   f"{d['assumptions']['revenue_growth']*100:.1f}%/yr) -> implied share price "
                   f"**{d['base_value_per_share']:.2f}** (range {d['low']:.2f} - {d['high']:.2f}); terminal value is "
                   f"{d['pv_terminal_value_pct']*100:.0f}% of enterprise value.")
-    md += ["", f"The bear case's generic 2.5% terminal growth rate — this toolkit's usual default, and a "
+    md += ["", "The bear case's generic 2.5% terminal growth rate — this toolkit's usual default, and a "
            "perfectly ordinary assumption for a mature industrial — produces a NEGATIVE implied equity value here. "
            "That is not a sign DUK is worth less than zero; it's a tell that 2.5% silently assumes DUK's real, "
            "currently-disclosed $103B 2026-2030 capital plan (which DUK itself guides to 5%-7% long-run EPS "

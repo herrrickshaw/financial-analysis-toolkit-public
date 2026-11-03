@@ -1,5 +1,4 @@
 import pytest
-from pathlib import Path
 from finmodel import extract
 from conftest import cfi_file
 

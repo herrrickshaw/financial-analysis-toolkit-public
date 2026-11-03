@@ -8,10 +8,10 @@ import shutil
 import subprocess
 import tempfile
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Dict, Optional, Sequence
 
 from openpyxl import Workbook, load_workbook
-from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.styles import Font, PatternFill, Alignment, Side
 from openpyxl.utils import get_column_letter
 
 from .three_statement import ThreeStatementResult, HistoricalYear, ForecastAssumptions
@@ -40,35 +40,7 @@ def _section(ws, row, text, first_col=1, last_col=14):
 
 
 # --------------------------------------------------------------------------- three statement
-def write_three_statement(path: str | Path, hist: Sequence[HistoricalYear], fc: ForecastAssumptions,
-                          ppe_opening0: Optional[float] = None, debt_opening0: Optional[float] = None,
-                          result: Optional[ThreeStatementResult] = None) -> Path:
-    """Formula-driven workbook with the CFI 'Three Statement Model' row layout."""
-    from . import three_statement as ts
-    if result is None:
-        result = ts.run(hist, fc, ppe_opening0, debt_opening0)
-    A = fc.expanded()
-    n_h, n_f = len(hist), fc.years
-    N = n_h + n_f
-    if ppe_opening0 is None:
-        ppe_opening0 = hist[0].ppe - hist[0].capex + hist[0].da
-    if debt_opening0 is None:
-        debt_opening0 = hist[0].debt - hist[0].debt_issued
-
-    wb = Workbook()
-    ws = wb.active
-    ws.title = "Three Statement Model"
-    ws.column_dimensions["A"].width = 44
-    first = 4  # column D
-    cols = [get_column_letter(first + i) for i in range(N)]
-
-    def put(row, i, value, fmt=NUM, is_input=False):
-        c = ws.cell(row=row, column=first + i, value=value)
-        c.number_format = fmt
-        if is_input:
-            c.font = BLUE
-        return c
-
+def _ts_headers(ws, put, cols, n_h: int, result: ThreeStatementResult) -> None:
     # headers
     ws["D1"], ws[f"{cols[n_h]}1"] = "Historical Results", "Forecast Period"
     ws["D1"].font = BOLD; ws[f"{cols[n_h]}1"].font = BOLD
@@ -80,6 +52,8 @@ def write_three_statement(path: str | Path, hist: Sequence[HistoricalYear], fc: 
     for i, c in enumerate(cols):
         ws[f"{c}3"] = f'=IFERROR(IF(ABS({c}60)>1,"ERROR","OK"),"OK")'
 
+
+def _ts_assumptions(ws, put, cols, n_h: int, A) -> None:
     # assumptions block rows 8-21
     _section(ws, 5, "Assumptions")
     ws["A7"] = "Key Assumptions"; ws["A7"].font = BOLD
@@ -113,6 +87,8 @@ def write_three_statement(path: str | Path, hist: Sequence[HistoricalYear], fc: 
             else:
                 put(row, i, A[key][i - n_h], fmt, is_input=True)
 
+
+def _ts_income_statement(ws, put, cols, hist, n_f: int) -> None:
     # income statement rows 26-38
     _section(ws, 24, "Income Statement")
     is_rows = {26: "Revenue", 27: "Cost of Goods Sold (COGS)", 28: "Gross Profit", 29: "Expenses",
@@ -131,6 +107,8 @@ def write_three_statement(path: str | Path, hist: Sequence[HistoricalYear], fc: 
             put(31, i, f"={c}11"); put(32, i, f"={c}67"); put(33, i, f"={c}105"); put(37, i, f"={c}35*{c}14")
         put(28, i, f"={c}26-{c}27"); put(34, i, f"=SUM({c}30:{c}33)"); put(35, i, f"={c}28-{c}34"); put(38, i, f"={c}35-{c}37")
 
+
+def _ts_balance_sheet(ws, put, cols, hist, n_f: int) -> None:
     # balance sheet rows 44-60
     _section(ws, 41, "Balance Sheet")
     bs_rows = {43: "Assets", 44: "Cash", 45: "Accounts Receivable", 46: "Inventory", 47: "Property & Equipment",
@@ -152,6 +130,8 @@ def write_three_statement(path: str | Path, hist: Sequence[HistoricalYear], fc: 
         put(48, i, f"=SUM({c}44:{c}47)"); put(53, i, f"=SUM({c}51:{c}52)"); put(57, i, f"=SUM({c}55:{c}56)")
         put(58, i, f"={c}53+{c}57"); put(60, i, f"={c}58-{c}48")
 
+
+def _ts_cash_flow(ws, put, cols, hist, n_f: int) -> None:
     # cash flow rows 66-82
     _section(ws, 63, "Cash Flow Statement")
     cf_rows = {65: "Operating Cash Flow", 66: "Net Earnings", 67: "Plus: Depreciation & Amortization",
@@ -174,6 +154,8 @@ def write_three_statement(path: str | Path, hist: Sequence[HistoricalYear], fc: 
         put(80, i, f"={c}69-{c}73+{c}78"); put(81, i, 0 if i == 0 else f"={p}82", is_input=(i == 0))
         put(82, i, f"=SUM({c}80:{c}81)"); put(83, i, f"={c}82-{c}44")
 
+
+def _ts_schedules(ws, put, cols, hist, n_f: int, ppe_opening0: float, debt_opening0: float) -> None:
     # schedules rows 89-105
     _section(ws, 86, "Supporting Schedules")
     sc_rows = {88: "Working Capital Schedule", 89: "Accounts Receivable", 90: "Inventory", 91: "Accounts Payable",
@@ -194,6 +176,47 @@ def write_three_statement(path: str | Path, hist: Sequence[HistoricalYear], fc: 
             put(97, i, f"={c}18"); put(98, i, f"={c}96*{c}12"); put(103, i, f"={c}19")
             put(105, i, f"=AVERAGE({c}102,{c}104)*{c}13")
         put(99, i, f"={c}96+{c}97-{c}98"); put(104, i, f"={c}102+{c}103")
+
+
+def _cell_writer(ws, first: int):
+    """put(row, i, value, fmt, is_input): write the i-th year column; hard-coded inputs are blue."""
+    def put(row, i, value, fmt=NUM, is_input=False):
+        c = ws.cell(row=row, column=first + i, value=value)
+        c.number_format = fmt
+        if is_input:
+            c.font = BLUE
+        return c
+    return put
+
+
+def write_three_statement(path: str | Path, hist: Sequence[HistoricalYear], fc: ForecastAssumptions,
+                          ppe_opening0: Optional[float] = None, debt_opening0: Optional[float] = None,
+                          result: Optional[ThreeStatementResult] = None) -> Path:
+    """Formula-driven workbook with the CFI 'Three Statement Model' row layout."""
+    from . import three_statement as ts
+    if result is None:
+        result = ts.run(hist, fc, ppe_opening0, debt_opening0)
+    A = fc.expanded()
+    n_h, n_f = len(hist), fc.years
+    N = n_h + n_f
+    if ppe_opening0 is None:
+        ppe_opening0 = hist[0].ppe - hist[0].capex + hist[0].da
+    if debt_opening0 is None:
+        debt_opening0 = hist[0].debt - hist[0].debt_issued
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Three Statement Model"
+    ws.column_dimensions["A"].width = 44
+    first = 4  # column D
+    cols = [get_column_letter(first + i) for i in range(N)]
+    put = _cell_writer(ws, first)
+    _ts_headers(ws, put, cols, n_h, result)
+    _ts_assumptions(ws, put, cols, n_h, A)
+    _ts_income_statement(ws, put, cols, hist, n_f)
+    _ts_balance_sheet(ws, put, cols, hist, n_f)
+    _ts_cash_flow(ws, put, cols, hist, n_f)
+    _ts_schedules(ws, put, cols, hist, n_f, ppe_opening0, debt_opening0)
     for c in cols:
         ws.column_dimensions[c].width = 13
     ws.freeze_panes = "B4"

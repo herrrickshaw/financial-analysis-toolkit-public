@@ -14,10 +14,9 @@ from __future__ import annotations
 import re
 from collections import Counter
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Dict, List
 
 from openpyxl import load_workbook
-from openpyxl.utils import get_column_letter
 
 ERRORS = {"#REF!", "#DIV/0!", "#VALUE!", "#N/A", "#NAME?", "#NUM!", "#NULL!"}
 ALLOWED_CONSTANTS = {0.0, 1.0, -1.0, 100.0, 12.0, 365.0, 360.0, 1000.0, 2.0, 4.0, 52.0}
@@ -107,6 +106,7 @@ def to_markdown(res: Dict[str, Any], limit: int = 200) -> str:
     if res["counts"]: md += ["| kind | count |", "|---|---|"] + [f"| {k} | {v} |" for k, v in sorted(res["counts"].items(), key=lambda kv: -kv[1])] + [""]
     md += ["| severity | sheet | cell | kind | message |", "|---|---|---|---|---|"]
     for f in sorted(res["findings"], key=lambda f: {"error": 0, "warning": 1, "info": 2}[f["severity"]])[:limit]:
-        md.append(f"| {f['severity']} | {f['sheet']} | {f['cell']} | {f['kind']} | {f['message'].replace('|', '\\|')} |")
+        msg = f['message'].replace('|', '\\|')   # escape for the Markdown table (backslash cannot sit inside an f-string before Python 3.12)
+        md.append(f"| {f['severity']} | {f['sheet']} | {f['cell']} | {f['kind']} | {msg} |")
     if len(res["findings"]) > limit: md.append(f"| … | | | | {len(res['findings']) - limit} more |")
     return "\n".join(md)

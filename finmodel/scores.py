@@ -10,7 +10,6 @@ cogs, operating_income, net_income, cfo, da, total_assets, current_assets, curre
 equity, retained_earnings, debt_total, total_liabilities, diluted_shares, sga, market_cap …)."""
 from __future__ import annotations
 
-import math
 from typing import Any, Dict, Optional
 
 from .fin import safe_div

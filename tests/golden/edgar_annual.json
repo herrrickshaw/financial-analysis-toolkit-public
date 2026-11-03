@@ -1,0 +1,58 @@
+{
+ "2022-12-31": {
+  "_tags": {
+   "revenue": "Revenues"
+  },
+  "fy_end": "2022-12-31",
+  "revenue": 100
+ },
+ "2023-12-31": {
+  "_tags": {
+   "amortization_of_intangibles": "AmortizationOfIntangibleAssets",
+   "capex_flight_equipment": "PaymentsForFlightEquipment",
+   "capex_other_ppe": "PaymentsToAcquireOtherPropertyPlantAndEquipment",
+   "cash": "CashAndCashEquivalentsAtCarryingValue",
+   "cogs": "CostOfRevenue",
+   "da": "Depreciation + AmortizationOfIntangibleAssets",
+   "debt_current": "DebtCurrent",
+   "debt_noncurrent": "LongTermDebtNoncurrent",
+   "diluted_shares": "derived: net_income / eps_diluted",
+   "eps_diluted": "EarningsPerShareDiluted",
+   "interest_expense": "InterestExpense",
+   "interest_income": "InvestmentIncomeInterest",
+   "net_income": "NetIncomeLoss",
+   "operating_income": "derived: pretax + interest expense \u2212 interest income",
+   "operating_lease_liability_current": "OperatingLeaseLiabilityCurrent",
+   "operating_lease_liability_noncurrent": "OperatingLeaseLiabilityNoncurrent",
+   "pretax_income": "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+   "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "short_term_investments": "ShortTermInvestments"
+  },
+  "amortization_of_intangibles": 7,
+  "capex": 10,
+  "capex_flight_equipment": 8,
+  "capex_other_ppe": 2,
+  "cash": 30,
+  "cogs": 120,
+  "da": 10,
+  "debt_current": 5,
+  "debt_noncurrent": 40,
+  "debt_total": 45,
+  "diluted_shares": 4.4,
+  "ebitda": 23,
+  "eps_diluted": 2.5,
+  "fy_end": "2023-12-31",
+  "gross_profit": 80,
+  "interest_expense": 2,
+  "interest_income": 1,
+  "net_debt": 11,
+  "net_income": 11,
+  "operating_income": 13,
+  "operating_lease_liability_current": 6,
+  "operating_lease_liability_noncurrent": 9,
+  "operating_lease_liability_total": 15,
+  "pretax_income": 12,
+  "revenue": 200,
+  "short_term_investments": 4
+ }
+}

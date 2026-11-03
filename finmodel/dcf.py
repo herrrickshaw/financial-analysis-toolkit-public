@@ -10,9 +10,9 @@ transaction date to that FYE, so its year-fraction (Excel YEARFRAC basis 0) scal
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import date
-from typing import Any, Dict, List, Sequence
+from typing import Any, Callable, Dict, List, Optional, Sequence
 
 from .fin import to_date, yearfrac, xnpv, xirr
 
@@ -65,6 +65,14 @@ def period_dates(transaction_date, fiscal_year_end, n: int) -> List[date]:
     return out
 
 
+# terminal-value strategies: name -> f(perpetuity-growth TV, exit-multiple TV); add a key here to offer a new method
+TERMINAL_VALUE_METHODS: Dict[str, Callable[[float, float], float]] = {
+    "average": lambda perpetuity, multiple: (perpetuity + multiple) / 2,
+    "perpetuity": lambda perpetuity, multiple: perpetuity,
+    "multiple": lambda perpetuity, multiple: multiple,
+}
+
+
 def run(inp: DCFInputs) -> Dict[str, Any]:
     n = len(inp.ebit)
     if not (len(inp.da) == len(inp.change_nwc) == n):
@@ -80,7 +88,7 @@ def run(inp: DCFInputs) -> Dict[str, Any]:
         raise ValueError("discount rate must exceed perpetual growth rate")
     tv_perp = ufcf[-1] * (1 + g) / (r - g)
     tv_mult = inp.ev_ebitda_multiple * ebitda_last
-    tv = {"average": (tv_perp + tv_mult) / 2, "perpetuity": tv_perp, "multiple": tv_mult}[inp.terminal_method]
+    tv = TERMINAL_VALUE_METHODS[inp.terminal_method](tv_perp, tv_mult)
 
     market_cap = inp.shares_outstanding * inp.current_price
     market_ev = market_cap + inp.debt - inp.cash

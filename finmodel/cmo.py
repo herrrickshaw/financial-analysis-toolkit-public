@@ -28,7 +28,6 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Sequence
 
-from .fin import safe_div
 
 
 def cpr_to_smm(cpr: float) -> float:

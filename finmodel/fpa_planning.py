@@ -14,7 +14,6 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Sequence
 
-from .fin import safe_div
 
 
 def headcount_cost_schedule(roles: Sequence[Dict[str, Any]], months: int, benefits_load_pct: float = 0.25) -> Dict[str, Any]:

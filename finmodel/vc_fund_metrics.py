@@ -78,7 +78,6 @@ def carry_waterfall(cashflows: Sequence[CashFlow], nav: float, as_of: str, hurdl
     distributed above return-of-capital, (4) split everything remaining `1-carry_pct`/`carry_pct` LP/GP.
     Assumes all distributable value (past distributions + current NAV, i.e. TVPI's numerator) is being
     allocated as of `as_of` — a whole-fund, as-if-liquidated-today view, not a running historical allocation."""
-    from datetime import date as _date
     from .fin import to_date
     paid_in = -sum(c.amount for c in cashflows if c.amount < 0)
     total_value = sum(c.amount for c in cashflows if c.amount > 0) + nav  # distributions to date + unrealized NAV

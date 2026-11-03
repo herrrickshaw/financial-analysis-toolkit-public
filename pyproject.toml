@@ -19,3 +19,14 @@ finmodel = "finmodel.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["finmodel*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 200            # the engines use deliberately dense one-line formulas; do not reflow them
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E9", "F"]         # syntax errors and pyflakes; style rules are Phase 2
+ignore = ["F841"]            # ~10 unused locals in dense legacy code: Phase 2
