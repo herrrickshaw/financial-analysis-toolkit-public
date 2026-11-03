@@ -123,24 +123,8 @@ SECTIONS = {
 }
 
 
-def run(historical: Sequence[HistoricalYear], assumptions: ForecastAssumptions,
-        ppe_opening0: float | None = None, debt_opening0: float | None = None) -> ThreeStatementResult:
-    """Run the model.  `historical` must contain at least one year (the base year).
-
-    ppe_opening0 / debt_opening0 are the opening balances of the FIRST historical year
-    (needed only to display the historical schedules; default to closing balance of that year
-    adjusted for the year's flows).
-    """
-    if not historical:
-        raise ValueError("at least one historical year is required")
-    hist = list(historical)
-    A = assumptions.expanded()
-    n_h, n_f = len(hist), assumptions.years
-    years = [h.year for h in hist] + [hist[-1].year + i + 1 for i in range(n_f)]
-    N = n_h + n_f
-    R: Dict[str, List[float]] = {k: [0.0] * N for sec in SECTIONS.values() for k in sec}
-
-    # ---------- historical years: taken as given ----------
+def _fill_historical(R: Dict[str, List[float]], hist: Sequence[HistoricalYear]) -> None:
+    """Historical years are taken as given."""
     for i, h in enumerate(hist):
         R["Revenue"][i] = h.revenue
         R["Cost of Goods Sold"][i] = h.cogs
@@ -165,87 +149,94 @@ def run(historical: Sequence[HistoricalYear], assumptions: ForecastAssumptions,
         R["Less Depreciation"][i] = h.da
         R["Interest Expense"][i] = h.interest
 
-    if ppe_opening0 is None:
-        ppe_opening0 = hist[0].ppe - hist[0].capex + hist[0].da
-    if debt_opening0 is None:
-        debt_opening0 = hist[0].debt - hist[0].debt_issued
 
-    # ---------- year loop ----------
-    prev_nwc = 0.0
-    for i in range(N):
-        f = i - n_h  # forecast index (>=0 in forecast years)
-        is_fc = f >= 0
-        # schedules: PP&E
-        R["PPE Opening"][i] = ppe_opening0 if i == 0 else R["PPE Closing"][i - 1]
-        if is_fc:
-            R["Plus Capex"][i] = A["capex"][f]
-            R["Investments in Property & Equipment"][i] = A["capex"][f]
-            R["Less Depreciation"][i] = R["PPE Opening"][i] * A["da_pct_ppe"][f]
-            R["Depreciation & Amortization"][i] = R["Less Depreciation"][i]
-        R["PPE Closing"][i] = R["PPE Opening"][i] + R["Plus Capex"][i] - R["Less Depreciation"][i]
-        # schedules: debt
-        R["Debt Opening"][i] = debt_opening0 if i == 0 else R["Debt Closing"][i - 1]
-        if is_fc:
-            R["Issuance (repayment)"][i] = A["debt_issued"][f]
-            R["Issuance (repayment) of debt"][i] = A["debt_issued"][f]
-            R["Issuance (repayment) of equity"][i] = A["equity_issued"][f]
-        R["Debt Closing"][i] = R["Debt Opening"][i] + R["Issuance (repayment)"][i]
-        if is_fc:
-            R["Interest Expense"][i] = (R["Debt Opening"][i] + R["Debt Closing"][i]) / 2 * A["interest_pct_debt"][f]
-            R["Interest"][i] = R["Interest Expense"][i]
-            # income statement
-            R["Revenue"][i] = R["Revenue"][i - 1] * (1 + A["revenue_growth"][f])
-            R["Cost of Goods Sold"][i] = R["Revenue"][i] * A["cogs_pct"][f]
-            R["Salaries and Benefits"][i] = R["Revenue"][i] * A["salaries_pct"][f]
-            R["Rent and Overhead"][i] = A["rent"][f]
-        R["Gross Profit"][i] = R["Revenue"][i] - R["Cost of Goods Sold"][i]
-        R["Total Expenses"][i] = (R["Salaries and Benefits"][i] + R["Rent and Overhead"][i]
-                                  + R["Depreciation & Amortization"][i] + R["Interest"][i])
-        R["Earnings Before Tax"][i] = R["Gross Profit"][i] - R["Total Expenses"][i]
-        if is_fc:
-            R["Taxes"][i] = R["Earnings Before Tax"][i] * A["tax_rate"][f]
-        R["Net Earnings"][i] = R["Earnings Before Tax"][i] - R["Taxes"][i]
-        # balance sheet (forecast working capital)
-        if is_fc:
-            d = A["days_in_period"][f]
-            R["Accounts Receivable"][i] = R["Revenue"][i] * A["ar_days"][f] / d
-            R["Inventory"][i] = R["Cost of Goods Sold"][i] * A["inventory_days"][f] / d
-            R["Accounts Payable"][i] = R["Cost of Goods Sold"][i] * A["ap_days"][f] / d
-            R["Property & Equipment"][i] = R["PPE Closing"][i]
-            R["Debt"][i] = R["Debt Closing"][i]
-            R["Equity Capital"][i] = R["Equity Capital"][i - 1] + R["Issuance (repayment) of equity"][i]
-            R["Retained Earnings"][i] = R["Retained Earnings"][i - 1] + R["Net Earnings"][i]
-        # NWC schedule
-        R["NWC: Accounts Receivable"][i] = R["Accounts Receivable"][i]
-        R["NWC: Inventory"][i] = R["Inventory"][i]
-        R["NWC: Accounts Payable"][i] = R["Accounts Payable"][i]
-        nwc = R["Accounts Receivable"][i] + R["Inventory"][i] - R["Accounts Payable"][i]
-        R["Net Working Capital (NWC)"][i] = nwc
-        R["Change in NWC"][i] = nwc - prev_nwc
-        prev_nwc = nwc
-        # cash flow statement
-        R["Net Earnings (CF)"][i] = R["Net Earnings"][i]
-        R["Plus: Depreciation & Amortization"][i] = R["Depreciation & Amortization"][i]
-        R["Less: Changes in Working Capital"][i] = R["Change in NWC"][i]
-        R["Cash from Operations"][i] = (R["Net Earnings (CF)"][i] + R["Plus: Depreciation & Amortization"][i]
-                                        - R["Less: Changes in Working Capital"][i])
-        R["Cash from Investing"][i] = R["Investments in Property & Equipment"][i]
-        R["Cash from Financing"][i] = R["Issuance (repayment) of debt"][i] + R["Issuance (repayment) of equity"][i]
-        R["Net Increase (decrease) in Cash"][i] = (R["Cash from Operations"][i] - R["Cash from Investing"][i]
-                                                   + R["Cash from Financing"][i])
-        R["Opening Cash Balance"][i] = 0.0 if i == 0 else R["Closing Cash Balance"][i - 1]
-        R["Closing Cash Balance"][i] = R["Opening Cash Balance"][i] + R["Net Increase (decrease) in Cash"][i]
-        if is_fc:
-            R["Cash"][i] = R["Closing Cash Balance"][i]
-        # totals + check
-        R["Total Assets"][i] = (R["Cash"][i] + R["Accounts Receivable"][i] + R["Inventory"][i]
-                                + R["Property & Equipment"][i])
-        R["Total Liabilities"][i] = R["Accounts Payable"][i] + R["Debt"][i]
-        R["Shareholder's Equity"][i] = R["Equity Capital"][i] + R["Retained Earnings"][i]
-        R["Total Liabilities & Shareholder's Equity"][i] = R["Total Liabilities"][i] + R["Shareholder's Equity"][i]
-        R["Balance Sheet Check"][i] = R["Total Liabilities & Shareholder's Equity"][i] - R["Total Assets"][i]
+def _schedules_year(R, i: int, f: int, A, ppe_opening0: float, debt_opening0: float) -> None:
+    """PP&E and debt schedules for year i (f = forecast index, negative for historical years); forecast years drive capex, D&A, debt and interest."""
+    is_fc = f >= 0
+    R["PPE Opening"][i] = ppe_opening0 if i == 0 else R["PPE Closing"][i - 1]
+    if is_fc:
+        R["Plus Capex"][i] = A["capex"][f]
+        R["Investments in Property & Equipment"][i] = A["capex"][f]
+        R["Less Depreciation"][i] = R["PPE Opening"][i] * A["da_pct_ppe"][f]
+        R["Depreciation & Amortization"][i] = R["Less Depreciation"][i]
+    R["PPE Closing"][i] = R["PPE Opening"][i] + R["Plus Capex"][i] - R["Less Depreciation"][i]
+    R["Debt Opening"][i] = debt_opening0 if i == 0 else R["Debt Closing"][i - 1]
+    if is_fc:
+        R["Issuance (repayment)"][i] = A["debt_issued"][f]
+        R["Issuance (repayment) of debt"][i] = A["debt_issued"][f]
+        R["Issuance (repayment) of equity"][i] = A["equity_issued"][f]
+    R["Debt Closing"][i] = R["Debt Opening"][i] + R["Issuance (repayment)"][i]
+    if is_fc:
+        R["Interest Expense"][i] = (R["Debt Opening"][i] + R["Debt Closing"][i]) / 2 * A["interest_pct_debt"][f]
+        R["Interest"][i] = R["Interest Expense"][i]
 
-    # implied assumptions (historical) + used assumptions (forecast), CFI 'Key Assumptions' block
+
+def _income_statement_year(R, i: int, f: int, A) -> None:
+    """Income statement for year i; forecast years grow revenue and apply the cost / tax assumptions."""
+    is_fc = f >= 0
+    if is_fc:
+        R["Revenue"][i] = R["Revenue"][i - 1] * (1 + A["revenue_growth"][f])
+        R["Cost of Goods Sold"][i] = R["Revenue"][i] * A["cogs_pct"][f]
+        R["Salaries and Benefits"][i] = R["Revenue"][i] * A["salaries_pct"][f]
+        R["Rent and Overhead"][i] = A["rent"][f]
+    R["Gross Profit"][i] = R["Revenue"][i] - R["Cost of Goods Sold"][i]
+    R["Total Expenses"][i] = (R["Salaries and Benefits"][i] + R["Rent and Overhead"][i]
+                              + R["Depreciation & Amortization"][i] + R["Interest"][i])
+    R["Earnings Before Tax"][i] = R["Gross Profit"][i] - R["Total Expenses"][i]
+    if is_fc:
+        R["Taxes"][i] = R["Earnings Before Tax"][i] * A["tax_rate"][f]
+    R["Net Earnings"][i] = R["Earnings Before Tax"][i] - R["Taxes"][i]
+
+
+def _working_capital_year(R, i: int, f: int, A) -> None:
+    """Forecast balance-sheet working capital / PP&E / debt / equity, then the NWC schedule (prev NWC is 0 for the first column)."""
+    if f >= 0:
+        d = A["days_in_period"][f]
+        R["Accounts Receivable"][i] = R["Revenue"][i] * A["ar_days"][f] / d
+        R["Inventory"][i] = R["Cost of Goods Sold"][i] * A["inventory_days"][f] / d
+        R["Accounts Payable"][i] = R["Cost of Goods Sold"][i] * A["ap_days"][f] / d
+        R["Property & Equipment"][i] = R["PPE Closing"][i]
+        R["Debt"][i] = R["Debt Closing"][i]
+        R["Equity Capital"][i] = R["Equity Capital"][i - 1] + R["Issuance (repayment) of equity"][i]
+        R["Retained Earnings"][i] = R["Retained Earnings"][i - 1] + R["Net Earnings"][i]
+    prev_nwc = R["Net Working Capital (NWC)"][i - 1] if i > 0 else 0.0
+    R["NWC: Accounts Receivable"][i] = R["Accounts Receivable"][i]
+    R["NWC: Inventory"][i] = R["Inventory"][i]
+    R["NWC: Accounts Payable"][i] = R["Accounts Payable"][i]
+    nwc = R["Accounts Receivable"][i] + R["Inventory"][i] - R["Accounts Payable"][i]
+    R["Net Working Capital (NWC)"][i] = nwc
+    R["Change in NWC"][i] = nwc - prev_nwc
+
+
+def _cash_flow_year(R, i: int, f: int) -> None:
+    """Cash flow statement for year i; forecast cash on the balance sheet is the closing cash balance."""
+    R["Net Earnings (CF)"][i] = R["Net Earnings"][i]
+    R["Plus: Depreciation & Amortization"][i] = R["Depreciation & Amortization"][i]
+    R["Less: Changes in Working Capital"][i] = R["Change in NWC"][i]
+    R["Cash from Operations"][i] = (R["Net Earnings (CF)"][i] + R["Plus: Depreciation & Amortization"][i]
+                                    - R["Less: Changes in Working Capital"][i])
+    R["Cash from Investing"][i] = R["Investments in Property & Equipment"][i]
+    R["Cash from Financing"][i] = R["Issuance (repayment) of debt"][i] + R["Issuance (repayment) of equity"][i]
+    R["Net Increase (decrease) in Cash"][i] = (R["Cash from Operations"][i] - R["Cash from Investing"][i]
+                                               + R["Cash from Financing"][i])
+    R["Opening Cash Balance"][i] = 0.0 if i == 0 else R["Closing Cash Balance"][i - 1]
+    R["Closing Cash Balance"][i] = R["Opening Cash Balance"][i] + R["Net Increase (decrease) in Cash"][i]
+    if f >= 0:
+        R["Cash"][i] = R["Closing Cash Balance"][i]
+
+
+def _balance_totals_year(R, i: int) -> None:
+    """Balance sheet totals and the balance check for year i."""
+    R["Total Assets"][i] = (R["Cash"][i] + R["Accounts Receivable"][i] + R["Inventory"][i]
+                            + R["Property & Equipment"][i])
+    R["Total Liabilities"][i] = R["Accounts Payable"][i] + R["Debt"][i]
+    R["Shareholder's Equity"][i] = R["Equity Capital"][i] + R["Retained Earnings"][i]
+    R["Total Liabilities & Shareholder's Equity"][i] = R["Total Liabilities"][i] + R["Shareholder's Equity"][i]
+    R["Balance Sheet Check"][i] = R["Total Liabilities & Shareholder's Equity"][i] - R["Total Assets"][i]
+
+
+def _implied_assumptions(R, A, n_h: int, N: int) -> Dict[str, List[float]]:
+    """Implied assumptions (historical) + used assumptions (forecast): the CFI 'Key Assumptions' block."""
     asm: Dict[str, List[float]] = {k: [0.0] * N for k in (
         "Revenue Growth", "COGS % Revenue", "Salaries % Revenue", "Rent and Overhead", "D&A % PP&E",
         "Interest % Debt", "Tax Rate", "AR Days", "Inventory Days", "AP Days", "Capex", "Debt Issued", "Equity Issued")}
@@ -264,7 +255,38 @@ def run(historical: Sequence[HistoricalYear], assumptions: ForecastAssumptions,
         asm["Capex"][i] = R["Plus Capex"][i]
         asm["Debt Issued"][i] = R["Issuance (repayment)"][i]
         asm["Equity Issued"][i] = R["Issuance (repayment) of equity"][i]
-    return ThreeStatementResult(years=years, n_hist=n_h, rows=R, assumptions=asm)
+    return asm
+
+
+def run(historical: Sequence[HistoricalYear], assumptions: ForecastAssumptions,
+        ppe_opening0: float | None = None, debt_opening0: float | None = None) -> ThreeStatementResult:
+    """Run the model.  `historical` must contain at least one year (the base year).
+
+    ppe_opening0 / debt_opening0 are the opening balances of the FIRST historical year
+    (needed only to display the historical schedules; default to closing balance of that year
+    adjusted for the year's flows).
+    """
+    if not historical:
+        raise ValueError("at least one historical year is required")
+    hist = list(historical)
+    A = assumptions.expanded()
+    n_h, n_f = len(hist), assumptions.years
+    years = [h.year for h in hist] + [hist[-1].year + i + 1 for i in range(n_f)]
+    N = n_h + n_f
+    R: Dict[str, List[float]] = {k: [0.0] * N for sec in SECTIONS.values() for k in sec}
+    _fill_historical(R, hist)
+    if ppe_opening0 is None:
+        ppe_opening0 = hist[0].ppe - hist[0].capex + hist[0].da
+    if debt_opening0 is None:
+        debt_opening0 = hist[0].debt - hist[0].debt_issued
+    for i in range(N):
+        f = i - n_h  # forecast index (>=0 in forecast years)
+        _schedules_year(R, i, f, A, ppe_opening0, debt_opening0)
+        _income_statement_year(R, i, f, A)
+        _working_capital_year(R, i, f, A)
+        _cash_flow_year(R, i, f)
+        _balance_totals_year(R, i)
+    return ThreeStatementResult(years=years, n_hist=n_h, rows=R, assumptions=_implied_assumptions(R, A, n_h, N))
 
 
 def from_dict(d: Dict[str, Any]) -> ThreeStatementResult:
