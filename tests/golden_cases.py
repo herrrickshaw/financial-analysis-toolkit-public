@@ -46,8 +46,39 @@ def edgar_facts() -> dict:
     return {"cik": 1, "entityName": "TestCo", "facts": {"us-gaap": gaap}}
 
 
+def lbo_sweep_case() -> dict:
+    """LBO with PIK, cash sweep and the iterative revolver-interest loop switched on (the circular path)."""
+    d = _ex("lbo_asm.json")
+    d["revolver_interest"] = True
+    d["tranches"][0]["pik_pct"] = 0.4
+    d["tranches"][1]["sweep_pct"] = 0.75
+    return d
+
+
+def workbook_dump(path) -> dict:
+    """Every non-empty cell of every sheet: value, number format, font colour, fill."""
+    from openpyxl import load_workbook
+    out = {}
+    for ws in load_workbook(path).worksheets:
+        out[ws.title] = {c.coordinate: [c.value, c.number_format, c.font.color.rgb if c.font and c.font.color else None,
+                                        c.fill.fgColor.rgb if c.fill and c.fill.fill_type else None]
+                         for row in ws.iter_rows() for c in row if c.value is not None}
+    return out
+
+
+def excel_three_statement(tmp: Path) -> dict:
+    from finmodel import excel
+    from finmodel.three_statement import ForecastAssumptions, HistoricalYear
+    d = _ex("cfi_three_statement.json")
+    strip = lambda x: {k: v for k, v in x.items() if not str(k).startswith("_")}  # noqa: E731
+    hist = [HistoricalYear(**strip(h)) for h in d["historical"]]
+    fc = ForecastAssumptions(**strip(d["forecast"]))
+    return workbook_dump(excel.write_three_statement(tmp / "ts.xlsx", hist, fc, d.get("ppe_opening0"), d.get("debt_opening0")))
+
+
 def build() -> dict:
-    from finmodel import comps, dcf, edgar, lbo, merger
+    import tempfile
+    from finmodel import comps, dcf, edgar, lbo, merger, projection, three_statement
     d = _ex("cfi_dcf.json")
     inp = dcf.DCFInputs(**dcf.clean(d))
     rows = edgar.annual(edgar_facts())
@@ -58,6 +89,10 @@ def build() -> dict:
         "dcf_sensitivity": dcf.sensitivity(inp, [0.10, 0.12, 0.14], [0.02, 0.03, 0.04]),
         "lbo_asm": lbo.from_dict(_ex("lbo_asm.json")),
         "merger_biws": merger.from_dict(_ex("merger_biws.json")),
+        "projection_demo": projection.from_dict(_ex("projection_demo.json")),
+        "three_statement_cfi": three_statement.from_dict(_ex("cfi_three_statement.json")).__dict__,
+        "lbo_sweep": lbo.from_dict(lbo_sweep_case()),
+        "excel_three_statement": excel_three_statement(Path(tempfile.mkdtemp())),
         "edgar_annual": rows,
         "edgar_compact": edgar.compact(edgar_facts(), years=2),
         "edgar_ratio_inputs": edgar.to_ratio_inputs(rows["2023-12-31"]),
