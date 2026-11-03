@@ -631,7 +631,7 @@ sector peers from `docs/FOOTBALL_FIELD_CSCO.md`.
 ## Charts, glossary, paid-template knowledge base
 
 - `docs/CHARTS.md` — the chart template: for each engine, which data feeds which chart and the analysis question it answers. Rendering follows the data-viz method (validated palette, thin marks, 2px gaps, legends, tooltips, table view, light/dark).
-- `docs/GLOSSARY.md` / `data/glossary.json` — 176 terms (CFI Financial Analysis and Modeling glossaries, PwC statement primer, authored valuation/LBO/M&A terms with formulas and toolkit pointers) and a 19-row GAAP-vs-IFRS evaluation table.
+- `docs/GLOSSARY.md` / `data/glossary.json` — 53 authored valuation/LBO/M&A/modelling terms with formulas and toolkit pointers and a 19-row GAAP-vs-IFRS evaluation table.
 - `docs/PAID_TEMPLATES.md` / `catalog/paid_templates.json` — the 127 paid-only CFI titles: category, what they do, public analogues, literature, and how much this toolkit already covers; `catalog/analysis_intent.json` adds the analysis intent per category with the Investopedia, Wall Street Prep, Macabacus and CFI reference pages it was distilled from.
 
 ## Template sources
