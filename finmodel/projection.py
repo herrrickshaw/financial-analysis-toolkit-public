@@ -110,15 +110,8 @@ def _months(year: int):
     return [(date(year, m, 1), eomonth(date(year, m, 1))) for m in range(1, 13)]
 
 
-def run(inp: ProjectionInputs) -> Dict[str, Any]:
-    n_f = inp.forecast_years
-    years = [inp.base_year + i for i in range(n_f + 1)]
-    N = n_f + 1
-    hol = [to_date(h) for h in inp.holidays]
-    workdays = [networkdays(date(y, 1, 1), date(y, 12, 31), hol) for y in years]
-    month_workdays = [networkdays(s, e, hol) for s, e in _months(inp.base_year)]
-
-    # ---------------- sales ----------------
+def _project_sales(inp: ProjectionInputs, n_f: int, N: int) -> Dict[str, Dict[str, List[float]]]:
+    """Per-product price / units / COGS paths over base year + forecast years."""
     sales: Dict[str, Dict[str, List[float]]] = {}
     for p in sales_products(inp):
         pass
@@ -131,10 +124,11 @@ def run(inp: ProjectionInputs) -> Dict[str, Any]:
         cogs = [cpu[i] * units[i] for i in range(N)]
         sales[p.name] = {"price": price, "units": units, "revenue": rev, "cogs_per_unit": cpu,
                          "cogs": cogs, "gross_margin": [rev[i] - cogs[i] for i in range(N)]}
-    revenue = [sum(s["revenue"][i] for s in sales.values()) for i in range(N)]
-    cogs = [sum(s["cogs"][i] for s in sales.values()) for i in range(N)]
+    return sales
 
-    # ---------------- payroll ----------------
+
+def _project_payroll(inp: ProjectionInputs, n_f: int, N: int, workdays: List[int], month_workdays: List[int]) -> Dict[str, Any]:
+    """Wages by employee type, payroll deductions and net pay; returns the payroll dict (bonus_pool is added later)."""
     types = inp.employee_types
     base_hours = {t: 0.0 for t in types}; base_wages = {t: 0.0 for t in types}; heads = {t: 0 for t in types}
     for e in inp.employees:
@@ -146,7 +140,6 @@ def run(inp: ProjectionInputs) -> Dict[str, Any]:
         base_hours[e.type] += sum(hrs); base_wages[e.type] += sum(h * e.hourly_wage for h in hrs); heads[e.type] += 1
     payroll: Dict[str, Any] = {"types": {}}
     wages_total = [0.0] * N; ins_base = [0.0] * N  # insurance/pension base (benefit types)
-    bonus_base_by_type = {}
     for t, et in types.items():
         hg = _exp(inp.headcount_growth.get(t), n_f); wg = _exp(inp.wage_growth.get(t), n_f)
         hc = [float(heads[t])]; avg_wage = [safe_div(base_wages[t], base_hours[t])]
@@ -161,8 +154,6 @@ def run(inp: ProjectionInputs) -> Dict[str, Any]:
             wages_total[i] += wages[i]
             if et.benefits:
                 ins_base[i] += wages[i]
-        if et.bonus:
-            bonus_base_by_type[t] = wages
     d = inp.deductions
     fed = [w * d.get("federal_tax", 0) for w in wages_total]
     state = [w * d.get("state_tax", 0) for w in wages_total]
@@ -171,9 +162,11 @@ def run(inp: ProjectionInputs) -> Dict[str, Any]:
     net_pay = [wages_total[i] - fed[i] - state[i] - ins[i] - pen[i] for i in range(N)]
     payroll.update({"work_days": workdays, "total_wages": wages_total, "federal_tax": fed, "state_tax": state,
                     "insurance": ins, "pension": pen, "net_pay": net_pay})
-    wage_expense = net_pay if inp.wage_expense_basis == "net_pay" else wages_total
+    return payroll
 
-    # ---------------- operating expenses ----------------
+
+def _project_opex(inp: ProjectionInputs, n_f: int) -> Dict[str, List[float]]:
+    """Operating-expense categories (excluding D&A) grown from their base-year monthly totals."""
     opex: Dict[str, List[float]] = {}
     for cat, months in inp.opex_by_month.items():
         if cat == inp.da_category:
@@ -183,17 +176,18 @@ def run(inp: ProjectionInputs) -> Dict[str, Any]:
         for f in range(n_f):
             vals.append(vals[-1] * (1 + g[f]))
         opex[cat] = vals
+    return opex
+
+
+def _asset_debt_schedules(inp: ProjectionInputs, n_f: int, N: int) -> Dict[str, Any]:
+    """PP&E (capex, D&A) and debt (issuance, interest) roll-forwards plus the equity-issuance path."""
     base_da = sum(inp.opex_by_month.get(inp.da_category, [0.0] * 12))
     da_rate = inp.da_pct_ppe if inp.da_pct_ppe is not None else safe_div(base_da, inp.opening_ppe)
     base_interest = sum(inp.base_interest_by_month)
     int_rate = inp.interest_pct_debt if inp.interest_pct_debt is not None else safe_div(base_interest, inp.opening_debt)
-
-    # ---------------- schedules + statements ----------------
     capex = [sum(inp.base_capex_by_month)] + _exp(inp.forecast_capex, n_f, default=sum(inp.base_capex_by_month))
     debt_iss = [sum(inp.base_debt_issued_by_month)] + _exp(inp.forecast_debt_issued, n_f)
     eq_iss = [sum(inp.base_equity_issued_by_month)] + _exp(inp.forecast_equity_issued, n_f)
-    pre_g = _exp(inp.prepaid_growth, n_f); acc_g = _exp(inp.accrued_growth, n_f)
-
     ppe_open = [0.0] * N; da = [0.0] * N; ppe_close = [0.0] * N
     debt_open = [0.0] * N; debt_close = [0.0] * N; interest = [0.0] * N
     for i in range(N):
@@ -203,25 +197,14 @@ def run(inp: ProjectionInputs) -> Dict[str, Any]:
         debt_open[i] = inp.opening_debt if i == 0 else debt_close[i - 1]
         debt_close[i] = debt_open[i] + debt_iss[i]
         interest[i] = base_interest if i == 0 else debt_open[i] * int_rate
+    return {"capex": capex, "debt_iss": debt_iss, "eq_iss": eq_iss, "ppe_open": ppe_open, "da": da, "ppe_close": ppe_close,
+            "debt_open": debt_open, "debt_close": debt_close, "interest": interest, "da_rate": da_rate, "int_rate": int_rate}
 
-    IS: Dict[str, List[float]] = {"Revenue": revenue, "COGS": cogs, "Gross Margin": [revenue[i] - cogs[i] for i in range(N)]}
-    IS["Operating Expenses"] = {}  # type: ignore[assignment]
-    opex_lines: Dict[str, List[float]] = dict(opex)
-    opex_lines["Depreciation & Amortization"] = da
-    opex_lines["Wages and Benefits"] = wage_expense
-    total_opex = [sum(v[i] for v in opex_lines.values()) for i in range(N)]
-    ebit = [IS["Gross Margin"][i] - total_opex[i] for i in range(N)]
-    bonus_pool = [max(ebit[i], 0.0) * inp.bonus_pct_ebit for i in range(N)]
-    ebt = [ebit[i] - bonus_pool[i] - interest[i] for i in range(N)]
-    taxes = [ebt[i] * inp.tax_rate if ebt[i] > 0 else 0.0 for i in range(N)]
-    ni = [ebt[i] - taxes[i] for i in range(N)]
-    IS = {"Revenue": revenue, "COGS": cogs, "Gross Margin": IS["Gross Margin"], **opex_lines,
-          "Total Operating Expenses": total_opex, "EBIT": ebit, "Employee Bonuses": bonus_pool,
-          "Interest Expense": interest, "EBT": ebt, "Income Taxes": taxes, "Net Earnings": ni}
-    payroll["bonus_pool"] = bonus_pool
 
-    # balance sheet
+def _working_capital(inp: ProjectionInputs, n_f: int, N: int, revenue: List[float], cogs: List[float]) -> Dict[str, Any]:
+    """Receivables / inventory / payables / prepaid / accrued balances and the change in net working capital."""
     ar_days = inp.ar_days; inv_days = inp.inventory_days; ap_days = inp.ap_days
+    pre_g = _exp(inp.prepaid_growth, n_f); acc_g = _exp(inp.accrued_growth, n_f)
     ar = [0.0] * N; inv = [0.0] * N; ap = [0.0] * N; pre = [0.0] * N; acc = [0.0] * N
     # base year closing: opening balances rolled by days assumptions if provided, else held at opening
     ar[0] = revenue[0] * ar_days / 365 if ar_days is not None else inp.opening_ar
@@ -237,8 +220,32 @@ def run(inp: ProjectionInputs) -> Dict[str, Any]:
     nwc = [ar[i] + inv[i] + pre[i] - ap[i] - acc[i] for i in range(N)]
     nwc_open = inp.opening_ar + inp.opening_inventory + inp.opening_prepaid - inp.opening_ap - inp.opening_accrued
     d_nwc = [nwc[i] - (nwc_open if i == 0 else nwc[i - 1]) for i in range(N)]
+    return {"ar": ar, "inv": inv, "ap": ap, "pre": pre, "acc": acc, "nwc": nwc, "d_nwc": d_nwc,
+            "ar_days_eff": ar_days_eff, "inv_days_eff": inv_days_eff, "ap_days_eff": ap_days_eff}
 
-    cfo = [ni[i] + da[i] - d_nwc[i] for i in range(N)]
+
+def _income_statement(inp: ProjectionInputs, N: int, revenue, cogs, opex, wage_expense, sched) -> Dict[str, List[float]]:
+    """Income statement lines; D&A and interest come from the asset/debt schedules."""
+    gross = [revenue[i] - cogs[i] for i in range(N)]
+    opex_lines: Dict[str, List[float]] = dict(opex)
+    opex_lines["Depreciation & Amortization"] = sched["da"]
+    opex_lines["Wages and Benefits"] = wage_expense
+    total_opex = [sum(v[i] for v in opex_lines.values()) for i in range(N)]
+    ebit = [gross[i] - total_opex[i] for i in range(N)]
+    bonus_pool = [max(ebit[i], 0.0) * inp.bonus_pct_ebit for i in range(N)]
+    ebt = [ebit[i] - bonus_pool[i] - sched["interest"][i] for i in range(N)]
+    taxes = [ebt[i] * inp.tax_rate if ebt[i] > 0 else 0.0 for i in range(N)]
+    ni = [ebt[i] - taxes[i] for i in range(N)]
+    return {"Revenue": revenue, "COGS": cogs, "Gross Margin": gross, **opex_lines,
+            "Total Operating Expenses": total_opex, "EBIT": ebit, "Employee Bonuses": bonus_pool,
+            "Interest Expense": sched["interest"], "EBT": ebt, "Income Taxes": taxes, "Net Earnings": ni}
+
+
+def _statements(inp: ProjectionInputs, N: int, IS, sched, wc) -> tuple:
+    """Cash flow, equity roll-forward and balance sheet; returns (BS, CF, cash_close, cash_open, tca, tcl, ta, tl, eq)."""
+    ni, da = IS["Net Earnings"], sched["da"]
+    capex, debt_iss, eq_iss = sched["capex"], sched["debt_iss"], sched["eq_iss"]
+    cfo = [ni[i] + da[i] - wc["d_nwc"][i] for i in range(N)]
     cfi = capex
     cff = [debt_iss[i] + eq_iss[i] for i in range(N)]
     net_cash = [cfo[i] - cfi[i] + cff[i] for i in range(N)]
@@ -250,6 +257,8 @@ def run(inp: ProjectionInputs) -> Dict[str, Any]:
     for i in range(N):
         eq_cap[i] = (inp.opening_equity_capital if i == 0 else eq_cap[i - 1]) + eq_iss[i]
         re[i] = (inp.opening_retained_earnings if i == 0 else re[i - 1]) + ni[i]
+    ar, pre, inv, ap, acc = wc["ar"], wc["pre"], wc["inv"], wc["ap"], wc["acc"]
+    ppe_close, debt_close = sched["ppe_close"], sched["debt_close"]
     tca = [cash_close[i] + ar[i] + pre[i] + inv[i] for i in range(N)]
     ta = [tca[i] + ppe_close[i] for i in range(N)]
     tcl = [ap[i] + acc[i] for i in range(N)]
@@ -262,27 +271,56 @@ def run(inp: ProjectionInputs) -> Dict[str, Any]:
           "Retained Earnings": re, "Shareholder's Equity": eq,
           "Total Liabilities & Shareholder's Equity": [tl[i] + eq[i] for i in range(N)],
           "Check": [tl[i] + eq[i] - ta[i] for i in range(N)]}
-    CF = {"Net Earnings": ni, "Plus: Depreciation & Amortization": da, "Less: Changes in Working Capital": d_nwc,
+    CF = {"Net Earnings": ni, "Plus: Depreciation & Amortization": da, "Less: Changes in Working Capital": wc["d_nwc"],
           "Cash from Operations": cfo, "Investments in Property & Equipment": cfi, "Cash from Investing": cfi,
           "Issuance (repayment) of debt": debt_iss, "Issuance (repayment) of equity": eq_iss,
           "Cash from Financing": cff, "Net Increase (decrease) in Cash": net_cash,
           "Opening Cash Balance": cash_open, "Closing Cash Balance": cash_close}
-    schedules = {"working_capital": {"AR": ar, "Inventory": inv, "Prepaid": pre, "AP": ap, "Accrued": acc,
-                                     "NWC": nwc, "Change in NWC": d_nwc,
-                                     "ar_days": ar_days_eff, "inventory_days": inv_days_eff, "ap_days": ap_days_eff},
-                 "ppe": {"Opening": ppe_open, "Capex": capex, "Depreciation": da, "Closing": ppe_close, "da_pct_ppe": da_rate},
-                 "debt": {"Opening": debt_open, "Issuance": debt_iss, "Closing": debt_close, "Interest": interest,
-                          "interest_pct_debt": int_rate}}
+    return BS, CF, tca, tcl, ta, tl, eq
+
+
+def _ratio_rows(N: int, IS, BS, tca, tcl, ta, tl, eq) -> List[Any]:
+    """Per-year ratio analysis from the statement lines."""
     rat = []
     for i in range(N):
         rat.append(_ratios.compute(
-            {"revenue": revenue[i], "cogs": cogs[i], "gross_profit": IS["Gross Margin"][i], "ebit": ebit[i],
-             "interest": interest[i], "ebt": ebt[i], "taxes": taxes[i], "net_income": ni[i]},
-            {"total_assets": ta[i], "current_assets": tca[i], "current_liabilities": tcl[i], "inventory": inv[i],
-             "ar": ar[i], "ap": ap[i], "ppe": ppe_close[i], "long_term_debt": debt_close[i],
-             "total_liabilities": tl[i], "equity": eq[i]}))
+            {"revenue": IS["Revenue"][i], "cogs": IS["COGS"][i], "gross_profit": IS["Gross Margin"][i], "ebit": IS["EBIT"][i],
+             "interest": IS["Interest Expense"][i], "ebt": IS["EBT"][i], "taxes": IS["Income Taxes"][i], "net_income": IS["Net Earnings"][i]},
+            {"total_assets": ta[i], "current_assets": tca[i], "current_liabilities": tcl[i], "inventory": BS["Inventory"][i],
+             "ar": BS["Accounts Receivable"][i], "ap": BS["Accounts Payable"][i], "ppe": BS["Property & Equipment"][i],
+             "long_term_debt": BS["Long-term debt"][i], "total_liabilities": tl[i], "equity": eq[i]}))
+    return rat
+
+
+def run(inp: ProjectionInputs) -> Dict[str, Any]:
+    """Run the bottom-up projection: sales -> payroll -> opex -> schedules -> statements -> ratios."""
+    n_f = inp.forecast_years
+    years = [inp.base_year + i for i in range(n_f + 1)]
+    N = n_f + 1
+    hol = [to_date(h) for h in inp.holidays]
+    workdays = [networkdays(date(y, 1, 1), date(y, 12, 31), hol) for y in years]
+    month_workdays = [networkdays(s, e, hol) for s, e in _months(inp.base_year)]
+
+    sales = _project_sales(inp, n_f, N)
+    revenue = [sum(s["revenue"][i] for s in sales.values()) for i in range(N)]
+    cogs = [sum(s["cogs"][i] for s in sales.values()) for i in range(N)]
+    payroll = _project_payroll(inp, n_f, N, workdays, month_workdays)
+    wage_expense = payroll["net_pay"] if inp.wage_expense_basis == "net_pay" else payroll["total_wages"]
+    opex = _project_opex(inp, n_f)
+    sched = _asset_debt_schedules(inp, n_f, N)
+    IS = _income_statement(inp, N, revenue, cogs, opex, wage_expense, sched)
+    payroll["bonus_pool"] = IS["Employee Bonuses"]
+    wc = _working_capital(inp, n_f, N, revenue, cogs)
+    BS, CF, tca, tcl, ta, tl, eq = _statements(inp, N, IS, sched, wc)
+    schedules = {"working_capital": {"AR": wc["ar"], "Inventory": wc["inv"], "Prepaid": wc["pre"], "AP": wc["ap"], "Accrued": wc["acc"],
+                                     "NWC": wc["nwc"], "Change in NWC": wc["d_nwc"],
+                                     "ar_days": wc["ar_days_eff"], "inventory_days": wc["inv_days_eff"], "ap_days": wc["ap_days_eff"]},
+                 "ppe": {"Opening": sched["ppe_open"], "Capex": sched["capex"], "Depreciation": sched["da"], "Closing": sched["ppe_close"],
+                         "da_pct_ppe": sched["da_rate"]},
+                 "debt": {"Opening": sched["debt_open"], "Issuance": sched["debt_iss"], "Closing": sched["debt_close"],
+                          "Interest": sched["interest"], "interest_pct_debt": sched["int_rate"]}}
     return {"years": years, "sales": sales, "payroll": payroll, "opex": opex, "income_statement": IS,
-            "balance_sheet": BS, "cash_flow": CF, "schedules": schedules, "ratios": rat,
+            "balance_sheet": BS, "cash_flow": CF, "schedules": schedules, "ratios": _ratio_rows(N, IS, BS, tca, tcl, ta, tl, eq),
             "balanced": all(abs(c) <= 1.0 for c in BS["Check"])}
 
 
