@@ -127,7 +127,7 @@ def verify(cat: Dict[str, Any], sources: Optional[List[str]] = None, timeout: in
             cl = h.get("Content-Length") if hasattr(h, "get") else None
             if cl:
                 e["size"] = int(cl)
-        except Exception:  # noqa: BLE001
+        except (ValueError, TypeError):  # malformed Content-Length header: leave size unset
             pass
     cat["counts"] = _counts(cat["entries"])
     return cat
