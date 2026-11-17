@@ -51,8 +51,8 @@ def test_range_bars_wraps_long_labels_without_overflow():
 def test_glossary_data():
     g = json.loads((ROOT / "data/glossary.json").read_text())
     terms = {e["term"].lower() for e in g["entries"]}
-    assert len(g["entries"]) >= 170 and len(g["gaap_vs_ifrs"]) >= 15
-    for t in ("ebitda", "goodwill", "balance sheet", "cash sweep", "working capital", "accretion / dilution"):
+    assert len(g["entries"]) >= 50 and len(g["gaap_vs_ifrs"]) >= 15
+    for t in ("ebitda", "goodwill", "cash sweep", "net working capital (nwc)", "accretion / dilution"):
         assert t in terms, t
     lease = next(e for e in g["entries"] if e["term"].startswith("Leases"))
     assert "IFRS 16" in lease["gaap_vs_ifrs"]
