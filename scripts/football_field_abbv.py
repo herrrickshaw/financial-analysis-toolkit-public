@@ -342,8 +342,8 @@ def write_doc(out):
            "table — fixed here by de-duplicating on the latest `batch_id` per date (`DISTINCT ON` in both the "
            "`prices()` and `week52()` queries above) rather than trusting a plain date-equality lookup.", ""]
     md += ["## 7. DCF (unlevered, margin scenarios from ABBV's own IPR&D-adjusted history)", "",
-           f"Discount rate 7.33% (`finmodel wacc examples/wacc_abbv.json`). Once the acquired-IPR&D noise is "
-           f"removed, `trend_diagnostics()` on the adjusted margin shows a genuinely weak trend (see §8), so — "
+           "Discount rate 7.33% (`finmodel wacc examples/wacc_abbv.json`). Once the acquired-IPR&D noise is "
+           "removed, `trend_diagnostics()` on the adjusted margin shows a genuinely weak trend (see §8), so — "
            "unlike the DUK/TRV/CSCO checks — the GENERIC `dcf_scenarios_from_history()` trailing min/median/max "
            "is appropriate here rather than needing a trend-guard override.", ""]
     for key in ("dcf_bear", "dcf_base", "dcf_blue_sky"):

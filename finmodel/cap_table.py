@@ -19,7 +19,7 @@ Two real, easy-to-get-wrong mechanics this module gets right on purpose:
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Sequence
 
 from .fin import safe_div

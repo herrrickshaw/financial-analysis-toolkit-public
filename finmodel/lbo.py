@@ -84,13 +84,52 @@ class LBOInputs:
         return len(self.revenue_growth)
 
 
-def run(inp: LBOInputs) -> Dict[str, Any]:
-    n = inp.years
-    cb = inp.closing
-    hist_ebitda = [inp.hist_revenue[i] - inp.hist_cogs[i] - inp.hist_sga[i] for i in range(len(inp.hist_revenue))]
-    ebitda0 = inp.closing_ebitda if inp.closing_ebitda is not None else hist_ebitda[-1]
+def _depreciation_and_amortisation(inp: LBOInputs, A: Dict[str, List[float]], fee_asset0: float, fee_years: float):
+    """Pure schedule (independent of cash): total depreciation per year, per-wave detail, financing-fee amortisation."""
+    n, cb = inp.years, inp.closing
+    dep = [0.0] * n; dep_detail = []
+    base = [cb.ppe / inp.existing_ppe_life if (t + 1) <= inp.existing_ppe_life else 0.0 for t in range(n)]
+    dep_detail.append(("existing PP&E", base))
+    for k in range(n):                       # wave k starts depreciating in year k
+        life = A["life"][k]
+        wave = [A["capex"][k] / life if 0 <= t - k < life else 0.0 for t in range(n)]
+        dep_detail.append((f"capex year {k+1}", wave))
+    for _, w in dep_detail:
+        for t in range(n): dep[t] += w[t]
+    amort = [fee_asset0 / fee_years if t < fee_years else 0.0 for t in range(n)]
+    return dep, dep_detail, amort
 
-    # ---------------- sources & uses
+
+def _exit_returns(inp: LBOInputs, tranche_rows: Dict[str, Dict[str, List[float]]], tr_amounts: List[float], equity: float,
+                  exit_ebitda: float, exit_debt: float, exit_cash: float) -> Dict[str, Any]:
+    """Exit enterprise/equity value plus sponsor and per-tranche IRR / MOIC (annual flows, XIRR on closing-date anniversaries)."""
+    n = inp.years
+    d0 = to_date(inp.closing_date)
+    dates = [d0] + [date(d0.year + t + 1, d0.month, d0.day) for t in range(n)]
+    ev_exit = inp.exit_multiple * exit_ebitda
+    equity_exit = ev_exit - exit_debt + exit_cash
+    warrant_pct = sum(tr.warrant_equity_pct for tr in inp.tranches)
+    sponsor_pct = 1 - warrant_pct
+    sponsor_flows = [-equity] + [0.0] * (n - 1) + [sponsor_pct * equity_exit]
+    try: sponsor_irr = xirr(sponsor_flows, dates)
+    except ValueError: sponsor_irr = float("nan")
+    returns = {"exit_ebitda": exit_ebitda, "exit_multiple": inp.exit_multiple, "exit_enterprise_value": ev_exit, "less_debt": -exit_debt,
+               "plus_cash": exit_cash, "exit_equity_value": equity_exit, "sponsor_equity_pct": sponsor_pct,
+               "sponsor": {"flows": sponsor_flows, "dates": [d.isoformat() for d in dates], "irr": sponsor_irr,
+                           "moic": safe_div(sum(sponsor_flows[1:]), equity)}}
+    for tr, amt in zip(inp.tranches, tr_amounts):
+        row = tranche_rows[tr.name]
+        flows = [-amt] + [row["cash_interest"][t] + row["sched"][t] + row["sweep"][t] for t in range(n)]
+        flows[-1] += row["end"][-1] + tr.warrant_equity_pct * equity_exit
+        try: irr_ = xirr(flows, dates)
+        except ValueError: irr_ = float("nan")
+        returns[tr.name] = {"flows": flows, "irr": irr_, "moic": safe_div(sum(flows[1:]), amt)}
+    return returns
+
+
+def _sources_uses_closing(inp: LBOInputs, ebitda0: float) -> Dict[str, Any]:
+    """Sources & uses, goodwill, and the closing balance sheet (column E of the workbook)."""
+    cb = inp.closing
     tr_amounts = [t.amount if t.amount is not None else ebitda0 * t.ebitda_multiple for t in inp.tranches]
     total_uses = inp.purchase_price + inp.transaction_expenses + inp.financing_fees
     equity = total_uses - sum(tr_amounts)
@@ -112,8 +151,13 @@ def run(inp: LBOInputs) -> Dict[str, Any]:
     ta = cash0 + cb.ar + cb.inventory + cb.prepaid + cb.ppe + fee_asset0 + goodwill + cb.other_assets
     tl = cb.ap + sum(tr_amounts)
     close["check"] = ta - (tl + equity - inp.transaction_expenses)
+    return {"tr_amounts": tr_amounts, "total_uses": total_uses, "equity": equity, "goodwill": goodwill, "sources": sources,
+            "uses": uses, "cash0": cash0, "fee_asset0": fee_asset0, "close": close}
 
-    # ---------------- assumptions
+
+def _lbo_assumptions(inp: LBOInputs) -> tuple:
+    """Per-year assumption vectors and the financing-fee amortisation period."""
+    n = inp.years
     A = {
         "growth": _exp(inp.revenue_growth, n, "revenue_growth"),
         "cogs_pct": _exp(inp.cogs_pct if inp.cogs_pct is not None else sum(c / r for c, r in zip(inp.hist_cogs, inp.hist_revenue)) / len(inp.hist_revenue), n),
@@ -125,20 +169,13 @@ def run(inp: LBOInputs) -> Dict[str, Any]:
     fee_years = inp.fee_amort_years
     if fee_years is None:
         fee_years = next((t.amort_years for t in inp.tranches if t.amort_years), n)
+    return A, fee_years
 
-    # ---------------- depreciation waves & fee amortisation (independent of cash)
-    dep = [0.0] * n; dep_detail = []
-    base = [cb.ppe / inp.existing_ppe_life if (t + 1) <= inp.existing_ppe_life else 0.0 for t in range(n)]
-    dep_detail.append(("existing PP&E", base))
-    for k in range(n):                       # wave k starts depreciating in year k
-        life = A["life"][k]
-        wave = [A["capex"][k] / life if 0 <= t - k < life else 0.0 for t in range(n)]
-        dep_detail.append((f"capex year {k+1}", wave))
-    for _, w in dep_detail:
-        for t in range(n): dep[t] += w[t]
-    amort = [fee_asset0 / fee_years if t < fee_years else 0.0 for t in range(n)]
 
-    # ---------------- year loop (iterate for revolver-interest / sweep circularity)
+def _simulate_years(inp: LBOInputs, A, tr_amounts, cash0, fee_asset0, close, dep, amort) -> Dict[str, Any]:
+    """Year loop, iterated until revolver interest and the cash sweep converge; returns every per-year series."""
+    n = inp.years
+    cb = inp.closing
     revolver_int = [0.0] * n
     result: Dict[str, Any] = {}
     for _iteration in range(60):
@@ -202,8 +239,21 @@ def run(inp: LBOInputs) -> Dict[str, Any]:
         if converged and (sweeps_stable or not any(tr.sweep_pct > 0 for tr in inp.tranches)):
             break
     result.pop("_sweep_sig", None)
+    return {"rev": rev, "cogs": cogs, "sga": sga, "ebitda": ebitda, "ebit": ebit, "interest": interest, "ebt": ebt, "tax": tax,
+            "ni": ni, "ar": ar, "inv": inv, "ap": ap, "ppe": ppe, "fee": fee, "cash": cash, "re_": re_, "revolver": revolver,
+            "cfo": cfo, "cfi": cfi, "cff": cff, "tranche_rows": tranche_rows, "revolver_int": revolver_int, "result": result}
 
-    # ---------------- statements
+
+def _lbo_statements(inp: LBOInputs, A, su, sim, dep, amort) -> Dict[str, Any]:
+    """Income statement, balance sheet, cash flow and debt schedule from the simulated series."""
+    n = inp.years
+    cb = inp.closing
+    equity, goodwill, cash0 = su["equity"], su["goodwill"], su["cash0"]
+    rev, cogs, sga, ebitda, ebit = sim["rev"], sim["cogs"], sim["sga"], sim["ebitda"], sim["ebit"]
+    interest, ebt, tax, ni = sim["interest"], sim["ebt"], sim["tax"], sim["ni"]
+    ar, inv, ap, ppe, fee, cash = sim["ar"], sim["inv"], sim["ap"], sim["ppe"], sim["fee"], sim["cash"]
+    re_, revolver, cfo, cfi, cff = sim["re_"], sim["revolver"], sim["cfo"], sim["cfi"], sim["cff"]
+    tranche_rows, revolver_int = sim["tranche_rows"], sim["revolver_int"]
     debt_total = [revolver[t] + sum(tranche_rows[tr.name]["end"][t] for tr in inp.tranches) for t in range(n)]
     total_assets = [cash[t] + ar[t] + inv[t] + cb.prepaid + ppe[t] + fee[t] + goodwill + cb.other_assets for t in range(n)]
     total_liab = [ap[t] + debt_total[t] for t in range(n)]
@@ -229,33 +279,28 @@ def run(inp: LBOInputs) -> Dict[str, Any]:
                       "Cash sweep": tranche_rows[tr.name]["sweep"], "PIK accrual": tranche_rows[tr.name]["pik"], "Ending": tranche_rows[tr.name]["end"],
                       "Cash interest": tranche_rows[tr.name]["cash_interest"]} for tr in inp.tranches}
     debt["Revolver"] = {"Ending": revolver, "Interest": revolver_int if inp.revolver_interest else [0.0] * n}
+    return {"IS": IS, "BS": BS, "CF": CF, "debt": debt, "debt_total": debt_total}
 
-    # ---------------- exit & returns
-    d0 = to_date(inp.closing_date)
-    dates = [d0] + [date(d0.year + t + 1, d0.month, d0.day) for t in range(n)]
-    ev_exit = inp.exit_multiple * ebitda[-1]
-    equity_exit = ev_exit - debt_total[-1] + cash[-1]
-    warrant_pct = sum(tr.warrant_equity_pct for tr in inp.tranches)
-    sponsor_pct = 1 - warrant_pct
-    sponsor_flows = [-equity] + [0.0] * (n - 1) + [sponsor_pct * equity_exit]
-    try: sponsor_irr = xirr(sponsor_flows, dates)
-    except ValueError: sponsor_irr = float("nan")
-    returns = {"exit_ebitda": ebitda[-1], "exit_multiple": inp.exit_multiple, "exit_enterprise_value": ev_exit, "less_debt": -debt_total[-1],
-               "plus_cash": cash[-1], "exit_equity_value": equity_exit, "sponsor_equity_pct": sponsor_pct,
-               "sponsor": {"flows": sponsor_flows, "dates": [d.isoformat() for d in dates], "irr": sponsor_irr,
-                           "moic": safe_div(sum(sponsor_flows[1:]), equity)}}
-    for tr, amt in zip(inp.tranches, tr_amounts):
-        row = tranche_rows[tr.name]
-        flows = [-amt] + [row["cash_interest"][t] + row["sched"][t] + row["sweep"][t] for t in range(n)]
-        flows[-1] += row["end"][-1] + tr.warrant_equity_pct * equity_exit
-        try: irr_ = xirr(flows, dates)
-        except ValueError: irr_ = float("nan")
-        returns[tr.name] = {"flows": flows, "irr": irr_, "moic": safe_div(sum(flows[1:]), amt)}
+
+def run(inp: LBOInputs) -> Dict[str, Any]:
+    """Run the LBO: sources & uses -> assumptions -> depreciation -> year loop -> statements -> exit returns."""
+    n = inp.years
+    hist_ebitda = [inp.hist_revenue[i] - inp.hist_cogs[i] - inp.hist_sga[i] for i in range(len(inp.hist_revenue))]
+    ebitda0 = inp.closing_ebitda if inp.closing_ebitda is not None else hist_ebitda[-1]
+    su = _sources_uses_closing(inp, ebitda0)
+    A, fee_years = _lbo_assumptions(inp)
+    # depreciation waves & fee amortisation (independent of cash)
+    dep, dep_detail, amort = _depreciation_and_amortisation(inp, A, su["fee_asset0"], fee_years)
+    sim = _simulate_years(inp, A, su["tr_amounts"], su["cash0"], su["fee_asset0"], su["close"], dep, amort)
+    st = _lbo_statements(inp, A, su, sim, dep, amort)
+    tr_amounts, equity = su["tr_amounts"], su["equity"]
+    returns = _exit_returns(inp, sim["tranche_rows"], tr_amounts, equity, sim["ebitda"][-1], st["debt_total"][-1], sim["cash"][-1])
     entry = {"ebitda": ebitda0, "purchase_price": inp.purchase_price, "ev_ebitda": safe_div(inp.purchase_price, ebitda0),
-             "debt": sum(tr_amounts), "debt_ebitda": safe_div(sum(tr_amounts), ebitda0), "equity_pct": safe_div(equity, total_uses)}
-    return {**result, "years": list(range(1, n + 1)), "entry": entry, "sources": sources, "uses": uses, "closing_balance_sheet": close,
-            "assumptions": A, "depreciation_detail": dep_detail, "income_statement": IS, "balance_sheet": BS, "cash_flow": CF,
-            "debt_schedule": debt, "returns": returns, "balanced": all(abs(x) < 1e-6 for x in BS["Check"])}
+             "debt": sum(tr_amounts), "debt_ebitda": safe_div(sum(tr_amounts), ebitda0), "equity_pct": safe_div(equity, su["total_uses"])}
+    return {**sim["result"], "years": list(range(1, n + 1)), "entry": entry, "sources": su["sources"], "uses": su["uses"],
+            "closing_balance_sheet": su["close"], "assumptions": A, "depreciation_detail": dep_detail,
+            "income_statement": st["IS"], "balance_sheet": st["BS"], "cash_flow": st["CF"],
+            "debt_schedule": st["debt"], "returns": returns, "balanced": all(abs(x) < 1e-6 for x in st["BS"]["Check"])}
 
 
 def sensitivity(inp: LBOInputs, scenarios: Dict[str, Sequence[float]], exit_multiples: Sequence[float],

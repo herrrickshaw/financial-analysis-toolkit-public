@@ -19,7 +19,6 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from .fin import safe_div
 
 
 def fixed_deposit_maturity(principal: float, annual_rate: float, tenure_years: float, compounding_frequency: int = 4) -> Dict[str, Any]:

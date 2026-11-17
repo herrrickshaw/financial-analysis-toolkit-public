@@ -12,7 +12,6 @@ gaps, one hue for magnitude, fixed categorical order, diverging blue<->red with 
 from __future__ import annotations
 
 import html
-import json
 import math
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple

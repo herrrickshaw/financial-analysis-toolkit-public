@@ -32,7 +32,7 @@ def prices():
                              capture_output=True, text=True, timeout=30).stdout.strip()
         p = {l.split("|")[0]: float(l.split("|")[1]) for l in out.splitlines() if l}
         if p: return p, "warehouse"
-    except Exception:
+    except (OSError, subprocess.SubprocessError, ValueError, IndexError):  # no psql / no warehouse / unparsable row -> fallback prices
         pass
     return dict(FALLBACK_PRICES), "fallback constants"
 

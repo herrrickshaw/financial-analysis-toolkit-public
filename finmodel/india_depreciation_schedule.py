@@ -35,7 +35,6 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Sequence
 
-from .fin import safe_div
 
 # Income-tax Rules 1962, New Appendix I (post Finance Act 2017 rationalization, highest rate capped at 40%).
 WDV_RATES: Dict[str, float] = {

@@ -1,5 +1,4 @@
 from datetime import date
-import math
 import pytest
 from finmodel import fin
 

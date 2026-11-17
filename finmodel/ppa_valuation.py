@@ -22,7 +22,7 @@ multiplier: 1 / (1 - tax_rate × PVA_n / n), where PVA_n is the n-year present-v
 valuation discount rate."""
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Dict, Sequence
 
 from .fin import npv, safe_div
 

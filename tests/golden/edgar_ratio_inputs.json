@@ -1,0 +1,35 @@
+[
+ {
+  "capex": 10,
+  "cfo": 0,
+  "cogs": 120,
+  "da": 10,
+  "diluted_shares": 4.4,
+  "dividends": 0,
+  "ebit": 13,
+  "ebitda": 23,
+  "eps": 2.5,
+  "gross_profit": 80,
+  "interest_expense": 2,
+  "net_income": 11,
+  "pretax_income": 12,
+  "revenue": 200,
+  "tax": 0
+ },
+ {
+  "cash": 30,
+  "current_assets": 0,
+  "current_liabilities": 0,
+  "debt": 45,
+  "equity": 0,
+  "goodwill": 0,
+  "intangibles": 0,
+  "inventory": 0,
+  "nci": 0,
+  "ppe": 0,
+  "receivables": 0,
+  "retained_earnings": 0,
+  "total_assets": 0,
+  "total_liabilities": 0
+ }
+]

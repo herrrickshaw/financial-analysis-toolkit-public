@@ -1,7 +1,6 @@
 """finmodel.audit_analytics: Benford's Law is checked against a synthetic dataset built to exactly match (and
 one built to badly violate) the expected first-digit distribution, so the MAD statistic and its real Nigrini
 conformity thresholds are exercised at both ends; journal-entry testing is checked flag by flag."""
-import math
 
 import pytest
 

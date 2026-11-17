@@ -23,7 +23,7 @@ from __future__ import annotations
 
 import statistics
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Dict, Optional, Sequence
 
 from .fin import safe_div
 

@@ -17,7 +17,7 @@ against risk-weighted regulatory capital, not just a leverage ratio.
                               leverage >= 5%)."""
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 from .fin import safe_div
 

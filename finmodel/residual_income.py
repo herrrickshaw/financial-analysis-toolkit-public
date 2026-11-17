@@ -9,7 +9,7 @@ equity = firm value − net debt. Both reconcile to a DCF when assumptions are c
 FinModeling's residual-operating-income model)."""
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Dict, Optional, Sequence
 
 from .fin import safe_div
 

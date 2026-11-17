@@ -1,7 +1,6 @@
 """finmodel.impairment_testing: the three real ASC 350/350-30/360 tests are checked for their DIFFERENCES, not
 just their happy paths -- goodwill's real cap at the existing balance, and ASC 360's real two-step structure
 (an asset can be economically underwater on a fair-value basis and still pass Step 1 on an undiscounted basis)."""
-import pytest
 
 from finmodel import impairment_testing as IT
 

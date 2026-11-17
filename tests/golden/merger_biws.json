@@ -1,0 +1,357 @@
+{
+ "deal": {
+  "accretion_dilution": 0.15384615384615374,
+  "accretion_dilution_pct": 0.15384615384615374,
+  "acquirer": {
+   "ebitda": 50,
+   "enterprise_value": 500.0,
+   "eps": 1.0,
+   "equity_value": 500,
+   "ev_ebit": 10.416666666666666,
+   "ev_ebitda": 10.0,
+   "net_income": 20.0,
+   "pe": 25.0,
+   "pretax_income": 40
+  },
+  "combined": {
+   "ebit": 69,
+   "ebitda": 72,
+   "enterprise_value": 650.0,
+   "eps": 1.1538461538461537,
+   "equity_value": 650.0,
+   "ev_ebit": 9.420289855072463,
+   "ev_ebitda": 9.027777777777779,
+   "net_income": 30.0,
+   "pe": 21.666666666666668,
+   "pretax_income": 60.0
+  },
+  "combined_shares": 26.0,
+  "exchange_ratio": 1.2,
+  "funding": {
+   "after_tax_cost_of_cash": 0.015,
+   "after_tax_cost_of_debt": 0.05,
+   "cash": 0.0,
+   "debt": 0.0,
+   "pct_cash": 0.0,
+   "pct_debt": 0.0,
+   "pct_stock": 1.0,
+   "stock": 150.0,
+   "target_earnings_yield": 0.06666666666666667
+  },
+  "new_shares_issued": 6.0,
+  "offer_price_per_share": 30.0,
+  "ownership": {
+   "acquirer_holders": 0.7692307692307693,
+   "target_holders": 0.23076923076923078
+  },
+  "purchase_enterprise_value": 150.0,
+  "purchase_equity_value": 150.0,
+  "purchase_ev_ebitda": 6.818181818181818,
+  "target": {
+   "ebitda": 22,
+   "enterprise_value": 100.0,
+   "eps": 2.0,
+   "equity_value": 100,
+   "ev_ebit": 4.761904761904762,
+   "ev_ebitda": 4.545454545454546,
+   "net_income": 10.0,
+   "pe": 10.0,
+   "pretax_income": 20
+  }
+ },
+ "deal_sensitivity": {
+  "cols": [
+   0,
+   0.25,
+   0.5,
+   0.75,
+   1.0
+  ],
+  "rows": [
+   0.2,
+   0.3,
+   0.4,
+   0.5,
+   0.6
+  ],
+  "table": [
+   [
+    0.4099999999999999,
+    0.3514150943396226,
+    0.299107142857143,
+    0.2521186440677965,
+    0.20967741935483875
+   ],
+   [
+    0.4025000000000001,
+    0.33978873239436624,
+    0.2842920353982299,
+    0.23483263598326354,
+    0.19047619047619047
+   ],
+   [
+    0.395,
+    0.3282710280373833,
+    0.26973684210526305,
+    0.21797520661157033,
+    0.171875
+   ],
+   [
+    0.38749999999999996,
+    0.31686046511627897,
+    0.25543478260869557,
+    0.20153061224489788,
+    0.15384615384615374
+   ],
+   [
+    0.3800000000000001,
+    0.30555555555555536,
+    0.24137931034482762,
+    0.18548387096774177,
+    0.13636363636363646
+   ]
+  ]
+ },
+ "pro_forma": {
+  "breakeven_pretax_synergies": [
+   80.14399999999999,
+   12.044000000000013,
+   0.0
+  ],
+  "debt_schedule": {
+   "Closing": [
+    324.0,
+    288.0,
+    0.0
+   ],
+   "Fee amortization": [
+    2.4,
+    2.4,
+    2.4
+   ],
+   "Interest": [
+    25.200000000000003,
+    22.680000000000003,
+    20.160000000000004
+   ],
+   "Opening": [
+    360.0,
+    324.0,
+    288.0
+   ],
+   "Repayment": [
+    36.0,
+    36.0,
+    288.0
+   ]
+  },
+  "exchange_ratio_equivalent": 30.0,
+  "income_statement": {
+   "Accretion / (Dilution) $": [
+    -0.5514495412844036,
+    -0.08287155963302761,
+    0.07607339449541284
+   ],
+   "Accretion / (Dilution) %": [
+    -0.5655892731122089,
+    -0.06577107907383144,
+    0.049238443039102166
+   ],
+   "Acquirer standalone EPS": [
+    0.975,
+    1.26,
+    1.545
+   ],
+   "Acquirer standalone shares": [
+    100,
+    100,
+    100
+   ],
+   "Adjusted EPS (ex one-offs & write-up D&A)": [
+    1.0772201834862385,
+    1.58997247706422,
+    1.9651100917431192
+   ],
+   "Adjusted accretion / (dilution) %": [
+    0.10484121383203951,
+    0.26188291830493654,
+    0.2719159169858377
+   ],
+   "Amortization of debt issuance fees": [
+    -2.4,
+    -2.4,
+    -2.4
+   ],
+   "Amortization of new intangibles": [
+    -40.0,
+    -40.0,
+    -40.0
+   ],
+   "COGS": [
+    -850,
+    -920,
+    -990
+   ],
+   "COGS on revenue synergies": [
+    -0.0,
+    -0.0,
+    -0.0
+   ],
+   "Cash used for deal": [
+    292.2,
+    292.2,
+    292.2
+   ],
+   "Cost synergies (realised)": [
+    20.0,
+    40.0,
+    40.0
+   ],
+   "D&A (existing)": [
+    -70,
+    -73,
+    -76
+   ],
+   "Depreciation of PP&E write-up": [
+    -10.0,
+    -10.0,
+    -10.0
+   ],
+   "Foregone interest on cash": [
+    -5.844,
+    -5.844,
+    -5.844
+   ],
+   "Gross Profit": [
+    550.0,
+    620.0,
+    690.0
+   ],
+   "Income Tax": [
+    -15.389000000000001,
+    -42.769,
+    -58.899
+   ],
+   "Integration costs": [
+    -30.0,
+    -10.0,
+    -0.0
+   ],
+   "Interest expense (existing)": [
+    -30,
+    -30,
+    -30
+   ],
+   "Interest income (existing)": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Interest on new debt": [
+    -25.200000000000003,
+    -22.680000000000003,
+    -20.160000000000004
+   ],
+   "Net Income": [
+    46.167,
+    128.307,
+    176.697
+   ],
+   "New debt balance": [
+    324.0,
+    288.0,
+    0.0
+   ],
+   "New shares issued": [
+    8.999999999999998,
+    8.999999999999998,
+    8.999999999999998
+   ],
+   "Operating Income": [
+    125.0,
+    232.0,
+    294.0
+   ],
+   "Opex": [
+    -280,
+    -295,
+    -310
+   ],
+   "Other income": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Pre-Tax Income": [
+    61.556000000000004,
+    171.076,
+    235.596
+   ],
+   "Pro forma EPS": [
+    0.4235504587155963,
+    1.1771284403669724,
+    1.6210733944954128
+   ],
+   "Pro forma shares": [
+    109.0,
+    109.0,
+    109.0
+   ],
+   "Revenue (acquirer)": [
+    1000,
+    1100,
+    1200
+   ],
+   "Revenue (target)": [
+    400,
+    440,
+    480
+   ],
+   "Revenue synergies": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Total Revenue": [
+    1400.0,
+    1540.0,
+    1680.0
+   ],
+   "Transaction fees": [
+    -15,
+    0.0,
+    0.0
+   ]
+  },
+  "new_shares_issued": 8.999999999999998,
+  "purchase_price_allocation": {
+   "allocable_premium": 650,
+   "goodwill": 425.0,
+   "less_dtl_written_down": -0.0,
+   "less_intangibles_writeup": -200,
+   "less_ppe_writeup": -100,
+   "less_seller_book_value": -300,
+   "plus_existing_goodwill_written_off": 50,
+   "plus_new_dtl": 75.0,
+   "purchase_equity_value": 900
+  },
+  "sources": {
+   "cash": 270.0,
+   "new_debt": 360.0,
+   "stock": 269.99999999999994,
+   "total": 900.0
+  },
+  "uses": {
+   "debt_issuance_fees": 7.2,
+   "purchase_equity": 900,
+   "target_debt_refinanced": 0.0,
+   "total": 922.2,
+   "transaction_fees": 15
+  },
+  "years": [
+   1,
+   2,
+   3
+  ]
+ }
+}

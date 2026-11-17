@@ -14,8 +14,8 @@ and third-party strategy-framework references, not invented here):
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from dataclasses import dataclass
+from typing import Any, Dict, Sequence, Tuple
 
 from .fin import safe_div
 

@@ -11,10 +11,19 @@ tag present wins; values are taken from the 10-K 'FY' fact whose period ends on 
 so restated numbers replace originals)."""
 from __future__ import annotations
 
+import gzip
 import json
+import logging
 import urllib.request
+from datetime import date
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence
+from typing import Any, Dict, Iterable, List, Optional, Protocol, Sequence
+
+log = logging.getLogger(__name__)
+
+COMPANYFACTS_URL = "https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json"
+HTTP_TIMEOUT_S = 60
+FLOW_DAYS = (330, 380)            # a flow fact must span roughly one fiscal year
 
 TAGS: Dict[str, Sequence[str]] = {
     # RegulatedAndUnregulatedOperatingRevenue is a real, verified fallback: Xcel Energy's own consolidated top
@@ -98,22 +107,49 @@ TAGS: Dict[str, Sequence[str]] = {
 FLOW = {"revenue", "cogs", "gross_profit", "operating_income", "pretax_income", "tax", "net_income", "da", "interest_expense", "interest_income", "cfo", "capex", "dividends", "diluted_shares", "basic_shares", "eps_diluted", "sga", "rnd", "operating_lease_cost", "total_lease_cost", "variable_lease_cost", "pre_842_rent_expense", "capex_flight_equipment", "capex_other_ppe", "amortization_of_intangibles", "acquired_iprd_writeoff"}
 
 
-def fetch(cik: int | str, user_agent: str, cache_dir: Optional[str | Path] = None) -> Dict[str, Any]:
-    """Download (or read from cache_dir) the company-facts JSON for a CIK."""
-    cik = int(cik)
-    if cache_dir:
-        p = Path(cache_dir) / f"CIK{cik:010d}.json"
+class FactsSource(Protocol):
+    """Anything that can return the SEC company-facts JSON for a CIK (live HTTP, a cache, a test double)."""
+
+    def get(self, cik: int) -> Dict[str, Any]: ...
+
+
+class SecHttpSource:
+    """Live SEC EDGAR client (the only place in this module that touches the network)."""
+
+    def __init__(self, user_agent: str, timeout: float = HTTP_TIMEOUT_S):
+        self.user_agent, self.timeout = user_agent, timeout
+
+    def get(self, cik: int) -> Dict[str, Any]:
+        req = urllib.request.Request(COMPANYFACTS_URL.format(cik=cik), headers={"User-Agent": self.user_agent, "Accept-Encoding": "gzip, deflate"})
+        with urllib.request.urlopen(req, timeout=self.timeout) as r:
+            raw = r.read()
+            if r.headers.get("Content-Encoding") == "gzip":
+                raw = gzip.decompress(raw)
+        return json.loads(raw)
+
+
+class DiskCachedSource:
+    """Decorator source: serve `CIK##########.json` from `cache_dir` when present, else delegate and store."""
+
+    def __init__(self, inner: FactsSource, cache_dir: str | Path):
+        self.inner, self.cache_dir = inner, Path(cache_dir)
+
+    def get(self, cik: int) -> Dict[str, Any]:
+        p = self.cache_dir / f"CIK{cik:010d}.json"
         if p.exists():
             return json.loads(p.read_text())
-    req = urllib.request.Request(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json", headers={"User-Agent": user_agent, "Accept-Encoding": "gzip, deflate"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        raw = r.read()
-        if r.headers.get("Content-Encoding") == "gzip":
-            import gzip; raw = gzip.decompress(raw)
-    data = json.loads(raw)
+        data = self.inner.get(cik)
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps(data))
+        return data
+
+
+def fetch(cik: int | str, user_agent: str, cache_dir: Optional[str | Path] = None, source: Optional[FactsSource] = None) -> Dict[str, Any]:
+    """Download (or read from cache_dir) the company-facts JSON for a CIK. Pass `source` to inject a client (tests, mirrors)."""
+    src: FactsSource = source or SecHttpSource(user_agent)
     if cache_dir:
-        Path(cache_dir).mkdir(parents=True, exist_ok=True); (Path(cache_dir) / f"CIK{cik:010d}.json").write_text(json.dumps(data))
-    return data
+        src = DiskCachedSource(src, cache_dir)
+    return src.get(int(cik))
 
 
 def _facts(facts: Dict[str, Any], tag: str) -> List[Dict[str, Any]]:
@@ -126,11 +162,10 @@ def _facts(facts: Dict[str, Any], tag: str) -> List[Dict[str, Any]]:
     return out
 
 
-def annual(facts: Dict[str, Any], tags: Dict[str, Sequence[str]] = TAGS, forms: Iterable[str] = ("10-K", "10-K/A", "20-F", "40-F")) -> Dict[str, Dict[str, Any]]:
-    """Annual values keyed by fiscal-year-end date (ISO). Flow items must span ~a year (330–380 days); balance items are
-    instants on the FY end. For each (field, fy_end) the latest-filed fact wins."""
+def _pick_values(facts: Dict[str, Any], tags: Dict[str, Sequence[str]], forms: Iterable[str]) -> Dict[str, Dict[str, Any]]:
+    """Stage 1: per (field, fiscal-year-end) choose the winning fact. Higher-priority tag wins for a year; within a tag the
+    latest filing wins. Returns {fy_end: {"fy_end": ..., field: value, "_tags": {field: tag}}}."""
     forms = set(forms); out: Dict[str, Dict[str, Any]] = {}
-    from datetime import date
     for field, cands in tags.items():
         picked: Dict[str, tuple] = {}          # end -> (priority, filed, val, tag, unit)
         for prio, tag in enumerate(cands):
@@ -140,45 +175,55 @@ def annual(facts: Dict[str, Any], tags: Dict[str, Sequence[str]] = TAGS, forms: 
                 if field in FLOW:
                     if not start: continue
                     days = (date.fromisoformat(end) - date.fromisoformat(start)).days
-                    if not 330 <= days <= 380: continue
+                    if not FLOW_DAYS[0] <= days <= FLOW_DAYS[1]: continue
                 prev = picked.get(end)
-                # a higher-priority tag always wins for that year; within a tag the latest filing wins
                 if prev is None or prio < prev[0] or (prio == prev[0] and r.get("filed", "") > prev[1]):
                     picked[end] = (prio, r.get("filed", ""), r["val"], tag, r["unit"])
         for end, (prio, filed, val, tag, unit) in picked.items():
             out.setdefault(end, {"fy_end": end})[field] = val
             out[end].setdefault("_tags", {})[field] = tag
-    for end, row in out.items():
-        d = row
-        if "debt_total" not in d and ("debt_current" in d or "debt_noncurrent" in d):
-            d["debt_total"] = d.get("debt_current", 0) + d.get("debt_noncurrent", 0)
-        if "capex" not in d and ("capex_flight_equipment" in d or "capex_other_ppe" in d):
-            d["capex"] = d.get("capex_flight_equipment", 0) + d.get("capex_other_ppe", 0)
-        if d.get("_tags", {}).get("da") == "Depreciation" and "amortization_of_intangibles" in d:
-            # real fallback for filers (AbbVie, Merck — see the TAGS comment above) whose "da" resolved all the
-            # way down to plain PP&E depreciation with no combined tag ever populated: add back the real,
-            # separately-tagged intangible amortization rather than silently understating EBITDA.
-            d["da"] = d["da"] + d["amortization_of_intangibles"]
-            d["_tags"]["da"] = "Depreciation + AmortizationOfIntangibleAssets"
-        if "operating_lease_liability_current" in d or "operating_lease_liability_noncurrent" in d:
-            # ASC 842 (effective FY2019+) put operating leases on the balance sheet with a real, filed present
-            # value — this used to be off-balance-sheet, estimated by capitalizing rent at a rule-of-thumb
-            # multiple (e.g. 7-8x annual rent) for lease-heavy sectors like airlines and retail. Post-ASC 842,
-            # that estimate is obsolete wherever this real figure is available; see SECTOR_PROFILES['airline'].
-            d["operating_lease_liability_total"] = d.get("operating_lease_liability_current", 0) + d.get("operating_lease_liability_noncurrent", 0)
-        if "gross_profit" not in d and "revenue" in d and "cogs" in d:
-            d["gross_profit"] = d["revenue"] - d["cogs"]
-        if "operating_income" not in d and "pretax_income" in d:
-            d["operating_income"] = d["pretax_income"] + d.get("interest_expense", 0) - d.get("interest_income", 0); d.setdefault("_tags", {})["operating_income"] = "derived: pretax + interest expense − interest income"
-        if "operating_income" in d and "da" in d:
-            d["ebitda"] = d["operating_income"] + d["da"]
-        if not d.get("diluted_shares") and d.get("net_income") and d.get("eps_diluted"):
-            # some filers (e.g. Exxon Mobil in recent 10-Ks) report basic shares plus diluted EPS but no
-            # WeightedAverageNumberOfDilutedSharesOutstanding tag; back it out from EPS = NI / diluted shares.
-            # A small approximation when NCI or preferred dividends separate NI from the EPS numerator.
-            d["diluted_shares"] = d["net_income"] / d["eps_diluted"]; d.setdefault("_tags", {})["diluted_shares"] = "derived: net_income / eps_diluted"
-        if "cash" in d:
-            d["net_debt"] = d.get("debt_total", 0) - d["cash"] - d.get("short_term_investments", 0)
+    return out
+
+
+def _derive_fields(d: Dict[str, Any]) -> None:
+    """Stage 2 (in place): fill totals and derived measures for one fiscal-year row; see the TAGS comments for why each exists."""
+    if "debt_total" not in d and ("debt_current" in d or "debt_noncurrent" in d):
+        d["debt_total"] = d.get("debt_current", 0) + d.get("debt_noncurrent", 0)
+    if "capex" not in d and ("capex_flight_equipment" in d or "capex_other_ppe" in d):
+        d["capex"] = d.get("capex_flight_equipment", 0) + d.get("capex_other_ppe", 0)
+    if d.get("_tags", {}).get("da") == "Depreciation" and "amortization_of_intangibles" in d:
+        # real fallback for filers (AbbVie, Merck — see the TAGS comment above) whose "da" resolved all the
+        # way down to plain PP&E depreciation with no combined tag ever populated: add back the real,
+        # separately-tagged intangible amortization rather than silently understating EBITDA.
+        d["da"] = d["da"] + d["amortization_of_intangibles"]
+        d["_tags"]["da"] = "Depreciation + AmortizationOfIntangibleAssets"
+    if "operating_lease_liability_current" in d or "operating_lease_liability_noncurrent" in d:
+        # ASC 842 (effective FY2019+) put operating leases on the balance sheet with a real, filed present
+        # value — this used to be off-balance-sheet, estimated by capitalizing rent at a rule-of-thumb
+        # multiple (e.g. 7-8x annual rent) for lease-heavy sectors like airlines and retail. Post-ASC 842,
+        # that estimate is obsolete wherever this real figure is available; see SECTOR_PROFILES['airline'].
+        d["operating_lease_liability_total"] = d.get("operating_lease_liability_current", 0) + d.get("operating_lease_liability_noncurrent", 0)
+    if "gross_profit" not in d and "revenue" in d and "cogs" in d:
+        d["gross_profit"] = d["revenue"] - d["cogs"]
+    if "operating_income" not in d and "pretax_income" in d:
+        d["operating_income"] = d["pretax_income"] + d.get("interest_expense", 0) - d.get("interest_income", 0); d.setdefault("_tags", {})["operating_income"] = "derived: pretax + interest expense − interest income"
+    if "operating_income" in d and "da" in d:
+        d["ebitda"] = d["operating_income"] + d["da"]
+    if not d.get("diluted_shares") and d.get("net_income") and d.get("eps_diluted"):
+        # some filers (e.g. Exxon Mobil in recent 10-Ks) report basic shares plus diluted EPS but no
+        # WeightedAverageNumberOfDilutedSharesOutstanding tag; back it out from EPS = NI / diluted shares.
+        # A small approximation when NCI or preferred dividends separate NI from the EPS numerator.
+        d["diluted_shares"] = d["net_income"] / d["eps_diluted"]; d.setdefault("_tags", {})["diluted_shares"] = "derived: net_income / eps_diluted"
+    if "cash" in d:
+        d["net_debt"] = d.get("debt_total", 0) - d["cash"] - d.get("short_term_investments", 0)
+
+
+def annual(facts: Dict[str, Any], tags: Dict[str, Sequence[str]] = TAGS, forms: Iterable[str] = ("10-K", "10-K/A", "20-F", "40-F")) -> Dict[str, Dict[str, Any]]:
+    """Annual values keyed by fiscal-year-end date (ISO). Flow items must span ~a year (330–380 days); balance items are
+    instants on the FY end. For each (field, fy_end) the latest-filed fact wins."""
+    out = _pick_values(facts, tags, forms)
+    for row in out.values():
+        _derive_fields(row)
     return dict(sorted(out.items()))
 
 

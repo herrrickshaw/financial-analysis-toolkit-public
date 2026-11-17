@@ -100,3 +100,28 @@ def test_committed_extracts_are_consistent():
         d = json.loads((root / f"{t}.json").read_text())
         last = d["years"][sorted(d["years"])[-1]]
         assert last["revenue"] > 0 and last["diluted_shares"] > 0 and abs(last["net_income"] / last["diluted_shares"] - last["eps_diluted"]) / abs(last["eps_diluted"]) < 0.05
+
+
+class FakeSource:
+    def __init__(self, payload):
+        self.payload, self.calls = payload, []
+
+    def get(self, cik):
+        self.calls.append(cik)
+        return self.payload
+
+
+def test_fetch_uses_injected_source_and_never_the_network(monkeypatch):
+    def boom(*a, **k):
+        raise AssertionError("network access in a unit test")
+    monkeypatch.setattr(edgar.urllib.request, "urlopen", boom)
+    src = FakeSource(facts(fact("Revenues", 1, "2023-12-31", "2023-01-01")))
+    assert edgar.fetch("0000789019", user_agent="t t@example.com", source=src)["entityName"] == "TestCo"
+    assert src.calls == [789019]
+
+
+def test_disk_cache_hits_inner_source_once(tmp_path):
+    src = FakeSource(facts(fact("Revenues", 1, "2023-12-31", "2023-01-01")))
+    for _ in range(2):
+        edgar.fetch(789019, user_agent="x", cache_dir=tmp_path, source=src)
+    assert src.calls == [789019] and (tmp_path / "CIK0000789019.json").exists()

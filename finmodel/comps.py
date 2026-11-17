@@ -18,7 +18,7 @@ from __future__ import annotations
 import math
 import statistics
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Callable, Dict, List, Optional, Sequence
 
 from .fin import safe_div
 
@@ -201,21 +201,41 @@ def football_field(target: Target, methods: Dict[str, Any], extra: Optional[Dict
     return {"target": target.name, "current_price": target.price, "items": items}
 
 
+@dataclass(frozen=True)
+class ValuationMethod:
+    """One football-field valuation method driven by a key in the input dict (Strategy; see METHODS)."""
+    key: str                       # output key for the method's own result, e.g. "comps"
+    label: str                     # football-field row label
+    input_key: str                 # input-dict key that switches the method on, e.g. "peers"
+    implied_key: str               # output key for the implied valuation of the target
+    build: Callable[[Dict[str, Any]], Dict[str, Any]]   # input_dict -> spread()/precedents() result
+
+
+METHODS: Dict[str, ValuationMethod] = {}
+
+
+def register_method(method: ValuationMethod) -> ValuationMethod:
+    """Add a method to the registry; from_dict() and the football field pick it up without further edits (Open/Closed)."""
+    METHODS[method.key] = method
+    return method
+
+
+register_method(ValuationMethod("comps", "Trading comps", "peers", "implied_from_comps",
+                                lambda d: spread([Peer(**p) for p in d["peers"]], periods=d.get("periods", ["ltm"]))))
+register_method(ValuationMethod("precedents", "Precedent transactions", "deals", "implied_from_precedents",
+                                lambda d: precedents([Deal(**x) for x in d["deals"]])))
+
+
 def from_dict(d: Dict[str, Any]) -> Dict[str, Any]:
     d = {k: v for k, v in d.items() if not str(k).startswith("_")}
     out: Dict[str, Any] = {}
     target = Target(**d["target"]) if "target" in d else None
-    periods = d.get("periods", ["ltm"])
-    if "peers" in d:
-        comps = spread([Peer(**p) for p in d["peers"]], periods=periods)
-        out["comps"] = comps
-        if target: out["implied_from_comps"] = implied_valuation(target, comps)
-    if "deals" in d:
-        prec = precedents([Deal(**x) for x in d["deals"]])
-        out["precedents"] = prec
-        if target: out["implied_from_precedents"] = implied_valuation(target, prec)
-    if target and ("peers" in d or "deals" in d):
-        methods = {k: out[v] for k, v in (("Trading comps", "comps"), ("Precedent transactions", "precedents")) if v in out}
+    active = [m for m in METHODS.values() if m.input_key in d]
+    for m in active:
+        out[m.key] = m.build(d)
+        if target: out[m.implied_key] = implied_valuation(target, out[m.key])
+    if target and active:
+        methods = {m.label: out[m.key] for m in active}
         out["football_field"] = football_field(target, methods, {k: tuple(v) for k, v in d.get("extra_ranges", {}).items()},
                                                stat_low=d.get("stat_low", "p25"), stat_high=d.get("stat_high", "p75"))
     return out

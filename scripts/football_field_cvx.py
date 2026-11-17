@@ -26,7 +26,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from finmodel import comps, charts, dcf, edgar, sectors  # noqa: E402
+from finmodel import comps, charts, dcf, sectors  # noqa: E402
 
 CORE = ["XOM", "COP", "EOG", "OXY"]   # integrated majors and large-cap E&P; refiners (PSX/VLO/MPC) and oilfield services (SLB) excluded as different business models
 TARGET = "CVX"
@@ -273,7 +273,7 @@ def write_doc(out):
            "when the deal happened to close relative to the target's own earnings cycle, not on any property of the "
            "target's business.", ""]
     md += ["## 3. DCF (illustrative scenarios built from Chevron's own historical range, not analyst consensus)", "",
-           f"Discount rate 8.26% for both scenarios (`finmodel wacc examples/wacc_cvx.json`); terminal growth 2.5%, perpetuity method. "
+           "Discount rate 8.26% for both scenarios (`finmodel wacc examples/wacc_cvx.json`); terminal growth 2.5%, perpetuity method. "
            "Chevron's own EBIT margin ranged from -7.1% (2020, COVID demand collapse) to +20.4% (2022, post-invasion oil price spike) "
            "over FY2018-2025 — an even wider real range than steel's, since a commodity producer's margin swings with a price it does "
            "not control. The low-high range is a small discount-rate (±0.5pt) x terminal-growth (2.0%/2.5%/3.0%) sensitivity grid.", ""]

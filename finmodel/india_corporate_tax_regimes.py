@@ -29,7 +29,7 @@ DSCR improvement -- its real value is loan ACCESS, not a better covenant ratio.
 """
 from __future__ import annotations
 
-from typing import Any, Dict, List, Sequence
+from typing import Any, Dict
 
 from .fin import irr, pmt, safe_div
 
