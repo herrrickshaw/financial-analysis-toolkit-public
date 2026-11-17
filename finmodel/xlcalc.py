@@ -21,6 +21,7 @@ import math
 import re
 import statistics
 from dataclasses import dataclass
+from decimal import ROUND_HALF_UP, Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
 
@@ -228,6 +229,7 @@ def _numbers_all(args) -> List[float]:
     out = []
     for a in args:
         vals = a.flat_raw() if isinstance(a, Range) else (a if isinstance(a, list) else [a])
+        vals = [x for v in vals for x in (v if isinstance(v, list) else [v])]   # {..} array constants nest rows
         for v in vals:
             if v is None: continue
             if isinstance(v, XlError): raise v
@@ -245,6 +247,19 @@ def _grid(a) -> List[List[Any]]:
 _CRIT = re.compile(r"^(<=|>=|<>|=|<|>)?(.*)$", re.S)
 
 
+def _wildcard(pat: str):
+    """Excel criteria wildcards: * = any run, ? = one char, ~ escapes; None when the text has none."""
+    if not re.search(r"(?<!~)[*?]", pat):
+        return None if "~" not in pat else re.compile(re.escape(re.sub(r"~([*?~])", r"\1", pat)) + r"\Z", re.I | re.S)
+    out, i = [], 0
+    while i < len(pat):
+        ch = pat[i]
+        if ch == "~" and i + 1 < len(pat) and pat[i + 1] in "*?~":
+            out.append(re.escape(pat[i + 1])); i += 2; continue
+        out.append(".*" if ch == "*" else "." if ch == "?" else re.escape(ch)); i += 1
+    return re.compile("".join(out) + r"\Z", re.I | re.S)
+
+
 def _criterion(c) -> Callable[[Any], bool]:
     c = _scalar(c)
     if not isinstance(c, str):
@@ -256,6 +271,7 @@ def _criterion(c) -> Callable[[Any], bool]:
         is_num = True
     except ValueError:
         target = rest; is_num = False
+    wild = _wildcard(target) if not is_num else None
     def test(v):
         if isinstance(v, XlError): return False
         if is_num:
@@ -264,6 +280,8 @@ def _criterion(c) -> Callable[[Any], bool]:
             x = num(v)
             return {"=": x == target, "<>": x != target, "<": x < target, "<=": x <= target, ">": x > target, ">=": x >= target}[op]
         s = "" if v is None else _text(v)
+        if wild is not None and op in ("=", "<>"):
+            return bool(wild.match(s)) == (op == "=")
         if op == "=": return s.upper() == target.upper()
         if op == "<>": return s.upper() != target.upper()
         return {"<": s < target, "<=": s <= target, ">": s > target, ">=": s >= target}[op]
@@ -315,8 +333,12 @@ def _date(y, m, d):
 
 def _round(x, n=0):
     x, n = num(x), int(num(n))
-    q = 10 ** n
-    return math.floor(abs(x) * q + 0.5) / q * (1 if x >= 0 else -1)
+    # Excel rounds the 15-significant-digit decimal it shows (ROUND(1.005,2)=1.01), not the binary double
+    try:
+        d = Decimal(f"{abs(x):.15g}").quantize(Decimal(1).scaleb(-n), rounding=ROUND_HALF_UP)
+    except InvalidOperation:                     # inf/nan, or more digits than Decimal's precision
+        return x
+    return float(d) * (1 if x >= 0 else -1)
 
 
 def _roundup(x, n=0):
@@ -327,6 +349,13 @@ def _roundup(x, n=0):
 def _rounddown(x, n=0):
     x, n = num(x), int(num(n)); q = 10 ** n
     return math.floor(abs(x) * q + 1e-12) / q * (1 if x >= 0 else -1)
+
+
+def _mod(a, b):
+    """Excel MOD = a - b*INT(a/b): the result takes the sign of the divisor (math.fmod uses the dividend's)."""
+    a, b = num(a), num(b)
+    if b == 0: raise XlError("#DIV/0!")
+    return a - b * math.floor(a / b)
 
 
 def _choose(i, *opts):
@@ -582,7 +611,7 @@ FUNCS: Dict[str, Callable] = {
     "SUM": lambda *a: sum(_numbers(a)), "AVERAGE": _average, "MIN": _min, "MAX": _max, "COUNT": _count, "COUNTA": _counta,
     "PRODUCT": lambda *a: math.prod(_numbers(a)) if _numbers(a) else 0.0, "SUMPRODUCT": _sumproduct, "SUMIF": _sumif,
     "COUNTIF": _countif, "ABS": lambda x: abs(num(x)), "ROUND": _round, "ROUNDUP": _roundup, "ROUNDDOWN": _rounddown,
-    "INT": lambda x: float(math.floor(num(x))), "MOD": lambda a, b: math.fmod(num(a), num(b)) if num(b) else XlError("#DIV/0!"),
+    "INT": lambda x: float(math.floor(num(x))), "MOD": _mod,
     "SQRT": lambda x: math.sqrt(num(x)), "LN": lambda x: math.log(num(x)), "LOG": lambda x, b=10: math.log(num(x), num(b)),
     "EXP": lambda x: math.exp(num(x)), "POWER": pow_, "SIGN": lambda x: float((num(x) > 0) - (num(x) < 0)),
     "NORMSDIST": lambda x: 0.5 * (1 + math.erf(num(x) / math.sqrt(2))), "NORM.S.DIST": lambda x, c=True: 0.5 * (1 + math.erf(num(x) / math.sqrt(2))) if truthy(c) else math.exp(-num(x) ** 2 / 2) / math.sqrt(2 * math.pi),
@@ -913,7 +942,8 @@ class XlModel:
             return self.inputs.get(key)
         if key in self._stack:                  # circular reference: use last known value
             self._circular.add(key)
-            return self._iter_value.get(key, self.cached.get(key, 0.0))
+            seed = self._iter_value.get(key, self.cached.get(key))
+            return 0.0 if seed is None else seed                 # no cached value: start from 0 like Excel
         self._stack.append(key)
         try:
             v = fn()
@@ -946,7 +976,8 @@ class XlModel:
                 return
             delta = 0.0
             for key in self._circular:
-                new, old = self._values.get(key), self._iter_value.get(key, self.cached.get(key, 0.0))
+                new, old = self._values.get(key), self._iter_value.get(key, self.cached.get(key))
+                old = 0.0 if old is None else old
                 if isinstance(new, (int, float)) and isinstance(old, (int, float)):
                     delta = max(delta, abs(new - old))
                 self._iter_value[key] = new
