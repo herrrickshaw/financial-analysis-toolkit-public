@@ -1,6 +1,16 @@
+import pytest
+
 from finmodel import catalog
 
+# The CFI member-dashboard scrape is vendor data and is intentionally not shipped in the public
+# repo, so tests that need it only run where it exists (the private repo).
+needs_cfi = pytest.mark.skipif(
+    not (catalog.CATALOG_DIR / "cfi_dashboard_raw.txt").exists(),
+    reason="catalog/cfi_dashboard_raw.txt (CFI vendor data) is not shipped in the public repo",
+)
 
+
+@needs_cfi
 def test_build_catalog(tmp_path):
     cat = catalog.build()
     assert cat["counts"]["cfi:cfi-login"] == 196
@@ -20,6 +30,7 @@ def test_fetch_skips_paid_and_login_without_auth(tmp_path):
     assert man == []
 
 
+@needs_cfi
 def test_alternatives_tags():
     from finmodel import alternatives
     assert "lbo" in alternatives.tags_for("Compact LBO Model (Complete)")
@@ -30,6 +41,7 @@ def test_alternatives_tags():
     assert any(a["source"] in ("asimplemodel", "macabacus", "damodaran", "exinfm", "biws") for a in lbo["alternatives"])
 
 
+@needs_cfi
 def test_paid_templates_kb():
     from finmodel import paid_templates
     assert paid_templates.categorise("Compact LBO Model (Complete)") == "LBO"
