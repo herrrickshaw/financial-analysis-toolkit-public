@@ -412,3 +412,10 @@ def test_paid_to_markdown_loads_intent_from_default_dir_when_absent(monkeypatch)
     out = {"summary": {"paid_titles": 0, "with_cfi_page": 0, "with_analogues": 0, "coverage": {}, "by_category": {}},
            "categories": {}, "items": []}
     assert "from loader" in paid_templates.to_markdown(out)
+
+
+def test_to_markdown_size_is_in_binary_kilobytes():
+    cat = {"generated": "g", "counts": {}, "sources": {"damodaran": {"publisher": "p", "home": "h", "access": "public"}},
+           "entries": [{"source": "damodaran", "title": "T", "access": "public", "size": 1_500_000,
+                        "verified_status": "200", "url": "u"}]}
+    assert "| T | public | 1465 KB | 200 | u |" in catalog.to_markdown(cat)

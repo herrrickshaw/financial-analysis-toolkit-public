@@ -106,7 +106,7 @@ def test_football_field_json_invariants(name, tmp_path, monkeypatch, capsys):
     assert data["price"] == fake_price(ticker)  # target priced from the (fake) warehouse, not a constant
     assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", data["price_date"])
     assert f"{fake_price(ticker):.2f}" in capsys.readouterr().out  # the console summary reports that same price
-    n_peers = n_ranges = n_stats = 0
+    n_peers = n_ranges = n_stats = n_deals = 0
     for node in walk(data):
         if not isinstance(node, dict):
             continue
@@ -120,6 +120,15 @@ def test_football_field_json_invariants(name, tmp_path, monkeypatch, capsys):
                 assert mult["P/B LTM"] == pytest.approx(node["equity_value"] / m["book_value"])
             if "P/E LTM" in mult and m.get("net_income"):
                 assert mult["P/E LTM"] == pytest.approx(node["equity_value"] / m["net_income"])
+        det = node.get("_detail")
+        if isinstance(det, dict) and {"offer_price", "equity_value"} <= node.keys() and "exchange_ratio" in det:
+            # a stock-for-stock precedent: equity value = offer * target shares, offer = ratio * acquirer close
+            assert node["equity_value"] == pytest.approx(node["offer_price"] * det["diluted_shares"])
+            close = next(v for k, v in det.items() if "close" in k and isinstance(v, (int, float)))
+            assert node["offer_price"] == pytest.approx(det["exchange_ratio"] * close, rel=1e-3)
+            n_deals += 1
+        if node.get("n_days") is not None:  # the 52-week row echoed from the fake psql
+            assert (node["n_days"], node["from"], node["to"]) == (252, "2025-07-01", "2026-07-02")
         if all(isinstance(node.get(k), (int, float)) for k in ("low", "high")):  # a valuation range
             n_ranges += 1
             assert node["low"] <= node["high"]
@@ -130,10 +139,20 @@ def test_football_field_json_invariants(name, tmp_path, monkeypatch, capsys):
             vals = [node[k] for k in STAT_KEYS]
             assert vals == sorted(vals)
     assert n_peers >= 3 and n_ranges >= 3 and n_stats >= 1
+    if name in ("football_field_usb.py", "football_field_o.py"):
+        assert n_deals == 2  # both stock-for-stock precedents were checked
     ff = data["football_field"]
     assert ff["current_price"] == data["price"]
     methods = [i["method"] for i in ff["items"]]
     assert len(methods) == len(set(methods)) >= 3
+    md = next(iter((tmp_path / "docs").glob("FOOTBALL_FIELD_*.md"))).read_text()
+    for it in ff["items"]:  # the report's "price inside range?" column agrees with the JSON ranges
+        row = next((ln for ln in md.splitlines() if ln.startswith(f"| {it['method']} | {it['low']:.2f} | {it['high']:.2f} |")), None)
+        if row is None:
+            continue
+        px = data["price"]
+        want = "yes" if it["low"] <= px <= it["high"] else "above" if px > it["high"] else "below"
+        assert (want in row) if want != "yes" else row.rstrip().endswith("| yes |")
     wk = [i for i in ff["items"] if "52" in i["method"]]
     assert wk and wk[0]["low"] == 90.5 and wk[0]["high"] == 130.25  # the fake 52-week row, passed through intact
 
@@ -163,6 +182,7 @@ def test_ma_case_study_deal_arithmetic(tmp_path, monkeypatch):
         d, e = res["deal"], res["engine"]
         premium = d["offer_price"] / d["target_undisturbed"] - 1
         assert premium > 0
+        assert e["offer_price_per_share"] == pytest.approx(d["offer_price"])
         f = e["funding"]
         assert f["pct_cash"] + f["pct_debt"] + f["pct_stock"] == pytest.approx(1)
         assert f["cash"] + f["debt"] + f["stock"] == pytest.approx(e["purchase_equity_value"])
@@ -172,7 +192,8 @@ def test_ma_case_study_deal_arithmetic(tmp_path, monkeypatch):
         assert (e["accretion_dilution"] > 0) == (e["accretion_dilution_pct"] > 0)
         assert res["pro_forma_static"]["revenue"] == pytest.approx(
             res["pre_acquirer"]["revenue"] + res["pre_target"]["revenue"])
-        assert res["pre_acquirer"]["ebitda"] >= res["pre_acquirer"]["ebit"]  # D&A is non-negative
+        row = json.loads((REPO / "data" / "edgar" / f"{d['acq']}.json").read_text())["years"][res["pre_acquirer"]["fy_end"]]
+        assert res["pre_acquirer"]["ebitda"] == row["operating_income"] + row.get("da", 0)  # EBITDA = EBIT + D&A from the 10-K
         assert set(res["warehouse_crosscheck"].values()) == {None}  # fake psql returns no fundamentals rows
         assert [p["fy_end"] for p in res["post"]] == sorted(p["fy_end"] for p in res["post"])
     md = (tmp_path / "docs" / "CASE_STUDY_MA.md").read_text()
@@ -187,5 +208,8 @@ def test_comps_validation_report_matches_prices(tmp_path, monkeypatch):
     ff = next(iter(json.loads(p.read_text()) for p in (tmp_path / "out").glob("*.json")))
     rng = next(i for n in walk(ff) if isinstance(n, dict) and isinstance(n.get("items"), list)
                for i in n["items"] if "52-week" in i["method"])
+    peers = [p["ticker"] for p in next(n for n in walk(ff) if isinstance(n, dict) and "peers" in n)["peers"]]
+    assert sorted(peers) == ["CLF", "CMC", "NUE", "RS", "WOR"]  # carbon-steel core only; ATI/CRS/X shown but excluded
+    assert ff["prices"]["STLD"] == fake_price("STLD")
     price = fake_price("STLD")
     assert rng["low"] == pytest.approx(price * 0.75) and rng["high"] == pytest.approx(price * 1.15)
