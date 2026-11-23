@@ -154,3 +154,38 @@ def test_reports_are_deterministic(tmp_path_factory, monkeypatch):
     jb = outputs("football_field_usb.py", b, monkeypatch)
     assert ja == jb
     assert (a / "docs" / "FOOTBALL_FIELD_USB.md").read_text() == (b / "docs" / "FOOTBALL_FIELD_USB.md").read_text()
+
+
+def test_ma_case_study_deal_arithmetic(tmp_path, monkeypatch):
+    deals = outputs("ma_case_study.py", tmp_path, monkeypatch)["case_study_ma.json"]
+    assert len(deals) == 3
+    for res in deals:
+        d, e = res["deal"], res["engine"]
+        premium = d["offer_price"] / d["target_undisturbed"] - 1
+        assert premium > 0
+        f = e["funding"]
+        assert f["pct_cash"] + f["pct_debt"] + f["pct_stock"] == pytest.approx(1)
+        assert f["cash"] + f["debt"] + f["stock"] == pytest.approx(e["purchase_equity_value"])
+        own = e["ownership"]
+        assert own["acquirer_holders"] + own["target_holders"] == pytest.approx(1)
+        assert e["accretion_dilution_pct"] == pytest.approx(e["combined"]["eps"] / e["acquirer"]["eps"] - 1)
+        assert (e["accretion_dilution"] > 0) == (e["accretion_dilution_pct"] > 0)
+        assert res["pro_forma_static"]["revenue"] == pytest.approx(
+            res["pre_acquirer"]["revenue"] + res["pre_target"]["revenue"])
+        assert res["pre_acquirer"]["ebitda"] >= res["pre_acquirer"]["ebit"]  # D&A is non-negative
+        assert set(res["warehouse_crosscheck"].values()) == {None}  # fake psql returns no fundamentals rows
+        assert [p["fy_end"] for p in res["post"]] == sorted(p["fy_end"] for p in res["post"])
+    md = (tmp_path / "docs" / "CASE_STUDY_MA.md").read_text()
+    for res in deals:
+        assert f"## {res['deal']['name']}" in md
+
+
+def test_comps_validation_report_matches_prices(tmp_path, monkeypatch):
+    run_script("comps_validation.py", tmp_path, monkeypatch)
+    md = next((tmp_path / "docs").glob("*.md")).read_text()
+    assert "Prices: warehouse," in md  # fake psql answered, so the fallback constants were not used
+    ff = next(iter(json.loads(p.read_text()) for p in (tmp_path / "out").glob("*.json")))
+    rng = next(i for n in walk(ff) if isinstance(n, dict) and isinstance(n.get("items"), list)
+               for i in n["items"] if "52-week" in i["method"])
+    price = fake_price("STLD")
+    assert rng["low"] == pytest.approx(price * 0.75) and rng["high"] == pytest.approx(price * 1.15)
